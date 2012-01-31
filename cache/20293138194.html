@@ -71,7 +71,7 @@
                     <div id="text_3" class="form-html">
                         <iframe src="http://forms.datalynk.ca/server.php?action=getExtGridSubmissions&formID=20294642187&listID=&start=0&limit=14&sort=created_at&dir=DESC&startDate=&endDate=&_dc=1327978718747&callback=stcCallback1001" id='hidden_form' style='display:none;' onload="
                         body.onload=function(){
-                        var b= document.getElementById('hidden_form').contentDocument.document.body.innerHTML;
+                        var b= document.getElementById('hidden_form').contentWindow.document.body.innerHTML;
                         console.log(b);
                         var d = b.indexOf('{');
                         var e = b.lastIndexOf('}');
