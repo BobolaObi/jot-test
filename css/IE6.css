@@ -1,0 +1,33 @@
+* html img{
+    azimuth: expression(
+	        this.pngSet?this.pngSet=true:(this.nodeName == "IMG" && this.src.toLowerCase().indexOf('.png')>-1?(this.runtimeStyle.backgroundImage = "none",
+	        this.runtimeStyle.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + this.src + "', sizingMethod='image')",
+	        this.src = "http://jotform.com/images/blank.gif"):(this.origBg = this.origBg? this.origBg :this.currentStyle.backgroundImage.toString().replace('url("','').replace('")',''),
+	        this.runtimeStyle.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + this.origBg + "', sizingMethod='crop')",
+	        this.runtimeStyle.backgroundImage = "none")),this.pngSet=true
+    );
+}
+html, body{
+    zoom: 1;
+}
+
+.tools li,
+.big-button,
+.context-menu-item,
+.context-menu-item-disabled,
+#list li{
+    
+    /*border-color: pink !important;
+    filter: chroma(color=pink) !important;*/
+   border:none;
+   min-height:500px;
+}
+
+#footer{
+    position:static;
+}
+
+#group-form button {
+    width:18% !important;
+    border:1px solid #ccc;
+}

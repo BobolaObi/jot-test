@@ -1,0 +1,25 @@
+Jan 27 23:57:05 [info] SELECT version FROM `schema_info`
+Jan 27 23:57:05 [info] CREATE TABLE `block_email_banners` (
+                `username` VARCHAR( 31 ) NOT NULL, PRIMARY KEY ( `username` )
+               ) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_unicode_ci COMMENT = 'These users will not see banners on their emails'
+Jan 27 23:57:05 [info] UPDATE `schema_info` SET version = 51
+Jan 27 23:57:05 [info] ALTER TABLE `users` ADD INDEX ( `email` )
+Jan 27 23:57:05 [info] UPDATE `schema_info` SET version = 52
+Jan 27 23:57:05 [info] ALTER TABLE `users` ADD `LDAP` INT NOT NULL COMMENT 'If this user account migrated from LDAP or not'
+Jan 27 23:57:05 [info] UPDATE `schema_info` SET version = 53
+Jan 27 23:57:05 [info] ALTER TABLE  `spam_prob` CHANGE  `form_id`  `form_id` BIGINT( 20 ) UNSIGNED NULL DEFAULT NULL
+Jan 27 23:57:05 [info] ALTER TABLE `spam_prob` ADD CONSTRAINT `spam_prob_form_fk` FOREIGN KEY (`form_id`) REFERENCES `forms` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+Jan 27 23:57:05 [info] UPDATE `schema_info` SET version = 54
+Jan 27 23:57:05 [info] ALTER TABLE  `users` CHANGE  `account_type`  `account_type` ENUM(  'FREE',  'OLDPREMIUM',  'PREMIUM',  'PROFESSIONAL',  'ADMIN',  'GUEST',  'SUPPORT' ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT  'FREE'
+Jan 27 23:57:05 [info] UPDATE `schema_info` SET version = 55
+Jan 27 23:57:05 [info] CREATE TABLE `bounced_emails` (
+                        `email` VARCHAR( 250 ) NOT NULL ,
+                         PRIMARY KEY ( `email` )
+                        ) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_unicode_ci 
+                        COMMENT = 'Contains addresses that we should not send emails to.'
+Jan 27 23:57:05 [info] UPDATE `schema_info` SET version = 56
+Jan 27 23:57:05 [info] ALTER TABLE  `forms` CHANGE  `new`  `new` INT( 11 ) NULL DEFAULT NULL
+Jan 27 23:57:05 [info] UPDATE `forms` SET `new`=-1 WHERE `new`=127
+Jan 27 23:57:05 [info] UPDATE `schema_info` SET version = 57
+Jan 28 00:00:40 [info] SELECT version FROM `schema_info`
+Jan 30 13:40:55 [info] SELECT version FROM `schema_info`

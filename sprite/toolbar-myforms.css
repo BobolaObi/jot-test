@@ -1,0 +1,15 @@
+.toolbar-myforms-clone, .toolbar-myforms-delete, .toolbar-myforms-edit, .toolbar-myforms-new, .toolbar-myforms-new_folder, .toolbar-myforms-payment, .toolbar-myforms-preview, .toolbar-myforms-reports, .toolbar-myforms-share_form_network, .toolbar-myforms-share_form_world, .toolbar-myforms-submissions, .toolbar-myforms-trashcan_empty, .toolbar-myforms-trashcan_full, .toolbar-myforms-undo{background: transparent url(images/toolbar-myforms.png?3.0.REV) no-repeat scroll 0 0;}
+.toolbar-myforms-clone{background-position: -0px 0px;width:24px;height:24px;}
+.toolbar-myforms-delete{background-position: -24px 0px;width:24px;height:24px;}
+.toolbar-myforms-edit{background-position: -48px 0px;width:24px;height:24px;}
+.toolbar-myforms-new{background-position: -72px 0px;width:24px;height:24px;}
+.toolbar-myforms-new_folder{background-position: -96px 0px;width:24px;height:24px;}
+.toolbar-myforms-payment{background-position: -120px 0px;width:24px;height:24px;}
+.toolbar-myforms-preview{background-position: -144px 0px;width:24px;height:24px;}
+.toolbar-myforms-reports{background-position: -168px 0px;width:24px;height:24px;}
+.toolbar-myforms-share_form_network{background-position: -192px 0px;width:24px;height:24px;}
+.toolbar-myforms-share_form_world{background-position: -216px 0px;width:24px;height:24px;}
+.toolbar-myforms-submissions{background-position: -240px 0px;width:24px;height:24px;}
+.toolbar-myforms-trashcan_empty{background-position: -264px 0px;width:24px;height:24px;}
+.toolbar-myforms-trashcan_full{background-position: -288px 0px;width:24px;height:24px;}
+.toolbar-myforms-undo{background-position: -312px 0px;width:24px;height:24px;}

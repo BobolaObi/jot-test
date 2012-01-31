@@ -1,0 +1,138 @@
+#list{ padding-left:0px !important; }
+#shadoww{ display:none; }
+#footer-content { width:950px; }
+
+#tool_bar .big-button{
+    border:none;
+    /*padding: 3px 10px !important;*/
+}
+
+.buttons{
+    padding:2px 10px;
+}
+
+.nicEdit-main p{
+    margin:0px;
+    padding:0px;
+}
+.form-textarea-limit-indicator{
+    zoom:normal;
+}
+.buttons-black{
+    padding:4px 10px;
+}
+.recent-forms li{
+    height:19px;
+}
+
+#group-form button{
+    width:24% !important;
+    min-width:10px !important;
+    padding:0px !important;
+    padding-left:0px !important;
+    margin:0px !important;
+}
+.context-menu-separator{
+    padding:0px;
+}
+.folder ul li{
+    margin-left:5px !important;
+}
+
+.scount{
+    text-indent:0px !important;
+}
+
+#feedback-tab {
+	right: 0;
+}
+
+#feedback-tab-link {
+    right: 0px;
+    padding-top:5px;
+    padding-bottom:0px;
+    height:30px;
+}
+
+.drags, .button, .window-buttons{
+    white-space:nowrap;
+}
+
+
+/* IE 7 does not display outlines for divs so we converted them to borders */
+.question-selected .form-label-left, .question-selected .form-label-top, .question-selected .form-label-right{ 
+    border:1px dashed #999999;
+}
+.form-pagebreak  .form-label-left{
+    background:none !important;
+}
+/*
+ * Fixes the unselectable account box z-index bug.
+ * We turned it to the old version for only IE7
+ */
+#footer{
+    padding-top:0px !important;
+}
+.main, #footer-content{
+    padding-bottom:380px !important;
+    z-index:-1 !important;
+}
+#translate-text{
+    margin-top:10px !important;
+}
+.edit-box .buttons{
+    float:none;
+}
+.edit-sublabel{
+    width:auto;
+}
+
+/* New Share Wiz inline-block fix - Start */
+
+
+#shareWizard #shareOptions a, 
+#shareWizard #shareOptionInstructions .widgetDemo{display:inline;float:left;}
+
+#shareWizard #shareOptionInstructions .widgetOptCol {display:inline;float:left;margin-bottom:5px;}
+
+#shareWizard #shareOptionInstructions .widgetOptions {display:inline;float:left;}
+
+#shareWizard #shareOptionInstructions .widgetOptions .widgetOptFieldsSize {display:inline;float:left;}
+
+#shareWizard #shareOptionInstructions .styleBrowser{display:inline;float:left;}
+
+#shareWizard #shareOptionInstructions .styleBrowser .styleBox{display:inline;float:left;}
+
+#shareWizard #shareOptionInstructions .widgetOptions .widgetOptFieldsColor {display:inline;float:left;}
+
+#shareWizard #shareOptionInstructions fieldset {
+	padding: 5px 0 !important;
+}
+
+/* New Share Wiz inline-block fix - End */
+
+#shareWizard #shareOptionInstructions .widgetOptions .widgetOptFieldsSize input {width: 38px;}
+
+#shareWizard #shareOptionInstructions .widgetOptions .widgetOptFieldsColor input {width: 80px;}
+
+/*
+ * Start of Dropbox Landing Page 
+ */
+#dropboxBgStripe { left:0 !important; }
+
+.dropboxColLeft { display:inline !important; }
+
+.dropboxColRight { display:inline !important; }
+
+#dropboxVideo { display:inline !important; }
+
+.dropboxContFeatBox { display:inline !important; }
+
+.pBarText { line-height: 9px; }
+
+.link-cont { padding: 2px 0 4px; font-size: 12px; height: 22px; width:162px; margin: 0 0 0 5px; }
+
+
+/*
+ * End of Dropbox Landing Page 
+ */

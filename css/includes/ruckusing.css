@@ -1,0 +1,31 @@
+#admin-content-menu {
+}
+
+#response-fieldset {
+	border: 1px solid #AEAEAE;
+	margin: 0;
+	padding: 6px;
+	width: 638px;
+}
+
+#response-div {
+	height: 200px;
+	background: #FFFFFF none repeat scroll 0 0;
+	overflow: auto;
+}
+
+.ruckusing-bt {
+	width: 145px;
+	margin:5px 0;
+}
+
+#cp1 {
+	width: 650px;
+	height: 240px;
+	/* display: none; */
+}
+
+#cp1-div {
+    overflow: hidden;
+    
+}

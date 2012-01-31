@@ -1,0 +1,47 @@
+
+#tool_bar .toolbar-set .big-button{
+    min-width:30px !important;
+}
+
+/**
+ * Navigation was really problematic in the first version but it seems to be fixed now.
+ */
+#nav:hover li{
+    /*
+    float:left !important;
+    width:70px;
+    */
+}
+
+
+.edit-box .buttons{
+    min-height:15px;
+}
+
+.narrow-bar .big-button {
+    width:22%;
+}
+
+#tool_bar{
+    zoom:1;
+    left:auto;
+}
+
+#search-bar .big-button{
+    /*min-width:50px;*/
+}
+.narrow-bar{
+    min-width:300px    
+}
+
+/* 
+ * on myforms page toolbar buttons container width changes without any reason
+ * it looks like a peek-a-boo bug it will possibly be fixed in the final version
+ */
+#group-myforms{
+    max-width:140px;
+}
+#form-properties{
+    max-width:180px;
+}
+/* peek-a-boo end */

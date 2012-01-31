@@ -1,0 +1,127 @@
+.formLabel {
+    width: 7.6em;
+    display: inline-block;
+    margin-right: 1em;
+    font-weight: bold;
+    color: #666;
+    line-height: 2em;
+}
+
+#accountPassForm .formLabel {
+    width: 12em;
+}
+
+form input {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border: 2px solid #666;
+    padding: 4px;
+    font-size: 18px;
+}
+
+#updateButton, #passButton {
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
+    font-size: inherit; 
+}
+
+#suTimeZone {
+	height: 28px; 
+	font-size: 16px;
+}
+
+.answer { 
+    width: 400px;
+    margin-right: 1em;
+    font-weight: bold;
+    color: #000;
+    line-height: 2em;
+    display: inline;
+}
+
+#accountBox, #passBox {
+    font-size: 16px;
+    width: 450px;
+    margin-bottom:40px;
+    float:left;
+}
+
+.padding {
+    padding-left: 16em;
+    width: 15em;
+    text-align: center;
+}
+
+.fieldMessage {
+    width: 13em;
+    display: inline;
+    font-size:12px;
+    margin-left:5px;
+    height: 1em;
+}
+
+div.error {
+    color: red;
+    padding: 0;
+}
+
+div.correct {
+    color: green;
+}
+
+input.error {
+    border: 2px solid red;
+}
+
+#accountError, #passError {
+    text-align: left;
+    margin: 1em 0;
+}
+
+#content {
+    text-align: left;
+    background-color: white;
+}
+
+.validationImage {
+    position: absolute;
+    margin-top: 6px;
+}
+
+div.error input {
+    border: 2px solid red;
+}
+#passBox{
+    float:left;
+    width:auto;
+    border-right:none;
+}
+
+
+div.error  div#errorMessage, 
+div.correct  div#correctMessage {
+    display: inline;
+}
+
+div.error div#correctMessage,
+div.correct div#errorMessage {
+    display: none;
+}
+
+div#errorMessage, div#correctMessage {
+    display: none;
+}
+
+#accountInfoError, #accountPassError {
+    margin-top: 1em;
+}
+
+#accountInfoBut, #accountPassBut {
+    margin-top: 1em; 
+}
+ 
+#accountTypeField.warn > label.formLabel, #accountTypeField.warn > div.answer{
+	color: red;
+}

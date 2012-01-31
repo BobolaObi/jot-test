@@ -1,0 +1,31 @@
+/*
+ *Form CSS
+ */
+.form-all{
+    color: #333333;
+    font-family:"Comic Sans MS";
+    font-size: 14px;
+    background:url(../../images/styles/style3_bg.gif) #f8e400 bottom right no-repeat;
+}
+
+.form-textbox, .form-textarea, .form-upload, .form-dropdown, .form-matrix-column-headers, .form-matrix-row-headers, .form-matrix-values{
+   font-family: "Comic Sans MS";
+   font-size: 14px;
+   font-weight:normal;
+   color:#333333;
+   border:0px;
+   background:url(../../images/styles/style2_txt_bg.gif) bottom repeat-x;
+}
+.form-dropdown{
+   border:1px #333333 dotted;
+   background: #f8e400;
+}
+
+.form-submit-button, .form-submit-reset, .form-submit-print{
+   font-family: "Comic Sans MS";
+   font-size: 14px;
+   font-weight:normal;
+   color:#333333;
+   border:1px #333333 dotted;
+   background: #f8e400;
+}

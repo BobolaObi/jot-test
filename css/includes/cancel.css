@@ -1,0 +1,14 @@
+.cancelInfo{
+	padding-top: 10px;
+	font-size: 18px;
+}
+.cancelInfo ol{
+    margin: 0;
+	padding-left: 40px;
+}
+.cancelInfo li{
+	padding-bottom: 5px;
+}
+.cancelInfo p{
+	padding: 10px;
+}

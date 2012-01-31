@@ -1,0 +1,85 @@
+<table height="500" width="950" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td valign="top" style="padding:5px; background:#eee;">
+            <table width="100%" height="100%" border="0">
+                <tr>
+                    <td height="80" width="50%" valign="top">
+                        <div class="email-entry-form">
+                            <li>
+                                <label class="locale">From Address</label> <input type="textbox" size="50" id="email-from">
+                            </li>
+                            <li>
+                                <label class="locale">To Address</label> <input type="textbox" size="50" id="email-to">
+                            </li>
+                            <li>
+                                <label class="locale">Email Subject</label> <input type="textbox" size="60" id="email-subject">
+                                <button class="big-button buttons locale" style="float:right;" id="email-default-button">Use Default Email</button>
+                            </li>
+                        </div>                        
+                    </td> 
+                </tr>
+                <tr>
+                    <td valign="top" style="background:#fff;">
+                        <textarea style="height:386px; width:720px" id="email-body"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top">
+                        
+                        <table id="email-advancedSettings" style="display:none;" width="100%">
+                            <tr>
+                                <td>
+                                    <div id="email-conditions">
+                                        
+                                    </div>
+                                </td>
+                                <td width="210" valign="top">
+                                    <fieldset class="accountField" style="border:1px dashed #aaa; background:#f5f5f5; padding:0; margin:0; height:143px;">
+                                        <legend><b>&nbsp;<span class="locale">Settings</span></b></legend>
+                                        <div class="advanced-setting-fieldset" style="padding:10px; list-style:none; list-style-position:outside;">
+                                            <li>
+                                                <label class="locale">Name</label> <input type="textbox" size="15" id="email-name">
+                                            </li>
+                                            <li>
+                                                <label class="locale">Rich Formatting</label> 
+                                                <select id="email-html">
+                                                    <option class="locale" value="Yes">Yes</option>
+                                                    <option class="locale" value="No">No</option>                                    
+                                                </select>
+                                            </li>
+                                            <li>
+                                                <label class="locale">Enable Email?</label> <input type="checkbox" id="email-status">
+                                            </li>
+                                            <li>
+                                                <input type="button" class="locale-button" value="Delete This Email" id="email-delete" style="font-size:12px; font-weight:bold; border:1px solid #ccc; background:#f5f5f5;">
+                                            </li>
+                                        </div>
+                                    </fieldset>
+                                </td>
+                            </tr>
+                        </table>                        
+                    </td>
+                </tr>
+            </table>
+        </td>
+        <td width="220" valign="top" style="border-left:1px solid #ccc; padding:5px; padding-left:10px;">
+            <div style="display:none">
+                <b class="locale">Your Emails</b> <button class="big-button" style="margin-left:0px; padding-left:0px; float:right" id="add-new-email"><img src="images/add.png" align="absmiddle"> <span class="locale">Add new Email<span></span> </button>
+                <br clear="right">
+                <div id="email-list" style="height:101px; overflow:auto; border:1px solid #888;"></div>
+                <hr>
+            </div>
+            <div id="fields-container">
+                <b><span class="locale">Form Fields</span> [?]</b>
+                <div id="email-form-fields" style="max-height:600px; overflow:auto;"></div>
+            </div>
+            <div style="position: absolute; bottom: 5px; right: 10px; display:none;">
+                <hr>
+                <b id="enable-advanced" style="cursor:pointer" class="locale">Advanced Settings</b>
+                <button class="locale big-button buttons" id="form-save">Save</button>
+                <button class="locale big-button buttons" id="form-test">Send Test</button>
+                <button class="locale big-button buttons" id="form-close">Close</button>
+            </div>
+        </td>
+    </tr>
+</table>

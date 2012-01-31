@@ -1,0 +1,6 @@
+.browsers-chrome, .browsers-firefox, .browsers-IE8, .browsers-opera, .browsers-safari{background: transparent url(images/browsers.png?3.0.REV) no-repeat scroll 0 0;}
+.browsers-chrome{background-position: -0px 0px;width:100px;height:100px;}
+.browsers-firefox{background-position: -100px 0px;width:100px;height:100px;}
+.browsers-IE8{background-position: -200px 0px;width:100px;height:100px;}
+.browsers-opera{background-position: -300px 0px;width:100px;height:100px;}
+.browsers-safari{background-position: -400px 0px;width:100px;height:100px;}

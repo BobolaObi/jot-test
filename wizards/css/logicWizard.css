@@ -1,0 +1,41 @@
+.condition-added{
+    background:#dddddd;
+    font-style:italic;
+}
+#condition-types, #action-cond-details{
+    padding:0;
+    margin:0;
+    list-style:none;
+    list-style-position:outside;    
+}
+#condition-types label{
+    font-size:14px;
+}
+
+#condition-types li{
+    margin:10px 0;
+    padding:5px;
+    border:1px solid transparent;
+}
+.cond-line{
+    border:1px solid transparent;
+}
+.saved-conds{
+    margin:5px;
+    padding:10px;
+    cursor:pointer;
+    border:1px solid #888888;
+    -webkit-transition: all 0.2s ease-in;
+}
+.saved-conds:hover{
+    background:#e5e5e5;
+    border:1px solid #666666;
+}
+.term-text{
+    color:#666666;
+    font-size:10px;
+    display:block;
+}
+.saved-conds:hover .buttons-td{
+    visibility:visible;
+}

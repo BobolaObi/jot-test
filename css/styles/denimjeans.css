@@ -1,0 +1,38 @@
+/*
+ *Form CSS
+ */
+.form-all{
+    color: #F2D605;
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    background: url(../../images/styles/denimjeans_bg.jpg);
+}
+
+.form-textbox, .form-textarea, .form-upload, .form-dropdown, .form-matrix-column-headers, .form-matrix-row-headers, .form-matrix-values{
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    color: #F2D605;
+    border: 1px dashed #F2D605;
+    background: #2E353F;
+}
+
+.form-submit-button, .form-submit-reset, .form-submit-print {
+    background-color: #F2D605;
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    border: 0px;
+    color: #2E353F;
+    padding: 7px 40px;
+    -moz-border-radius: 10px;
+}
+
+.form-header-group{
+    background: none;
+}
+
+.form-collapse-table{
+	color:Black;
+}

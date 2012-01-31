@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="HandheldFriendly" content="true" />
+<title>Form</title>
+<link href="http://cdn.jotfor.ms/jotform.cssgz?3.1.110" rel="stylesheet" type="text/css" />
+<style type="text/css">
+    .form-label{
+        width:150px !important;
+    }
+    .form-label-left{
+        width:150px !important;
+    }
+    .form-line{
+        padding:10px;
+    }
+    .form-label-right{
+        width:150px !important;
+    }
+    body, html{
+        margin:0;
+        padding:0;
+        background:false;
+    }
+
+    .form-all{
+        margin:0px auto;
+        padding-top:20px;
+        width:690px;
+        color:Black !important;
+        font-family:Verdana;
+        font-size:12px;
+    }
+</style>
+
+<script src="http://cdn.jotfor.ms/jotform.jgz?3.1.110" type="text/javascript"></script>
+<script type="text/javascript">
+   JotForm.init();
+</script>
+</head>
+<body>
+<form class="jotform-form" action="http://forms.datalynk.ca/submit.php" method="post" name="form_20293138194" id="20293138194" accept-charset="utf-8">
+    <input type="hidden" name="formID" value="20293138194" />
+    <div class="form-all">
+        <ul class="form-section">
+            <li class="form-line" id="id_1">
+                <label class="form-label-left" id="label_1" for="input_1"> Click to edit </label>
+                <div id="cid_1" class="form-input">
+                    <select class="form-dropdown" style="width:150px" id="input_1" name="q1_clickTo1">
+                        <option>  </option>
+                        <option value="&quot;&quot;"> "" </option>
+                    </select>
+                </div>
+            </li>
+            <li class="form-line" id="id_4">
+                <div id="cid_4" class="form-input-wide">
+                    <div id="text_4" class="form-html">
+                        <p>
+                            <img src="http://forms.datalynk.ca/images/blank.gif" alt="" />
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="form-line" id="id_3">
+                <div id="cid_3" class="form-input-wide">
+                    <div id="text_3" class="form-html">
+                        <iframe src="http://forms.datalynk.ca/server.php?action=getExtGridSubmissions&formID=20294642187&listID=&start=0&limit=14&sort=created_at&dir=DESC&startDate=&endDate=&_dc=1327978718747&callback=stcCallback1001" id='hidden_form' style='display:none;' onload="
+                        body.onload=function(){
+                        var b= document.getElementById('hidden_form').contentDocument.document.body.innerHTML;
+                        var d = b.indexOf('{');
+                        var e = b.lastIndexOf('}');
+                        var f = b.substring(d,e+1);
+                        var h = dojo.fromJson(f);
+                        dojo.empty('input_1');
+                        for(var i=0; i < h['data'].length;i++){
+                        var opt=dojo.create('option');
+                        opt.innerHTML = h['data'][i][1];
+                        opt.value = h['data'][i][1];
+                        var par = dojo.byId('input_1');
+                        par.appendChild(opt);
+                        }
+                        }
+                        " />
+                    </div>
+                </div>
+            </li>
+            <li class="form-line" id="id_2">
+                <div id="cid_2" class="form-input-wide">
+                    <div style="margin-left:156px" class="form-buttons-wrapper">
+                        <button id="input_2" type="submit" class="form-submit-button">
+                            Submit Form
+                        </button>
+                    </div>
+                </div>
+            </li>
+            <li style="display:none">
+                Should be Empty:
+                <input type="text" name="website" value="" />
+            </li>
+        </ul>
+    </div>
+    <input type="hidden" id="simple_spc" name="simple_spc" value="20293138194" />
+    <script type="text/javascript">
+        document.getElementById("si" + "mple" + "_spc").value = "20293138194-20293138194";
+    </script>
+</form></body>
+</html>

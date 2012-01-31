@@ -1,0 +1,32 @@
+== Regarding ANSWERS table ==
+
+I have not added a foreign key to the answers table for columns "form_id" and "question_id" referencing question properties because it will delete all answers once a question is deleted.
+
+So, in short, this is removed:
+
+ALTER TABLE `answers` ADD FOREIGN KEY ( `form_id`, `question_id` ) REFERENCES `question_properties` (`form_id`, `question_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+Because of this case:
+
+A user creates a form with first question asking First Name. Say he didn't like the color etc. and deleted it and added the same field from the toolbox again at the same place. All the answers to this old question will be deleted even though the question is essentially the same except for its ID.
+
+But two other foreign keys stay:
+
+ALTER TABLE `answers` ADD FOREIGN KEY ( `form_id` ) REFERENCES `forms` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `answers` ADD FOREIGN KEY ( `submission_id` ) REFERENCES `submissions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+Once a submission or the table is deleted the relevant rows in the table are also deleted.
+
+
+
+== General NOTES ==
+
+OLD IDEA:
+I did not add any foreign key checks to payment related tables because, well, payment related logs/data should not be deleted at all. Payment related data should be kept in the database for as long as we can so that any future problem can be addressed.
+NEW IDEA (after discussing with Serkan):
+If a submission is deleted, payment log should have NULL in place of submission_id. If a submissions ID is trying to be updated then that operations should not be allowed, hence ON UPDATE RESTRICT.
+
+Should product be deleted automatically when a form is deleted? Similar to the issue in payments? I think it should be because it is not directly related to payments.
+
+ 

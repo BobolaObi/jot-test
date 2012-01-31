@@ -1,0 +1,549 @@
+<div id="shareWizard">
+	<div id="shareWizardWindow">
+		<div id="shareFormBasic">
+		    <div id="share-url">
+    		    <img src="images/icon_share_link.gif" align="left" />
+    		    <h3 style="margin:4px 0 0;" class="locale">Your Form URL</h3>
+    		    <p style="margin:0px;font-size:10px;" class="locale">Copy this link to use on email message or web page:</p>
+    			<br clear="all"/>
+                <div>
+                    <input onclick="this.select();" class="text readonly" id="mainURLSource" readonly="readonly"/>
+                    <span id="mainURLSourceDiv" class="clipboard"></span>
+                </div>
+    		    <br/><br/>	
+    		    <br/><br/>	
+		    </div>
+	        <div id="share-script">
+    		    <img src="images/icon_share_code.gif" align="left" />
+    		    <h3 style="margin:4px 0 0;" class="locale">Paste this code on your web site</h3>
+    		    <p style="margin:0px;font-size:10px;" class="locale">Copy following code and paste it into your web page to show your form:</p>
+    			<br clear="all"/>
+    		    <textarea wrap="off" row="5" onclick="this.select();" class="readonly" id="mainSource" readonly="readonly"></textarea>
+    		    <br/><br/>
+            </div>	
+		</div>
+	</div>
+	<!-- do not translate -->
+	<div id="shareWizardAdvanced">
+	    <div class="viewPanel">
+	        <div id="page_url">
+	            <h4 class="locale">URL for your Form</h4>
+	            <p class="locale">Link to your form on a web page or email message:</p>
+	            <div>
+	                <input type="text" class="text readonly" id="urlSource" readonly="readonly" />
+					<span id="urlClipboardDiv" class="clipboard"></span>
+	            </div>
+	        </div>
+	        <div id="page_secureUrl">
+	            <h4 class="locale">Secure URL for your Form</h4>
+	            <p class="locale">Link to your secure form on a web page or email message:</p>
+	            <div>
+	                <input type="text" class="text readonly" id="secureUrlSource" readonly="readonly" />
+					<span id="secureUrlClipboardDiv" class="clipboard"></span>
+	            </div>
+	        </div>
+	        <div id="page_customUrl">
+	            <h4 class="locale">Custom URL</h4>
+	            <p class="locale">Create a nice URL for your form to link on a web page or email message:</p>
+	            <div>
+	                <input readonly="true" class="text readonly" id="customUrlSource" />
+					<span id="customUrlClipboardDiv" class="clipboard"></span>
+	            </div>
+	            <div style="clear:both;">
+	                <span class="locale">Page Name: </span>
+	                <input type="text" class="pageName" id="customUrlFileName" />
+	                <button id="customUrlButton" type="button" class="window-buttons locale" name="save">Save</button>
+	            </div>
+				<div class="error" id="customUrlError"></div>
+	        </div>
+	        <div id="page_shortUrl">
+	            <div id="short_uri_success">
+	                <h4 class="locale">Short URL</h4>
+	                <p class="locale">Use this short URL to link on a twit or instant message:</p>
+	                <div>
+	                    <input type="text" id="shortUrlSource" class="text readonly"/>
+						<span id="shortUrlClipboardDiv" class="clipboard"></span>
+	                </div>
+	            </div>
+	        </div>
+	        <div id="page_jsembed">
+	            <h4 class="locale">Simple Embed Code</h4>
+	            <p class="locale">Embed your form in a web page:</p>
+	            <textarea wrap="off" class="readonly" id="jsembedSource" readonly="readonly"></textarea>
+	        </div>
+	        <div id="page_css">
+	            <h4 class="locale">Full Source Code</h4>
+	            <p class="locale">If you would like to customize your form further in an HTML editor, then embed it in your web page, use this code:</p>
+	            <textarea wrap="off" class="readonly" id="cssSource" style="height:335px;" readonly="readonly"></textarea>
+                <label style="display:none;"><input type="checkbox" id="page-code"> Enable full page code.</label>
+	        </div>
+	        <div id="page_zip">
+	            <h4 class="locale">Download Zip</h4>
+	            <p class="locale">Download full form code including the CSS and JavaScript to include in your form:</p>
+	            <button class="locale window-buttons" type="button" name="download" onclick="BuildSource.getCode({type:'zip'});">Download</button>
+	        </div>
+	        <div id="page_iframe">
+	            <h4 class="locale">iFrame</h4>
+	            <p class="locale">If you would like to include your form with a simple iFrame on your page, then embed it in your web page, use this code:</p>
+	            <textarea wrap="off" style="height:60px;" id="iframeSource" class="readonly" readonly="readonly"></textarea>
+	        </div>
+	        <div id="page_lightbox">
+	            <h4 class="locale">Light Box</h4>
+				<p class="locale">Use this code to have a lightbox form on your page:</p>
+                <textarea wrap="off" rows="5" id="lightboxSource" class="readonly" readonly="readonly"></textarea>
+                <button id="lightBoxTest" type="button" class="window-buttons orangebox locale" name="testlightbox">Test</button>
+	        </div>
+	        <div id="page_popupBox">
+	            <h4 class="locale">Popup Box</h4>
+	            <p class="locale">Use this code to have a pop-up form on your page:</p>
+	            <textarea wrap="off" rows="3" id="popupBoxSource" class="readonly" readonly="readonly"></textarea>
+				<button id="popUpTest"type="button" class="window-buttons" name="testpopup">Test</button>
+	        </div>
+			<div id="page_feedbackBox">
+				<h4 class="locale">Feedback Button</h4>
+				<p class="locale">Use this code to have a feedback form on your page:</p>
+                <textarea wrap="off" rows="5" id="feedbackBoxSource" class="readonly locale" readonly="readonly"></textarea>
+				<div class="feedbackButton">
+					<label class="locale">Button Label:</label>
+					<input type="text" id="feedbackButtonName" />
+	                <button type="button" id="feedbackButtonTest" class="window-buttons locale" name="test">
+	                    Test
+	                </button>
+				</div>
+			</div>
+	        <div id="page_dreamWeaver">
+	            <h4 class="locale">DreamWeaver</h4>
+	            <p class="locale">
+	                Add your form into a DreamWeaver web page:
+	            </p>
+	            <ol class="instructions">
+	                <li class="locale">On DreamWeaver, open the page you want to edit.</li>
+	                <li class="locale">Click on the exact spot your would like to put your form.</li>
+	                <li class="locale">Click on "View" menu, then select "Code".</li>
+	                <li class="locale">Copy this form code:</li>
+	                <textarea wrap="off" cols="70" rows="13" id="dreamWeaverSource" class="readonly" readonly="readonly"></textarea>
+	                <li class="locale">Paste it in DreamWeaver</li>
+	                <li class="locale">Click on "View" menu, then select "Design".</li>
+	                <li class="locale">You should now see your form on the page.</li>
+	                <li class="locale">Save your page and upload to your web site.</li>
+	            </ol>
+	        </div>
+            <div id="page_webDesigner">
+                <h4 class="locale">Xara Web Designer & MAGIX Web Designer</h4>
+                <p class="locale">
+                    Add your form into a Web Designer web page:
+                </p>
+                <p class="locale">
+                    If you used Web Designer’s Designs Gallery to add a JotForm form, simply click the Insert button at the bottom of this browser window. This window will close and a few seconds later you should see an image of your form appear on your page. Preview the page to test the working form.
+                </p>
+                <textarea wrap="off" style="height:30px;" id="webDesignerSource" class="readonly" readonly="readonly"></textarea>
+                <p class="locale">
+                    If you came to JotForm using a separate web browser instead of using the Web Designer Designs Gallery, click on the code above to select it, then copy it (Ctrl+C). Then go into the Selector Tool in Web Designer 6 and paste (Ctrl+V). An image of your form will appear on your page. Preview the page to test the working form. 
+                </p>
+                <p class="locale">
+                    If you are using an older version of Web Designer, you need to use Utilities->Web properties, Placeholder tab, to insert the HTML code attached to a placeholder object.
+                </p>
+            </div>
+            <div id="page_designerPro">
+                <h4 class="locale">Xara Designer Pro & MAGIX Designer Pro</h4>
+                <p class="locale">
+                    Add your form into a Designer Pro web page:
+                </p>
+                <p class="locale">
+                    If you used Designer Pro’s Designs Gallery to add a JotForm form, simply click the Insert button at the bottom of this browser window. This window will close and a few seconds later you should see an image of your form appear on your page. Preview the page to test the working form.
+                </p>
+                <textarea wrap="off" style="height:30px;" id="designerProSource" class="readonly" readonly="readonly"></textarea>
+                <p class="locale">
+                    If you came to JotForm using a separate web browser instead of using the Designer Pro Designs Gallery, click on the code above to select it, then copy it (Ctrl+C). Then go into the Selector Tool in Designer Pro 6 and paste (Ctrl+V). An image of your form will appear on your page. Preview the page to test the working form. 
+                </p>
+                <p class="locale">
+                    If you are using an older Xara version (Xtreme Pro 5), you need to use Utilities->Web properties, Placeholder tab, to insert the HTML code attached to a placeholder object.
+                </p>
+            </div>
+	        <div id="page_frontPage">
+	            <h4 class="locale">FrontPage</h4>
+	            <p class="locale">Add your form into a FrontPage web page:</p>
+	            <ol class="instructions">
+	                <li class="locale">On FrontPage, open the page you would like to this form.</li>
+	                <li class="locale">Click on the exact spot your would like to place this form.</li>
+	                <li class="locale">Click on "Insert" menu, then select "Web Component".</li>
+	                <li class="locale">Click on "Advanced Controls" on the left side.</li>
+	                <li class="locale">Click on "HTML" on the right side.</li>
+	                <li class="locale">Copy this form code:</li>
+	                <textarea wrap="off" rows="12" id="frontPageSource" class="readonly" readonly="readonly"></textarea>
+	                <li class="locale">Paste it in the text box in FrontPage. Click "OK".</li>
+	                <li class="locale">You should now see your form on the page.</li>
+	                <li class="locale">Save your page and upload to your web site.</li>
+	            </ol>
+	        </div>
+	        <div id="page_iWeb">
+	            <h4 class="locale">iWeb</h4>
+	            <p class="locale">Add your form into a Apple iWeb web page:</p>
+	            <ol class="instructions">
+	                <li class="locale">On iWeb, open the page you want to edit.</li>
+	                <li class="locale">Click on "Web Widget" button.</li>
+	                <li class="locale">Click on "HTML Snippet" option.</li>
+	                <li class="locale">Copy this form code:</li>
+	                <textarea wrap="off" rows="16" id="iWebSource" class="readonly" readonly="readonly"></textarea>
+	                <li class="locale">Paste the code into the HTML Snippet text box.</li>
+	            </ol>
+	        </div>
+	        <div id="page_expressionWeb">
+	            <h4 class="locale">Expression Web</h4>
+	            <p class="locale">Add your form into a Expression Web web page:</p>
+	            <ol class="instructions">
+	                <li class="locale">Open the page you want to add your form.</li>
+	                <li class="locale">Click on the exact spot where you would like to insert your form.</li>
+	                <li class="locale">Click on "Code" tab at the bottom of the page editor.</li>
+	                <li class="locale">Copy this form code:</li>
+	                <textarea wrap="off" rows="14" id="expressionWebSource" class="readonly" readonly="readonly"></textarea>
+	                <li class="locale">Paste it in the Code editor.</li>
+	                <li class="locale">You should now see your form when you go back to "Design" tab.</li>
+	                <li class="locale">Save your page and upload to your web site.</li>
+	            </ol>
+	        </div>
+	        <div id="page_wordpress">
+	            <h4 class="locale">Wordpress</h4>
+	            <p class="locale">Add your form into a WordPress post:</p>
+	            <ol class="instructions">
+	                <li class="locale">On a WordPress "Add New Post" page, click on "HTML" tab above post textarea.</li>
+	                <li class="locale">Copy this form code:</li>
+	                <textarea wrap="off" style="height:30px;" id="wordpressSource" class="readonly" readonly="readonly"></textarea>
+	                <li class="locale">Paste it into the HTML textarea.</li>
+	            </ol>
+	        </div>
+	        <div id="page_blogger">
+	            <h4 class="locale">Blogger</h4>
+	            <p class="locale">Add your form into a Blogger post:</p>
+	            <ol class="instructions">
+	                <li class="locale">On a Blogger "New Post" page, click on "Edit Html" tab above post textarea.</li>
+	                <li class="locale">Copy this form code: (iframe version is recommended for Blogger)</li>
+	                <textarea wrap="off" style="height:60px;" id="bloggerSource" class="readonly" readonly="readonly"></textarea>
+	                <li class="locale">Paste it into the HTML textarea.</li>
+	            </ol>
+	        </div>
+	        <div id="page_typePad">
+	            <h4 class="locale">TypePad</h4>
+	            <p class="locale"> Add your form into a TypePad post: </p>
+	            <ol class="instructions">
+	                <li class="locale">On a TypePad "Compose New Post" page, click on "Edit HTML" tab above post textarea.</li>
+	                <li class="locale">Copy this form code:</li>
+	                <textarea wrap="off" style="height:30px;" id="typePadSource" class="readonly" readonly="readonly"></textarea>
+	                <li class="locale">Paste it into the HTML textarea.</li>
+	            </ol>
+	        </div>
+	        <div id="page_liveJournal">
+	            <h4 class="locale">LiveJournal</h4>
+	            <p>
+	                Add your form into a LiveJournal post:
+	            </p>
+	            <ol class="instructions">
+	                <li class="locale">On a LiveJournal "Post an Entry" page, click on "HTML" tab above post textarea.</li>
+	                <li class="locale">Copy this form code:</li>
+	                <textarea wrap="off" style="height:30px;" id="liveJournalSource" class="readonly" readonly="readonly"></textarea>
+	                <li class="locale">Paste it into the HTML textarea.</li>
+	            </ol>
+	        </div>
+	        <div id="page_vox">
+	            <h4 class="locale">VOX</h4>
+	            <p>
+	                Add your form into a VOX post:
+	            </p>
+	            <ol class="instructions">
+	                <li class="locale">On a VOX "Create Entry" page, click on "Embed" button.</li>
+	                <li class="locale">Paste it into the Embed Widget textarea.</li>
+	                <textarea wrap="off" style="height:30px;" id="voxSource" class="readonly" readonly="readonly"></textarea>
+	                <li class="locale">Select how you would like to position your form and click Insert.</li>
+	            </ol>
+	        </div>
+	        <div id="page_tumblr">
+	            <h4 class="locale">Tumblr</h4>
+	            <p>
+	                Add your form into a Tumblr post:
+	            </p>
+	            <ol class="instructions">
+	                <li class="locale">On a Tumblr "Add a Text Post" page, click on "HTML" icon on the textarea toolbar.</li>
+	                <li class="locale">Copy this form code:</li>
+	                <textarea wrap="off" style="height:30px;" id="tumblrSource" class="readonly" readonly="readonly"></textarea>
+	                <li class="locale">Paste it into the HTML textarea.</li>
+	            </ol>
+	        </div>
+	        <div id="page_googleSites">
+	            <h4 class="locale">Google Sites</h4>
+	            <ol class="instructions">
+	                <li class="locale">Go to your site. Switch to Edit mode.</li>
+	                <li class="locale">Open "Insert Menu"</li>
+	                <li class="locale">Select "More..." at the bottom</li>
+	                <li class="locale">On the new page, select "Add gadget by URL" option at the left.</li>
+	                <li class="locale">Enter this URL as a gadget URL:</li>
+	                <div>
+	                    <input readonly="true" class="text readonly" id="googleSitesSource" />
+						<span id="googleSitesClipboardDiv" class="clipboard"></span>
+	                </div>
+	                <li class="locale">Gadget settings will open.</li>
+	                <li><span class="locale"> You should write your</span> formID (  <span id="formid"></span> ) <span class="locale">in order to add your form into your page.</span></li>
+	            </ol>
+	            <span>(note: put the real form id in the formID)</span>
+	        </div>
+	        <div id="page_yola">
+	            <h4 class="locale">Yola</h4>
+	            <ol class="instructions">
+	                <li class="locale">Drag and drop an HTML widget from the sidebar on the right onto your page</li>
+	                <li class="locale">Copy this form code:</li>
+	                <textarea wrap="off" style="height:30px;" id="yolaSource" class="readonly" readonly="readonly"></textarea>
+	                <li class="locale">Paste it into the HTML Editor textarea.</li>
+	            </ol>
+	        </div>
+	        <div id="page_webs">
+	            <h4 class="locale">Webs.com (FreeWebs)</h4>
+	            <ol class="instructions">
+	                <li class="locale">Open "Site Editor" and create a new page or open an existing page</li>
+	                <li class="locale">Click on "content box" button</li>
+	                <li class="locale">Click on a spot in the content box you just added</li>
+	                <li class="locale">Click "HTML" button</li>
+	                <li class="locale">Copy this form code:</li>
+	                <textarea wrap="off" style="height:30px;" id="websSource" class="readonly" readonly="readonly"></textarea>
+	                <li class="locale">Paste it into the "Custom HTML" textarea. Then click "Insert".</li>
+	            </ol>
+	        </div>
+            <div id="page_geocities">
+                <h4 class="locale">GeoCities</h4>
+                <ol class="instructions">
+                    <li class="locale">Log into your Geocities Control Panel and click "Create & Update" tab</li>
+                    <li class="locale">Click "HTML Editor" under "Other Tools for Creating and Editing Web Sites"</li>
+                    <li class="locale">Click on a spot where you would like to place your form</li>
+                    <li class="locale">Copy this form code:</li>
+                    <textarea wrap="off" style="height:30px;" id="geocitiesSource" class="readonly" readonly="readonly"></textarea>
+                    <li class="locale">Paste it into the textarea.</li>
+                </ol>
+            </div>
+	        <div id="page_twitter">
+	            <h4 class="locale">Twitter</h4>
+	            <p>
+	                Include this short form URL on your twitter posts:
+	            </p>
+	            <div>
+	                <input type="text" id="twitterSource" class="text"/>
+					<span id="twitterClipboardDiv" class="clipboard"></span>
+	            </div>
+	        </div>
+	        <div id="page_facebook">
+	            <h4 class="locale">Facebook</h4>
+	            <p>
+	                Share your form on Facebook:
+	            </p>
+	            <ol class="instructions">
+	                <li class="locale">Add <a target="_blank" href="http://www.facebook.com/apps/application.php?v=info&ref=mf&id=4949752878">Static FBML</a> application to your Facebook account</li>
+                    <li class="locale">Copy and paste the following code to your FBML element on your Facebook page: (visit <a href="http://www.jotform.com/help/22-Adding-Form-to-Facebook">our user guide</a> for more information)</li>
+	            </ol>
+	            <textarea wrap="off" style="height:305px;" id="facebookSource" class="readonly" readonly="readonly"></textarea>
+	        </div>
+	        <div id="page_mySpace">
+	            <h4 class="locale">MySpace</h4>
+	            <p>
+	                Share your form on Facebook:
+	            </p>
+	            <ol class="instructions">
+	                <li class="locale">Open "Customize Profile" page</li>
+	                <li class="locale">Select "Modules" section, then select "HTML Box" option</li>
+	                <li class="locale">Copy this form code:</li>
+	                <textarea wrap="off" rows="3" id="mySpaceSource" class="readonly" readonly="readonly"></textarea>
+	                <li class="locale">Paste it into the large textarea</li>
+	            </ol>
+	        </div>
+	        <div id="page_drupal">
+	            <h4 class="locale">Drupal</h4>
+	            <ol class="instructions">
+	                <li class="locale">Login as an admin user.</li>
+	                <li class="locale">Click on "Edit" link.</li>
+	                <li class="locale">Open "Input Format" section.</li>
+	                <li class="locale">Change input format to "Full HTML".</li>
+	                <li class="locale">Copy this form code:</li>
+	                <textarea wrap="off" style="height:30px;" id="drupalSource" class="readonly" readonly="readonly"></textarea>
+	                <li class="locale">Paste it into the content textarea. Save.</li>
+	            </ol>
+	        </div>
+	        <div id="page_joomla">
+	            <h4 class="locale">Joomla</h4>
+		        <span class="locale">If you see a "Plugin Manager" on your Joomla:</span>
+	            <ol class="instructions">
+	                <li class="locale">Go to plugin manager and click on tiny TinyMCE 2.0</li>
+	                <li class="locale">Go to plugin parameters.  Select "never" on "Code cleanup" on save option. Then save it.</li>
+	                <li class="locale">Find the page you would like to add the form and click on "Edit" icon.</li>
+	                <li class="locale">On the editor textarea, click on the "HTML" icon.</li>
+	                <li class="locale">On pop-up "HTML Source Editor", copy and paste this code:</li>
+	                <textarea wrap="off" style="height:30px;" id="joomlaSource" class="readonly" readonly="readonly"></textarea>
+		    </ol>
+
+		    If you <b>don't</b> see a "Plugin Manager" on your Joomla:
+	            <ol class="instructions">
+	                <li class="locale">Go to Site > Global Configuration page.</li>
+	                <li class="locale">Change "Default WYSIWYG Editor:" to "No WYSIWYG Editor". Save new settings.</li>
+	                <li class="locale">Find the page you would like to add the form and click on "Edit" icon.</li>
+	                <li class="locale">On the editor textarea, click on the "HTML" icon.</li>
+	                <li class="locale">On pop-up "HTML Source Editor", copy and paste this code:</li>
+	                <textarea wrap="off" style="height:30px;" id="joomla2Source" class="readonly" readonly="readonly"></textarea>
+	            </ol>
+	        </div>
+	        <div id="page_memberkit">
+	            <h4 class="locale">Memberkit</h4>
+	            <ol class="instructions">
+	                <li class="locale">Open Admin Panel "File Manager" on the left side.</li>
+	                <li class="locale">Right click on the file name and click "Edit Source Code"</li>
+	                <li class="locale">Copy this form code:</li>
+	                <textarea wrap="off" style="height:30px;" id="memberkitSource" class="readonly" readonly="readonly"></textarea>
+	                <li class="locale">Paste it into the text editor. Save and Publish.</li>
+	            </ol>
+	        </div>
+			<div id="page_invitation">
+				<h4 class="locale">Send Invitation</h4>
+				<div class="emailRow">
+	                <div><b>From:</b></div>
+	                <input type="text" id="fromField">
+				</div>
+                <div class="emailRow">
+	                <div><b>To:</b></div>
+	                <input type="text" id="toField">
+				</div>
+                <div class="emailRow">
+	                <div><b>Subject:</b></div>
+	                <input type="text" id="subjectField">
+            	</div>
+                <div class="emailRow">
+	                <label>
+	                    <b>Body:</b>
+	                </label>
+	               <textarea wrap="off" class="emailBody" id="emailSource" style="width:468px; height:280px;"></textarea>
+                </div>
+                <button class="window-buttons" id="sendMessageButton">Send Email</button>
+			</div>
+	    </div>
+	    <div id="share_options">
+	        <div id="accordion">
+	            <div class="panel">
+	                <div class="panel-bar index-grad6">
+	                    Form URL
+	                </div>
+	                <div class="panel-content">
+	                    <div class="panel-content-inner">
+	                        <ul class="tools">
+	                            <li class="drags" id="url"> Form URL</li>
+	                            <li class="drags" id="secureUrl"> Secure Form URL</li>
+	                            <li class="drags" id="customUrl"> Custom URL</li>
+	                        </ul>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="panel">
+	                <div class="panel-bar index-grad6">
+	                    HTML Code
+	                </div>
+	                <div class="panel-content">
+	                    <div class="panel-content-inner">
+	                        <ul id="powertools" class="tools">
+	                            <li class="drags" id="jsembed"> Simple Embed Code</li>
+	                            <li class="drags" id="css"> Full Source Code</li>
+	                            <li class="drags" id="zip"> Download Zip</li>
+	                            <li class="drags" id="iframe"> iFrame</li>
+	                            <li class="drags" id="lightbox"> Light Box</li>
+	                            <li class="drags" id="popupBox"> Popup Box</li>
+                                <li class="drags" id="feedbackBox"> Feedback Button</li>
+	                        </ul>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="panel">
+	                <div class="panel-bar index-grad6">
+	                    HTML Editor
+	                </div>
+	                <div class="panel-content">
+	                    <div class="panel-content-inner">
+	                        <ul id="powertools" class="tools">
+	                            <li class="drags" id="dreamWeaver"> DreamWeaver</li>
+	                            <li class="drags" id="frontPage"> FrontPage</li>
+	                            <li class="drags" id="iWeb"> iWeb</li>
+	                            <li class="drags" id="expressionWeb"> Expression Web</li>
+                                <li class="drags" id="webDesigner"> Web Designer</li>
+                                <li class="drags" id="designerPro"> Designer Pro</li>
+	                        </ul>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="panel">
+	                <div class="panel-bar index-grad6">
+	                    Blog
+	                </div>
+	                <div class="panel-content">
+	                    <div class="panel-content-inner">
+	                        <ul id="powertools" class="tools">
+	                            <li class="drags" id="wordpress"> Wordpress</li>
+	                            <li class="drags" id="blogger"> Blogger</li>
+	                            <li class="drags" id="typePad"> TypePad</li>
+	                            <li class="drags" id="liveJournal"> LiveJournal</li>
+	                            <li class="drags" id="vox"> VOX</li>
+	                            <li class="drags" id="tumblr"> Tumblr</li>
+	                        </ul>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="panel">
+	                <div class="panel-bar index-grad6">
+	                    Web Site Builder
+	                </div>
+	                <div class="panel-content">
+	                    <div class="panel-content-inner">
+	                        <ul id="powertools" class="tools">
+	                            <li class="drags" id="googleSites"> Google Sites</li>
+	                            <li class="drags" id="yola"> Yola</li>
+	                            <li class="drags" id="webs"> Webs.com (FreeWebs)</li>
+								<li class="drags" id="geocities"> GeoCities</li>
+	                        </ul>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="panel">
+	                <div class="panel-bar index-grad6">
+	                    Social Network
+	                </div>
+	                <div class="panel-content">
+	                    <div class="panel-content-inner">
+	                        <ul id="powertools" class="tools">
+	                            <li style="display:none" class="drags" id="twitter"> Twitter</li>
+	                            <li class="drags" id="facebook"> Facebook</li>
+	                        </ul>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="panel">
+	                <div class="panel-bar index-grad6">
+	                    CMS
+	                </div>
+	                <div class="panel-content">
+	                    <div class="panel-content-inner">
+	                        <ul id="powertools" class="tools">
+	                            <li class="drags" id="memberkit"> Memberkit</li>
+	                            <li class="drags" id="drupal"> Drupal</li>
+	                            <li class="drags" id="joomla"> Joomla</li>
+	                        </ul>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="panel">
+	                <div class="panel-bar index-grad6">
+	                    Email
+	                </div>
+	                <div class="panel-content">
+	                    <div class="panel-content-inner">
+	                        <ul id="powertools" class="tools">
+	                            <li class="drags" id="invitation"> Send Invitation</li>
+	                        </ul>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	        <div id="divider" class="index-shadow">
+	            
+	        </div>
+	    </div>
+	</div>
+</div>

@@ -1,0 +1,9 @@
+.sh-b, .sh-bl, .sh-br, .sh-l, .sh-r, .sh-t, .sh-tl, .sh-tr{background: transparent url(images/sh.png?3.0.REV) no-repeat scroll 0 0;}
+.sh-b{background-position: -0px 0px;width:10px;height:10px;}
+.sh-bl{background-position: -10px 0px;width:10px;height:10px;}
+.sh-br{background-position: -20px 0px;width:10px;height:10px;}
+.sh-l{background-position: -30px 0px;width:10px;height:10px;}
+.sh-r{background-position: -40px 0px;width:10px;height:10px;}
+.sh-t{background-position: -50px 0px;width:10px;height:10px;}
+.sh-tl{background-position: -60px 0px;width:10px;height:10px;}
+.sh-tr{background-position: -70px 0px;width:10px;height:10px;}

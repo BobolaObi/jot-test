@@ -1,0 +1,79 @@
+<h4 class="locale optionTitle">
+    <img src="images/blank.gif" class="sharewiz2-feedback" alt="Pop-up" title="Pop-up"/>	
+	Feedback Button
+</h4>
+<textarea id="feedback2Source" readonly="readonly"></textarea><br/>
+
+<p>This code will place a feedback button aligned to a side of the screen. Just copy and paste, voila! </p>
+
+<div id="feedbackCustomize" class="optionsDiv">
+  
+	<div class="widgetOptCol widgetOptColLeft">
+	
+		<fieldset class="widgetOptions">
+			<legend>Title</legend>
+				<input type="text" id="feedbackButtonText" /><br/>
+		</fieldset>
+		
+		<fieldset class="widgetOptions">
+			<legend>Screen Alignment</legend>
+				<input id="buttonSideTop" type="radio" name="buttonSide" value="top" />
+				<label for="buttonSideTop">Top side</label><br/>
+				<input id="buttonSideRight" type="radio" name="buttonSide" value="right" />
+				<label for="buttonSideRight">Right side</label><br/>
+				<input id="buttonSideBottom" type="radio" name="buttonSide" value="bottom" />
+				<label for="buttonSideBottom">Bottom side</label><br/>
+				<input id="buttonSideLeft" type="radio" name="buttonSide" value="left" />
+				<label for="buttonSideLeft">Left side</label><br/>
+		</fieldset>
+	
+	
+	</div><div class="widgetOptCol"> <!-- inline-block space fix -->
+	
+		<fieldset class="widgetOptions">
+			<legend>Form Dimensions(in px)</legend>
+				<span class="widgetOptFieldsSize">
+					<label for="feedbackWidth">W:</label>
+					<input type="text" id="feedbackWidth" />
+				</span>
+				<span class="widgetOptFieldsSize">
+					<label for="feedbackHeight">H:</label>
+					<input type="text" id="feedbackHeight" />
+				</span>
+		</fieldset>
+	
+	<fieldset class="widgetOptions">
+		<legend id="alignmentLegend">Horizontal Alignment</legend>
+			<input id="buttonAlignTop" class="verticalOpt" type="radio" name="buttonAlign" value="top" />
+			<label for="buttonAlignTop" class="verticalOpt">Top</label><br class="verticalOpt"/>
+			<input id="buttonAlignLeft" class="horizontalOpt" type="radio" name="buttonAlign" value="left" />
+			<label for="buttonAlignLeft" class="horizontalOpt">Left</label><br class="horizontalOpt"/>
+			<input id="buttonAlignCenter" type="radio" name="buttonAlign" value="center" />
+			<label for="buttonAlignCenter">Center</label><br/>
+			<input id="buttonAlignRight" class="horizontalOpt" type="radio" name="buttonAlign" value="right" />
+			<label for="buttonAlignRight" class="horizontalOpt">Right</label><br class="horizontalOpt"/>
+			<input id="buttonAlignBottom" class="verticalOpt" type="radio" name="buttonAlign" value="bottom" />
+			<label for="buttonAlignBottom" class="verticalOpt">Bottom</label>
+	</fieldset>
+	
+	</div>
+	
+	<fieldset class="widgetOptions styleLb">
+		<legend>Select Lightbox Style</legend>
+			<div class="styleBrowser"><div class="styleBox"></div></div><div class="styleBrowser midBrowser"><div class="styleBox styleBox2"></div></div><div class="styleBrowser"><div class="styleBox styleBox3"></div></div>
+	</fieldset> 
+    <fieldset class="widgetOptions colorOpt">
+        <legend>Button and Label Colors</legend>
+            <span class="widgetOptFieldsColor">
+                <label for="feedbackBackgroundColor">Button:</label>
+                <input type="text" id="feedbackBackgroundColor" />
+                <a class="colorBox" id="feedbackBackgroundColorBox"></a>
+            </span><span class="widgetOptFieldsColor">   <!-- inline-block space fix -->
+                <label for="feedbackFontColor">Label:</label>
+                <input type="text" id="feedbackFontColor" />
+                <a class="colorBox" id="feedbackFontColorBox"></a>
+            </span>
+    </fieldset>
+</div>
+<a id="feedbackDemo" class="widgetDemo linkButton">Preview</a>  
+<a id="feedbackCustomizeButton" class="widgetDemo linkButton">Customize</a>

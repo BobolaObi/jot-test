@@ -1,0 +1,15 @@
+.myforms-cal, .myforms-csv, .myforms-excel, .myforms-folder, .myforms-folder_open, .myforms-folder_open2, .myforms-grid, .myforms-newsubmissions, .myforms-not_back, .myforms-not_left, .myforms-not_right, .myforms-rss, .myforms-table, .myforms-visual{background: transparent url(images/myforms.png?3.0.REV) no-repeat scroll 0 0;}
+.myforms-cal{background-position: -0px 0px;width:16px;height:16px;}
+.myforms-csv{background-position: -16px 0px;width:16px;height:16px;}
+.myforms-excel{background-position: -32px 0px;width:16px;height:16px;}
+.myforms-folder{background-position: -48px 0px;width:16px;height:16px;}
+.myforms-folder_open{background-position: -64px 0px;width:16px;height:16px;}
+.myforms-folder_open2{background-position: -80px 0px;width:16px;height:16px;}
+.myforms-grid{background-position: -96px 0px;width:16px;height:16px;}
+.myforms-newsubmissions{background-position: -112px 0px;width:19px;height:20px;}
+.myforms-not_back{background-position: -131px 0px;width:20px;height:20px;}
+.myforms-not_left{background-position: -151px 0px;width:39px;height:20px;}
+.myforms-not_right{background-position: -190px 0px;width:9px;height:20px;}
+.myforms-rss{background-position: -199px 0px;width:16px;height:16px;}
+.myforms-table{background-position: -215px 0px;width:16px;height:16px;}
+.myforms-visual{background-position: -231px 0px;width:16px;height:16px;}

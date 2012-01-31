@@ -1,0 +1,5 @@
+.reports-down, .reports-export, .reports-grid, .reports-grid_long{background: transparent url(images/reports.png?3.0.REV) no-repeat scroll 0 0;}
+.reports-down{background-position: -0px 0px;width:16px;height:16px;}
+.reports-export{background-position: -16px 0px;width:24px;height:24px;}
+.reports-grid{background-position: -40px 0px;width:591px;height:315px;}
+.reports-grid_long{background-position: -631px 0px;width:905px;height:304px;}

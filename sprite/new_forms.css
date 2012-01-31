@@ -1,0 +1,13 @@
+.new_forms-icon_new_blank, .new_forms-icon_new_bugtracker, .new_forms-icon_new_contact, .new_forms-icon_new_jobapplication, .new_forms-icon_new_membershipragistration, .new_forms-icon_new_party, .new_forms-icon_new_reservation, .new_forms-icon_new_satisfactionsurvey, .new_forms-icon_new_submitproduct, .new_forms-icon_new_suggestwebsite, .new_forms-icon_new_timesheet, .new_forms-icon_new_wedding{background: transparent url(images/new_forms.png?3.0.REV) no-repeat scroll 0 0;}
+.new_forms-icon_new_blank{background-position: -0px 0px;width:90px;height:90px;}
+.new_forms-icon_new_bugtracker{background-position: -90px 0px;width:90px;height:90px;}
+.new_forms-icon_new_contact{background-position: -180px 0px;width:90px;height:90px;}
+.new_forms-icon_new_jobapplication{background-position: -270px 0px;width:90px;height:90px;}
+.new_forms-icon_new_membershipragistration{background-position: -360px 0px;width:90px;height:90px;}
+.new_forms-icon_new_party{background-position: -450px 0px;width:90px;height:90px;}
+.new_forms-icon_new_reservation{background-position: -540px 0px;width:90px;height:90px;}
+.new_forms-icon_new_satisfactionsurvey{background-position: -630px 0px;width:90px;height:90px;}
+.new_forms-icon_new_submitproduct{background-position: -720px 0px;width:90px;height:90px;}
+.new_forms-icon_new_suggestwebsite{background-position: -810px 0px;width:90px;height:90px;}
+.new_forms-icon_new_timesheet{background-position: -900px 0px;width:90px;height:90px;}
+.new_forms-icon_new_wedding{background-position: -990px 0px;width:90px;height:90px;}

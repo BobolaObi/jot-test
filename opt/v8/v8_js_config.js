@@ -1,0 +1,1 @@
+var V8Config = {"HTTP_URL":"http://forms.datalynk.ca/","SSL_URL":"https://forms.datalynk.ca/","CACHEPATH":"/usr/data/www/forms.datalynk.ca/cache/","GZIP":true,"JSFORM":true};

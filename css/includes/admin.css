@@ -1,0 +1,201 @@
+html, body{
+    height:100%;
+    width:100%;
+    margin:0px;
+    padding:0px;
+}
+
+body{
+    font-family:Verdana, Geneva, Arial, Helvetica, sans-serif;
+    font-size:12px;
+    background:#eee url(../../images/bg.png) repeat-x scroll 0 -55px;
+}
+.debug-options-list li{
+    margin:5px;
+    padding:3px;
+    border:1px solid transparent;
+    font-size:14px;
+    -moz-border-radius:5px 5px;
+    -webkit-border-radius:5px 5px;
+    border-radius:5px 5px;
+}
+
+#toolbox_handler{
+    padding-top: 50px;
+    position: relative;
+    top: -65px;
+}
+
+.debug-options-list li:hover{
+    background:#f5f5f5;
+    border-color:#ccc !important;
+}
+.selected-option{
+    background:#fff;
+    border-color:#bbb !important;
+}
+
+/**
+ * Start of admin detail page.
+ */
+#admin-content{
+    padding:20px;
+}
+
+.highProb{
+    color: #FF0000;
+}
+
+.infoBox{
+    height:16px;
+    width:16px;
+    display:inline-block;
+    vertical-align: top;
+}
+
+.warning {
+    color: #FF0000 !important;
+}
+
+.suspended, .autosuspended, .whitelisted{
+    font-weight: bold;
+    font-size:10px !important;
+}
+
+.suspended{
+    color: #FF0000 !important;
+}
+
+.autosuspended{
+    color: #FF8040 !important;
+}
+
+.whitelisted{
+    color: #00FF00 !important;
+}
+
+.searchedForm{
+    background-color:lightyellow;
+}
+
+.even{
+    background-color:#ffffff;
+}
+
+.odd{
+    background-color:#f5f5f5;
+}
+
+ /**
+  * End of admin detail page.
+  */
+ 
+ /**
+  * Start of new admin detail page.
+  */
+#accountType, #status{
+    cursor:pointer;
+    color: blue;
+}
+
+#adminDetails #content{
+    padding: 10px 15px;
+}
+
+#adminDetails>#dimmer{
+    padding-top:10%;
+    text-align:center;
+}
+
+#adminDetails .informationTable{
+    border-collapse: collapse;
+    padding: 0;
+    margin-bottom: 10px;
+    width:240px;
+}
+
+.adminDetailsPage{
+    width:680px;
+}
+
+#leftPanel{
+    float:left;
+     margin-right: 15px;
+}
+
+#rightPanel{
+    float:right;
+}
+
+#adminDetails .informationTable thead th{
+    text-align:left;
+}
+
+#adminDetails .informationTable#monthlySubmissionsTable tbody td{
+    width: 150px;
+}
+
+
+#adminDetails .informationTable td, #adminDetails .informationTable th{
+    padding:3px;
+}
+
+#adminDetails .informationTable thead th span{
+    position: relative;
+    background-color: #eee;
+    z-index: 100;
+    padding-right: 5px;
+    color: #FA9403;
+    line-height:20px;
+}
+
+#adminDetails .informationTable thead th hr{
+    margin: 0;
+    position:relative;
+    bottom: 7px;
+    z-index: 50;
+    border: 1px solid #FA9403;
+    color: #FA9403;
+    background-color: #FA9403;
+}
+
+#adminDetails .informationTable th{
+    width: 40px;
+    font-size: 10px;
+    text-align: left;
+    padding-right: 5px;
+    vertical-align:middle;
+}
+
+#adminDetails .informationTable tbody th{
+    font-weight: normal;
+    width:60px;
+}
+
+#adminDetails .informationTable td{
+    text-align: left;
+    font-size:12px;
+    vertical-align:middle;
+}
+
+#formsTable{
+    width:600px !important;
+    margin-left:10px !important;    
+}
+
+#formsTable.informationTable tbody td{
+    font-size: 14px;
+    padding: 8px 10px;
+}
+
+div.subDetail{
+    font-size: 10px;
+    float:left;
+    color: #646464;
+    font-style:italic;
+    padding-top:1px;
+}
+
+ /**
+  * End of new admin detail page.
+  */
