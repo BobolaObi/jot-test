@@ -233,9 +233,7 @@ AccountType::create(array('name' => 'SUPPORT', "prettyName" => 'Support', 'limit
 // Set email addresses exception messages will be sent to.
 Console::setEmailAddresses(array("tayfun@interlogy.com", "serkan@interlogy.com", "seyhun@interlogy.com"));
 
-Utils::disableMagicQuotes(); # Disable the magic quotes for better security and compatibility accross servers
-
-# Set up which database will be used. It will be localhost for local 
+# Set up which database will be used. It will be localhost for local
 # environment and goby everywhere else.
 
 DB::setConnection('submissions', DB_NAME, DB_USER, DB_PASS, Server::$servers->db->local->goby);

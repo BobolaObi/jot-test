@@ -1,4 +1,5 @@
 <?php
+
 /** 
  * Initial configuration file, Set everything for JotForm
  * @remember Line order of this file is really important don't change the order of any line
@@ -24,62 +25,61 @@ if(isset($_SERVER["HTTP_FRONT_END_HTTPS"])){
  * @param object $class_name
  * @return 
  */
-function __autoload($class_name){
-    
+spl_autoload_register(function ($class_name) {
+
     # In order to provide a decent warning message
     $failedPaths = array();
-    
+
     # this is a JotForm specific situation. We have collected all exceptions together
-    if(strpos($class_name, 'Exception') !== false){
-        $path = ROOT."/lib/classes/exceptions/AllExceptions.php";
-        if(file_exists($path)){
+    if (strpos($class_name, 'Exception') !== false) {
+        $path = ROOT . "/lib/classes/exceptions/AllExceptions.php";
+        if (file_exists($path)) {
             require_once $path;
             return true; # file included no need to go forward
         }
     }
-    
+
     # If file name contains unserscore convert them to folder marks
-    if(strpos($class_name, '_') !== false){
+    if (strpos($class_name, '_') !== false) {
         $className = str_replace("_", "/", $class_name);
-    }else{
+    } else {
         $className = $class_name;
     }
-    
+
     # This where we usually contain all our classes
-    $path = ROOT."/lib/classes/" . $className . '.php';
-    
+    $path = ROOT . "/lib/classes/" . $className . '.php';
+
     # Check the obvious place first
-    if(file_exists($path)){
+    if (file_exists($path)) {
         require_once $path;
         return true; # file included no need to go forward
-    }else{
+    } else {
         # If not found then we should check PHPs include paths
         $includePaths = explode(":", get_include_path());
-        
+
         # Loop through all defined paths and search for the file
-        foreach($includePaths as $ipath){
-            
-            if($ipath == "."){ continue; }
-            
-            $triedPath = $ipath."/".$className.".php";
-            if(file_exists($triedPath)){
+        foreach ($includePaths as $ipath) {
+
+            if ($ipath == ".") {
+                continue;
+            }
+
+            $triedPath = $ipath . "/" . $className . ".php";
+            if (file_exists($triedPath)) {
                 require_once $triedPath;
                 return true; # file included no need to go forward
-            }else{
+            } else {
                 array_push($failedPaths, $triedPath);
             }
         }
     }
-	
+
     # Add last tried path to failed paths list
     array_push($failedPaths, $path);
-    $error = $class_name." class cannot be found under jotform library.<br>\nFollowing paths have been checked:<br>\n  ".join("<br>\n  ", $failedPaths)."<br>\n";
-    
-    return false;
-}
+    $error = $class_name . " class cannot be found under jotform library.<br>\nFollowing paths have been checked:<br>\n  " . join("<br>\n  ", $failedPaths) . "<br>\n";
 
-# Should register autoloader for phpunit
-spl_autoload_register('__autoload');
+    return false;
+});
 
 # Get all the options from this file
 include_once dirname(__FILE__)."/ConfigsClass.php";

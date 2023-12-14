@@ -661,17 +661,7 @@ class UtilsRequests extends UtilsEmails{
             Utils::postRequest($url, $data);
         }
     }
-    /**
-     * Forces to disable the magic quotes for security concerns 
-     */
-    static function disableMagicQuotes(){
-        if (get_magic_quotes_gpc()) {
-            $_POST = array_map(array('Utils', 'stripslashesDeep'), $_POST);                                              
-            $_GET = array_map(array('Utils', 'stripslashesDeep'), $_GET);
-            $_COOKIE = array_map(array('Utils', 'stripslashesDeep'), $_COOKIE);
-            $_REQUEST = array_map(array('Utils', 'stripslashesDeep'), $_REQUEST);
-        }
-    }
+
     static function processTweetLinks($text) {
         $text = utf8_decode( $text );
         $text = preg_replace('@(https?://([-\w\.]+)+(d+)?(/([\w/_\.]*(\?\S+)?)?)?)@', '<a href="$1">$1</a>',  $text );
