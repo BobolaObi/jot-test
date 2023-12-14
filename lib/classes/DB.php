@@ -15,18 +15,18 @@ class DB {
     $hostname,                # Host Address or Name
     $dlink = NULL,     # PHP - MySQL resource ID
     $queryTime,        # For keeping query time.
-    $timers = array(), # Query times, for benchmarking
-    $connections = array(),
+    $timers = [], # Query times, for benchmarking
+    $connections = [],
     $currentDB,
     $noLog = false;
-    
-    public static $syncQueries = array();  # Query that will be executed for syncronization of the database.
+
+    public static $syncQueries = [];  # Query that will be executed for syncronization of the database.
 
     /**
      * Will log the queries slower than this
      */
     const slowQueryLimit = 3.000; # Log queries took longer than this (in seconds);
-    
+
     /**
      * Creates aconnection with given parameters and keeps it open
      * @param object $database Database name
@@ -36,21 +36,21 @@ class DB {
      * @return
      */
     static function setConnection($name, $database, $username = "root", $password = "", $hostname = "localhost"){
-        
-        self::$connections[$name] = array(
+
+        self::$connections[$name] = [
             "database" => $database,
             "username" => $username,
             "password" => $password,
             "hostname" => $hostname
-        );
-        
+        ];
+
     }
-    
+
     static function useConnection($name){
         self::$currentDB = $name;
         self::$dlink = false;
     }
-    
+
     /**
      * Sanitize database input
      * @link http://xkcd.com/327/
@@ -60,12 +60,12 @@ class DB {
     static function escape($str){
         if(!$str){ return $str; }
         if(!is_string($str)){ return $str; }
-        
+
         if(!self::$dlink){
-            return mysql_escape_string($str);
+            return mysqli_escape_string($str);
         }
-        
-        return @mysql_real_escape_string($str, self::$dlink);
+
+        return @mysqli_real_escape_string(self::$dlink, $str);
     }
 
     /**
@@ -73,30 +73,30 @@ class DB {
      * @return object database link referance
      */
     static function connect($noloop = false){
-        
+
         if(self::$dlink && self::$connections[self::$currentDB]['link'] == self::$dlink){
             return self::$dlink;
         }
-        
+
         $connect = self::$connections[self::$currentDB];
-        
+
         # use it for migrations:
         #if($connect['database'] == "jotform_main"){
         #        $connect['hostname'] = "goby.interlogy.com";
         #}
 
-        if(self::$dlink = @mysql_pconnect($connect['hostname'], $connect['username'], $connect['password'], (Configs::DB_USE_SSL? MYSQL_CLIENT_SSL : null))){
-            if(!@mysql_select_db($connect['database'])){
+        if(self::$dlink = @mysqli_connect('p:' . $connect['hostname'], $connect['username'], $connect['password'], (Configs::DB_USE_SSL? MYSQL_CLIENT_SSL : null))){
+            if(!@mysqli_select_db(self::$dlink, $connect['database'])){
                 Utils::errorPage("We are currently experiencing abnormally high traffic volume and working to restore all services as quickly as possible.
-Thank you for your patience.", "Temporarily Unavailable", mysql_error());
+Thank you for your patience.", "Temporarily Unavailable", mysqli_error(self::$dlink));
                 # throw new DBException(JotErrors::get("DB_CANNOT_SELECT", mysql_error()));
             }
         }else{
             Utils::errorPage("We are currently experiencing abnormally high traffic volume and working to restore all services as quickly as possible.
-Thank you for your patience.", "Temporarily Unavailable", mysql_error());
+Thank you for your patience.", "Temporarily Unavailable", mysqli_error(self::$dlink));
             # throw new DBException(JotErrors::get("DB_CANNOT_CONNECT", mysql_error()));
         }
-        
+
         self::$connections[self::$currentDB]['link'] = self::$dlink;
         /*
         $res = self::read('SELECT @bb, @date');
@@ -136,22 +136,23 @@ Thank you for your patience.", "Temporarily Unavailable", mysql_error());
         if (!self::$dlink) {
             self::connect();
         }
-        
+
         global $arguments, $i;
         $arguments = $args;
         $i = 1;
         $query = $arguments[0];
 
         $query = preg_replace_callback("/([\:\#]\w+)/",
-        create_function('$matches',
-                            'global $arguments; global $i; 
+            function($matches) {
+                global $arguments; global $i;
                             if($matches[0][0] == "#"){
                                 return $arguments[$i++]+0;
                             }else{
-                                return '.__CLASS__.'::escape($arguments[$i++]);
-                            }'), 
+                    return DB::escape($arguments[$i++]);
+                }
+            },
         $query);
-        
+
         return $query;
     }
 
@@ -166,28 +167,28 @@ Thank you for your patience.", "Temporarily Unavailable", mysql_error());
         if (!self::$dlink) {
             self::connect();
         }
-        
+
         global $gArgs;
         $gArgs = $args;
-        $myFun = create_function('$matches',
-                            'global $gArgs; 
+        $query = preg_replace_callback("/([\:\#])(\w+)/",
+            function($matches) {
+                global $gArgs;
                              if(!array_key_exists($matches[2], $gArgs)){
                                  return $matches[0];
                              }
-                             
+
                              if($matches[1] == "#"){
                                  return $gArgs[$matches[2]]+0;
                              }else{
-                                 return '.__CLASS__.'::escape($gArgs[$matches[2]]);
-                             }');
-        $query = preg_replace_callback("/([\:\#])(\w+)/",
-        $myFun,
+                    return DB::escape($gArgs[$matches[2]]);
+                }
+            },
         $query);
         return $query;
     }
     /**
      * Starts innoDB transaction
-     * @return 
+     * @return
      */
     public static function beginTransaction(){
         /*self::query("SET AUTOCOMMIT=1");        
@@ -196,7 +197,7 @@ Thank you for your patience.", "Temporarily Unavailable", mysql_error());
     }
     /**
      * Takes all changes back if something went wrong
-     * @return 
+     * @return
      */
     public static function rollbackTransaction(){
         /*Console::log('ROLLBACK');
@@ -204,29 +205,29 @@ Thank you for your patience.", "Temporarily Unavailable", mysql_error());
     }
     /**
      * commit changes to the database and make them saved.
-     * @return 
+     * @return
      */
     public static function commitTransaction(){
         /*Console::log('COMMIT');
         self::query("COMMIT");*/
     }
-    
+
     /**
      * Disables query logs for current process
-     * @return 
+     * @return
      */
     public static function setNoLog(){
         self::$noLog = true;
     }
-    
+
     /**
      * Disables query logs for current process
-     * @return 
+     * @return
      */
     public static function setLog(){
         self::$noLog = false;
     }
-    
+
     /**
      * This is an unsafe straight forward query function
      * @warning All queries passed to this function must be secured
@@ -234,58 +235,58 @@ Thank you for your patience.", "Temporarily Unavailable", mysql_error());
      * @returnobject  mysql response resource
      */
     static function query($query){
-            
+
         # If there's no connection, do a connection first.
         if (!self::$dlink) {
             self::connect();
         }
         # Take query time
         self::profileStart("Query");
-        
+
         # Never allow replace into in users and forms table because
         # Replace into first deletes the entry then inserts it back
         # this will cause foreign keys to cascade then delete everything related
         # to this entry such as when you replace into users table you will lose
         # all forms, submissions, ansers and all. So don't change this ever.
-        if(Utils::startsWith(trim($query), "replace", false)){
+        if(Utils::startsWith(trim(''.$query), "replace", false)){
             if(preg_match("/replace\s*into\s*\`?(users|forms)\`?/i", $query, $m)){
                 throw new DBException(JotErrors::get('DB_REPLACE_NOT_ALLOWED', strtoupper($m[1]), $query));
             }
         }
-        
+
         # For data security never allow updates without WHERE clause
         /*
-        if(Utils::startsWith(trim($query), "update", false)){
+        if(Utils::startsWith(trim(''.$query), "update", false)){
             $parsed = Utils::parseSQL($query);
             if(!array_key_exists('WHERE', $parsed['UPDATE'])){
                 throw new DBException(JotErrors::$DB_UPDATE_WITHOUT_WHERE);                
             }
         }
         */
-        
-        $result = @mysql_query($query, self::$dlink);
+
+        $result = @mysqli_query(self::$dlink, $query);
         self::$queryTime = self::profileEnd("Query");
-        
+
 		$info = "";
-		if($myinfo = mysql_info(self::$dlink)){
+		if($myinfo = mysqli_info(self::$dlink)){
             $info = "\nInfo: ".$myinfo;
 		}
-        
-        $longInfo = "\n\nTook: ".self::$queryTime.", Affected: ".mysql_affected_rows(self::$dlink).", Rows".$info." Used Connection: ".self::$currentDB;
-        
+
+        $longInfo = "\n\nTook: ".self::$queryTime.", Affected: ".mysqli_affected_rows(self::$dlink).", Rows".$info." Used Connection: ".self::$currentDB;
+
         if(self::$noLog === false){
             Console::info($query.$longInfo, "Query");
         }
-        
+
         # Log if this query took more in should
         if(self::$queryTime > self::slowQueryLimit){
             Console::long("Query Took ".self::$queryTime."ms \n--\n\n ".$query.$longInfo, "Long Query");
         }
-        
+
         # Log errors if happens
-        if(mysql_error(self::$dlink)){
-            Console::error(mysql_error(self::$dlink)."\n\t".$query, "Error On Query");
-            throw new DBException(JotErrors::get('DB_QUERY_ERROR', $query, mysql_error(self::$dlink)));
+        if(mysqli_error(self::$dlink)){
+            Console::error(mysqli_error(self::$dlink)."\n\t".$query, "Error On Query");
+            throw new DBException(JotErrors::get('DB_QUERY_ERROR', $query, mysqli_error(self::$dlink)));
             return false;
         }
 
@@ -310,9 +311,9 @@ Thank you for your patience.", "Temporarily Unavailable", mysql_error());
         if (!self::$dlink) {
             self::connect();
         }
-        
+
         $args_arr = func_get_args();
-        
+
         if(count($args_arr) > 1){
             if (gettype($args_arr[1]) == 'array') {
                 # Parse the array
@@ -323,20 +324,20 @@ Thank you for your patience.", "Temporarily Unavailable", mysql_error());
         }else{
             $query = $args_arr[0];
         }
-        
+
         if($result = self::query($query)){
-            $data = array();
-            while($line = @mysql_fetch_assoc($result)){
-                array_push($data, $line);
+            $data = [];
+            while($line = @mysqli_fetch_assoc($result)){
+                $data[] = $line;
             }
             if(is_resource($result)){
-                mysql_free_result($result);            
+                mysqli_free_result($result);
             }
         }else{
-            return (object) array("success" => false, "error" => mysql_error(self::$dlink), "time"=>self::$queryTime, "query" => $query);
+            return (object) ["success" => false, "error" => mysqli_error(self::$dlink), "time"=>self::$queryTime, "query" => $query];
         }
 
-        return (object) array("success" => true, "rows" => mysql_affected_rows(self::$dlink), "time"=>self::$queryTime, "first" => @$data[0],  "result" => $data, "query" => $query);
+        return (object) ["success" => true, "rows" => mysqli_affected_rows(self::$dlink), "time"=>self::$queryTime, "first" => @$data[0],  "result" => $data, "query" => $query];
     }
 
     /**
@@ -350,11 +351,12 @@ Thank you for your patience.", "Temporarily Unavailable", mysql_error());
      */
     static function write(){
         # If there's no connection, do a connection first.
+
         if (!self::$dlink) {
             self::connect();
         }
         $args_arr = func_get_args();
-        
+
         if(count($args_arr) > 1){
             if (gettype($args_arr[1]) == 'array') {
                 # Parse the array
@@ -367,13 +369,14 @@ Thank you for your patience.", "Temporarily Unavailable", mysql_error());
         }
 
         if($result = self::query($query)){
-            $response =  (object) array("success" => true, "rows" => mysql_affected_rows(self::$dlink), "time"=>self::$queryTime, "insert_id"=>mysql_insert_id(), "query" => $query);
+            $response =  (object) ["success" => true, "rows" => mysqli_affected_rows(self::$dlink), "time"=>self::$queryTime, "insert_id"=>mysqli_insert_id(self::$dlink), "query" => $query];
         }else{
-            $response = (object) array("success" => false, "error" => mysql_error(self::$dlink), "time"=>self::$queryTime, "query" => $query);
+            $response = (object) ["success" => false, "error" => mysqli_error(self::$dlink), "time"=>self::$queryTime, "query" => $query];
         }
         if(is_resource($result)){
-            mysql_free_result($result);            
+            mysqli_free_result($result);
         }
+
         return $response;
     }
     /**
@@ -388,28 +391,28 @@ Thank you for your patience.", "Temporarily Unavailable", mysql_error());
         foreach($data as $key => $value){
             # if false skip this value and don't add into database
             if($value === false){ continue; }
-            
+
             $values[self::escape($key)] = self::escape($value);
         }
-        
+
         $replace = "REPLACE";
         if($insert){
             $replace = 'INSERT';
         }
-        
+
         $query = $replace." INTO `".self::escape($table_name)."` (`".join('`, `', array_keys($values))."`) VALUES ('".join("', '", array_values($values))."') ";
-        
+
         if($result = self::query($query)){
-            $response =  (object) array("success" => true, "rows" => mysql_affected_rows(self::$dlink), "time"=>self::$queryTime, "query" => $query);
+            $response =  (object) ["success" => true, "rows" => mysqli_affected_rows(self::$dlink), "time"=>self::$queryTime, "query" => $query];
         }else{
-            $response = (object) array("success" => false, "error" => mysql_error(self::$dlink), "time"=>self::$queryTime, "query" => $query);
+            $response = (object) ["success" => false, "error" => mysqli_error(self::$dlink), "time"=>self::$queryTime, "query" => $query];
         }
         if(is_resource($result)){
-            mysql_free_result($result);            
+            mysqli_free_result($result);
         }
         return $response;
     }
-    
+
     /**
      * Return the array of columns (with table name index) with details
      * @param object $table
@@ -417,11 +420,11 @@ Thank you for your patience.", "Temporarily Unavailable", mysql_error());
      */
     static function getTableColumns($table){
 
-        $response = self::read("SHOW FULL COLUMNS FROM `:table`", $table);        
+        $response = self::read("SHOW FULL COLUMNS FROM `:table`", $table);
         if ($response->rows < 1) {
-            return array();
+            return [];
         }
-        $fields = array();
+        $fields = [];
         foreach($response->result as $line){
             $fields[$line["Field"]] = $line;
         }
@@ -433,11 +436,13 @@ Thank you for your patience.", "Temporarily Unavailable", mysql_error());
      * @return array list of tables in database
      */
     static function getTables(){
+
         $response = self::read("SHOW TABLES");
-        $tables = array();
+        $tables = [];
         foreach($response->result as $line) {
-            array_push($tables, $line['Tables_in_'.self::$database]);
+        	$tables[] = $line['Tables_in_' . DB_NAME];
         }
+
         return $tables;
     }
 
