@@ -96,7 +96,11 @@ function P($path, $isfile = false)
     return $fixedpath;
 }
 
-$host = $_SERVER['HTTP_HOST'];
+$host = $_SERVER['HTTP_X_FORWARDED_HOST']
+    ?? $_SERVER['HTTP_X_FORWARDED_FOR']
+    ?? $_SERVER['HTTP_HOST']
+    ?? $_SERVER['SERVER_NAME'];
+
 $folder = ($host == "localhost" || preg_match('/^192/', $host)) ? Configs::SUBFOLDER : "/"; # Folder where jotform is located under document root
 if ($host == "192.168.1.223") {
     $folder = "/";
@@ -109,7 +113,7 @@ if (Configs::APP) {
 # Check if this is a secure URL or not
 $protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ? "https://" : "http://";
 $domain = "";
-if (preg_match('/localhost$/', $host) == 0) {
+if (preg_match('/(localhost|datalynk)$/', $host) == 0) {
     list($www, $domain, $com) = explode(".", $host);
     $domain = $domain . "." . $com;
 }
