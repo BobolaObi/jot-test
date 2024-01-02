@@ -2,29 +2,31 @@
 
 # Generated on the installer
 class Configs {
-    const COMPANY_TITLE       = "ServiceTrac.ca";
+    const COMPANY_TITLE       = "The Auxilium Group";
     const COMPANY_LOGO        = "";
     const DBNAME              = "datalynk_forms";
     const DEV_DB_HOST         = "localhost";
     const DEV_DB_USER         = "root";
-    const DEV_DB_PASS         = "";
-    const PRO_DB_HOST         = "localhost";
+    const DEV_DB_PASS         = "access";
+    const PRO_DB_HOST         = "mysqlrouter:6446";
+#    const PRO_DB_HOST         = "db.auxilium.world";
     const PRO_DB_USER         = "datalynk_client";
     const PRO_DB_PASS         = "elearn1ng";
     const DB_USE_SSL          = false;
     const SSL_CIPHER          = "";
-    const LOGFOLDER           = "/tmp/logs/";
+#    const LOGFOLDER           = "/tmp/";
+    const LOGFOLDER           = "/data/www/forms.datalynk.ca/logs/";
     const USECDN              = false;
     const USEUFS              = false;
     const NOREPLY             = "no-reply@datalynk.ca";
     const NOREPLY_NAME        = "Support Team";
     const NOREPLY_SUPPORT     = "Support Team";
     const ANALYTICS_CODE      = "";
-    const DEFAULT_USER_TYPE   = "GUEST";
+    const DEFAULT_USER_TYPE   = "PROFESSIONAL";
     const CLOUD_UPLOAD_ALIAS  = "http://www.jotform.com/uploads/";
     const SUBFOLDER           = "/";
-    const CACHEPATH           = "/usr/data/www/forms.datalynk.ca/cache/";
-    const UPLOADPATH          = "/usr/data/www/forms.datalynk.ca/uploads/";
+    const CACHEPATH           = "/data/www/forms.datalynk.ca/cache/";
+    const UPLOADPATH          = "/data/www/forms.datalynk.ca/uploads/";
     const APP                 = true;
     const HAVESSL             = false;
     const SENDGRID_APIUSER    = "";
