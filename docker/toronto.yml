@@ -1,0 +1,30 @@
+version: '3.5'
+
+services:
+
+  redis:
+    image: redis
+    restart: unless-stopped
+
+  nginx_phpfpm:
+    build: ../
+    #image: ${GITLAB_CONTAINER_IMAGE}
+    environment:
+      REDIS_HOST: redis
+    ports:
+      - "${SWARM_PORT-9213}:80"
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /cache:/data/www/forms.datalynk.ca/cache
+    depends_on:
+      - redis
+    deploy:
+      replicas: ${SWARM_REPLICAS:-1}
+      restart_policy:
+        condition: on-failure
+      update_config:
+        parallelism: 1
+        delay: 15s
+        monitor: 5s
+        order: start-first
+
