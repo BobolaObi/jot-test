@@ -1,5 +1,8 @@
 version: '3.5'
 
+# docker build . -t jotty -f docker/Dockerfile
+# docker-compose -f docker/toronto.yml up -d
+
 services:
 
   redis:
@@ -7,8 +10,8 @@ services:
     restart: unless-stopped
 
   nginx_phpfpm:
-    build: ../
     #image: ${GITLAB_CONTAINER_IMAGE}
+    image: jotty
     environment:
       REDIS_HOST: redis
     ports:
