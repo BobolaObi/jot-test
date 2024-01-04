@@ -321,7 +321,7 @@ define('ENABLE_CDN', ($useCDN && $compress) );  # Will CDN be used in includes
 define('ENABLE_UFS', $useUFS);
 
 
-$useRedisCache =  Utils::getRedis() !== false; //false; //
+$useRedisCache =  false; //Utils::getRedis() !== false; //false; //
 define('USE_REDIS_CACHE', $useRedisCache);
 define('CACHEDB', 1);
 
