@@ -1285,21 +1285,23 @@ class Predis_PubSubContext implements Iterator {
         // NOOP
     }
 
+    #[\ReturnTypeWillChange]
     public function current() {
         return $this->getValue();
     }
-
+    #[\ReturnTypeWillChange]
     public function key() {
         return $this->_position;
     }
 
+    #[\ReturnTypeWillChange]
     public function next() {
         if ($this->isFlagSet(self::STATUS_VALID)) {
             $this->_position++;
         }
         return $this->_position;
     }
-
+    #[\ReturnTypeWillChange]
     public function valid() {
         $subscriptions = self::STATUS_SUBSCRIBED + self::STATUS_PSUBSCRIBED;
         return $this->isFlagSet(self::STATUS_VALID)
@@ -2559,30 +2561,30 @@ class Predis_Shared_Utils {
 
 abstract class Predis_Shared_MultiBulkResponseIteratorBase implements Iterator, Countable {
     protected $_position, $_current, $_replySize;
-
+    #[\ReturnTypeWillChange]
     public function rewind() {
         // NOOP
     }
-
+    #[\ReturnTypeWillChange]
     public function current() {
         return $this->_current;
     }
-
+    #[\ReturnTypeWillChange]
     public function key() {
         return $this->_position;
     }
-
+    #[\ReturnTypeWillChange]
     public function next() {
         if (++$this->_position < $this->_replySize) {
             $this->_current = $this->getValue();
         }
         return $this->_position;
     }
-
+    #[\ReturnTypeWillChange]
     public function valid() {
         return $this->_position < $this->_replySize;
     }
-
+    #[\ReturnTypeWillChange]
     public function count() {
         // NOTE: use count if you want to get the size of the current multi-bulk 
         //       response without using iterator_count (which actually consumes 

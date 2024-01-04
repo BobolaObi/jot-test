@@ -469,7 +469,8 @@ class Utils extends UtilsArrays
             }else{
                 $h = "127.0.0.1";
                 $yang = Server::$servers->siblings->local->yang;
-                if(Server::isHost(array('yang', $yang))){
+                // Check if 'local' property is set before accessing it
+                if ($yang !== null && Server::isHost(array('yang', $yang))) {
                     $h = $yang;
                 }
                 self::$residInstances[$databaseIndex] = new Predis_Client(array(
