@@ -11,7 +11,8 @@
 class DB
 {
     # Private veraibles
-    private static $database, # Database Name
+    private static
+        $database, # Database Name
         $username,                # Database Username
         $password,                # Database Password
         $hostname,                # Host Address or Name

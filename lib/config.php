@@ -9,64 +9,65 @@
  * Create pages here 
  */
 
-PageInfo::setPage(array(
+PageInfo::setPage([
     "name" => "admin", 
     "title" => "Admin",
     "content" => "lib/includes/admin.php", 
-    "css" => array("css/includes/admin.css", "sprite/toolbar-admin.css"), 
-    "js" => array(
+    "css" => ["css/includes/admin.css", "sprite/toolbar-admin.css"],
+    "js" => [
         "js/includes/admin.js"
-    )
-));
+    ]
+]);
 
-PageInfo::setPage(array(
+PageInfo::setPage([
     "name" => "signup", 
     "title" => "Sign Up", 
     "content" => "lib/includes/signup.php", 
-    "css" => array("css/includes/signup.css"), 
-    "js" => array("js/includes/signup.js")
-));
+    "css" => ["css/includes/signup.css"],
+    "js" => ["js/includes/signup.js"]
+]);
 
-PageInfo::setPage(array(
+
+PageInfo::setPage([
     "name" => "myforms2", 
     "title" => "My Forms",
     "content" => "lib/includes/oldmyforms.php", 
     "loginNeeded" => true, 
-    "css" => array("css/includes/oldmyforms.css", "sprite/toolbar-myforms.css"), 
-    "js" => array(
+    "css" => ["css/includes/oldmyforms.css", "sprite/toolbar-myforms.css"],
+    "js" => [
         "js/effects.js",
         "js/dragdrop.js",
         "js/includes/oldmyforms.js",
         "server.php?action=getLoggedInUser&includeUsage=1&callback=Utils.setUserInfo",
         "server.php?action=getFormList&callback=MyForms.setForms"
-    )
-));
+    ]
+]);
 
 # For new myforms
-PageInfo::setPage(array(
+PageInfo::setPage([
     "name" => "myforms", 
     "title" => "My Forms",
     "content" => "lib/includes/myforms2.php", 
     "loginNeeded" => true, 
     "hasFullScreen" => true,
-    "css" => array("css/includes/myforms2.css", "sprite/toolbar-myforms.css"), 
-    "js" => array(
-        "js/effects.js",
-        "js/dragdrop.js",
-        "js/includes/myforms2.js",
-        "js/feedback.js",
+    "css" => [CSS_PATH."/css/includes/myforms2.css", CSS_PATH."/sprite/toolbar-myforms.css"],
+    "js" => [
+        CSS_PATH."/js/effects.js",
+        CSS_PATH."/js/dragdrop.js",
+        CSS_PATH."/js/includes/myforms2.js",
+        CSS_PATH."/js/feedback.js",
         "server.php?action=getLoggedInUser&includeUsage=1&callback=Utils.setUserInfo",
         "server.php?action=getFormList&callback=MyForms.setForms"
-    )
-));
+    ]
+]);
 
-PageInfo::setPage(array(
+PageInfo::setPage([
     "name" => "reports", 
     "title" => "Reports",
     "loginNeeded" => true, 
     "content" => "lib/includes/reports.php", 
-    "css" => array("css/includes/reports.css","sprite/controls.css"), 
-    "js" => array(
+    "css" => ["css/includes/reports.css","sprite/controls.css"],
+    "js" => [
         "js/charts.js",
         "js/includes/reports.js",
         "js/nicEdit.js",
@@ -74,47 +75,48 @@ PageInfo::setPage(array(
         "server.php?action=getReportsData&formID=session&callback=Reports.getChartableElements",
         "server.php?action=getSavedForm&formID=session&callback=Reports.getFormProperties",
 		"server.php?action=getSavedReport&reportID=session&formID=session&callback=Reports.retrieve"
-    )
-));
+    ]
+]);
 
-PageInfo::setPage(array(
+PageInfo::setPage([
     "name" => "myaccount", 
     "title" => "Account Settings", 
     "content" => "lib/includes/myaccount.php", 
-    "css" => array("css/includes/myaccount.css"), 
-    "js" => array(
+    "css" => ["css/includes/myaccount.css"],
+    "js" => [
         "js/includes/myaccount.js"
-    )
-));
+    ]
+]);
 
-PageInfo::setPage(array(
+PageInfo::setPage([
     "name" => "passwordreset", 
     "title" => "Reset Your Password", 
     "content" => "lib/includes/password_reset.php", 
-    "css" => array("css/includes/password_reset.css"), 
-    "js" => array(
+    "css" => ["css/includes/password_reset.css"],
+    "js" => [
         "js/includes/password_reset.js"
-    )
-));
+    ]
+]);
 
-PageInfo::setPage(array(
+PageInfo::setPage([
     "name" => "passwordresetexpired", 
     "title" => "Password Reset Code Expired", 
     "content" => "lib/includes/pass_reset_expired.php", 
-));
+]);
 
-PageInfo::setPage(array(
+PageInfo::setPage([
     "name" => "submissions", 
     "title" => "Submissions",
     "loginNeeded" => true, 
     "content" => "lib/includes/submissions.php", 
-    "css" => array(
+    "css" => [
         "css/styles/form.css",
         "css/includes/submissions.css",
         (PROTOCOL === 'https://' || JOTFORM_ENV == 'DEVELOPMENT')? "opt/extjs/css/ext-all.css" : "http://extjs.cachefly.net/ext-3.1.0/resources/css/ext-all.css",
         (PROTOCOL === 'https://' || JOTFORM_ENV == 'DEVELOPMENT')? "opt/extjs/css/xtheme-gray.css" : "http://extjs.cachefly.net/ext-3.1.0/resources/css/xtheme-gray.css",
-    ), 
-    "js" => array(        
+
+    ],
+    "js" => [
         (PROTOCOL === 'https://' || JOTFORM_ENV == 'DEVELOPMENT')? "opt/extjs/js/ext-prototype-adapter.js" : "http://extjs.cachefly.net/ext-3.1.0/adapter/prototype/ext-prototype-adapter.js",
         (PROTOCOL === 'https://' || JOTFORM_ENV == 'DEVELOPMENT')? "opt/extjs/js/ext-all.js" : "http://extjs.cachefly.net/ext-3.1.0/ext-all.js",
         "js/Ext.ux.util.js",
@@ -128,95 +130,95 @@ PageInfo::setPage(array(
         "server.php?action=getSetting&identifier=form&key=columnSetting&callback=Submissions.getColumnSettings",
 		"http://maps.google.com/maps/api/js?sensor=true",
         "server.php?action=getExtGridStructure&callback=Submissions.initGrid&formID=session&type=submissions"
-    )
-));
+    ]
+]);
 
-PageInfo::setPage(array(
+PageInfo::setPage([
     "name" => "login", 
     "title" => "Login",
     "content" => "lib/includes/login.php", 
     "loginNeeded" => false, 
-    "css" => array("css/includes/login.css"), 
-    "js" => array(
-        "js/includes/loginForm.js",
-        "js/common.js"
-    )
-));
+    "css" => [CSS_PATH."/css/includes/login.css"],
+    "js" => [
+        CSS_PATH."/js/includes/loginForm.js",
+        CSS_PATH."/js/common.js"
+    ]
+]);
 
-PageInfo::setPage(array(
+PageInfo::setPage([
     "name" => "cancel", 
     "title" => "Downgrade Instructions",
     "content" => "lib/includes/cancel.php", 
     "loginNeeded" => true, 
-    "css" => array("css/includes/cancel.css")
-));
+    "css" => ["css/includes/cancel.css"]
+]);
 
 // Limit types (submissions, payments etc. are defined in the MonthlyUsage class.
 // Types not there will not be set and will be silently ignored.
 // Add account types.
  
 // Guest account:
-AccountType::create(array('name' => 'GUEST', "prettyName" => 'Guest', 'limits' => array(
+AccountType::create(['name' => 'GUEST', "prettyName" => 'Guest', 'limits' => [
     'submissions' => 20,
     'sslSubmissions' => 2,
     'payments' => 2,
     'uploads' => 100 * MB, // 100MB
     'tickets' => 0
-)));
+]]);
 
 // Free account:
-AccountType::create(array('name' => 'FREE', "prettyName" => 'Free', 'limits' => array(
+AccountType::create(['name' => 'FREE', "prettyName" => 'Free', 'limits' => [
     'submissions' => 100,
     'sslSubmissions' => 10,
     'payments' => 10,
     'uploads' => 100 * MB, // 100MB
     'tickets' => 0
-)));
+]]);
 
 // Premium account:
-AccountType::create(array('name' => 'PREMIUM', "prettyName" => 'Premium', 'limits' => array(
+AccountType::create(['name' => 'PREMIUM', "prettyName" => 'Premium', 'limits' => [
     'submissions' => 1000,
     'sslSubmissions' => 1000,
     'payments' => 1000,
     'uploads' => 10241*MB, // 10GB
     'tickets' => 3
-)));
+]]);
 
 // Old Premium account:
-AccountType::create(array('name' => 'OLDPREMIUM', "prettyName" => 'Premium', 'limits' => array(
+AccountType::create(['name' => 'OLDPREMIUM', "prettyName" => 'Premium', 'limits' => [
     'submissions' => 1000000,
     'sslSubmissions' => 1000000,
     'payments' => 1000000,
     'uploads' => 10241*MB, // 10GB
     'tickets' => 3
-)));
+]]);
 
 // Enterprise account:
-AccountType::create(array('name' => 'PROFESSIONAL', "prettyName" => 'Professional', 'limits' => array(
+AccountType::create(['name' => 'PROFESSIONAL', "prettyName" => 'Professional', 'limits' => [
     'submissions' => 1000000,
     'sslSubmissions' => 1000000,
     'payments' => 1000000,
     'uploads' => 1048577*MB, // 1TB
     'tickets' => 10
-)));
+]]);
 
 // Admin account for users with super powers.
-AccountType::create(array('name' => 'ADMIN', "prettyName" => 'Administrator', 'limits' => array(
+AccountType::create(['name' => 'ADMIN', "prettyName" => 'Administrator', 'limits' => [
     'submissions' => 10000,
     'sslSubmissions' => 10000,
     'payments' => 10000,
     'uploads' => 1048577*MB, // 1TB
     'tickets' => 10
-)));
+]]);
 
 // Admin account for users with super powers.
-AccountType::create(array('name' => 'SUPPORT', "prettyName" => 'Support', 'limits' => array(
+AccountType::create(['name' => 'SUPPORT', "prettyName" => 'Support', 'limits' => [
     'submissions' => 10000,
     'sslSubmissions' => 10000,
     'payments' => 10000,
     'uploads' => 1048577*MB, // 1TB
     'tickets' => 10
-)));
+]]);
 
 /**
  * Add the following line to the php.ini file so that an exception like the following is not thrown:
@@ -231,17 +233,20 @@ AccountType::create(array('name' => 'SUPPORT', "prettyName" => 'Support', 'limit
 // Below used for sending an e-mail to the developers when an unhandled exception occurs.
 // set_exception_handler('Console::exceptionHandler');
 // Set email addresses exception messages will be sent to.
-Console::setEmailAddresses(array("tayfun@interlogy.com", "serkan@interlogy.com", "seyhun@interlogy.com"));
+Console::setEmailAddresses(["ryan@masse.biz"]);
 
 # Set up which database will be used. It will be localhost for local
 # environment and goby everywhere else.
 
-DB::setConnection('submissions', DB_NAME, DB_USER, DB_PASS, Server::$servers->db->local->goby);
+#DB::setConnection('submissions', DB_NAME, DB_USER, DB_PASS, Server::$servers->db->local->goby);
+DB::setConnection('submissions', DB_NAME, DB_USER, DB_PASS, DB_HOST);
 DB::setConnection('new', DB_NAME, DB_USER, DB_PASS, DB_HOST);
+
 if(Server::isHost('salmon')){
     DB::setConnection('main', 'jotform_main', DB_USER, DB_PASS, 'localhost');
 }else{
-    DB::setConnection('main', 'jotform_main', DB_USER, DB_PASS, Server::$servers->db->local->dolphin);
+    //DB::setConnection('main', 'jotform_main', DB_USER, DB_PASS, Server::$servers->db->local->dolphin);
+    DB::setConnection('main', 'jotform_main', DB_USER, DB_PASS, DB_HOST);
 }
 # Set the defaul database to new
 DB::useConnection('new');
