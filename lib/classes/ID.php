@@ -13,7 +13,7 @@ class ID {
     public static function generate(){
         srand(self::makeSeed());
         $z = sprintf("%03d", date('z'));
-        return substr(date('y'), 1). $z . date('is') . substr(preg_replace("/\D/", "", $_SERVER['REMOTE_ADDR']), -5, 3) + rand(1, 99);
+        return substr(date('y'), 1) . $z . date('is') . substr(preg_replace("/\D/", "", $_SERVER['REMOTE_ADDR']), -5, 3) . rand(1, 99);
     }
     
     /**
