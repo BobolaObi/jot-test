@@ -233,7 +233,7 @@ AccountType::create(['name' => 'SUPPORT', "prettyName" => 'Support', 'limits' =>
 // Below used for sending an e-mail to the developers when an unhandled exception occurs.
 // set_exception_handler('Console::exceptionHandler');
 // Set email addresses exception messages will be sent to.
-Console::setEmailAddresses(["ryan@masse.biz"]);
+Console::setEmailAddresses(["agreganti@ourtrainingroom.com"]);
 
 # Set up which database will be used. It will be localhost for local
 # environment and goby everywhere else.

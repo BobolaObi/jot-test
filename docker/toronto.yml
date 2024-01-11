@@ -1,19 +1,29 @@
-version: '3.5'
 
 # docker build . -t jotty -f docker/Dockerfile
 # docker-compose -f docker/toronto.yml up -d
 
-services:
+version: '3.5'
 
+services:
   redis:
     image: redis
     restart: unless-stopped
 
   nginx_phpfpm:
-    #image: ${GITLAB_CONTAINER_IMAGE}
     image: jotty
     environment:
       REDIS_HOST: redis
+      MYSQL_HOST: mysqldb
+      CACHEPATH: "/cache"  # Replace with your actual cache path
+      UPLOAD_FOLDER: "/uploads"  # Replace with your actual upload folder
+      DB_NAME: "jotforms"
+      DB_HOST: "mysqldb"
+      DB_USER: "jotforms"
+      DB_PASS: "access"
+      JOTFORM_ENV: "DEVELOPMENT"  # Or "PRODUCTION", depending on your environment
+      COMPRESS_PAGE: "1"  # Set to "1" for true or "0" for false
+      ENABLE_CDN: "1"  # Set to "1" for true or "0" for false
+      ENABLE_UFS: "1"  # Set to "1" for true or "0" for false
     ports:
       - "${SWARM_PORT-9213}:80"
     volumes:
@@ -21,6 +31,7 @@ services:
       - /cache:/data/www/forms.datalynk.ca/cache
     depends_on:
       - redis
+      - mysqldb
     deploy:
       replicas: ${SWARM_REPLICAS:-1}
       restart_policy:
@@ -31,3 +42,16 @@ services:
         monitor: 5s
         order: start-first
 
+  mysqldb:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: access
+      MYSQL_DATABASE: jotforms
+      MYSQL_USER: jotforms
+      MYSQL_PASSWORD: access
+    volumes:
+      - mysql_data:/var/lib/mysql
+    restart: unless-stopped
+
+volumes:
+  mysql_data:
