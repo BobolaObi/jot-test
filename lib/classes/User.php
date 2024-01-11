@@ -12,6 +12,7 @@
  * @package JotForm_User_Management
  * @copyright Copyright (c) 2009, Interlogy LLC
  */
+
 class User {
     /**
      * Keeps database fields and their types, : for a string and a # for a number.
@@ -63,6 +64,7 @@ class User {
     
     private $client;
     /**
+     *
      * Constructor
      * @param object $userProps [optional]
      * @return

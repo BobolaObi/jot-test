@@ -58,9 +58,9 @@ class UtilsArrays extends UtilsStrings{
     
     /**
      * Convert array key to camel case literal
-     * @param object $arr
-     * @param object $capitalizeFirst [optional]
-     * @param object $allowed [optional]
+     * @param  $arr
+     * @param  $capitalizeFirst [optional]
+     * @param  $allowed [optional]
      * @return 
      */
     static function arrayKeysToCamel($arr, $capitalizeFirst = false, $allowed = 'A-Za-z0-9') {

@@ -9,6 +9,8 @@
  */
 # Fix for proxy forwarded IP addresses
 
+/* old code base will be littered with warnings now. */
+error_reporting(E_ALL & ~E_WARNING);
 
 if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
     # This addresses comes as comma seperated if more than one proxy was used.
@@ -90,9 +92,7 @@ function autoload($class_name)
 spl_autoload_register('autoload');
 
 # Get all the options from this file
-$prev_err = error_reporting(E_ALL);
 include_once dirname(__FILE__) . "/ConfigsClass.php";
-error_reporting($prev_err);
 
 /**
  * Fix extra slashes in path
@@ -276,14 +276,22 @@ if ((Server::isLocalhost() && !getenv("DOCKER_MODE"))
 //        return;
 //    });
 
+    /* todo:
+    error level needs to permit warnings.....
+    */
+
     /* debug inspection for errors */
     set_error_handler(function ($errno, $errstr, $errfile, $errline)
     use ($targetErrorLevel) {
         // no error handling if the error was suppressed with the @-operator
         $level = error_reporting();
         $lastError = error_get_last();
-        $PHP_8_SUPPRESSED = E_ERROR | E_CORE_ERROR | E_COMPILE_ERROR | E_USER_ERROR | E_RECOVERABLE_ERROR | E_PARSE;
-        if ($lastError === null
+        $lastErrorCode = error_get_last()['type'];
+        if(!($lastErrorCode & E_WARNING) ){
+            return true;
+        }
+//        $PHP_8_SUPPRESSED = E_ERROR | E_CORE_ERROR | E_COMPILE_ERROR | E_USER_ERROR | E_RECOVERABLE_ERROR | E_PARSE;
+        if ($lastErrorCode === null
             || $level === $PHP_8_SUPPRESSED
             || $level === 0
         ) {

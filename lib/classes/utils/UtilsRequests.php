@@ -319,11 +319,11 @@ class UtilsRequests extends UtilsEmails{
      * @param object $httponly [optional] Is cookie HTTP only?
      * @return boolean
      */
-    static function setCookie($name, $value, $expire, $path = "/", $domain = null, $httponly = null){
+    static function setCookie($name, ...$_){
         # if(DOMAIN){ $domain = ".".DOMAIN; } # Don't set the cookies on domain because it causes so much trouble
          
         Utils::deleteCookie($name); # delete the cookie first to prevent duplications
-        return setcookie($name, $value, strtotime($expire), $path, $domain, $httponly);
+        return setcookie($name,...$_);
     }
     
     /**
