@@ -1,0 +1,11 @@
+manual:
+remove instances of `create_function`
+use composer for class loading
+
+ide auto:
+autoformat everything
+array(..) to array
+make methods static where possible
+
+
+
