@@ -10,7 +10,9 @@
 # Fix for proxy forwarded IP addresses
 
 /* old code base will be littered with warnings now. */
-error_reporting(E_ALL & ~E_WARNING);
+DEFINE("ERROR_LEVEL_LENIENT", E_ALL & ~E_WARNING & ~E_NOTICE);
+error_reporting(ERROR_LEVEL_LENIENT);
+
 
 if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
     # This addresses comes as comma seperated if more than one proxy was used.
@@ -281,44 +283,12 @@ if ((Server::isLocalhost() && !getenv("DOCKER_MODE"))
     */
 
     /* debug inspection for errors */
-    set_error_handler(function ($errno, $errstr, $errfile, $errline)
-    use ($targetErrorLevel) {
-        // no error handling if the error was suppressed with the @-operator
+    set_error_handler(function ($errno, $errstr, $errfile, $errline) {
         $level = error_reporting();
-        $lastError = error_get_last();
-        $lastErrorCode = error_get_last()['type'];
-        if(!($lastErrorCode & E_WARNING) ){
-            return true;
-        }
-//        $PHP_8_SUPPRESSED = E_ERROR | E_CORE_ERROR | E_COMPILE_ERROR | E_USER_ERROR | E_RECOVERABLE_ERROR | E_PARSE;
-        if ($lastErrorCode === null
-            || $level === $PHP_8_SUPPRESSED
-            || $level === 0
-        ) {
-            //  error_log("Suppressed error: [$errno] $errstr on line $errline in file $errfile");
-            return true; // Don't execute PHP's internal error handler
-        }
-
-        // break with usefull info otherwise...
-        if (function_exists('xdebug_break')) {
-            $wat = get_defined_constants(categorize: true);
-            $eConstants = array_filter(get_defined_constants(), function ($value, $key) {
-                return preg_match('/^E_/', $key);
-            }, ARRAY_FILTER_USE_BOTH);
-            $errFlags = [];
-            $errMatch = [];
-            foreach ($eConstants as $lable => $bit) {
-                if ($bit === ($bit & $level)) {
-                    $errFlags[$lable] = $bit;
-                }
-                if ($bit & $errno) {
-                    $errMatch[$lable] = $bit;
-                }
-            }
-            // xdebug_break();
-        }
+        $errConst = error_const_list()[$errno];
+        function_exists('xdebug_break') && xdebug_break();
         return false; // Execute PHP's internal error handler
-    });
+    }, ERROR_LEVEL_LENIENT);
 
     Console::setLogFolder(ROOT . "logs/");
     Console::setBacktrace(true);
@@ -477,7 +447,6 @@ if(APP && Session::isGuest()){
 }
 */
 
-
 if ($JOTFORM_ENV === 'DEVELOPMENT') {
     set_exception_handler(
         function (Throwable $x) {
@@ -490,7 +459,5 @@ if ($JOTFORM_ENV === 'DEVELOPMENT') {
         });
 }
 
-User::login('USER_TABLES', 'sandbox', true, true, []);
-
-# Include the Datalynk library
-require_once ROOT . "lib/datalynk.php";
+// stay as guest for now.
+//User::login('USER_TABLES', 'sandbox', true, true, []);
