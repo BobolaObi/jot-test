@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ALL);
 
-class ID {
+class TestUniqueID {
     
     /**
      * Will generate a form ID

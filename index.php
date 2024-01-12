@@ -3,7 +3,6 @@ include_once './lib/init.php';
 Form::handleSlugURLs();
 header("Content-type: text/html; charset=utf-8");
 
-Session::handleIE6();
 $formID = Utils::getCurrentID("form");
 $fullscreen = Utils::getCookie("fullscreen");
 $hideRedo = "";
@@ -560,6 +559,7 @@ Funnel::setGoal("First Visit", "Funnel");
     </body>
 </html>
 
-<? 
-Translations::translatePage();
+<?
+// Translations::translatePage();
+ob_flush();
 ?>
