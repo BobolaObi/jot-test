@@ -120,8 +120,7 @@ class ID {
      * @return 
      */
     public static function makeSeed(){
-       list($usec, $sec) = explode(' ', microtime());
-       return (float) $sec + ((float) $usec * 100000);
+        return (int) (100000 * microtime(as_float: 1));
     }
 }
 ?>
