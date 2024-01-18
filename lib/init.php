@@ -108,6 +108,12 @@ function P($path, $isfile = false)
     return $fixedpath;
 }
 
+function isDev()
+{
+    return $_SERVER['JOTFORMS_MODE'] == 'dev'
+        || (Server::isLocalhost() && !getenv("DOCKER_MODE"));
+}
+
 $host = $_SERVER['HTTP_HOST'] ?? '';
 $folder = ($host == "localhost" || preg_match('/^192/', $host)) ? Configs::SUBFOLDER : "/"; # Folder where jotform is located under document root
 
@@ -139,7 +145,7 @@ if (preg_match('/MSIE/i', $user_agent)) {
 
 # Determine the protocol HTTP VS HTTPS
 $protocol = 'https://';
-if (preg_match("/\.intranet$/", $server)) {
+if (isDev()) {
     $protocol = 'http://';
 }
 
@@ -188,8 +194,6 @@ define('NOREPLY_SUPPORT', Configs::NOREPLY_SUPPORT);                    # Use th
 define('BETA', false);                                                  # Mark this installation as beta
 define('SCHEMA_FILE_PATH', P(ROOT . "/opt/db_schema/jotform_new.json", true));    # Database schema file, @DEPRECATED
 define('API_URL_BASE', "api");                                          # This is the base url folder name for the API
-$d = (class_exists('Dropbox_OAuth_PHP') || class_exists('Dropbox_OAuth_PEAR'));
-define('DROPBOX_AVAILABLE', $d);
 
 # Include the Amazon Web Services SDK
 include_once ROOT . "lib/classes/AWSSDK/sdk.class.php";
@@ -262,9 +266,7 @@ Server::setServers(Configs::$servers);
 $DB_NAME = Configs::DBNAME;
 
 # if we are on localhost
-if ((Server::isLocalhost() && !getenv("DOCKER_MODE"))
-    || $_SERVER['JOTFORMS_MODE'] == 'dev'
-) {
+if (isDev()) {
     $DB_HOST = getenv('MYSQL_HOST') ?: Configs::DEV_DB_HOST;
     $DB_USER = Configs::DEV_DB_USER;
     $DB_PASS = Configs::DEV_DB_PASS;
