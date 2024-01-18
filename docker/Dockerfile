@@ -10,4 +10,4 @@ WORKDIR /data/www/forms.datalynk.ca
 
 RUN ln -s cache/uploads uploads
 
-RUN cp docker/ConfigsClass.php-THISISTHECONFIGFILE lib/ConfigsClass.php
+RUN cp docker/ConfigsClass.php lib/ConfigsClass.php
