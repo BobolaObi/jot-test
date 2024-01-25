@@ -3,6 +3,7 @@
  * Jotform Core 3.0
  * @version 3.0 
  */
+
 var Utils = Utils || new Common();
 var formID = false;
 var savedform = {
@@ -4321,9 +4322,11 @@ function initiate(){
         console.error(e);
     }
 }
+
 /**
  * Display list of question names in a table
  */
+
 function displayQuestionInfo(){
     var qs = getUsableElements();
     table = '<table width="100%" class="prop-table" cellspacing="0" cellpadding="4">';

@@ -5788,6 +5788,7 @@ Form.EventObserver = Class.create(Abstract.EventObserver, {
 
   function on(element, eventName, selector, callback) {
     element = $(element);
+
     if (Object.isFunction(selector) && Object.isUndefined(callback)) {
       callback = selector, selector = null;
     }

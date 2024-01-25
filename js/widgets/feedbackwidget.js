@@ -25,14 +25,32 @@ Feedback = {
             onClose: function() {
     			Feedback.formWindow = false;
     		}
-        })
+        });
     },
+    // init: function() {
+    //     document.observe('dom:loaded', function() {
+    //         Element.observe('feedback-tab-link', 'click', function() {
+    //             Feedback.openFeedbackForm();
+    //         });
+    //         $('feedback-tab').show();
+    //     });
+    // }
+    //
+
     init: function() {
         document.observe('dom:loaded', function() {
+            console.log('DOM is fully loaded');
             Element.observe('feedback-tab-link', 'click', function() {
+                console.log('feedback-tab-link was clicked');
                 Feedback.openFeedbackForm();
             });
-            $('feedback-tab').show();
+            var feedbackTab = $('feedback-tab');
+            if (feedbackTab) {
+                console.log('feedback-tab is present');
+                feedbackTab.show();
+            } else {
+                console.log('feedback-tab is missing');
+            }
         });
     }
 };
