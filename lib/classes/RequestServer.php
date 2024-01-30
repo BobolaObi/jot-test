@@ -6,7 +6,6 @@
  */
 class RequestServer 
 {
-    
     # Type of the responses it should be application/json but it's hard to debug and browser are having some problems with it
     private $responseContentType = /* "application/x-json"; # */ "text/javascript"; # for debugging
 	
@@ -63,7 +62,7 @@ class RequestServer
      * @constructor
      * @param object $request
      */
-    function RequestServer($request, $bypass = false){
+    function __construct($request, $bypass = false){
         
         Profile::start("Request"); # Keep request time
         # If no action was sent
