@@ -9,7 +9,7 @@ if(!function_exists("get_called_class")){
             $file = file_get_contents($backtrace["file"]);
             $file = explode("\n", $file);
             for($line = $backtrace["line"] - 1; $line > 0; $line--) {
-                preg_match("/(?P<class>\w+)::(.*)/", trim($file[$line]), $matches);
+                preg_match("/(?P<class>\w+)::(.*)/", trim(''.$file[$line]), $matches);
                 if (isset($matches["class"]))
                     return $matches["class"];
             }

@@ -210,7 +210,7 @@ class Console {
         }
         
         if( self::$oneLine == true ){
-            $text = trim(preg_replace("/[\n\r\s]+/"," ",$text));
+            $text = trim(''.preg_replace("/[\n\r\s]+/"," ",$text));
             $toLogFile = $grey."[".($title? $title : self::$defaultTitle)." - ".@date('F d, Y \a\t H:i:s')."]: ".$finishColor.$text."\n"; 
         }else{
             $line = str_repeat('#', 80);
@@ -345,9 +345,9 @@ class Console {
         foreach($matches[1] as $index => $line){
             # Match title block
             preg_match("/Type\[\s(?P<type>.*)\]\s\#Title\[\s(?P<title>.*)\s]\s\#Date\[\s(?P<date>.*)\s\]/", $line, $m);
-            $parsedLog[trim($m['type'])][$index] = array(
-                "title"=> trim($m["title"]),
-                "date" => trim($m["date"]),
+            $parsedLog[trim(''.$m['type'])][$index] = array(
+                "title"=> trim(''.$m["title"]),
+                "date" => trim(''.$m["date"]),
                 "message"=> $matches[2][$index]
             );
         }

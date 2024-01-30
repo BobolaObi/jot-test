@@ -116,7 +116,7 @@ class FormFactory {
         $formStatus = Utils::u($this->formProperties, 'status');
         $formHeight = Utils::u($this->formProperties, 'height');
         $currentIndexChanged = Utils::u($this->formProperties, 'currentIndexChanged');
-        $formSlug   = trim(Utils::u($this->formProperties, 'slug'));
+        $formSlug   = trim(''.Utils::u($this->formProperties, 'slug'));
         
         # If form slug was not defined use formID as a slug
         if(empty($formSlug)){

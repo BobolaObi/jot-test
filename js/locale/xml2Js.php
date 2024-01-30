@@ -24,8 +24,8 @@ function createJson($options) {
 	$trans = array();
 	// Populate the translations array
 	for ($i = 0; $i < count($xml->row); $i++) {
-		$enWord = trim($xml->row[$i]->field[0]);
-		$transWord = trim($xml->row[$i]->field[1]);
+		$enWord = trim(''.$xml->row[$i]->field[0]);
+		$transWord = trim(''.$xml->row[$i]->field[1]);
 		// If the word is included in Turkish, add it to other languages.
 		// Note that $transWord must not be empty.
 		if (isset($turkishArray->{$enWord}) && $transWord) {

@@ -36,7 +36,7 @@ $results = array();
 
 foreach ($users->result as $row){
     
-    if ( in_array(trim($row['username']), $ignoreArray) ) {
+    if ( in_array(trim(''.$row['username']), $ignoreArray) ) {
         continue;
     }
     

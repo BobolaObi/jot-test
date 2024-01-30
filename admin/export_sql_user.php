@@ -13,7 +13,7 @@
 	</form>
 	<?php
     }
-	if (isset($_POST["username"]) && trim($_POST["username"])){
+	if (isset($_POST["username"]) && trim(''.$_POST["username"])){
 		$sqlUser = new ExportSQLUser($_POST["username"]);
 		$queries = $sqlUser->getQueries();
 		$value = implode($queries);

@@ -344,7 +344,7 @@ class dqml2tree
         $i = 0;
         $last_pos = $begin;
         foreach ($poses as $pos) {
-            if (!in_array(trim(substr($this->_sql, $last_pos + $lr, $pos - $last_pos - $lr)), $this->_noval_rules)) {
+            if (!in_array(trim(''.substr($this->_sql, $last_pos + $lr, $pos - $last_pos - $lr)), $this->_noval_rules)) {
                 $lr = ($i > 0 ? $length_rule : $min_lr);
                 $inter_branches[$i . '|' . $inter_rule_key] = Array(
                     '_a' => $last_pos,
@@ -356,7 +356,7 @@ class dqml2tree
             }
         }
 
-        if (!in_array(trim(substr($this->_sql, $last_pos + $lr, $end - $last_pos - $lr)), $this->_noval_rules)) {
+        if (!in_array(trim(''.substr($this->_sql, $last_pos + $lr, $end - $last_pos - $lr)), $this->_noval_rules)) {
             $lr = ($i > 0 ? $length_rule : $min_lr);
             $inter_branches[$i . '|' . $inter_rule_key] = Array(
                 '_a' => $last_pos,
@@ -506,7 +506,7 @@ class dqml2tree
                             }
                         }
                     }
-                    $lsub_tree = trim($sub_tree);
+                    $lsub_tree = trim(''.$sub_tree);
 
                     if(in_array($pur_rule, $this->_table_rules)) {
                         $_tree['TABLE'] = $lsub_tree;

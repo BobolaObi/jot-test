@@ -231,7 +231,7 @@ class PhishingFilter{
     private function addText($text){
         # normalize and split the words.
         # Also strip tags from the questions.
-        $text = strip_tags(trim($text));
+        $text = strip_tags(trim(''.$text));
         if (preg_match_all('/([a-zA-Z][^a-zA-Z]+){4,}/', $text, $arr, PREG_PATTERN_ORDER)>0){
         	$text = preg_replace('/[^a-zA-Z]+/', '', $text);
         }

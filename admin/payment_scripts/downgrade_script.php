@@ -20,7 +20,7 @@ foreach ($res->result as $row){
     $result->username = $row['username'];
     
     # Stop checking user if username is empty.
-    if (!trim($result->username)){
+    if (!trim(''.$result->username)){
         continue;
     }
     

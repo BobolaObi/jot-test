@@ -1414,7 +1414,7 @@ class Submission {
         }
         
         # Check file extension is allowed
-        if(trim($questionProp["extensions"]) != "*" && !in_array($fileExt, $allowedExts) && !in_array(strtolower($fileExt), $allowedExts)){
+        if(trim(''.$questionProp["extensions"]) != "*" && !in_array($fileExt, $allowedExts) && !in_array(strtolower($fileExt), $allowedExts)){
             Utils::errorPage("<b>".$fileExt."</b> file extension is not allowed. You can only upload <b>".$questionProp["extensions"]."</b> files.".
             $this->goBackMessage, "Upload Error");
         }
@@ -1431,7 +1431,7 @@ class Submission {
         }
         
         # Check file extension is allowed
-        if(trim($questionProp["extensions"]) != "*" && !in_array($fileExt, $allowedExts) && !in_array(strtolower($fileExt), $allowedExts)){
+        if(trim(''.$questionProp["extensions"]) != "*" && !in_array($fileExt, $allowedExts) && !in_array(strtolower($fileExt), $allowedExts)){
             Utils::errorPage("<b>".$fileExt."</b> file extension is not allowed. You can only upload <b>".$questionProp["extensions"]."</b> files.".
             $this->goBackMessage, "Upload Error");
         }
@@ -1795,10 +1795,10 @@ class Submission {
         if(!isset($this->questions[$id])){ 
             $this->questions[$id] = "";
         }
-        $value = html_entity_decode(trim($value), ENT_COMPAT, 'UTF-8');
+        $value = html_entity_decode(trim(''.$value), ENT_COMPAT, 'UTF-8');
         
         if(is_string($this->questions[$id])){
-            $field = html_entity_decode(trim($this->questions[$id]), ENT_COMPAT, 'UTF-8');
+            $field = html_entity_decode(trim(''.$this->questions[$id]), ENT_COMPAT, 'UTF-8');
         }else{
             $field = $this->questions[$id];
         }

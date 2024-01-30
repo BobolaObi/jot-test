@@ -103,7 +103,7 @@ class MonthlyUsage {
         foreach(self::$limitFields as $classField => $dbField) {
             $queryPart .= "$dbField = 0, ";
         }
-        $query .= rtrim($queryPart, ", ") . " WHERE username=':username' LIMIT 1";
+        $query .= rtrim(''.$queryPart, ", ") . " WHERE username=':username' LIMIT 1";
         $response = DB::write($query, $username);
         return $response;
     }
@@ -215,7 +215,7 @@ class MonthlyUsage {
                 }
             }
             // Remove the last comma and the space characters.
-            $queryPart = rtrim($queryPart, ", ");
+            $queryPart = rtrim(''.$queryPart, ", ");
         } else {
             // It is a string, use it directly.
             if (array_key_exists($checkTypes, self::$limitFields)) {

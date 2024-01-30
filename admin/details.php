@@ -24,7 +24,7 @@ Session::checkAdminPages(true);
                 $keyword  = isset($_GET["keyword"])  ? $_GET["keyword"]  : false;
                 $user = User::find($username);
 
-                if (preg_match ('/^\d+$/', trim($keyword))){
+                if (preg_match ('/^\d+$/', trim(''.$keyword))){
                     $isKeywordFormId =  true;
                 }else{
                     $isKeywordFormId = false;
@@ -35,7 +35,7 @@ Session::checkAdminPages(true);
                 if ($user){
 
                     $referer = false;
-                    if ($user->referer !== false && trim($user->referer) ){
+                    if ($user->referer !== false && trim(''.$user->referer) ){
                         if(strlen($user->referer)>10){
                             $referer = substr($user->referer, 0, 25);
                             if(strlen($user->referer)>25){
@@ -143,8 +143,8 @@ Session::checkAdminPages(true);
                                         <tr>
                                             <th>LastIP:</th>
                                             <td>
-                                                <?=trim($user->ip) ? $user->ip : "-"?>
-                                                <a style="color:#000;text-decoration:none;" href="<?=HTTP_URL."admin/?keyword=".urlencode(trim($user->ip))?>" target="_blank">
+                                                <?=trim(''.$user->ip) ? $user->ip : "-"?>
+                                                <a style="color:#000;text-decoration:none;" href="<?=HTTP_URL."admin/?keyword=".urlencode(trim(''.$user->ip))?>" target="_blank">
                                                     <img border="0" src="../images/context-menu/preview.png" style="vertical-align:bottom;" />
                                                 </a>
                                             </td>
@@ -250,7 +250,7 @@ Session::checkAdminPages(true);
                                         
                                         $totalFormCount = $countResponse->first['c'];
                                         
-                                        $removeKeywordId = ($isKeywordFormId ? "AND `id` <> '".trim($keyword)."' " : "");
+                                        $removeKeywordId = ($isKeywordFormId ? "AND `id` <> '".trim(''.$keyword)."' " : "");
                                         $response = DB::read("SELECT * ".
                                                  "FROM `forms` ".
                                                  "WHERE `username`=':username' ".

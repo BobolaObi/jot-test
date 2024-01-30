@@ -1064,13 +1064,13 @@ print "\n\n------------\n";
 				$type = explode(' ', str_replace('; charset=', ';charset=', $type));
 				$type = array_pop($type);
 				$type = explode(';', $type);
-				$type = trim(array_shift($type));
+				$type = trim(''.array_shift($type));
 			}
 			finfo_close($finfo);
 
 		// If anyone is still using mime_content_type()
 		} elseif (function_exists('mime_content_type'))
-			$type = trim(mime_content_type($file));
+			$type = trim(''.mime_content_type($file));
 
 		if ($type !== false && strlen($type) > 0) return $type;
 
@@ -1359,7 +1359,7 @@ final class S3Request {
 		if (substr($data, 0, 4) == 'HTTP')
 			$this->response->code = (int)substr($data, 9, 3);
 		else {
-			list($header, $value) = explode(': ', trim($data), 2);
+			list($header, $value) = explode(': ', trim(''.$data), 2);
 			if ($header == 'Last-Modified')
 				$this->response->headers['time'] = strtotime($value);
 			elseif ($header == 'Content-Length')

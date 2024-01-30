@@ -21,7 +21,7 @@ class UploadToS3 extends UserCrawler{
             $username = $this->userDetails['username'];
 		}
 		
-		if ( !trim($username) ){
+		if ( !trim(''.$username) ){
 			return;
 		}
 		

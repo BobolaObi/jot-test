@@ -29,7 +29,7 @@ class SyncAmazonUploads extends UserCrawler{
             $username = $this->userDetails['username'];
 		}
 		
-		if ( !trim($username) ){
+		if ( !trim(''.$username) ){
 			return;
 		}
 		

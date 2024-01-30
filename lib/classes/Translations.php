@@ -303,20 +303,20 @@ class Translations
         foreach($dom->find(".locale") as $locale){
             $locale->class = str_replace("locale", "", $locale->class);
             if(empty($locale->class)){ $locale->class = null; }
-            $locale->innertext = self::getText(trim($locale->innertext));
+            $locale->innertext = self::getText(trim(''.$locale->innertext));
         }
         
         foreach($dom->find(".locale-img") as $locale){
             $locale->class = str_replace("locale-img", "", $locale->class);
             if(empty($locale->class)){ $locale->class = null; }
-            $locale->alt = self::getText(trim($locale->alt));
-            $locale->title = self::getText(trim($locale->title));
+            $locale->alt = self::getText(trim(''.$locale->alt));
+            $locale->title = self::getText(trim(''.$locale->title));
         }
         
         foreach($dom->find(".locale-button") as $locale){
             $locale->class = str_replace("locale-button", "", $locale->class);
             if(empty($locale->class)){ $locale->class = null; }
-            $locale->value = self::getText(trim($locale->value));
+            $locale->value = self::getText(trim(''.$locale->value));
         }
         # Console::error(json_encode(self::$notTranslated));
         foreach($dom->find("script") as $script){

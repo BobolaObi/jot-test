@@ -133,7 +133,7 @@ if (isset($_SERVER['HTTP_X_FORWARDED_HOST'])) {
     $a = explode(',', $_SERVER['HTTP_X_FORWARDED_HOST']);
     $server = $a[sizeof($a) - 1];
 }
-$server = trim('' . $server);
+$server = trim(''.'' . $server);
 
 $server_path = ((preg_match("/^forms.*\.datalynk\.ca$/", $server) || preg_match("/^forms.*\.intranet$/", $server)) ? '' : '/forms');
 

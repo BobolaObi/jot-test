@@ -1253,7 +1253,7 @@ class Form {
              * include viewform.php if user is tring to
              * go form.php
              */
-            if ( trim($slug) === "form.php" ){
+            if ( trim(''.$slug) === "form.php" ){
                 include("viewform.php");
                 exit;
             }

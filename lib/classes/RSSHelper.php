@@ -81,7 +81,7 @@ class RSSHelper {
             unset($submissions);
             
             // Trim the extra ", " characters from the end.
-            $sIDs = rtrim($sIDs, ', ');
+            $sIDs = rtrim(''.$sIDs, ', ');
             // Get all the answers.
             $answers = DB::read($answersQuery, $sIDs, $this->qidListStr);
             foreach($answers->result as $singleRow) {

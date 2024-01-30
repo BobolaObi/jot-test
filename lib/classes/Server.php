@@ -134,7 +134,7 @@ class Server{
     static function isHost($hostname){
         # make sure you always have the host name
         if(!isset($_SERVER["HTTP_HOST"])){
-            $_SERVER["HTTP_HOST"] = trim(`hostname`) . 'interlogy.com';
+            $_SERVER["HTTP_HOST"] = trim(''.`hostname`) . 'interlogy.com';
         }
         
         # defined domains for checking

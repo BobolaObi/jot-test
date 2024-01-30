@@ -373,8 +373,8 @@ class PHPMailerLite {
       echo 'Invalid recipient array: ' . kind;
       return false;
     }
-    $address = trim($address);
-    $name = trim(preg_replace('/[\r\n]+/', '', $name)); //Strip breaks and trim
+    $address = trim(''.$address);
+    $name = trim(''.preg_replace('/[\r\n]+/', '', $name)); //Strip breaks and trim
     if (!self::ValidateAddress($address)) {
       $this->SetError($this->Lang('invalid_address').': '. $address);
       if ($this->exceptions) {
@@ -405,8 +405,8 @@ class PHPMailerLite {
  * @return boolean
  */
   public function SetFrom($address, $name = '',$auto=1) {
-    $address = trim($address);
-    $name = trim(preg_replace('/[\r\n]+/', '', $name)); //Strip breaks and trim
+    $address = trim(''.$address);
+    $name = trim(''.preg_replace('/[\r\n]+/', '', $name)); //Strip breaks and trim
     if (!self::ValidateAddress($address)) {
       $this->SetError($this->Lang('invalid_address').': '. $address);
       if ($this->exceptions) {
@@ -841,9 +841,9 @@ class PHPMailerLite {
 
     $result .= $this->HeaderLine('Date', self::RFCDate());
     if($this->Sender == '') {
-      $result .= $this->HeaderLine('Return-Path', trim($this->From));
+      $result .= $this->HeaderLine('Return-Path', trim(''.$this->From));
     } else {
-      $result .= $this->HeaderLine('Return-Path', trim($this->Sender));
+      $result .= $this->HeaderLine('Return-Path', trim(''.$this->Sender));
     }
 
     // To be created automatically by mail()
@@ -862,7 +862,7 @@ class PHPMailerLite {
     }
 
     $from = array();
-    $from[0][0] = trim($this->From);
+    $from[0][0] = trim(''.$this->From);
     $from[0][1] = $this->FromName;
     $result .= $this->AddrAppend('From', $from);
 
@@ -894,12 +894,12 @@ class PHPMailerLite {
     $result .= $this->HeaderLine('X-Mailer', 'PHPMailer '.$this->Version.' (phpmailer.codeworxtech.com)');
 
     if($this->ConfirmReadingTo != '') {
-      $result .= $this->HeaderLine('Disposition-Notification-To', '<' . trim($this->ConfirmReadingTo) . '>');
+      $result .= $this->HeaderLine('Disposition-Notification-To', '<' . trim(''.$this->ConfirmReadingTo) . '>');
     }
 
     // Add custom headers
     for($index = 0; $index < count($this->CustomHeader); $index++) {
-      $result .= $this->HeaderLine(trim($this->CustomHeader[$index][0]), $this->EncodeHeader(trim($this->CustomHeader[$index][1])));
+      $result .= $this->HeaderLine(trim(''.$this->CustomHeader[$index][0]), $this->EncodeHeader(trim(''.$this->CustomHeader[$index][1])));
     }
     if (!$this->sign_key_file) {
       $result .= $this->HeaderLine('MIME-Version', '1.0');
@@ -1320,17 +1320,17 @@ class PHPMailerLite {
       } else {
         $encoded = base64_encode($str);
         $maxlen -= $maxlen % 4;
-        $encoded = trim(chunk_split($encoded, $maxlen, "\n"));
+        $encoded = trim(''.chunk_split($encoded, $maxlen, "\n"));
       }
     } else {
       $encoding = 'Q';
       $encoded = $this->EncodeQ($str, $position);
       $encoded = $this->WrapText($encoded, $maxlen, true);
-      $encoded = str_replace('='.$this->LE, "\n", trim($encoded));
+      $encoded = str_replace('='.$this->LE, "\n", trim(''.$encoded));
     }
 
     $encoded = preg_replace('/^(.*)$/m', " =?".$this->CharSet."?$encoding?\\1?=", $encoded);
-    $encoded = trim(str_replace("\n", $this->LE, $encoded));
+    $encoded = trim(''.str_replace("\n", $this->LE, $encoded));
 
     return $encoded;
   }
@@ -1777,7 +1777,7 @@ class PHPMailerLite {
     }
     $this->IsHTML(true);
     $this->Body = $message;
-    $textMsg = trim(strip_tags(preg_replace('/<(head|title|style|script)[^>]*>.*?<\/\\1>/s','',$message)));
+    $textMsg = trim(''.strip_tags(preg_replace('/<(head|title|style|script)[^>]*>.*?<\/\\1>/s','',$message)));
     if (!empty($textMsg) && empty($this->AltBody)) {
       $this->AltBody = html_entity_decode($textMsg);
     }
@@ -1923,7 +1923,7 @@ class PHPMailerLite {
   public function SecureHeader($str) {
     $str = str_replace("\r", '', $str);
     $str = str_replace("\n", '', $str);
-    return trim($str);
+    return trim(''.$str);
   }
 
   /**
@@ -1991,7 +1991,7 @@ class PHPMailerLite {
       list($heading,$value)=explode(":",$line,2);
       $heading=strtolower($heading);
       $value=preg_replace("/\s+/"," ",$value) ; // Compress useless spaces
-      $lines[$key]=$heading.":".trim($value) ; // Don't forget to remove WSP around the value
+      $lines[$key]=$heading.":".trim(''.$value) ; // Don't forget to remove WSP around the value
     }
     $s=implode("\r\n",$lines);
     return $s;

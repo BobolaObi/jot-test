@@ -272,7 +272,7 @@ Thank you for your patience.", "Temporarily Unavailable", mysqli_error(self::$dl
         # this will cause foreign keys to cascade then delete everything related
         # to this entry such as when you replace into users table you will lose
         # all forms, submissions, ansers and all. So don't change this ever.
-        if (Utils::startsWith(trim('' . $query), "replace", false)) {
+        if (Utils::startsWith(trim(''.'' . $query), "replace", false)) {
             if (preg_match("/replace\s*into\s*\`?(users|forms)\`?/i", $query, $m)) {
                 throw new DBException(JotErrors::get('DB_REPLACE_NOT_ALLOWED', strtoupper($m[1]), $query));
             }

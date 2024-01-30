@@ -18,13 +18,13 @@ $freeAccountType = AccountType::find("FREE");
 
 foreach ($users->result as $row){
     
-    if ( !trim($row['username']) ){
+    if ( !trim(''.$row['username']) ){
         continue;
     }
 
     $user = User::find($row['username']);
     
-    if ( isset($user->accountType) && ( trim($user->accountType) !== "FREE" ) ){
+    if ( isset($user->accountType) && ( trim(''.$user->accountType) !== "FREE" ) ){
         continue;
     }
     

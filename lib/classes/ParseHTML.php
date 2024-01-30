@@ -69,7 +69,7 @@ class ParseHTML {
         if($el->id){
             # Obvious solution
             if($label = $this->dom->find('label[for="'.$el->id.'"]', 0)){
-                return trim(preg_replace("/\s+/", " ", $label->plaintext));
+                return trim(''.preg_replace("/\s+/", " ", $label->plaintext));
             }
         }
         if($tryObvious){ return false; } // Try only obvious label
@@ -77,22 +77,22 @@ class ParseHTML {
         # Check parents parent for text nodes
         
         # Assume first label found in the parent is the label for this item
-        if($l = trim($el->parent()->find('label', 0)->plaintext)){
+        if($l = trim(''.$el->parent()->find('label', 0)->plaintext)){
             return $l;
         }
         
         # Assume first label found in the parent's parent is the label for this item
-        if($l = trim($el->parent()->parent()->find('label', 0)->plaintext)){
+        if($l = trim(''.$el->parent()->parent()->find('label', 0)->plaintext)){
             return $l;
         }
         
 		# Assume first strong found in the parent's parent is the label for this item
-        if($l = trim($el->parent()->parent()->find('strong', 0)->plaintext)){
+        if($l = trim(''.$el->parent()->parent()->find('strong', 0)->plaintext)){
             return $l;
         }
 		
         # No luck with labels then try to get text nodes from the parent
-        $l = trim($el->parent()->parent()->plaintext);
+        $l = trim(''.$el->parent()->parent()->plaintext);
         if(strlen($l) <! 3 && strlen($l) >! 40){    // If the label smaller than 3 char or larger than 40 it may not be a label
             return $l;
         }
@@ -290,7 +290,7 @@ class ParseHTML {
             $label = $this->getElementLabel($input);      # get the label of the input
             $required = false;
             if(strstr($label, "*")){
-                $label = trim(str_replace("*", "", $label));
+                $label = trim(''.str_replace("*", "", $label));
                 $required = "Yes";
             }
             
@@ -334,7 +334,7 @@ class ParseHTML {
                                 "buttonAlign" => "Center",
                                 "order" => $qid,
                                 "qid"   => $qid,
-                                "text"  => trim($input->value),
+                                "text"  => trim(''.$input->value),
                             );
                         break;
                         /**
@@ -366,12 +366,12 @@ class ParseHTML {
                                 if(count($anyChecks) > 1){    # if a line contains checkbox or radioubutton
                                 
                                     $qlabel = $parentElement->find("label"); # First label in the line contains the question label
-                                    $qlabel = trim($qlabel[0]->plaintext);
+                                    $qlabel = trim(''.$qlabel[0]->plaintext);
                                     
                                     $qtype  = "control_".$anyChecks[0]->type;    # get question line
                                     $qname  = $this->makeQuestionName($qlabel);  # create a name from this label
                                     if(strstr($qlabel, "*")){
-                                        $qlabel = trim(str_replace("*", "", $qlabel));
+                                        $qlabel = trim(''.str_replace("*", "", $qlabel));
                                         $required = "Yes";
                                     }
                                     $opts = array(); # collect all values from inputs
@@ -430,7 +430,7 @@ class ParseHTML {
                                 "order" => $qid,
                                 "required" => $required,
                                 "qid"   => $qid,
-                                "options" => trim($input->value),
+                                "options" => trim(''.$input->value),
                                 "text"  => $label,
                             );
                         break;
@@ -471,7 +471,7 @@ class ParseHTML {
                     );
                     # collect all options of the select
                     foreach($options as $op){
-                        $questions[$qid]["options"][] = trim($op->plaintext);
+                        $questions[$qid]["options"][] = trim(''.$op->plaintext);
                     }
                     
             	break;
@@ -497,7 +497,7 @@ class ParseHTML {
                         "buttonAlign" => "Center",
                         "order" => $qid,
                         "qid"   => $qid,
-                        "text"  => trim($input->plaintext)
+                        "text"  => trim(''.$input->plaintext)
                     );
             	break;
             }
