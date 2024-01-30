@@ -288,7 +288,13 @@ Thank you for your patience.", "Temporarily Unavailable", mysqli_error(self::$dl
         }
         */
 
-        $result = @mysqli_query(self::$dlink, $query);
+
+        try{
+            $result = mysqli_query(self::$dlink, $query);
+        }catch (Throwable $_){
+            function_exists('xdebug_break') && xdebug_break();
+            throw $_;
+        }
         self::$queryTime = self::profileEnd("Query");
 
         $info = "";
@@ -374,14 +380,13 @@ Thank you for your patience.", "Temporarily Unavailable", mysqli_error(self::$dl
      *      - time: (Execution time in seconds),
      *      - query: (parsed query)
      */
-    static function write()
+    static function write(...$args_arr)
     {
         # If there's no connection, do a connection first.
 
         if (!self::$dlink) {
             self::connect();
         }
-        $args_arr = func_get_args();
 
         if (count($args_arr) > 1) {
             if (gettype($args_arr[1]) == 'array') {

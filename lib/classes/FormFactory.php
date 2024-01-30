@@ -13,7 +13,7 @@ class FormFactory {
      * @param object $id [optional]
      * @return 
      */
-    function FormFactory($properties, $source="<body></body>", $forceNew = false){
+    function __construct($properties, $source="<body></body>", $forceNew = false){
         # Convert all JSON properties to PHP array
         $this->rawProperties = json_decode($properties, true);
         if($this->rawProperties === NULL){ # if json_decode fails warn user about it
@@ -98,9 +98,12 @@ class FormFactory {
         
         # If current user is guest then save guest user to database
         # @TODO save user only if it was not saved before
-        if(Session::isGuest()){
-            Session::commitGuestAccount();
-        }
+//        if(Session::isGuest()){
+//            Session::commitGuestAccount();
+//        }
+        /* ignore guest users, eventually we'll bolt in better perms from dl.
+        everybody sees everything for now.
+        */
         
         # This thing happens time to time
         if(!isset($this->formProperties['title'])){

@@ -87,7 +87,7 @@ class RequestServer
         }
         
         $this->action = $request['action'];
-        set_error_handler(array($this, "errorHandler"));
+//        set_error_handler($this->errorHandler(...));
 
         # run the action now
         $this->runAction();

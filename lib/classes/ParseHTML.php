@@ -366,7 +366,7 @@ class ParseHTML {
                                 if(count($anyChecks) > 1){    # if a line contains checkbox or radioubutton
                                 
                                     $qlabel = $parentElement->find("label"); # First label in the line contains the question label
-                                    $qlabel = trim($qlabel[0]->plaintext); 
+                                    $qlabel = trim($qlabel[0]->plaintext);
                                     
                                     $qtype  = "control_".$anyChecks[0]->type;    # get question line
                                     $qname  = $this->makeQuestionName($qlabel);  # create a name from this label
