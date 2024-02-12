@@ -58,7 +58,7 @@ class Captcha{
      * @return 
      */
     public static function encode($num){
-        return md5(date(self::$salt).$num);
+        return md5(Captcha . phpdate(self::$salt) . $num);
     }
     /**
      * decodes the captcha image url
@@ -67,7 +67,7 @@ class Captcha{
      */
     public static function decode($encoded){
         for($i = 0; $i < count(self::$words); $i++){
-            if($encoded === md5(date(self::$salt).$i)){
+            if($encoded === md5(Captcha . phpdate(self::$salt) . $i)){
                 return $i;
             }
         }
