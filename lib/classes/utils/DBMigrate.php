@@ -7,6 +7,9 @@
  * 
  * @copyright Copyright (c) 2009, Interlogy LLC
  */
+
+namespace Legacy\Jot\Utils;
+
 class DBMigrate extends DB
 {
     /**

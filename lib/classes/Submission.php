@@ -4,6 +4,9 @@
  * @package JotForm
  * @copyright Copyright (c) 2009, Interlogy LLC
  */
+
+namespace Legacy\Jot\;
+
 class Submission {
     
     private $slowDownForms = array(/*"2855730853", "11035037214",*/ "11090501232"),

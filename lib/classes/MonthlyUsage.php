@@ -6,6 +6,9 @@
  * @package JotForm_User_Management
  * @copyright Copyright (c) 2009, Interlogy LLC
  */
+
+namespace Legacy\Jot\User_Management;
+
 class MonthlyUsage {
     /**
      * Instance variable names and their related DB column name counterparts.

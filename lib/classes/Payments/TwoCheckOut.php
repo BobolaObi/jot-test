@@ -3,7 +3,10 @@
  * Handles 2Co Payments
  * @package JotForm_Payments
  * @copyright Copyright (c) 2009, Interlogy LLC
- */class TwoCheckOut{
+ */
+
+namespace Legacy\Jot\Payments;
+class TwoCheckOut{
     
     private $postURL, $postData = array(), $options, $returnURL, $paymentType, $isSubscription, $currency, $custom, $vendorNumber, $formID, $submissionID;
     

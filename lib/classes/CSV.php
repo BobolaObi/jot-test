@@ -3,7 +3,10 @@
  * Exports Data to CSV
  * @package JotForm_Utils
  * @copyright Copyright (c) 2009, Interlogy LLC
- */class CSV{
+ */
+
+namespace Legacy\Jot\Utils;
+class CSV{
     
     private $data;
     public $debug = false;

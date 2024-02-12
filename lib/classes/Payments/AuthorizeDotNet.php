@@ -3,7 +3,10 @@
  * Handles the Authorize.net transactions
  * @package JotForm_Payments
  * @copyright Copyright (c) 2009, Interlogy LLC
- */class AuthorizeDotNet{
+ */
+
+namespace Legacy\Jot\Payments;
+class AuthorizeDotNet{
     
     private $loginID, $transactionKey, $currency, $returnURL, $paymentType, $cmd, $isSubscription, $options, $formID, $submissionID,
             $goBackMessage = "<br><br>Please <a href=\"javascript:window.history.back(-1)\">go back</a> and fix this";

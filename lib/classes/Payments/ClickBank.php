@@ -3,7 +3,10 @@
  * Hadnles Click Bank payments
  * @package JotForm_Payments
  * @copyright Copyright (c) 2009, Interlogy LLC
- */class ClickBank{
+ */
+
+namespace Legacy\Jot\Payments;
+class ClickBank{
     
     private $currency, $returnURL, $paymentType, $custom, $ipnURL, $options, $postURL, $postData = array(), $formID, $submissionID;
     

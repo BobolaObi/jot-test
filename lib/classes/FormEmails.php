@@ -5,6 +5,9 @@
  * @package JotForm
  * @copyright Copyright (c) 2009, Interlogy LLC
  */
+
+namespace Legacy\Jot\;
+
 class FormEmails{
     
     public $formID, $sid, $emails, $emailsToBeSent;

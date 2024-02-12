@@ -4,6 +4,9 @@
  * @package JotForm
  * @copyright Copyright (c) 2009, Interlogy LLC
  */
+
+namespace Legacy\Jot\;
+
 class RequestServer 
 {
     # Type of the responses it should be application/json but it's hard to debug and browser are having some problems with it

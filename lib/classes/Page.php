@@ -4,7 +4,10 @@
  * then makes it ready to be used in the page
  * @package JotForm_Site_Management
  * @copyright Copyright (c) 2009, Interlogy LLC
- */class Page{
+ */
+
+namespace Legacy\Jot\Site_Management;
+class Page{
     private $page;
     /**
      * Constructer

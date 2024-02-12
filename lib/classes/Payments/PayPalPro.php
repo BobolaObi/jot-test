@@ -3,7 +3,10 @@
  * PayPal Website Payments Pro integration
  * @package JotForm_Payments
  * @copyright Copyright (c) 2009, Interlogy LLC
- */class PayPalPro{
+ */
+
+namespace Legacy\Jot\Payments;
+class PayPalPro{
     
     private $options, $paymentType, $returnURL, $postURL, $custom, $isSubscription, $formID, $submissionID;
     

@@ -6,6 +6,9 @@
  * @package JotForm_User_Management
  * @copyright Copyright (c) 2009, Interlogy LLC
  */
+
+namespace Legacy\Jot\User_Management;
+
 class AccountType {
     # Account variables.
     private static $accounts = array();

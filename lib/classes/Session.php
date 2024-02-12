@@ -5,6 +5,9 @@
  * @package JotForm_User_Management
  * @copyright Copyright (c) 2009, Interlogy LLC
  */
+
+namespace Legacy\Jot\User_Management;
+
 class Session {
     // Static variables must be declared before their use.
     public static $id, $username, $password, $email, $name, $website, $folderConfig, $timeZone,

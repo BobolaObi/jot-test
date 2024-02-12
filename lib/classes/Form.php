@@ -3,7 +3,10 @@
  * JotForm form object
  * @package JotForm
  * @copyright Copyright (c) 2009, Interlogy LLC
- */class Form{
+ */
+
+namespace Legacy\Jot\;
+class Form{
     
     private $owner, $timeZone, $timeFormat = 'Y-m-d H:i:s';
     public $id, $form, $isLoggedInNow = false;

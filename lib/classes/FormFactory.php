@@ -4,6 +4,9 @@
  * @package JotForm
  * @copyright Copyright (c) 2009, Interlogy LLC
  */
+
+namespace Legacy\Jot\;
+
 class FormFactory {
     
     private $newForm, $id, $rawProperties, $questionProperties=array(), $formProperties=array(), $username, $source;

@@ -4,6 +4,9 @@
  * @package JotForm_Site_Management
  * @copyright Copyright (c) 2009, Interlogy LLC
  */
+
+namespace Legacy\Jot\Site_Management;
+
 class PageInfo
 {
     private static $pages = array();

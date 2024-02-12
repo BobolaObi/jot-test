@@ -4,6 +4,9 @@
  * @package JotForm_Utils
  * @copyright Copyright (c) 2009, Interlogy LLC
  */
+
+namespace Legacy\Jot\Utils;
+
 class CssSprite {
 	# Groups array that will hold the properties of the images.
 	#

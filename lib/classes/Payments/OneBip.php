@@ -3,7 +3,10 @@
  * Handles OneBip payments
  * @package JotForm_Payments
  * @copyright Copyright (c) 2009, Interlogy LLC
- */class OneBip{
+ */
+
+namespace Legacy\Jot\Payments;
+class OneBip{
     
     private $currency, $returnURL, $paymentType, $custom, $ipnURL, $options, $postURL, $postData = array(), $formID, $submissionID;
     

@@ -7,6 +7,9 @@
  * @author Serkan Yerşen <serkan@interlogy.com>
  * @copyright Copyright (c) 2009, Interlogy LLC
  */
+
+namespace Legacy\Jot\Utils;
+
 class DBI {
     # Private veraibles
     private static $database, # Database Name

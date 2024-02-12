@@ -3,7 +3,10 @@
  * Handles WordPay Payments
  * @package JotForm_Utils
  * @copyright Copyright (c) 2009, Interlogy LLC
- */class WorldPay{
+ */
+
+namespace Legacy\Jot\Utils;
+class WorldPay{
     
     private $postURL, $postData = array(), $options, $returnURL, $paymentType, $isSubscription, $currency, $custom, $installationID, $formID, $submissionID;
     

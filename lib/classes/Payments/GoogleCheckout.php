@@ -3,7 +3,10 @@
  * Handles the Google Checkout transactions
  * @package JotForm_Payments
  * @copyright Copyright (c) 2009, Interlogy LLC
- */class GoogleCheckout{
+ */
+
+namespace Legacy\Jot\Payments;
+class GoogleCheckout{
     
     private $merchantID, $returnURL, $paymentType, $isSubscription, $postURL, $custom, $formID, $submissionID;
     

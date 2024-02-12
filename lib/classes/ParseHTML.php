@@ -9,7 +9,10 @@ include_once ROOT."opt/simple_html_dom.php";
  * @link http://simplehtmldom.sourceforge.net/manual.htm for manual
  * @package JotForm_Utils
  * @copyright Copyright (c) 2009, Interlogy LLC
- */class ParseHTML{
+ */
+
+namespace Legacy\Jot\Utils;
+class ParseHTML{
     
     public $dom, $origin, $form, $includeID;
     /**

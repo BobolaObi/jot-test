@@ -4,6 +4,9 @@
  * @package JotForm_Integrations
  * @copyright Copyright (c) 2010, Interlogy LLC
  */
+
+namespace Legacy\Jot\Integrations;
+
 class DropBoxIntegration extends UFS{
     
     public $consumerKey, $consumerSecret, $redirectURL, $config, $root;

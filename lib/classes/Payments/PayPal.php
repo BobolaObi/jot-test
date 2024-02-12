@@ -3,7 +3,10 @@
  * Handles the PayPal transactions
  * @package JotForm_Payments
  * @copyright Copyright (c) 2009, Interlogy LLC
- */class PayPal{
+ */
+
+namespace Legacy\Jot\Payments;
+class PayPal{
     
     private $business, $currency, $returnURL, $paymentType, $cmd, $custom, $ipnURL, $options, $formID, $submissionID;
     

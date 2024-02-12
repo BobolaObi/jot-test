@@ -3,7 +3,10 @@
  * FTP Library
  * @package JotForm_Utils
  * @copyright Copyright (c) 2010, Interlogy LLC 
- */class FTPLib{
+ */
+
+namespace Legacy\Jot\Utils;
+class FTPLib{
     
     private $hostname, $username, $password, $port, $conn;
     /**

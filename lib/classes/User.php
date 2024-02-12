@@ -13,6 +13,9 @@
  * @copyright Copyright (c) 2009, Interlogy LLC
  */
 
+namespace Legacy\Jot\User_Management;
+
+
 class User {
     /**
      * Keeps database fields and their types, : for a string and a # for a number.

@@ -4,6 +4,9 @@
  * @package JotForm_Utils
  * @copyright Copyright (c) 2009, Interlogy LLC
  */
+
+namespace Legacy\Jot\Utils;
+
 class Utils extends UtilsArrays
 {	
     public static $urlMatch = "/https?\:\/\/(\b[A-Za-z0-9]+\.\b)?(\bjotform\.com|jotfor\.ms|interlogy\.com\b)\/(.*?\/)?(\d+).*/i";

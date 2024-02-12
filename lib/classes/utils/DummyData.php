@@ -3,7 +3,10 @@
  * Generates a dummy submission data for given form
  * @package JotForm
  * @copyright Copyright (c) 2009, Interlogy LLC
- */ 
+ */
+
+namespace Legacy\Jot\;
+ 
 class DummyData{
     
     private $form, $questions, $lorem;

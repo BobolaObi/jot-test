@@ -5,16 +5,25 @@
  * When record not found
  * @package JotForm_Exceptions
  */
+
+namespace Legacy\Jot\Exceptions;
+
 class RecordNotFoundException extends JotFormException {}
 /**
  * When No Changes has made
  * @package JotForm_Exceptions
  */
+
+namespace Legacy\Jot\Exceptions;
+
 class NoChangesMadeException extends JotFormException {}
 /**
  * When a system exception has occured
  * @package JotForm_Exceptions
  */
+
+namespace Legacy\Jot\Exceptions;
+
 class SystemException extends  JotFormException {}
 
 class Warning extends  JotFormException {}
