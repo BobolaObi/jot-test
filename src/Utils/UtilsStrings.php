@@ -356,16 +356,6 @@ class UtilsStrings extends UtilsRequests{
         $str = strip_tags($str);
         return str_replace("&nbsp;", " ", $str);
     }
-    /**
-     * Parses a query
-     * @param object $query
-     * @return
-     */
-    static function parseSQL($query){
-        $query2tree = new dqml2tree($query);
-        $sql_tree = $query2tree->make();
-        return  $sql_tree["SQL"];
-    }
 
     static function stretch($str, $length){
        if(strlen($str) > $length){ return $str; }
