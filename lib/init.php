@@ -285,12 +285,45 @@ if (isDev()) {
     */
 
     /* debug inspection for errors */
-    set_error_handler(function ($errno, $errstr, $errfile, $errline) {
+    /* debug inspection for errors */
+    set_error_handler(function ($errno, $errstr, $errfile, $errline)
+    use ($targetErrorLevel) {
+        // no error handling if the error was suppressed with the @-operator
         $level = error_reporting();
-        $errConst = error_const_list()[$errno];
-        function_exists('xdebug_break') && xdebug_break();
+        $lastError = error_get_last();
+        $lastErrorCode = error_get_last()['type'];
+        if(!($lastErrorCode & E_WARNING) ){
+            return true;
+        }
+//        $PHP_8_SUPPRESSED = E_ERROR | E_CORE_ERROR | E_COMPILE_ERROR | E_USER_ERROR | E_RECOVERABLE_ERROR | E_PARSE;
+        if ($lastErrorCode === null
+            || $level === $PHP_8_SUPPRESSED
+            || $level === 0
+        ) {
+            //  error_log("Suppressed error: [$errno] $errstr on line $errline in file $errfile");
+            return true; // Don't execute PHP's internal error handler
+        }
+
+        // break with usefull info otherwise...
+        if (function_exists('xdebug_break')) {
+            $wat = get_defined_constants(categorize: true);
+            $eConstants = array_filter(get_defined_constants(), function ($value, $key) {
+                return preg_match('/^E_/', $key);
+            }, ARRAY_FILTER_USE_BOTH);
+            $errFlags = [];
+            $errMatch = [];
+            foreach ($eConstants as $lable => $bit) {
+                if ($bit === ($bit & $level)) {
+                    $errFlags[$lable] = $bit;
+                }
+                if ($bit & $errno) {
+                    $errMatch[$lable] = $bit;
+                }
+            }
+            // xdebug_break();
+        }
         return false; // Execute PHP's internal error handler
-    }, ERROR_LEVEL_LENIENT);
+    });
 
     Console::setLogFolder(ROOT . "logs/");
     Console::setBacktrace(true);
