@@ -1,6 +1,7 @@
 <?php
 # require_once ('./lib/classes/UFS.php');
 
+namespace Legacy\Jot\Integrations;
 
 class FTPIntegration extends UFS {
     

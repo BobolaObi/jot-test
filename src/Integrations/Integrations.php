@@ -1,5 +1,7 @@
 <?
 
+namespace Legacy\Jot\Integrations;
+
 class Integrations{
     
     public $partner, $username, $formID;
