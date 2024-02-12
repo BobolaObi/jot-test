@@ -4,7 +4,7 @@
 /**
  * A Simple Class which also prints it's message.
  * @package JotForm_Exceptions
- */class JotFormExceptionextends Exception {
+ */class JotFormException extends Exception {
     public $errno;
     
     public function __construct($error=false){
