@@ -523,7 +523,7 @@ echo Translations::getJsInclude();
     <!-- Necessary -->
     <script src="js/builder/formBuilder.js" type="text/javascript"></script>
 
-    <script src="server.php?action=getSavedForm&formID=session&callback=getSavedForm" type="text/javascript"></script>
+    <script src="server.php?action=getSavedForm&formID=<?= $formID ?? "session" ?>&callback=getSavedForm" type="text/javascript"></script>
 <?php /*
         <script src="http://www.jotform.com/server.php?action=getSavedForm&formID=3173415451&callback=getCloneForm" type="text/javascript"></script>
         */?>
@@ -543,7 +543,7 @@ echo Translations::getJsInclude();
 <?php } else { ?>
     <script src="min/g=formBuilder_<?php echo Translations::getLanguageCode(); ?>" type="text/javascript"></script>
 
-    <script src="server.php?action=getSavedForm&formID=session&callback=getSavedForm" type="text/javascript"></script>
+    <script src="server.php?action=getSavedForm&formID=<?= $formID ?? "session" ?>  &callback=getSavedForm" type="text/javascript"></script>
 
     <script src="server.php?action=getLoggedInUser&callback=Utils.setUserInfo" type="text/javascript"></script>
 <?php if (!Session::isLoggedIn()) { ?>
