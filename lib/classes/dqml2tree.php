@@ -5,9 +5,7 @@
 * Date    : 7 Jan, 2009
 * Purpose : Convert SQL Query (only DQL(SELECT) and DML(INSERT, UPDATE, DELETE)) to TREE
 */
-
-class dqml2tree
-{
+class dqml2tree{
     var $sql = '';
     var $_sql = '';
     var $_as = Array();
@@ -25,7 +23,7 @@ class dqml2tree
     var $_zonesP_tree = Array();
     var $_lexs = Array();
 
-    function dqml2tree($query)
+    function __construct($query)
     {
         $this->_base_rules['SQL'] = Array(
         'SELECT',

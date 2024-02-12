@@ -3,8 +3,7 @@
  * Handles the Authorize.net transactions
  * @package JotForm_Payments
  * @copyright Copyright (c) 2009, Interlogy LLC
- */
-class AuthorizeDotNet {
+ */class AuthorizeDotNet{
     
     private $loginID, $transactionKey, $currency, $returnURL, $paymentType, $cmd, $isSubscription, $options, $formID, $submissionID,
             $goBackMessage = "<br><br>Please <a href=\"javascript:window.history.back(-1)\">go back</a> and fix this";
@@ -29,7 +28,7 @@ class AuthorizeDotNet {
      * </ul>
      * @TODO Add donation support
      */
-    function AuthorizeDotNet($options){
+    function __construct($options){
         $this->options = $options;
         $this->loginID        = $options["loginID"];
         $this->transactionKey = $options["transactionKey"];

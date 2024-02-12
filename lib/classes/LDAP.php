@@ -1,7 +1,6 @@
 <?php
 
-
-class LDAP {
+class LDAP{
     
     static $instance;
     
@@ -14,7 +13,7 @@ class LDAP {
      * @param object $port [optional]
      * @return 
      */
-    public function LDAP($host,  $port = 389){
+    public function __construct($host,  $port = 389){
         
         // Connecting to LDAP
         $this->conn = ldap_connect($host, $port);

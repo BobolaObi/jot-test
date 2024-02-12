@@ -3,8 +3,7 @@
  * Handles OneBip payments
  * @package JotForm_Payments
  * @copyright Copyright (c) 2009, Interlogy LLC
- */
-class OneBip {
+ */class OneBip{
     
     private $currency, $returnURL, $paymentType, $custom, $ipnURL, $options, $postURL, $postData = array(), $formID, $submissionID;
     
@@ -15,7 +14,7 @@ class OneBip {
      * @constructor
      * @param object $options
      */
-    function OneBip($options){
+    function __construct($options){
         
         $this->options      = $options;
         $this->itemNumber   = $options["itemNumber"];

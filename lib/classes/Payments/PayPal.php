@@ -3,8 +3,7 @@
  * Handles the PayPal transactions
  * @package JotForm_Payments
  * @copyright Copyright (c) 2009, Interlogy LLC
- */
-class PayPal {
+ */class PayPal{
     
     private $business, $currency, $returnURL, $paymentType, $cmd, $custom, $ipnURL, $options, $formID, $submissionID;
     
@@ -26,7 +25,7 @@ class PayPal {
      *   <li>paymentType: type of the payment "subscription", "product" or "donation"</li>
      * </ul>
      */
-    function PayPal($options){
+    function __construct($options){
         
         $this->ipnURL       = HTTP_URL."ipns/paypal.php";
         $this->options      = $options;

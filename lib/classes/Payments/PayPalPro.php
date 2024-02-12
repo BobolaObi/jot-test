@@ -3,8 +3,7 @@
  * PayPal Website Payments Pro integration
  * @package JotForm_Payments
  * @copyright Copyright (c) 2009, Interlogy LLC
- */
-class PayPalPro {
+ */class PayPalPro{
     
     private $options, $paymentType, $returnURL, $postURL, $custom, $isSubscription, $formID, $submissionID;
     
@@ -38,7 +37,7 @@ class PayPalPro {
      * @param object $options
      * @return 
      */
-    function PayPalPro($options){
+    function __construct($options){
         
         $this->options        = $options;
         $this->returnURL      = HTTP_URL."ipns/paypal_pro_express.php";

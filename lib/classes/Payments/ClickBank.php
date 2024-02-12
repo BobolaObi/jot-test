@@ -3,8 +3,7 @@
  * Hadnles Click Bank payments
  * @package JotForm_Payments
  * @copyright Copyright (c) 2009, Interlogy LLC
- */
-class ClickBank {
+ */class ClickBank{
     
     private $currency, $returnURL, $paymentType, $custom, $ipnURL, $options, $postURL, $postData = array(), $formID, $submissionID;
     
@@ -15,7 +14,7 @@ class ClickBank {
      * @constructor
      * @param object $options
      */
-    function ClickBank($options){
+    function __construct($options){
         
         $this->options      = $options;
         $this->itemNumber   = $options["itemNumber"];

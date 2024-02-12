@@ -3,8 +3,7 @@
  * Handles the Google Checkout transactions
  * @package JotForm_Payments
  * @copyright Copyright (c) 2009, Interlogy LLC
- */
-class GoogleCheckout {
+ */class GoogleCheckout{
     
     private $merchantID, $returnURL, $paymentType, $isSubscription, $postURL, $custom, $formID, $submissionID;
     
@@ -22,7 +21,7 @@ class GoogleCheckout {
      * </ul>
      * @TODO Add donation support
      */
-    function GoogleCheckout($options){
+    function __construct($options){
         
         $this->options      = $options;
         $this->merchantID   = $options["merchantID"];

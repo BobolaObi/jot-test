@@ -4,11 +4,10 @@
 /**
  * A Simple Class which also prints it's message.
  * @package JotForm_Exceptions
- */
-class JotFormException extends Exception {
+ */class JotFormExceptionextends Exception {
     public $errno;
     
-    public function JotFormException($error=false){
+    public function __construct($error=false){
         if(is_array($error)){
             $this->message = $error[0];
             $this->errno   = $error[1];

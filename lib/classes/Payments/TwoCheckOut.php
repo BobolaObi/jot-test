@@ -3,12 +3,11 @@
  * Handles 2Co Payments
  * @package JotForm_Payments
  * @copyright Copyright (c) 2009, Interlogy LLC
- */
-class TwoCheckOut {
+ */class TwoCheckOut{
     
     private $postURL, $postData = array(), $options, $returnURL, $paymentType, $isSubscription, $currency, $custom, $vendorNumber, $formID, $submissionID;
     
-    function TwoCheckOut($options){
+    function __construct($options){
         $this->ipnURL       = HTTP_URL."/ipns/2co.php";
         $this->postURL      = "https://www.2checkout.com/checkout/purchase";
         $this->options      = $options;

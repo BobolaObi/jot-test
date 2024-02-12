@@ -3,10 +3,9 @@
 /**
  * @file
  * LDAPInterface class definition.
- */
-class LDAPInterface {
+ */class LDAPInterface{
 
-    function LDAPInterface() {
+    function __construct() {
         $this->connection = NULL;
         //http://drupal.org/node/158671
         $this->server = NULL;

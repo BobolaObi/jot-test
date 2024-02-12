@@ -9,8 +9,7 @@ include_once ROOT."opt/simple_html_dom.php";
  * @link http://simplehtmldom.sourceforge.net/manual.htm for manual
  * @package JotForm_Utils
  * @copyright Copyright (c) 2009, Interlogy LLC
- */
-class ParseHTML {
+ */class ParseHTML{
     
     public $dom, $origin, $form, $includeID;
     /**
@@ -18,7 +17,7 @@ class ParseHTML {
      * @param string $source Source of the form either a URL or an HTML code
      * @param boolean $isFile [optional] specifies either this is an HTML code or a file path default to true
      */
-    public function ParseHTML($source, $isFile = true){
+    public function __construct($source, $isFile = true){
         
         if($isFile){
             if(strstr($source, "facebook.com")){

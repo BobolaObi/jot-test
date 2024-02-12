@@ -3,12 +3,11 @@
  * Handles WordPay Payments
  * @package JotForm_Utils
  * @copyright Copyright (c) 2009, Interlogy LLC
- */
-class WorldPay {
+ */class WorldPay{
     
     private $postURL, $postData = array(), $options, $returnURL, $paymentType, $isSubscription, $currency, $custom, $installationID, $formID, $submissionID;
     
-    function WorldPay($options){
+    function __construct($options){
         
         $this->ipnURL       = HTTP_URL."ipns/worldpay.php";
         $this->postURL      = "https://secure.wp3.rbsworldpay.com/wcc/purchase";

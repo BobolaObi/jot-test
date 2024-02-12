@@ -3,8 +3,7 @@
  * FTP Library
  * @package JotForm_Utils
  * @copyright Copyright (c) 2010, Interlogy LLC 
- */
-class FTPLib {
+ */class FTPLib{
     
     private $hostname, $username, $password, $port, $conn;
     /**
@@ -14,7 +13,7 @@ class FTPLib {
      * @param object $password
      * @return 
      */
-    public function FTPLib($hostname, $username, $password, $port = 21){
+    public function __construct($hostname, $username, $password, $port = 21){
         
         if (!extension_loaded('ftp')) {
             throw new Exception("FTP Extension is not loaded");

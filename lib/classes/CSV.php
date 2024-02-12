@@ -3,14 +3,13 @@
  * Exports Data to CSV
  * @package JotForm_Utils
  * @copyright Copyright (c) 2009, Interlogy LLC
- */
-class CSV {
+ */class CSV{
     
     private $data;
     public $debug = false;
     private $contents;
     
-    function CSV($data){
+    function __construct($data){
         $this->data = $data;
     }
     

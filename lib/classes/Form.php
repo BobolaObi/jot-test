@@ -3,8 +3,7 @@
  * JotForm form object
  * @package JotForm
  * @copyright Copyright (c) 2009, Interlogy LLC
- */
-class Form {
+ */class Form{
     
     private $owner, $timeZone, $timeFormat = 'Y-m-d H:i:s';
     public $id, $form, $isLoggedInNow = false;
@@ -30,7 +29,7 @@ class Form {
      * @param object $id [optional]
      * @return 
      */
-    function Form($id = false){
+    function __construct($id = false){
         
         if($id == 'session'){
             $id = Utils::getCurrentID('form');

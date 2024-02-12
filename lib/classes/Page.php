@@ -4,16 +4,14 @@
  * then makes it ready to be used in the page
  * @package JotForm_Site_Management
  * @copyright Copyright (c) 2009, Interlogy LLC
- */
-class Page
-{
+ */class Page{
     private $page;
     /**
      * Constructer
      * @return 
      * @param object $pageName
      */
-    function Page($pageName){
+    function __construct($pageName){
     	$this->page = PageInfo::getPage($pageName);
     	$this->checkCredentials();
     }

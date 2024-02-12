@@ -1,7 +1,6 @@
 <?php
 
-
-class Report {
+class Report{
 	
 	public $id;
 	public $form;
@@ -16,7 +15,7 @@ class Report {
 	 * @param int $id  if $new flag is true gets the form ID for this report to be saved else gets the report ID
 	 * @param boolean $new [optional] Defines if this is a new or old report, decides to save or update
 	 */
-	public function Report($id, $new = false){
+	public function __construct($id, $new = false){
 	    
         if($id == 'session'){
             $id = Utils::getCurrentID('report');
