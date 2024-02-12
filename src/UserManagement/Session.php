@@ -6,7 +6,7 @@
  * @copyright Copyright (c) 2009, Interlogy LLC
  */
 
-namespace Legacy\Jot\User_Management;
+namespace Legacy\Jot\UserManagement;
 
 class Session {
     // Static variables must be declared before their use.

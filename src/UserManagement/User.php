@@ -13,7 +13,7 @@
  * @copyright Copyright (c) 2009, Interlogy LLC
  */
 
-namespace Legacy\Jot\User_Management;
+namespace Legacy\Jot\UserManagement;
 
 
 class User {
@@ -543,7 +543,7 @@ class User {
     public function getBrowser(){
     	$browser = new Browser($this->client->useragent);
     	if ($browser){
-    		return $browser->getPlatform() . " " . $browser->getBrowser() . " " . $browser->getVersion() ;  
+    		return $browser->getPlatform() . " User.php" . $browser->getBrowser() . " " . $browser->getVersion() ;  
     	}else{
     	   return false;
     	}

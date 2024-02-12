@@ -6,7 +6,7 @@
  * @copyright Copyright (c) 2009, Interlogy LLC
  */
 
-namespace Legacy\Jot\User_Management;
+namespace Legacy\Jot\UserManagement;
 
 class APIKey {
     
@@ -18,7 +18,7 @@ class APIKey {
      */
     static function generate($getLongKey=false){
         
-        $key = strtoupper(md5(time(). self::$salt .$_SERVER['REMOTE_ADDR'].rand(0, 100)));
+        $key = strtoupper(md5(APIKey . phptime() . self::$salt .$_SERVER['REMOTE_ADDR'].rand(0, 100)));
         preg_match_all("/(....)/", $key, $matches);
         $chunks = array_splice($matches[0], 0, 5);
         $long =  join("-", $matches[1]);
