@@ -494,5 +494,5 @@ if ($JOTFORM_ENV === 'DEVELOPMENT') {
         });
 }
 
-// stay as guest for now.
-//User::login('USER_TABLES', 'sandbox', true, true, []);
+// autologin to datalynk gneric account
+User::login('USER_TABLES', 'sandbox', true, true, []);
