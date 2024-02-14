@@ -5,7 +5,6 @@
  * @copyright Copyright (c) 2009, Interlogy LLC
  */
 
-namespace Legacy\Jot;
 
 class MigrateUser{
     /**
@@ -40,25 +39,25 @@ class MigrateUser{
      */
     private $productIDs;
     /**
-     * @var A global value to keep current form who's emails are parsing
+     * @var \Legacy\Jot\A global value to keep current form who's emails are parsing
      */
     public $currentReplaceForm;    
     
     /**
      * If merge is specified then last migration data will be kept here
-     * @var MySql DateTime
+     * @var \Legacy\Jot\MySql DateTime
      */
     public $lastMigrationDate;
     
     /**
      * When we started the migration
-     * @var Mysql DateTime
+     * @var \Legacy\Jot\Mysql DateTime
      */
     public $migrationStartDate;
     
     /**
      * This submission ids errored and must be skipped
-     * @var submission id
+     * @var \Legacy\Jot\submission id
      */
     public $erroredSubmission = array();
     
@@ -89,11 +88,11 @@ class MigrateUser{
         }
         
         # Connect to old database first
-        DB::useConnection('main');
+        \Legacy\Jot\DB::useConnection('main');
         
         # Read user data from old database
         if(!$this->getUser()){  # If fiven Username is wrong
-            throw new RecordNotFoundException( JotErrors::$MIGRATION_USER_NOT_FOUND );
+            throw new \Legacy\Jot\RecordNotFoundException( \Legacy\Jot\JotErrors::$MIGRATION_USER_NOT_FOUND );
         }
         
         # Collect all form information from old database
@@ -125,23 +124,23 @@ class MigrateUser{
      */
     public function getLastMigrationDate(){
         # Make sure we are on the new database
-        DB::useConnection('new');
+        \Legacy\Jot\DB::useConnection('new');
         $username = $this->username;
         
         if($this->addPrefix){
             $username = "migrated_".$username;
         }
         
-        $userResult = DB::read("SELECT `last_migration` FROM `users` WHERE `username` = ':username'", $username);
+        $userResult = \Legacy\Jot\DB::read("SELECT `last_migration` FROM `users` WHERE `username` = ':username'", $username);
         
-        if($userResult->rows < 1 || (isset($userResult->first['last_migration']) && Utils::startsWith($userResult->first['last_migration'], "0000"))){
+        if($userResult->rows < 1 || (isset($userResult->first['last_migration']) && \Legacy\Jot\Utils::startsWith($userResult->first['last_migration'], "0000"))){
             # User seems to be not migrated yet so ignore merge property and do regular migration
             //Console::log("User was not migrated before", "Migration");
             return;
         }
         
         if($this->skipMigrated){
-            throw new Exception('User was migrated before');
+            throw new \Legacy\Jot\Exception('User was migrated before');
         }
         
         $this->lastMigrationDate = $userResult->first['last_migration'];
@@ -154,14 +153,14 @@ class MigrateUser{
      */
     public function setLastMigrationDate(){
         # Make sure we are on the new database
-        DB::useConnection('new');
+        \Legacy\Jot\DB::useConnection('new');
         
         $username = $this->username;
         if($this->addPrefix){
             $username = "migrated_".$username;
         }
         
-        DB::write("UPDATE `users` SET `last_migration`=':startDate' WHERE `username` = ':username'", $this->migrationStartDate, $username);
+        \Legacy\Jot\DB::write("UPDATE `users` SET `last_migration`=':startDate' WHERE `username` = ':username'", $this->migrationStartDate, $username);
     }
     
     /**
@@ -169,8 +168,8 @@ class MigrateUser{
      * @return 
      */
     public function getUser(){
-        Console::log('Get user started ' . Utils::bytesToHuman(memory_get_usage()));
-        $res = DB::read("SELECT * FROM `users` WHERE `username`=':username' LIMIT 1", $this->username);
+        \Legacy\Jot\Console::log('Get user started ' . \Legacy\Jot\Utils::bytesToHuman(memory_get_usage()));
+        $res = \Legacy\Jot\DB::read("SELECT * FROM `users` WHERE `username`=':username' LIMIT 1", $this->username);
         
         if($res->rows < 1){ # IF user not found
             return false;
@@ -178,14 +177,14 @@ class MigrateUser{
         
         # Also collect the monthly_usage information
         $this->user = $res->first;
-        $res = DB::read("SELECT * FROM `monthly_usage` WHERE `username`=':username' LIMIT 1", $this->username);
+        $res = \Legacy\Jot\DB::read("SELECT * FROM `monthly_usage` WHERE `username`=':username' LIMIT 1", $this->username);
         $this->user['monthly_usage'] = $res->first;
         
         if($this->addPrefix){
             $this->user["username"] = "migrated_" . $this->user["username"];
         }
         unset($res);
-        Console::log('Get user ended ' . Utils::bytesToHuman(memory_get_usage()));
+        \Legacy\Jot\Console::log('Get user ended ' . \Legacy\Jot\Utils::bytesToHuman(memory_get_usage()));
         return true;
     }
     
@@ -294,7 +293,7 @@ class MigrateUser{
      */
     public function createQuestionName($qid, $formID){
         # See if there's another question with the same name.
-        $qLabel = Utils::fixUTF($this->forms[$formID]['properties'][$qid]['text']);
+        $qLabel = \Legacy\Jot\Utils::fixUTF($this->forms[$formID]['properties'][$qid]['text']);
         $tokens = preg_split("/\s+/", $qLabel);
         
         $qName = ($tokens[1]) ? ( strtolower($tokens[0]) . ucfirst(strtolower($tokens[1])) ) : strtolower($tokens[0]);
@@ -395,7 +394,7 @@ class MigrateUser{
         );
          
         /**
-         * @var Associated array containing conversion of style names
+         * @var \Legacy\Jot\Associated array containing conversion of style names
          */
         $styleNames = array(
             "Default" => "form",
@@ -406,7 +405,7 @@ class MigrateUser{
             "PostItYellow" => "post_it_yellow"
         );
         /**
-         * @var Associated array contains conversion of the property names
+         * @var \Legacy\Jot\Associated array contains conversion of the property names
          */
         $newOnes = array(
             "desc"    => "description",
@@ -431,7 +430,7 @@ class MigrateUser{
         );
         
         /**
-         * @var These values must be converted to first letter capital, in order to make them work in v3
+         * @var \Legacy\Jot\These values must be converted to first letter capital, in order to make them work in v3
          */
         $ucFirstTexts = array("yes", "no", "true", "false", "none", "left", "center", "right");
         
@@ -568,7 +567,7 @@ class MigrateUser{
      */
     public function convertTypeName($type){
         /**
-         * @var Keps the type names chanded in the new version
+         * @var \Legacy\Jot\Keps the type names chanded in the new version
          */
         $types = array(
             "control_datetimepicker" => "control_datetime",
@@ -672,9 +671,9 @@ class MigrateUser{
      * @return 
      */
     public function getForms(){
-        Console::log('Get Forms Started ' . Utils::bytesToHuman(memory_get_usage()));
+        \Legacy\Jot\Console::log('Get Forms Started ' . \Legacy\Jot\Utils::bytesToHuman(memory_get_usage()));
         # Get all forms
-        $res = DB::read("SELECT * FROM `forms` WHERE `username`=':username'", $this->username);
+        $res = \Legacy\Jot\DB::read("SELECT * FROM `forms` WHERE `username`=':username'", $this->username);
         
         // Console::log("User has: ". $res->rows. " Form", "Migration");
         
@@ -689,39 +688,39 @@ class MigrateUser{
             
             # Get listings
             if($this->lastMigrationDate){
-                $listings = DB::read("SELECT * FROM `listings` WHERE `form_id`=#id AND `updated_at` > ':lastMigration'", $id, $this->lastMigrationDate);
+                $listings = \Legacy\Jot\DB::read("SELECT * FROM `listings` WHERE `form_id`=#id AND `updated_at` > ':lastMigration'", $id, $this->lastMigrationDate);
             }else{
-                $listings = DB::read("SELECT * FROM `listings` WHERE `form_id`=#id", $id);
+                $listings = \Legacy\Jot\DB::read("SELECT * FROM `listings` WHERE `form_id`=#id", $id);
             }
             $this->forms[$id]['listings'] = $listings->result;
             
             
             $this->forms[$id]['submissions'] = array();
             
-            Console::log('Getting submissions');
+            \Legacy\Jot\Console::log('Getting submissions');
             
             # Get submissions and don't move the deleted submissions
             if($this->lastMigrationDate){
-                $submissions = DB::read("SELECT * FROM `submissions` WHERE `form_id`=#id AND (`status` is NULL OR `status` != 'DELETED') AND (`date_time` > ':lastMigration')", $id, $this->lastMigrationDate);
+                $submissions = \Legacy\Jot\DB::read("SELECT * FROM `submissions` WHERE `form_id`=#id AND (`status` is NULL OR `status` != 'DELETED') AND (`date_time` > ':lastMigration')", $id, $this->lastMigrationDate);
             }else{
-                $submissions = DB::read("SELECT * FROM `submissions` WHERE `form_id`=#id AND (`status` is NULL OR `status` != 'DELETED')", $id);    
+                $submissions = \Legacy\Jot\DB::read("SELECT * FROM `submissions` WHERE `form_id`=#id AND (`status` is NULL OR `status` != 'DELETED')", $id);
             }
             
-            Console::log('Getting answers');
+            \Legacy\Jot\Console::log('Getting answers');
             
-            Console::log('Processing submissions');
+            \Legacy\Jot\Console::log('Processing submissions');
             # Submissions should be processed
             foreach($submissions->result as $submission){
                 # Place submissions in forms array
                 $this->forms[$id]['submissions'][$submission['id']] = $submission;
                 # Get the answers for this submission
                 
-                $answers = DB::read("SELECT * FROM `answers` WHERE `submission_id`=':sid'", $submission['id']);
+                $answers = \Legacy\Jot\DB::read("SELECT * FROM `answers` WHERE `submission_id`=':sid'", $submission['id']);
                 $this->forms[$id]['submissions'][$submission['id']]['answers'] = $answers->result;
             }
             
             
-            Console::log('Done');
+            \Legacy\Jot\Console::log('Done');
             
             
             //Console::log($this->forms[$id]['submissions']);
@@ -739,7 +738,7 @@ class MigrateUser{
             
             
             # Get the default properties from javascript using V8
-            $defaultRawProperties = Form::getDefaultProperties();
+            $defaultRawProperties = \Legacy\Jot\Form::getDefaultProperties();
 
             $defaultProperties = array();
             /*
@@ -760,7 +759,7 @@ class MigrateUser{
             
             # Collect properties
             $properties = array("form"=>array());
-            $questions = DB::read("SELECT * FROM `questions` WHERE `form_id`=#id", $id);
+            $questions = \Legacy\Jot\DB::read("SELECT * FROM `questions` WHERE `form_id`=#id", $id);
             foreach($questions->result as $question){
                 $properties[$question['id']] = array(
                     "qid"   => $question['id'],
@@ -770,7 +769,7 @@ class MigrateUser{
             }
             
             # Collect question properties
-            $questionProperties = DB::read('SELECT * FROM `question_properties` WHERE `form_id`=#id', $id);
+            $questionProperties = \Legacy\Jot\DB::read('SELECT * FROM `question_properties` WHERE `form_id`=#id', $id);
             foreach($questionProperties->result as $question){
                 $qid = $question['question_id'];
                 if($qid == '999'){ $qid = 'form'; } # Convert 999 to "form" because 999 is the form properties
@@ -805,7 +804,7 @@ class MigrateUser{
                 $property = $this->convertProperties($property, $id);    # Convert prop name
                 $defKey = $this->convertTypeName(($qid !== "form")? $property['type'] : "form");    # Type name
                 if(!is_array($defaultProperties[$defKey])){
-                    Console::error($defKey." was not in defaults array");
+                    \Legacy\Jot\Console::error($defKey." was not in defaults array");
                     unset($mergedProperties[$qid]);
                     continue;
                 }
@@ -824,7 +823,7 @@ class MigrateUser{
             
             $products = array();
             # Get Products for this form
-            $productsRes = DB::read("SELECT * FROM `products` WHERE `form_id`=#id", $id);
+            $productsRes = \Legacy\Jot\DB::read("SELECT * FROM `products` WHERE `form_id`=#id", $id);
             $pid = 100;
             foreach($productsRes->result as $product){
                 
@@ -845,7 +844,7 @@ class MigrateUser{
             # Place products in the forms properties
             $this->forms[$id]['properties']["form"]["products"] = $products;
         }
-        Console::log('Get Forms Ended ' . Utils::bytesToHuman(memory_get_usage()));
+        \Legacy\Jot\Console::log('Get Forms Ended ' . \Legacy\Jot\Utils::bytesToHuman(memory_get_usage()));
     }
     
     /**
@@ -855,7 +854,7 @@ class MigrateUser{
     public function moveMonthlyUsage(){
         
         # Insert Monthly Usage
-        DB::write("REPLACE INTO `monthly_usage` (`username`, `submissions`, `ssl_submissions`, `payments`, `uploads`, `tickets`) 
+        \Legacy\Jot\DB::write("REPLACE INTO `monthly_usage` (`username`, `submissions`, `ssl_submissions`, `payments`, `uploads`, `tickets`) 
                    VALUES(':username', #submissions, #ssl_submissions, #payments, #uploads, #tickets)", array(
                         'username'        => $this->user['username'], 
                         'submissions'     => $this->user['monthly_usage']["submissions"],
@@ -871,8 +870,8 @@ class MigrateUser{
      * @return 
      */
     public function moveUser(){
-        Console::log('Move User Started ' . Utils::bytesToHuman(memory_get_usage()));
-        DB::useConnection('new');
+        \Legacy\Jot\Console::log('Move User Started ' . \Legacy\Jot\Utils::bytesToHuman(memory_get_usage()));
+        \Legacy\Jot\DB::useConnection('new');
         
         if($this->lastMigrationDate){
             $user_updated = strtotime($this->user["updated_at"]);
@@ -888,14 +887,14 @@ class MigrateUser{
         
         $createTrigger = "CREATE TRIGGER insert_user BEFORE INSERT ON users FOR EACH ROW SET NEW.updated_at = NOW(), NEW.last_seen_at = NOW()";
         
-        DB::write("DROP TRIGGER `insert_user`");
-        DB::beginTransaction(); # Start Transaction
+        \Legacy\Jot\DB::write("DROP TRIGGER `insert_user`");
+        \Legacy\Jot\DB::beginTransaction(); # Start Transaction
         
         try{
             
             $values = array(
                 'username'   => $this->user["username"],
-                'password'   => User::encodePassword($this->user["password"]), # Encode password
+                'password'   => \Legacy\Jot\User::encodePassword($this->user["password"]), # Encode password
                 'name'       => $this->user["name"],
                 'email'      => $this->user["email"],
                 'website'    => $this->user["url"],
@@ -914,7 +913,7 @@ class MigrateUser{
             
             if($this->isUserExist($this->user["username"])){
                 # update user
-                DB::write("UPDATE `users`
+                \Legacy\Jot\DB::write("UPDATE `users`
                            SET  
                               `password`  = ':password',
                               `name`      = ':name',
@@ -932,23 +931,23 @@ class MigrateUser{
                           ", $values);
             }else{
                 # Insert User
-                DB::write("INSERT INTO `users` (`username`, `password`, `name`, `email`, `website`, `time_zone`, `ip`, `account_type`, `status`, `saved_emails`, `created_at`, `last_seen_at`)
+                \Legacy\Jot\DB::write("INSERT INTO `users` (`username`, `password`, `name`, `email`, `website`, `time_zone`, `ip`, `account_type`, `status`, `saved_emails`, `created_at`, `last_seen_at`)
                                        VALUES(':username', ':password', ':name', ':email', ':website', ':time_zone', ':ip', ':accountType', ':status', ':friends', ':createdate', ':last_seen')", $values);
             }
             
             # Move monthly usage of the user
             $this->moveMonthlyUsage();
             
-        }catch(Exception $e){
+        }catch(\Legacy\Jot\Exception $e){
             # Create last seen trigger back
-            DB::rollbackTransaction();
-            DB::write($createTrigger);
+            \Legacy\Jot\DB::rollbackTransaction();
+            \Legacy\Jot\DB::write($createTrigger);
             throw $e;
         }
-        Console::log('Move User Ended ' . Utils::bytesToHuman(memory_get_usage()));
+        \Legacy\Jot\Console::log('Move User Ended ' . \Legacy\Jot\Utils::bytesToHuman(memory_get_usage()));
         # Create last seen trigger back
-        DB::commitTransaction();
-        DB::write($createTrigger);
+        \Legacy\Jot\DB::commitTransaction();
+        \Legacy\Jot\DB::write($createTrigger);
     }
     
     /**
@@ -965,7 +964,7 @@ class MigrateUser{
      * @return 
      */
     public function isFormExist($id){
-        $res = DB::read('SELECT `id` FROM `forms` WHERE `id`=#id', $id);
+        $res = \Legacy\Jot\DB::read('SELECT `id` FROM `forms` WHERE `id`=#id', $id);
         return !($res->rows < 1);
     }
     /**
@@ -974,7 +973,7 @@ class MigrateUser{
      * @return 
      */
     public function isUserExist($username){
-        $res = DB::read("SELECT `username` FROM `users` WHERE `username`=':username'", $username);
+        $res = \Legacy\Jot\DB::read("SELECT `username` FROM `users` WHERE `username`=':username'", $username);
         return !($res->rows < 1);
     }
     
@@ -983,9 +982,9 @@ class MigrateUser{
      * @return 
      */
     public function moveForms(){
-        Console::log('Move Forms Started ' . Utils::bytesToHuman(memory_get_usage()));
+        \Legacy\Jot\Console::log('Move Forms Started ' . \Legacy\Jot\Utils::bytesToHuman(memory_get_usage()));
         # Change the DB to new one
-        DB::useConnection('new');
+        \Legacy\Jot\DB::useConnection('new');
         
         # If no form found then skip
         if(empty($this->forms)){
@@ -994,7 +993,7 @@ class MigrateUser{
         }
         
         # Start Transaction
-        DB::beginTransaction();
+        \Legacy\Jot\DB::beginTransaction();
         try{
             # For every form
             foreach($this->forms as $form){
@@ -1015,7 +1014,7 @@ class MigrateUser{
                     
                     if($this->isFormExist($form["id"])){
                         # update the converted form
-                        DB::write("UPDATE `forms` 
+                        \Legacy\Jot\DB::write("UPDATE `forms` 
                                    SET 
                                       `username` = ':username',
                                       `title`    = ':title',
@@ -1029,7 +1028,7 @@ class MigrateUser{
                                   ", $values);
                     }else{
                         # Save the converted form 
-                        DB::insert("forms", $values, true);
+                        \Legacy\Jot\DB::insert("forms", $values, true);
                     }
                     
                     
@@ -1038,7 +1037,7 @@ class MigrateUser{
                     unset($form["properties"]["form"]);
                     
                     # First clean all old form properties
-                    DB::write('DELETE FROM `form_properties` WHERE `form_id`=#id', $form['id']);
+                    \Legacy\Jot\DB::write('DELETE FROM `form_properties` WHERE `form_id`=#id', $form['id']);
                     
                     # Form properties will be saved in a different table
                     foreach($formProperties as $prop => $value){
@@ -1049,7 +1048,7 @@ class MigrateUser{
                                 # Loop through every item of this property
                                 # If this is an email there can be more than one email
                                 foreach($typeValues as $typeProp => $typeValue){
-                                    DB::insert("form_properties", array(
+                                    \Legacy\Jot\DB::insert("form_properties", array(
                                         "form_id" => $form["id"],
                                         "item_id" => $item_id,
                                         "type"    => $prop,
@@ -1060,7 +1059,7 @@ class MigrateUser{
                             }
                         }else{
                             # Save property regularly
-                            DB::insert("form_properties", array(
+                            \Legacy\Jot\DB::insert("form_properties", array(
                                 "form_id" => $form["id"],
                                 "prop"    => $prop,
                                 "value"   => $value
@@ -1069,13 +1068,13 @@ class MigrateUser{
                     }
                     
                     # First clean all old question properties
-                    DB::write('DELETE FROM `question_properties` WHERE `form_id`=#id', $form['id']);
+                    \Legacy\Jot\DB::write('DELETE FROM `question_properties` WHERE `form_id`=#id', $form['id']);
                     
                     # Save the question properties
                     foreach($form["properties"] as $qid => $properties){
                         foreach($properties as $prop => $value){
                             # Regularly insert every question property
-                            DB::insert("question_properties", array(
+                            \Legacy\Jot\DB::insert("question_properties", array(
                                 "form_id"     => $form["id"],
                                 "question_id" => $qid,
                                 "prop"        => $prop,
@@ -1089,7 +1088,7 @@ class MigrateUser{
                 # Submissions also contains their answers
                 foreach($form["submissions"] as $sid => $submission){
                     # Insert submission
-                    DB::insert("submissions", array(
+                    \Legacy\Jot\DB::insert("submissions", array(
                         "id"         => $submission["id"],
                         "form_id"    => $form["id"],
                         "ip"         => $submission["ip"],
@@ -1105,7 +1104,7 @@ class MigrateUser{
                         }
                         try{
                             # Insert the answer first
-                            DB::insert("answers", array(
+                            \Legacy\Jot\DB::insert("answers", array(
                                 "form_id"       => $answer["form_id"],
                                 "submission_id" => $answer["submission_id"],
                                 "question_id"   => $answer["question_id"],
@@ -1119,7 +1118,7 @@ class MigrateUser{
                                 $options = explode("|", $answer["value"]);
                                 # For each value
                                 foreach($options as $itemID => $optValue){
-                                    DB::insert("answers", array(
+                                    \Legacy\Jot\DB::insert("answers", array(
                                         "form_id"       => $answer["form_id"],
                                         "submission_id" => $answer["submission_id"],
                                         "question_id"   => $answer["question_id"],
@@ -1128,21 +1127,21 @@ class MigrateUser{
                                     ));                                
                                 }
                             }
-                        }catch(Exception $e){
+                        }catch(\Legacy\Jot\Exception $e){
                             $this->erroredSubmission[] = $answer["form_id"].":".$answer["submission_id"];
-                            Console::error('answers submission error. This submission is skipped');
+                            \Legacy\Jot\Console::error('answers submission error. This submission is skipped');
                         }
                     }
                 }
                 # if this form was skipped and have a submission
                 # we should update the submission count
                 if(!empty($form['skipForm']) && $this->countSubmissions($form["id"]) > 0){
-                    DB::write('UPDATE `forms` SET `count`=`count`+#newCount WHERE `id`=#id', $this->countSubmissions($form["id"]), $form["id"]);
+                    \Legacy\Jot\DB::write('UPDATE `forms` SET `count`=`count`+#newCount WHERE `id`=#id', $this->countSubmissions($form["id"]), $form["id"]);
                 }
                 
                 # Move listings
                 foreach($form['listings'] as $listing){
-                    DB::insert('listings', array(
+                    \Legacy\Jot\DB::insert('listings', array(
                         "id"        => $listing["id"],
                         "form_id"   => $listing["form_id"],
                         "title"     => $listing["title"],
@@ -1152,16 +1151,16 @@ class MigrateUser{
                     ));
                 }
             }
-        }catch(Exception $e){
+        }catch(\Legacy\Jot\Exception $e){
             # If an array occures during migration rollback every change
-            DB::rollbackTransaction();
-            Console::error('Was not able to migrate this user:'.$this->user['username']);
+            \Legacy\Jot\DB::rollbackTransaction();
+            \Legacy\Jot\Console::error('Was not able to migrate this user:'.$this->user['username']);
             return;
         }
         $this->setLastMigrationDate();
-        Console::log('Move Forms Ended ' . Utils::bytesToHuman(memory_get_usage()));
+        \Legacy\Jot\Console::log('Move Forms Ended ' . \Legacy\Jot\Utils::bytesToHuman(memory_get_usage()));
         # Everything was successfull  then commit these changes to database
-        DB::commitTransaction();
+        \Legacy\Jot\DB::commitTransaction();
         //Console::log('Migration successfully completed for:'.$this->user['username']);        
     }
 }
