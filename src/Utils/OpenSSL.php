@@ -1,4 +1,7 @@
 <?php
+
+use Legacy\Jot\Configs;
+
 /**
 * Class OpenSSL
 * 

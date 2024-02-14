@@ -1,5 +1,8 @@
 <?php
-    include_once "../lib/init.php";
+
+use Legacy\Jot\Configs;
+
+include_once "../lib/init.php";
     Session::checkAdminPages();
     
     $root = ROOT;

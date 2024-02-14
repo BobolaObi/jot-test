@@ -1,4 +1,6 @@
-Dear <?php echo (empty($userArr['name']))? $userArr['username'] : $userArr['name'] ?>,<br />
+Dear <?php use Legacy\Jot\Configs;
+
+echo (empty($userArr['name']))? $userArr['username'] : $userArr['name'] ?>,<br />
 <br />
 A password reset request was issued at <a href="<?=HTTP_URL?>"><?=HTTP_URL?></a><br />
 <br />

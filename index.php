@@ -1,4 +1,7 @@
 <?php
+
+use Legacy\Jot\Configs;
+
 include_once './lib/init.php';
 Form::handleSlugURLs();
 header("Content-type: text/html; charset=utf-8");

@@ -1,4 +1,6 @@
-<?php 
+<?php
+
+use Legacy\Jot\Configs;
 
 /**
  * Helper class for generating RSS feeds. Uses the FeedItem, FeedWriter external classes.

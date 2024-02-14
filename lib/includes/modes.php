@@ -3,6 +3,9 @@
 /**
  * Specify document mode for Javascript. 
  */
+
+use Legacy\Jot\Configs;
+
 $modes = array();
 
 if (DEBUGMODE) {

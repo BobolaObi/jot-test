@@ -7,7 +7,7 @@
  */
 
 namespace Legacy\Jot\Site_Management;
-class Page{
+class Page {
     private $page;
     /**
      * Constructer

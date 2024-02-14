@@ -1,5 +1,8 @@
 <?
-    if(DISABLE_SUBMISSON_PAGES){
+
+use Legacy\Jot\Configs;
+
+if(DISABLE_SUBMISSON_PAGES){
         Utils::errorPage("JotForm is currently under a maintenance mode. Our first priority is to keep your forms working. That's why Submissions page and Reports are <b>temporarily unavailable today between 9am-5pm EST</b>. Please check back later. We are sorry for the inconvenience.", "Temporarily Unavailable", "put Copyright text", 200); 
     }
     $errorMessage = "You can't see the submission data for this form. Please login first";

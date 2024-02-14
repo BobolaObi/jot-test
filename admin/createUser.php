@@ -1,5 +1,8 @@
 <?php
-    include "../lib/init.php";
+
+use Legacy\Jot\Configs;
+
+include "../lib/init.php";
     Session::checkAdminPages();
     define('ALLOWSIGNUP', true);
 ?>

@@ -1,3 +1,8 @@
+<?php
+
+use Legacy\Jot\Configs;
+
+?>
 <h2>Welcome Aboard!</h2>
 <h3 style="color:#999">Your account has been created on <?=Configs::COMPANY_TITLE?>.</h3>
 <h2>Your account information</h2>
