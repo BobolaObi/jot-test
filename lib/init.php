@@ -198,24 +198,6 @@ define('BETA', false);                                                  # Mark t
 define('SCHEMA_FILE_PATH', P(ROOT . "/opt/db_schema/jotform_new.json", true));    # Database schema file, @DEPRECATED
 define('API_URL_BASE', "api");                                          # This is the base url folder name for the API
 
-# Include the Amazon Web Services SDK
-include_once ROOT . "lib/classes/AWSSDK/sdk.class.php";
-
-# Include the API library
-include_once ROOT . "lib/classes/API/lib.config.php";
-
-# Include the Deploy library
-include_once ROOT . "lib/classes/deploy/lib.config.php";
-
-# Include the Payments library
-include_once ROOT . "lib/classes/Payments/lib.config.php";
-
-# Include the utils library
-include_once ROOT . "lib/classes/utils/lib.config.php";
-
-# Include the utils library
-include_once ROOT . "lib/classes/couch/lib.config.php";
-
 if (Server::isMaxCDN() && !Server::isCacheable() && HTTP_URL !== "http://www.jotform.com/") {
     Utils::redirect("http://www.jotform.com");
 }
