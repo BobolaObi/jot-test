@@ -1,5 +1,11 @@
 <?php
 
+# Get all the options from this file
+
+use Legacy\Jot\Configs as Configs;
+
+require_once(__DIR__."/../vendor/autoload.php");
+
 /**
  * Initial configuration file, Set everything for JotForm
  * @remember Line order of this file is really important don't change the order of any line
@@ -33,7 +39,7 @@ if (isset($_SERVER["HTTP_FRONT_END_HTTPS"])) {
  * @return
  */
 
-function autoload($class_name)
+function pending_pedrecation_autoload($class_name)
 {
 
     # In order to provide a decent warning message
@@ -91,10 +97,7 @@ function autoload($class_name)
 }
 
 # Should register autoloader for phpunit
-spl_autoload_register('autoload');
-
-# Get all the options from this file
-include_once dirname(__FILE__) . "/ConfigsClass.php";
+//spl_autoload_register('pending_pedrecation_autoload');
 
 /**
  * Fix extra slashes in path
