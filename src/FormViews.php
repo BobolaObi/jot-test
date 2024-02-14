@@ -2,6 +2,9 @@
 /**
  * 
  */
+
+namespace Legacy\Jot;
+
 class FormViews{
     /**
      * Gets the list of recently updated forms

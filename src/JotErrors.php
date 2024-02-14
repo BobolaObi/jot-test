@@ -1,5 +1,6 @@
 <?
 
+namespace Legacy\Jot;
 class JotErrors{
     
     public static $MIGRATION_USER_NOT_FOUND = array("User cannot be found in old database.", "1000");

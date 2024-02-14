@@ -1,5 +1,7 @@
 <?
 
+namespace Legacy\Jot;
+
 use Legacy\Jot\Configs;
 
 class DataListings{
