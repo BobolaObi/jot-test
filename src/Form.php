@@ -5,7 +5,7 @@
  * @copyright Copyright (c) 2009, Interlogy LLC
  */
 
-namespace Legacy\Jot\;
+namespace Legacy\Jot;
 class Form{
     
     private $owner, $timeZone, $timeFormat = 'Y-m-d H:i:s';
