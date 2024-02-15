@@ -7,6 +7,8 @@
  * 
  */
 
+namespace Legacy\Jot\Api\Core;
+
 class RestMapper{
     
 	/**

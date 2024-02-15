@@ -18,7 +18,7 @@
  * @copyright Copyright (c) 2009, Interlogy LLC
  */
 
-namespace Legacy\Jot\Site_Management;
+namespace Legacy\Jot\SiteManagement;
 
 class Translations
 {

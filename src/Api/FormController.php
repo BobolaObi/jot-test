@@ -1,5 +1,6 @@
-<?php 
+<?php
 
+namespace Legacy\Jot\Api;
 
 class FormController implements RestController{
 

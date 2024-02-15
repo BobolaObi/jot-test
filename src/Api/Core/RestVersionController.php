@@ -3,6 +3,9 @@
 * Class RestVersionController 
 * This class manages the versions of the API
 */
+
+namespace Legacy\Jot\Api\Core;
+
 class RestVersionController {
     
 	/**

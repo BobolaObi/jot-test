@@ -2,6 +2,10 @@
 /**
   * RestResponse hold the response in a RestServer
   */
+
+namespace Legacy\Jot\Api\Core;
+
+
 class RestResponse {
 
     private $rest ; 

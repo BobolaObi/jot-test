@@ -4,6 +4,10 @@
   * Class RestView
   * Interface describe a View for rendering an Response
   */
+
+namespace Legacy\Jot\Api\Core;
+
+
 interface RestView extends RestAction {
     /**
        * Render this view

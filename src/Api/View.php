@@ -1,5 +1,7 @@
 <?php
 
+namespace Legacy\Jot\Api;
+
 class View implements RestView {
 
     public $success = true;

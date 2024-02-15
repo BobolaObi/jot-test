@@ -1,15 +1,8 @@
 <?php
-/**
- * Collect all requests then calls the right action
- * @package JotForm
- * @copyright Copyright (c) 2009, Interlogy LLC
- */
 
 namespace Legacy\Jot;
 
-use MigrateUser;
-
-class RequestServer
+class JotRequestServer
 {
     # Type of the responses it should be application/json but it's hard to debug and browser are having some problems with it
     private $responseContentType = /* "application/x-json"; # */ "text/javascript"; # for debugging

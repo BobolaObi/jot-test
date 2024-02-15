@@ -1,9 +1,5 @@
 <?php
 
-# Get all the options from this file
-
-use Legacy\Jot\Configs as Configs;
-
 require_once(__DIR__."/../vendor/autoload.php");
 
 /**

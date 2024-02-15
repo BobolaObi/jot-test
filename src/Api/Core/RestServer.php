@@ -2,6 +2,10 @@
 /**
 * Class RestServer 
 */
+
+namespace Legacy\Jot\Api\Core;
+
+
 class RestServer {
 
     private $response ;

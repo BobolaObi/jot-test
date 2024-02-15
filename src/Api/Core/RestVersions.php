@@ -4,6 +4,10 @@
 * This class holds the versions of the API system
 * Singleton class
 */
+
+namespace Legacy\Jot\Api\Core;
+
+
 class RestVersions{
     
     /**

@@ -3,6 +3,9 @@
 /** Class RestRequest
   * Holds the Request in a RestServer
   */
+
+namespace Legacy\Jot\Api\Core;
+
 class RestRequest {
     
 	/**

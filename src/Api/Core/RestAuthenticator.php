@@ -4,6 +4,8 @@
  * Class RestAuthenticator
  * Responsible for dealing with both Basic and Digest authentication
  */
+namespace Legacy\Jot\Api\Core;
+
 class RestAuthenticator {
 
     private $rest ;
