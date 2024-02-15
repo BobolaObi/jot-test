@@ -1,4 +1,14 @@
 <?php
+
+use Legacy\Jot\UserManagement\AccountType;
+use Legacy\Jot\UserManagement\Session;
+use Legacy\Jot\Utils\TimeZone;
+
+# no idea why, but this doesn't work with the name RequestServer....
+
+
+?>
+<?php
 if ( (!Session::isLoggedIn() && isset($_GET['upgraded'])) || (isset($_GET['username']) && Session::$username !== $_GET['username']) ):
 ?>
 <div id="myAccountPage" style="padding: 0em 2em; margin-left: auto; margin-right: auto;">
@@ -61,7 +71,7 @@ $accountType = AccountType::find(Session::$accountType)
             if (($info = JotFormSubscriptions::getExpireDate(Session::$username)) !== false ):
                 if ($info['type'] !== "expire"){
                 	$text = "Expire Date";
-                    if ($info['remain'] < 7){
+                    if ($info['remain'] <7){
                         $warn = "warn";
                         $resubscribe = true;
                     }

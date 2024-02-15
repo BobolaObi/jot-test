@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Handles the integration with JotForm and DropBox
  * @package JotForm_Integrations

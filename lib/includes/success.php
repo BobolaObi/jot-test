@@ -1,3 +1,9 @@
+<?php
+
+# no idea why, but this doesn't work with the name RequestServer....
+
+
+?>
 <!-- Success: <?=is_array($success_notes)? join("::", $success_notes) : $success_notes?> -->
 <!-- There is no better way to place a div in the middle of the screen. I'm not a fan of tables but this works perfectly fine -->
 

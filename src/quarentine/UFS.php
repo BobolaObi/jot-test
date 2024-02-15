@@ -1,5 +1,11 @@
 <?php
 
+use Legacy\Jot\Submission;
+use Legacy\Jot\Utils\DB;
+
+# no idea why, but this doesn't work with the name RequestServer....
+
+
 /**
  * This class is an abract definition for upload classes such as FileController and AmazonS3Controller.
  * The object created by UFS is controlled by UFSController class.

@@ -1,4 +1,5 @@
-<? 
+<?php
+
 /**
  * Calculates and coverts times into given timezone
  * @package JotForm_Utils

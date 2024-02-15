@@ -1,5 +1,11 @@
 <?php
 
+use Legacy\Jot\UserManagement\User;
+use Legacy\Jot\Utils\DB;
+
+# no idea why, but this doesn't work with the name RequestServer....
+
+
 class ABTestingController{
     /**
      * Currently registered tests

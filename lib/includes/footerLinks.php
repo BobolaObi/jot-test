@@ -1,3 +1,9 @@
+<?php
+
+# no idea why, but this doesn't work with the name RequestServer....
+
+
+?>
 <div class="footer-links" style="text-align:center">
     <? if(BETA){ echo "Beta<br>"; } ?>
     <? if(!APP){ ?>

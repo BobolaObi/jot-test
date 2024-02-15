@@ -1,4 +1,10 @@
 <?php
+
+use Legacy\Jot\Utils\DB;
+
+# no idea why, but this doesn't work with the name RequestServer....
+
+
 class ExportSQLUser{
 	
 	private $username;

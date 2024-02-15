@@ -1,4 +1,7 @@
-<?php 
+<?php
+
+# no idea why, but this doesn't work with the name RequestServer....
+
 
 /**
  * A loader for the libraries used

@@ -1,5 +1,12 @@
 <?php
 
+use Legacy\Jot\exceptions\JotFormException;
+use Legacy\Jot\JotRequestServer as RequestServer;
+use Legacy\Jot\Utils\Utils;
+
+# no idea why, but this doesn't work with the name RequestServer....
+
+
 class FileController extends UFS{
 
 	public function uploadFile(){

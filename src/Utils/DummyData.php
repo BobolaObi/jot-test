@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Generates a dummy submission data for given form
  * @package JotForm

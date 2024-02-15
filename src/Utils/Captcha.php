@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Handles captchas
  * @package JotForm_Utils

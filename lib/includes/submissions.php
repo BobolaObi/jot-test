@@ -1,6 +1,17 @@
-<?
+<?php
 
 use Legacy\Jot\Configs;
+use Legacy\Jot\Configs;
+use Legacy\Jot\Form;
+use Legacy\Jot\UserManagement\Session;
+use Legacy\Jot\Utils\Settings;
+use Legacy\Jot\Utils\Utils;
+
+# no idea why, but this doesn't work with the name RequestServer....
+
+
+?>
+<?
 
 if(DISABLE_SUBMISSON_PAGES){
         Utils::errorPage("JotForm is currently under a maintenance mode. Our first priority is to keep your forms working. That's why Submissions page and Reports are <b>temporarily unavailable today between 9am-5pm EST</b>. Please check back later. We are sorry for the inconvenience.", "Temporarily Unavailable", "put Copyright text", 200); 

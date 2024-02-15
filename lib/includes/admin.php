@@ -1,3 +1,13 @@
+<?php
+
+use Legacy\Jot\UserManagement\Session;
+use Legacy\Jot\Utils\Server;
+use Legacy\Jot\Utils\Settings;
+
+# no idea why, but this doesn't work with the name RequestServer....
+
+
+?>
 <?
     if(APP){
         include "appadmin.php";

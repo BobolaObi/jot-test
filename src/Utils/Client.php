@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Collects the information from clients
  * @package JotForm_Utils

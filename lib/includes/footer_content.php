@@ -1,3 +1,13 @@
+<?php
+
+use Legacy\Jot\SiteManagement\Translations;
+use Legacy\Jot\UserManagement\Session;
+use Legacy\Jot\Utils\Utils;
+
+# no idea why, but this doesn't work with the name RequestServer....
+
+
+?>
 <div class="footer-box index-footer-back">
     <? if(!APP){ ?>
     <div class="footer-panel" id="footer-nav">

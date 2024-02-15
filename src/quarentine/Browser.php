@@ -1,5 +1,9 @@
 <?php
-	/**
+
+# no idea why, but this doesn't work with the name RequestServer....
+
+
+/**
 	 * File: Browser.php
 	 * Author: Chris Schuld (http://chrisschuld.com/)
 	 * Last Modified: August 20th, 2010

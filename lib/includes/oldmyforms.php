@@ -1,3 +1,11 @@
+<?php
+
+use Legacy\Jot\UserManagement\Session;
+
+# no idea why, but this doesn't work with the name RequestServer....
+
+
+?>
 <div id="tool_bar" class="index-grad4" style="">
      <div class="toolbar-set" id="group-myforms">
         <button type="button" class="big-button" id="newButton" onclick="MyForms.newForm();">

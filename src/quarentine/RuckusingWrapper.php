@@ -1,5 +1,10 @@
 <?php
 
+use Legacy\Jot\Utils\Server;
+
+# no idea why, but this doesn't work with the name RequestServer....
+
+
 /***
  * Ruckusing wrapper so that we are protected from changes made to the
  * upstream code. Also makes us more flexible.

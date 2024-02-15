@@ -1,3 +1,11 @@
+<?php
+
+use Legacy\Jot\Utils\Settings;
+
+# no idea why, but this doesn't work with the name RequestServer....
+
+
+?>
 <style>
     body{
         background-position:0 0;

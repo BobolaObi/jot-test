@@ -1,4 +1,9 @@
-<?php 
+<?php
+
+use Legacy\Jot\Utils\Console;
+
+# no idea why, but this doesn't work with the name RequestServer....
+
 
 /**
  * @file

@@ -1,3 +1,13 @@
+<?php
+
+use Legacy\Jot\FormViews;
+use Legacy\Jot\UserManagement\Session;
+use Legacy\Jot\Utils\Utils;
+
+# no idea why, but this doesn't work with the name RequestServer....
+
+
+?>
 <fieldset class="accountField" id="accountinfo" style="padding:5px; padding-left:0">
     <legend class="locale">Welcome</legend>
     <div style="float:left;max-width:160px">

@@ -1,3 +1,11 @@
+<?php
+
+use Legacy\Jot\UserManagement\Session;
+
+# no idea why, but this doesn't work with the name RequestServer....
+
+
+?>
 <div id="signinFieldset" class="fieldsetAccount">
     <!-- label class="locale" style="padding:4px;">Welcome <b title="<?=Session::$username?>">Guest</b>, Sign In to Your Account</label-->
     <fieldset class="accountField">

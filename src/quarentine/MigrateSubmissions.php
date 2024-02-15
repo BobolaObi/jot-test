@@ -1,5 +1,13 @@
 <?php
 
+use Legacy\Jot\JotErrors;
+use Legacy\Jot\Utils\Console;
+use Legacy\Jot\Utils\DB;
+use Legacy\Jot\Utils\Utils;
+
+# no idea why, but this doesn't work with the name RequestServer....
+
+
 class MigrateSubmissions {
     
     public $username;

@@ -1,3 +1,9 @@
+<?php
+
+# no idea why, but this doesn't work with the name RequestServer....
+
+
+?>
 <div id="passwordResetPage" style="padding: 0em 2em; margin-left: auto; margin-right: auto;">
     <div id="greetingHdr">
         <h2 class="locale">

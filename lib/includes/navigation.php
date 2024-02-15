@@ -1,3 +1,11 @@
+<?php
+
+use Legacy\Jot\UserManagement\Session;
+
+# no idea why, but this doesn't work with the name RequestServer....
+
+
+?>
 <?
     if(isset($_GET['p'])){
         $pressed[$_GET['p']] = "navPressed";

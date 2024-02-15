@@ -1,4 +1,4 @@
-<?
+<?php
 
 namespace Legacy\Jot;
 class JotErrors{

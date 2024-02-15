@@ -1,5 +1,15 @@
 <?php
 
+use Legacy\Jot\Configs;
+use Legacy\Jot\UserManagement\User;
+use Legacy\Jot\Utils\Console;
+use Legacy\Jot\Utils\Server;
+use Legacy\Jot\Utils\TimeZone;
+use Legacy\Jot\Utils\Utils;
+
+# no idea why, but this doesn't work with the name RequestServer....
+
+
 require_once(__DIR__."/../vendor/autoload.php");
 
 /**

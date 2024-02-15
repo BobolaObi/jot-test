@@ -1,3 +1,11 @@
+<?php
+
+use Legacy\Jot\Utils\Utils;
+
+# no idea why, but this doesn't work with the name RequestServer....
+
+
+?>
 <div id="myaccount" class="signin">
 	<div class="barePage">
 		<h1 class="locale">Login to JotForm</h1>

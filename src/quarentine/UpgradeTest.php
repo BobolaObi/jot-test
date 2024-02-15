@@ -1,5 +1,8 @@
 <?php
- 
+
+# no idea why, but this doesn't work with the name RequestServer....
+
+
 class UpgradeTest extends ABTesting{
     
     public static $myName = __CLASS__;

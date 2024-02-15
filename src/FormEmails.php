@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Creates parses and Send emails associated with the form
  * Checks all conditions and stuff
