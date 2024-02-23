@@ -5,6 +5,8 @@
 
 namespace Legacy\Jot;
 
+use Legacy\Jot\Utils\DB;
+
 class FormViews{
     /**
      * Gets the list of recently updated forms

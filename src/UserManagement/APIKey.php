@@ -8,6 +8,8 @@
 
 namespace Legacy\Jot\UserManagement;
 
+use Legacy\Jot\Utils\DB;
+
 class APIKey {
     
     private static $salt = "::aSdsjD223::";

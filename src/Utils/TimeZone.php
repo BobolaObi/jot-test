@@ -17,7 +17,7 @@ class TimeZone {
      * @return 
      */
     static function setServerTimeZone($zone){
-        self::$serverDTZ = new DateTimeZone($zone);
+        self::$serverDTZ = new \DateTimeZone($zone);
         date_default_timezone_set($zone);
     }
     

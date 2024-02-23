@@ -2,6 +2,10 @@
 
 namespace Legacy\Jot\Api;
 
+use Legacy\Jot\Api\Core\RestServer;
+use Legacy\Jot\Api\Core\RestView;
+
+
 class View implements RestView {
 
     public $success = true;

@@ -20,6 +20,9 @@
 
 namespace Legacy\Jot\SiteManagement;
 
+use Legacy\Jot\UserManagement\Session;
+use Legacy\Jot\Utils\Utils;
+
 class Translations
 {
     // Static array of available languages.

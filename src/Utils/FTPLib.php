@@ -6,6 +6,7 @@
  */
 
 namespace Legacy\Jot\Utils;
+
 class FTPLib{
     
     private $hostname, $username, $password, $port, $conn;

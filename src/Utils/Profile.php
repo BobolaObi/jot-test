@@ -8,6 +8,7 @@
 
 namespace Legacy\Jot\Utils;
 
+
 class Profile {
     
     private static $timers = array();

@@ -2,6 +2,9 @@
 
 namespace Legacy\Jot\Utils;
 
+use Legacy\Jot\Configs;
+
+
 /**
 * Class OpenSSL
 * 

@@ -5,8 +5,6 @@ use Legacy\Jot\UserManagement\User;
 use Legacy\Jot\Utils\DB;
 use Legacy\Jot\Utils\Utils;
 
-# no idea why, but this doesn't work with the name RequestServer....
-
 
 abstract class ABTesting {
     static    $groupNames = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";

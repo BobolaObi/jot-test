@@ -6,7 +6,9 @@
  */
 
 namespace Legacy\Jot\Utils;
- 
+
+use Legacy\Jot\Form;
+
 class DummyData{
     
     private $form, $questions, $lorem;

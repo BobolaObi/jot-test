@@ -1,6 +1,5 @@
 <?php
 
-# no idea why, but this doesn't work with the name RequestServer....
 
 
 // RSS 0.90  Officially obsoleted by 1.0

@@ -7,6 +7,8 @@
 
 namespace Legacy\Jot\SiteManagement;
 
+use Legacy\Jot\UserManagement\Session;
+
 class PageInfo
 {
     private static $pages = array();

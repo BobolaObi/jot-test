@@ -7,6 +7,10 @@
  */
 
 namespace Legacy\Jot\SiteManagement;
+
+use Legacy\Jot\UserManagement\User;
+use Legacy\Jot\Utils\Utils;
+
 class Page {
     private $page;
     /**

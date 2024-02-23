@@ -3,8 +3,6 @@
 use Legacy\Jot\exceptions\JotFormException;
 use Legacy\Jot\Utils\DB;
 
-# no idea why, but this doesn't work with the name RequestServer....
-
 
 class UFSController {
 

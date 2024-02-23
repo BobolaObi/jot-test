@@ -1,6 +1,9 @@
 <?php
 
 namespace Legacy\Jot;
+use Legacy\Jot\Utils\DB;
+use Legacy\Jot\Utils\Utils;
+
 class Report{
 	
 	public $id;

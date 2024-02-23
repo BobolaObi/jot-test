@@ -7,6 +7,8 @@
 
 namespace Legacy\Jot\Utils;
 
+use Legacy\Jot\ID;
+
 class Captcha{
     /**
      * Makes encoded word, works only one hour

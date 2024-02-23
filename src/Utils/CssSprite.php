@@ -7,6 +7,9 @@
 
 namespace Legacy\Jot\Utils;
 
+use Legacy\Jot\exceptions\JotFormException;
+use Legacy\Jot\JotErrors;
+
 class CssSprite {
 	# Groups array that will hold the properties of the images.
 	#

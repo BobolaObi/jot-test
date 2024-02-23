@@ -9,6 +9,10 @@
 
 namespace Legacy\Jot\UserManagement;
 
+use Legacy\Jot\Utils\Console;
+use Legacy\Jot\Utils\DB;
+use Legacy\Jot\Utils\Utils;
+
 class MonthlyUsage {
     /**
      * Instance variable names and their related DB column name counterparts.

@@ -11,6 +11,10 @@
 
 namespace Legacy\Jot\Utils;
 
+use Legacy\Jot\Configs;
+use Legacy\Jot\JotErrors;
+
+
 class DB
 {
     # Private veraibles

@@ -2,6 +2,23 @@
 
 namespace Legacy\Jot;
 
+use Legacy\Jot\Integrations\DropBoxIntegration;
+use Legacy\Jot\Integrations\FTPIntegration;
+use Legacy\Jot\Integrations\Integrations;
+use Legacy\Jot\UserManagement\AccountType;
+use Legacy\Jot\UserManagement\MonthlyUsage;
+use Legacy\Jot\UserManagement\Session;
+use Legacy\Jot\UserManagement\User;
+use Legacy\Jot\Utils\Captcha;
+use Legacy\Jot\Utils\Console;
+use Legacy\Jot\Utils\CssSprite;
+use Legacy\Jot\Utils\DB;
+use Legacy\Jot\Utils\FTPLib;
+use Legacy\Jot\Utils\Profile;
+use Legacy\Jot\Utils\Server;
+use Legacy\Jot\Utils\Settings;
+use Legacy\Jot\Utils\Utils;
+
 class JotRequestServer
 {
     # Type of the responses it should be application/json but it's hard to debug and browser are having some problems with it

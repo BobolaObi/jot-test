@@ -16,6 +16,8 @@
 namespace Legacy\Jot\UserManagement;
 
 
+use Legacy\Jot\Configs;
+
 class User {
     /**
      * Keeps database fields and their types, : for a string and a # for a number.
@@ -855,7 +857,7 @@ class User {
     public static function login($user, $password = false, $remember = false, $forceDeleted = false){
         
         $uname = $user;
-        
+
         if(Configs::USELDAP && is_string($uname)){
             if($lu = User::find($uname)){
                 if($lu->isLDAP()){

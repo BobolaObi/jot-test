@@ -7,6 +7,9 @@
 
 namespace Legacy\Jot\Utils;
 
+use Legacy\Jot\Configs;
+use Legacy\Jot\UserManagement\Session;
+
 class Utils extends UtilsArrays
 {	
     public static $urlMatch = "/https?\:\/\/(\b[A-Za-z0-9]+\.\b)?(\bjotform\.com|jotfor\.ms|interlogy\.com\b)\/(.*?\/)?(\d+).*/i";

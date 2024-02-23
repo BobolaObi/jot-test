@@ -6,6 +6,7 @@
  */
 
 namespace Legacy\Jot\Utils;
+
 class CSV{
     
     private $data;

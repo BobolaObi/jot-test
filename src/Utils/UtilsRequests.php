@@ -8,6 +8,7 @@
 
 namespace Legacy\Jot\Utils;
 
+
 class UtilsRequests extends UtilsEmails
 {
     /**

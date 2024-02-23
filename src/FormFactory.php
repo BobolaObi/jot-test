@@ -7,6 +7,12 @@
 
 namespace Legacy\Jot;
 
+use Legacy\Jot\UserManagement\Session;
+use Legacy\Jot\Utils\DB;
+use Legacy\Jot\Utils\Settings;
+use Legacy\Jot\Utils\Utils;
+
+
 class FormFactory {
     
     private $newForm, $id, $rawProperties, $questionProperties=array(), $formProperties=array(), $username, $source;

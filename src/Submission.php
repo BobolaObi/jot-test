@@ -7,6 +7,16 @@
 
 namespace Legacy\Jot;
 
+use Legacy\Jot\Integrations\DropBoxIntegration;
+use Legacy\Jot\Integrations\FTPIntegration;
+use Legacy\Jot\UserManagement\MonthlyUsage;
+use Legacy\Jot\Utils\Captcha;
+use Legacy\Jot\Utils\Console;
+use Legacy\Jot\Utils\DB;
+use Legacy\Jot\Utils\Server;
+use Legacy\Jot\Utils\Settings;
+use Legacy\Jot\Utils\Utils;
+
 class Submission {
     
     private $slowDownForms = array(/*"2855730853", "11035037214",*/ "11090501232"),

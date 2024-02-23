@@ -7,6 +7,7 @@
 
 namespace Legacy\Jot\Utils;
 
+
 class UtilsStrings extends UtilsRequests{
     /**
      * Regular expression for matching emails

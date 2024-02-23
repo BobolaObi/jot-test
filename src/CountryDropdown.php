@@ -7,6 +7,8 @@
 
 namespace Legacy\Jot;
 
+use Legacy\Jot\Utils\DB;
+
 class CountryDropdown
 {
     /**

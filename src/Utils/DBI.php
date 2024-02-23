@@ -10,6 +10,9 @@
 
 namespace Legacy\Jot\Utils;
 
+use Legacy\Jot\Configs;
+use Legacy\Jot\JotErrors;
+
 class DBI {
     # Private veraibles
     private static $database, # Database Name

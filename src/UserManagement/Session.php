@@ -8,6 +8,12 @@
 
 namespace Legacy\Jot\UserManagement;
 
+use Legacy\Jot\ID;
+use Legacy\Jot\Utils\Client;
+use Legacy\Jot\Utils\DB;
+use Legacy\Jot\Utils\Settings;
+use Legacy\Jot\Utils\Utils;
+
 class Session {
     // Static variables must be declared before their use.
     public static $id, $username, $password, $email, $name, $website, $folderConfig, $timeZone,

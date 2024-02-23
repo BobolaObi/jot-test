@@ -2,6 +2,7 @@
 
 # Generated on the installer
 namespace Legacy\Jot;
+
 class Configs
 {
     const COMPANY_TITLE = "The Auxilium Group";

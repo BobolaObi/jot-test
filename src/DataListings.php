@@ -2,6 +2,10 @@
 
 namespace Legacy\Jot;
 
+use Legacy\Jot\Utils\DB;
+use Legacy\Jot\Utils\Utils;
+
+
 class DataListings{
     /**
      * Gets the listing from database

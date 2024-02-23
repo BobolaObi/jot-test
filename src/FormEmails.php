@@ -8,6 +8,12 @@
 
 namespace Legacy\Jot;
 
+use Legacy\Jot\UserManagement\Session;
+use Legacy\Jot\Utils\Console;
+use Legacy\Jot\Utils\DB;
+use Legacy\Jot\Utils\Utils;
+
+
 class FormEmails{
     
     public $formID, $sid, $emails, $emailsToBeSent;

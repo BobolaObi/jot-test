@@ -7,6 +7,8 @@
 
 namespace Legacy\Jot\Utils;
 
+use Legacy\Jot\Submission;
+
 class UtilsArrays extends UtilsStrings{
     /**
      * Case-INsensitive in_array implementation.

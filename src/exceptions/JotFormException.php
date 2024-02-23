@@ -7,6 +7,9 @@
  */
 
 namespace Legacy\Jot\Exceptions;
+
+use Legacy\Jot\Utils\Console;
+
 class JotFormException extends Exception {
     public $errno;
     
