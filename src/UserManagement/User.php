@@ -15,8 +15,15 @@
 
 namespace Legacy\Jot\UserManagement;
 
-
 use Legacy\Jot\Configs;
+use Legacy\Jot\exceptions\JotFormException;
+use Legacy\Jot\Form;
+use Legacy\Jot\JotRequestServer as RequestServer;
+use Legacy\Jot\Utils\Client;
+use Legacy\Jot\Utils\Console;
+use Legacy\Jot\Utils\DB;
+use Legacy\Jot\Utils\Server;
+use Legacy\Jot\Utils\Utils;
 
 class User {
     /**
