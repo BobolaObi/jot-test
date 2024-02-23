@@ -2,7 +2,6 @@
 
 use Legacy\Jot\Utils\Settings;
 
-# no idea why, but this doesn't work with the name RequestServer....
 
 
 ?>

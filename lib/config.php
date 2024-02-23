@@ -7,7 +7,6 @@ use Legacy\Jot\Utils\Console;
 use Legacy\Jot\Utils\DB;
 use Legacy\Jot\Utils\Server;
 
-# no idea why, but this doesn't work with the name RequestServer....
 
 
 /**

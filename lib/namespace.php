@@ -32,10 +32,7 @@ use \Legacy\Jot\Utils\CSV;
 use \Legacy\Jot\Utils\Client;
 use \Legacy\Jot\exceptions\JotFormException;
 use \Legacy\Jot\Submission;
-
-# no idea why, but this doesn't work with the name RequestServer....
 use \Legacy\Jot\JotRequestServer as RequestServer;
-
 use \Legacy\Jot\Integrations\FTPIntegration;
 use \Legacy\Jot\Integrations\DropBoxIntegration;
 use \Legacy\Jot\Integrations\Integrations;

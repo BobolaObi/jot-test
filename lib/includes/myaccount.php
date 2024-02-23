@@ -4,7 +4,6 @@ use Legacy\Jot\UserManagement\AccountType;
 use Legacy\Jot\UserManagement\Session;
 use Legacy\Jot\Utils\TimeZone;
 
-# no idea why, but this doesn't work with the name RequestServer....
 
 
 ?>

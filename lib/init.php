@@ -7,10 +7,7 @@ use Legacy\Jot\Utils\Server;
 use Legacy\Jot\Utils\TimeZone;
 use Legacy\Jot\Utils\Utils;
 
-# no idea why, but this doesn't work with the name RequestServer....
-
-
-require_once(__DIR__."/../vendor/autoload.php");
+require_once(__DIR__ . "/../vendor/autoload.php");
 
 /**
  * Initial configuration file, Set everything for JotForm
@@ -142,7 +139,7 @@ if (isset($_SERVER['HTTP_X_FORWARDED_HOST'])) {
     $a = explode(',', $_SERVER['HTTP_X_FORWARDED_HOST']);
     $server = $a[sizeof($a) - 1];
 }
-$server = trim(''.'' . $server);
+$server = trim('' . '' . $server);
 
 $server_path = ((preg_match("/^forms.*\.datalynk\.ca$/", $server) || preg_match("/^forms.*\.intranet$/", $server)) ? '' : '/forms');
 
@@ -283,7 +280,7 @@ if (isDev()) {
         $level = error_reporting();
         $lastError = error_get_last();
         $lastErrorCode = error_get_last()['type'];
-        if(!($lastErrorCode & E_WARNING) ){
+        if (!($lastErrorCode & E_WARNING)) {
             return true;
         }
 //        $PHP_8_SUPPRESSED = E_ERROR | E_CORE_ERROR | E_COMPILE_ERROR | E_USER_ERROR | E_RECOVERABLE_ERROR | E_PARSE;
@@ -430,23 +427,12 @@ TimeZone::setServerTimeZone(@date_default_timezone_get());
 # This function will handle the encoded reuqests
 Utils::handleBase64Requests();
 
-# Funnel::register("Funnel");
-# MailingTest::register("MailingTest");
-
-# Contains all configurations.
-include_once ROOT . "/lib/config.php";
-
-# If a local configuration file exists, include it to overwrite som global values for your local machine  
-if (file_exists(ROOT . "/lib/localConfig.php")) {
-    include_once ROOT . "/lib/localConfig.php";
-}
-
 # If you receieve an installation completed request on applications
 # Auto update script once
-if (APP && Utils::getCookie('INSTALLCOMPLETE')) {
-    include ROOT . "opt/autoUpdate.php";
-    exit;
-}
+//if (APP && Utils::getCookie('INSTALLCOMPLETE')) {
+//    include ROOT . "opt/autoUpdate.php";
+//    exit;
+//}
 
 if (isset($_GET["extra_id"])) {
     Utils::setCookie("jotform_form", $_GET["extra_id"], "+1 Month");
