@@ -5,15 +5,14 @@
 // RSS 0.91, 0.92, 0.93 and 0.94  Officially obsoleted by 2.0
 // So, define constants for RSS 1.0, RSS 2.0 and ATOM 	
 
-namespace forms.
-datalynk . ca\Quarantine;
+namespace Quarantine;;
 
 use constant;
 use FeedItem;
 use formsdefine;
 use srting;
 
-('RSS1', 'RSS 1.0', true);
+define ('RSS1', 'RSS 1.0', true);
 	define('RSS2', 'RSS 2.0', true);
 	define('ATOM', 'ATOM', true);
 

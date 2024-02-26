@@ -1,8 +1,7 @@
 <?php
 
 
-namespace forms.
-datalynk . ca\Quarantine;
+namespace Quarantine;;
 
 /**
  * Migrates a user from old database to new database

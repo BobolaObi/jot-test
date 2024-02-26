@@ -2,7 +2,7 @@
 
 
 
-namespace forms.datalynk.ca\Quarantine;
+namespace Quarantine;
 /**
 	 * File: Browser.php
 	 * Author: Chris Schuld (http://chrisschuld.com/)

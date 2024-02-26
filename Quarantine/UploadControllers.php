@@ -1,8 +1,7 @@
 <?php
 
 
-namespace forms.
-datalynk . ca\Quarantine;
+namespace Quarantine;;
 
 class UploadControllers
 {

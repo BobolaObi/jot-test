@@ -1,10 +1,8 @@
 <?php
 
-namespace forms.
-datalynk . ca\Quarantine;
+namespace Quarantine;;
 
 use ABTesting;
-use formsuse;
 use JotFormSubscriptions;
 use Legacy\Jot\UserManagement\Session;
 use Legacy\Jot\Utils\Console;
@@ -13,9 +11,6 @@ use Legacy\Jot\Utils\Settings;
 use Legacy\Jot\Utils\Utils;
 use MailingTest;
 use UserCrawler;
-
-formsuse formsuse formsuse Legacy\Jot\UserManagement\Session;
-
 
 class Mailing extends UserCrawler
 {

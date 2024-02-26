@@ -1,9 +1,7 @@
 <?php
 
-namespace forms.
-datalynk . ca\Quarantine;
+namespace Quarantine;;
 
-use formsuse;
 use Legacy\Jot\Utils\Console;
 use Legacy\Jot\Utils\DB;
 use Legacy\Jot\Utils\Utils;

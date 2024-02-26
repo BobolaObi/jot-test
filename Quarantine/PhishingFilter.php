@@ -1,7 +1,6 @@
 <?php
 
-namespace forms.
-datalynk . ca\Quarantine;
+namespace Quarantine;;
 
 use CONSTANT;
 use Legacy\Jot\Form;

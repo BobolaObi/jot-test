@@ -1,10 +1,8 @@
 <?php
 
-namespace forms.
-datalynk . ca\Quarantine;
+namespace Quarantine;;
 
 use AmazonS3Controller;
-use formsuse;
 use Legacy\Jot\RequestServer;
 use Legacy\Jot\Utils\Console;
 use Legacy\Jot\Utils\DB;

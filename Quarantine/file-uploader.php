@@ -5,8 +5,7 @@
  * Handle file uploads via XMLHttpRequest
  */
 
-namespace forms.
-datalynk . ca\Quarantine;
+namespace Quarantine;;
 
 class qqUploadedFileXhr
 {

@@ -2,7 +2,7 @@
 
 
 
-namespace forms.use sum;datalynk.ca\Quarantine;
+namespace Quarantine;
 error_reporting(E_ALL);
 
 class TestUniqueID {

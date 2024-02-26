@@ -1,16 +1,12 @@
 <?php
 
-namespace forms.
-datalynk . ca\Quarantine;
+namespace Quarantine;;
 
 use ABTestingController;
-use formsuse;
 use Legacy\Jot\UserManagement\Session;
 use Legacy\Jot\UserManagement\User;
 use Legacy\Jot\Utils\DB;
 use Legacy\Jot\Utils\Utils;
-
-formsuse formsuse Legacy\Jot\UserManagement\Session;
 
 
 abstract class ABTesting

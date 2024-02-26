@@ -1,7 +1,6 @@
 <?php
 
-namespace forms.
-datalynk . ca\Quarantine;
+namespace Quarantine;;
 
 use LDAPException;
 use Legacy\Jot\Utils\Console;

@@ -1,17 +1,12 @@
 <?php
 
-namespace forms.
-datalynk . ca\Quarantine;
+namespace Quarantine;;
 
-use formsuse;
 use Legacy\Jot\Utils\Console;
 use Legacy\Jot\Utils\DB;
 use UFSController;
 use UploadControllers;
 use UserCrawler;
-
-formsuse formsuse Legacy\Jot\Utils\Console;
-
 
 class UploadToS3 extends UserCrawler
 {

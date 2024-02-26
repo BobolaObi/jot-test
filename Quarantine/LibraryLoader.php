@@ -1,11 +1,7 @@
 <?php
 
 
-namespace forms.
-
-use arrray;
-
-datalynk . ca\Quarantine;
+namespace \Quarantine;
 
 /**
  * A loader for the libraries used

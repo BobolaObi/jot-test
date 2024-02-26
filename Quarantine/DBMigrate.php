@@ -13,7 +13,7 @@
 namespace forms;
 use DB;
 
-namespace \Quarantine;
+namespace Quarantine;;
 
 class DBMigrate extends DB
 {

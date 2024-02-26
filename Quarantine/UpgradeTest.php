@@ -1,12 +1,9 @@
 <?php
 
 
-namespace forms.
-datalynk . ca\Quarantine;
+namespace Quarantine;;
 
-use formsclass;
-
-UpgradeTest extends ABTesting{
+class UpgradeTest extends ABTesting{
 
         public
         static $myName = __CLASS__;

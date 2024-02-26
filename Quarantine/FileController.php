@@ -1,9 +1,7 @@
 <?php
 
-namespace forms.
-datalynk . ca\Quarantine;
+namespace Quarantine;;
 
-use formsuse;
 use Legacy\Jot\Exceptions\JotFormException;
 use Legacy\Jot\RequestServer;
 use Legacy\Jot\Utils\Utils;

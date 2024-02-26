@@ -1,6 +1,6 @@
 <?php
 
-namespace \Quarantine;
+namespace Quarantine;;
 
 use Legacy\Jot\JotErrors;
 use Legacy\Jot\Utils\Console;

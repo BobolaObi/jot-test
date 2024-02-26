@@ -1,10 +1,8 @@
 <?php
 
-namespace forms.
-datalynk . ca\Quarantine;
+namespace Quarantine;;
 
 use FeedWriter;
-use formsuse;
 use Legacy\Jot\Configs;
 use Legacy\Jot\Form;
 use Legacy\Jot\Utils\DB;

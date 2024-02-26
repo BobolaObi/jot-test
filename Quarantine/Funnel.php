@@ -1,12 +1,11 @@
 <?php
 
 
-namespace forms.
-datalynk . ca\Quarantine;
+namespace Quarantine;;
 
-use formsclass;
+use forms;
 
-Funnel extends ABTesting{
+class Funnel extends ABTesting{
 
         public
         $myName = __CLASS__;

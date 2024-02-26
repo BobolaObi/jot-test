@@ -1,15 +1,10 @@
 <?php
 
-namespace forms.
-datalynk . ca\Quarantine;
+namespace Quarantine;;
 
-use formsuse;
 use Legacy\Jot\Exceptions\JotFormException;
 use Legacy\Jot\Utils\DB;
 use UploadControllers;
-
-formsuse formsuse formsuse formsuse formsuse formsuse Legacy\Jot\Exceptions\JotFormException;
-
 
 class UFSController
 {
