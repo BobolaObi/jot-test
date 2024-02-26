@@ -11,8 +11,8 @@ use Legacy\Jot\Submission;
 class UtilsArrays extends UtilsStrings{
     /**
      * Case-INsensitive in_array implementation.
-     * @param object $needle
-     * @param object $haystack
+     * @param  $needle
+     * @param  $haystack
      * @return 
      */ 
     static function in_arrayi( $needle, $haystack ) {
@@ -27,7 +27,7 @@ class UtilsArrays extends UtilsStrings{
     
     /**
      * Prints the element correctly
-     * @param object $array
+     * @param  $array
      * @param boolean $exit exits the probram after printing
      * @return 
      */
@@ -49,7 +49,7 @@ class UtilsArrays extends UtilsStrings{
     }
     /**
      * Strip slashes each element of an array
-     * @param object $value array to be stripped
+     * @param  $value array to be stripped
      * @return 
      */
     static function stripslashesDeep($value){
@@ -81,7 +81,7 @@ class UtilsArrays extends UtilsStrings{
     }
     /**
      * Converts all numbers in an array to string recursively
-     * @param object $array
+     * @param  $array
      * @return 
      */
     static function arrayNumbersToString($array){
@@ -97,9 +97,9 @@ class UtilsArrays extends UtilsStrings{
     }
     /**
      * Walks through an array of objects and bring the first occurance of the key value pair.
-     * @param object $key
-     * @param object $value
-     * @param object $array
+     * @param  $key
+     * @param  $value
+     * @param  $array
      * @return 
      */
     static function getArrayValue($key, $value, $array){
@@ -113,7 +113,7 @@ class UtilsArrays extends UtilsStrings{
     }
     /**
      * Convert an array to object recursively
-     * @param object $array
+     * @param  $array
      * @return 
      */
     static function toObject($array){
@@ -129,7 +129,7 @@ class UtilsArrays extends UtilsStrings{
     
     /**
      * Convert an object to array recursively
-     * @param object $array
+     * @param  $array
      * @return 
      */
     static function toArray($object){
@@ -150,7 +150,7 @@ class UtilsArrays extends UtilsStrings{
      /**
      * Check all values of an array and returns false if any of the values are falsy (false, 0, "", null)
      * otherwise return true
-     * @param object $array
+     * @param  $array
      * @return 
      */
     static function arrayAny($array){
@@ -163,7 +163,7 @@ class UtilsArrays extends UtilsStrings{
     /**
      * Check all values of an array and returns false if all of the values are not truty
      * otherwise return false
-     * @param object $array
+     * @param  $array
      * @return 
      */
     static function arrayAll($array){
@@ -175,7 +175,7 @@ class UtilsArrays extends UtilsStrings{
     
     /**
      * Checks if given array is associative or not
-     * @param object $arr
+     * @param  $arr
      * @return 
      */
     static function isAssoc($arr){
@@ -185,7 +185,7 @@ class UtilsArrays extends UtilsStrings{
     
     /**
      * Unset array key and return it's value
-     * @param object $arr
+     * @param  $arr
      * @return 
      */
     static function u(&$arr, $key){
@@ -195,7 +195,7 @@ class UtilsArrays extends UtilsStrings{
     }
     /**
      * Creates an array from print_r output
-     * @param object $string
+     * @param  $string
      * @return 
      */
     static function convertPrintrStringToArray ($string){
@@ -216,7 +216,7 @@ class UtilsArrays extends UtilsStrings{
     }
     /**
      * Serializes PHP Objects, then GZIP the output
-     * @param object $value
+     * @param  $value
      * @return string
      */
     public static function serialize($value){
@@ -229,7 +229,7 @@ class UtilsArrays extends UtilsStrings{
     
     /**
      * Unserializes GZIPPED strings to PHP objects
-     * @param object $str
+     * @param  $str
      * @return Submission
      */
     public static function unserialize($str){

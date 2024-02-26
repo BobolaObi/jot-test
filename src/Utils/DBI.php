@@ -34,10 +34,10 @@ class DBI {
     
     /**
      * Creates aconnection with given parameters and keeps it open
-     * @param object $database Database name
-     * @param object $username [optional] DB user username
-     * @param object $password [optional] DB User password
-     * @param object $hostname [optional] DB hostname
+     * @param  $database Database name
+     * @param  $username [optional] DB user username
+     * @param  $password [optional] DB User password
+     * @param  $hostname [optional] DB hostname
      * @return
      */
     static function setConnection($name, $database, $username = "root", $password = "", $hostname = "localhost"){
@@ -59,7 +59,7 @@ class DBI {
     /**
      * Sanitize database input
      * @link http://xkcd.com/327/
-     * @param object $str
+     * @param  $str
      * @return
      */
     static function escape($str){
@@ -118,7 +118,7 @@ class DBI {
      * Gets the function arguments as an array then parses the first one like printf, it also sanitzes the inputs
      * Use <b>:name</b> for strings
      * Use <b>#name</b> for numbers
-     * @param object $args
+     * @param  $args
      * @return string Parsed Query
      */
     public static function parseQuery($args){
@@ -147,8 +147,8 @@ class DBI {
 
     /**
      * Parses the query from a given hash
-     * @param object $query
-     * @param object $args
+     * @param  $query
+     * @param  $args
      * @return string Parsed Query
      */
     public static function parseQueryHashedArgs($query, $args) {
@@ -204,7 +204,7 @@ class DBI {
     /**
      * This is an unsafe straight forward query function
      * @warning All queries passed to this function must be secured
-     * @param object $query
+     * @param  $query
      * @returnobject  mysql response resource
      */
     static function query($query){
@@ -381,7 +381,7 @@ class DBI {
     
     /**
      * Return the array of columns (with table name index) with details
-     * @param object $table
+     * @param  $table
      * @return array list of table columns with column details
      */
     static function getTableColumns($table){
@@ -412,7 +412,7 @@ class DBI {
 
     /**
      * Check if the table exists or not
-     * @param object $table
+     * @param  $table
      * @return boolen
      */
     static function tableExists($table){
@@ -422,7 +422,7 @@ class DBI {
 
     /**
      * Starts the timer for given title
-     * @param object $title
+     * @param  $title
      * @return null
      */
     static function profileStart($title){
@@ -432,7 +432,7 @@ class DBI {
     /**
      * Brings back the result of time spending in seconds
      * Title must be exact same of the start functon
-     * @param object $title
+     * @param  $title
      * @return float time in seconds
      */
     static function profileEnd($title){

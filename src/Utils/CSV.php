@@ -146,7 +146,7 @@ class CSV{
     
     /**
      * Prompts a download screen then streams the file
-     * @param object $filename
+     * @param  $filename
      * @return 
      */
     public function downloadFile($filename){

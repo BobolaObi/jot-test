@@ -13,7 +13,7 @@ class Server{
     
     /**
      * Set servers in list and convert the list into an object
-     * @param object $servers
+     * @param  $servers
      * @return 
      */
     static function setServers($servers){
@@ -54,7 +54,7 @@ class Server{
     
     /**
      * Checks if the given ip is a sibling or not?
-     * @param object $ip
+     * @param  $ip
      * @return sibling name or false if not found
      */
     static function isSibling($ip){
@@ -64,7 +64,7 @@ class Server{
     /**
      * Returns the information of specific server instance
      * If no name provided returns the self information
-     * @param object $name [optional]
+     * @param  $name [optional]
      * @return false if not an instance or localhost 
      */
     static function getInstance($name = false){
@@ -167,7 +167,7 @@ class Server{
     }
     /**
      * Check if the php version is bigger then given number
-     * @param object $version [optional]
+     * @param  $version [optional]
      * @return 
      */
     static function isPHP($version = '5.0.0'){
@@ -175,9 +175,9 @@ class Server{
     }
     /**
      * Add a new server to the list on database
-     * @param object $name
-     * @param object $remoteIP
-     * @param object $localIP
+     * @param  $name
+     * @param  $remoteIP
+     * @param  $localIP
      * @return 
      */
     static function addServer($name, $publicIP, $localIP){
@@ -186,7 +186,7 @@ class Server{
     }
     /**
      * Removes the server from list on database
-     * @param object $name
+     * @param  $name
      * @return 
      */
     static function removeServer($name){

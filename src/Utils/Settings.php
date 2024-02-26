@@ -6,8 +6,8 @@ class Settings {
     
     /**
      * Returns the array of properties of the setting
-     * @param object $identifier
-     * @param object $key
+     * @param  $identifier
+     * @param  $key
      * @return 
      */
     public static function getSetting($identifier, $key){
@@ -26,8 +26,8 @@ class Settings {
     }
     /**
      * Returns only the value of a setting
-     * @param object $identifier
-     * @param object $key
+     * @param  $identifier
+     * @param  $key
      * @return 
      */
     public static function getValue($identifier, $key){
@@ -40,9 +40,9 @@ class Settings {
     
     /**
      * Inserts the given value to database
-     * @param object $identifier
-     * @param object $key
-     * @param object $value
+     * @param  $identifier
+     * @param  $key
+     * @param  $value
      * @return 
      */
     public static function setSetting($identifier, $key, $value){
@@ -55,8 +55,8 @@ class Settings {
     }
     /**
      * Removes the setting from database
-     * @param object $identifier
-     * @param object $key
+     * @param  $identifier
+     * @param  $key
      * @return 
      */
     public static function removeSetting($identifier, $key){
@@ -66,7 +66,7 @@ class Settings {
     
     /**
      * Returns all settings by identifier
-     * @param object $identifier
+     * @param  $identifier
      * @return 
      */
     public static function getByIdentifier($identifier){
@@ -80,8 +80,8 @@ class Settings {
     
     /**
      * Removes all settings from database by identifier
-     * @param object $identifier
-     * @param object $key
+     * @param  $identifier
+     * @param  $key
      * @return 
      */
     public static function removeByIdentifier($identifier){

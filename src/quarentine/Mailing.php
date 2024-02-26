@@ -64,7 +64,7 @@ class Mailing extends UserCrawler{
     /**
      * Creates a mail according to given group
      * @return 
-     * @param object $type
+     * @param  $type
      */
     public function createMail($type){
         $mail = "";
@@ -134,7 +134,7 @@ class Mailing extends UserCrawler{
     
     /**
      * Checks if this premium user has a monthly subscription or not
-     * @param object $username
+     * @param  $username
      * @author Seyhun Sarıyıldız
      * @return boolean
      */

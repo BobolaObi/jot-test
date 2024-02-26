@@ -10,9 +10,9 @@ class Integrations{
     /**
      * Sets the integraion config object
      * @constructor
-     * @param object $partner
-     * @param object $formID [optional]
-     * @param object $username [optional]
+     * @param  $partner
+     * @param  $formID [optional]
+     * @param  $username [optional]
      * @return 
      */
     public function Integrations($partner, $formID = null, $username = null){
@@ -48,7 +48,7 @@ class Integrations{
     
     /**
      * Returns the asked value
-     * @param object $key
+     * @param  $key
      * @return 
      */
     public function getValue($key){
@@ -66,8 +66,8 @@ class Integrations{
     /**
      * Sets a value on the fly
      * it should be saved to DB
-     * @param object $key
-     * @param object $value
+     * @param  $key
+     * @param  $value
      * @return 
      */
     public function setValue($key, $value){
@@ -78,7 +78,7 @@ class Integrations{
     }
     /**
      * Removes a property from configuration
-     * @param object $key
+     * @param  $key
      * @return 
      */
     public function removeValue($key){

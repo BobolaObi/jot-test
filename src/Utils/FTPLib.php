@@ -12,9 +12,9 @@ class FTPLib{
     private $hostname, $username, $password, $port, $conn;
     /**
      * Contains all the tools to connect FTP Servers
-     * @param object $hostname
-     * @param object $username
-     * @param object $password
+     * @param  $hostname
+     * @param  $username
+     * @param  $password
      * @return 
      */
     public function __construct($hostname, $username, $password, $port = 21){
@@ -182,7 +182,7 @@ class FTPLib{
     
     /**
      * Returns the list of local files
-     * @param object $start_dir [optional]
+     * @param  $start_dir [optional]
      * @return 
      */
     public function getLocalFiles($start_dir='.') {
@@ -216,8 +216,8 @@ class FTPLib{
     
     /**
      * Sets the permissions for a file on FTP Server
-     * @param object $file
-     * @param object $mod
+     * @param  $file
+     * @param  $mod
      * @return 
      */
     public function changeMod($file, $mod){
@@ -228,7 +228,7 @@ class FTPLib{
     
     /**
      * Create Folder
-     * @param object $folder
+     * @param  $folder
      * @return 
      */
     public function createFolder($folder){
@@ -239,8 +239,8 @@ class FTPLib{
     
     /**
      * Creates all folders in the path
-     * @param object $path
-     * @param object $mode [optional]
+     * @param  $path
+     * @param  $mode [optional]
      * @return 
      */
     private function createFilePath($filePath, $mode = 0777){
@@ -267,7 +267,7 @@ class FTPLib{
     
     /**
      * Deletes a folder on FTP Server
-     * @param object $folder
+     * @param  $folder
      * @return 
      */
     public function deleteFolder($folder){
@@ -278,8 +278,8 @@ class FTPLib{
     
     /**
      * Puts a file to FTP Server
-     * @param object $localPath
-     * @param object $remotePath
+     * @param  $localPath
+     * @param  $remotePath
      * @return 
      */
     public function putFile($localPath, $remotePath){
@@ -298,7 +298,7 @@ class FTPLib{
     
     /**
      * Deletes a file from FTP Server
-     * @param object $remotePath
+     * @param  $remotePath
      * @return 
      */
     public function removeFile($remotePath){

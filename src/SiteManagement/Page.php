@@ -15,7 +15,7 @@ class Page {
     /**
      * Constructer
      * @return 
-     * @param object $pageName
+     * @param  $pageName
      */
     function __construct($pageName){
     	$this->page = PageInfo::getPage($pageName);

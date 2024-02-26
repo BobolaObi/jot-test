@@ -22,8 +22,8 @@ class DropBoxIntegration extends UFS{
     /**
      * If inititated empty uses the current session values
      * @constructor
-     * @param object $formID [optional]
-     * @param object $username [optional]
+     * @param  $formID [optional]
+     * @param  $username [optional]
      * @return 
      */
     public function __construct($username=null, $formID=null, $sid = null, $uploadProperties = null, $submission = null){
@@ -65,8 +65,8 @@ class DropBoxIntegration extends UFS{
     
     /**
      * Sends file to dropbox account
-     * @param object $remotePath
-     * @param object $localPath
+     * @param  $remotePath
+     * @param  $localPath
      * @return 
      */
     public function uploadFile(){
@@ -100,8 +100,8 @@ class DropBoxIntegration extends UFS{
     
     /**
      * Send a file to DropBox server
-     * @param object $baseName
-     * @param object $filePath
+     * @param  $baseName
+     * @param  $filePath
      * @return 
      */
     public function sendFile($baseName, $filePath){

@@ -76,7 +76,7 @@ use Legacy\Jot\Utils\Console;
     
     /**
      * Gets a record from search results and normalizes it's structure
-     * @param object $result
+     * @param  $result
      * @return 
      */
     function normalizeSearchResult($result){
@@ -555,10 +555,10 @@ use Legacy\Jot\Utils\Console;
     
     /**
      * Trying to duplicate mhash_keygen_s2k function
-     * @param object $hash
-     * @param object $pass
-     * @param object $salt
-     * @param object $bytes
+     * @param  $hash
+     * @param  $pass
+     * @param  $salt
+     * @param  $bytes
      * @return 
      */
     function hash_keygen_s2k($hash, $pass, $salt, $bytes){

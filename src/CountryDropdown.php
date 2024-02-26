@@ -26,7 +26,7 @@ class CountryDropdown
 
     /**
      * Get states by country
-     * @param object $countryID ID of the country
+     * @param  $countryID ID of the country
      * @return array States by country
      */
     static function getStates($countryID){
@@ -40,7 +40,7 @@ class CountryDropdown
 
     /**
      * Get cities by state
-     * @param object $stateID ID of the state
+     * @param  $stateID ID of the state
      * @return array cities by state
      */
     static function getCities($stateID){
@@ -55,7 +55,7 @@ class CountryDropdown
     /**
      * Will save freauqenty added country
      * @todo complete this function
-     * @param object $country
+     * @param  $country
      * @return null
      */
     static function saveNewCountry($country){
@@ -65,8 +65,8 @@ class CountryDropdown
      *
      * Will save freauqenty added states
      * @todo complete this function
-     * @param object $countryID
-     * @param object $state
+     * @param  $countryID
+     * @param  $state
      * @return null
      */
     static function saveNewState($countryID, $state){
@@ -75,9 +75,9 @@ class CountryDropdown
     /**
      * Will save freauqenty added cities
      * @todo complete this function
-     * @param object $countryID
-     * @param object $stateID
-     * @param object $city
+     * @param  $countryID
+     * @param  $stateID
+     * @param  $city
      * @return
      */
     static function saveNewCity($countryID, $stateID, $city){

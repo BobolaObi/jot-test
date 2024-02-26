@@ -9,7 +9,7 @@ use Legacy\Jot\Utils\Utils;
 class DataListings{
     /**
      * Gets the listing from database
-     * @param object $id
+     * @param  $id
      * @return 
      */
     public static function getListing($id){
@@ -49,7 +49,7 @@ class DataListings{
     /**
      * Gets a listing id and displays it accordin to the type
      * @return 
-     * @param object $id
+     * @param  $id
      */
     public static function showListing($id){
         if(DISABLE_SUBMISSON_PAGES){
@@ -155,10 +155,10 @@ class DataListings{
     }
     /**
      * Updates a listing on database
-     * @param object $listID
-     * @param object $title
-     * @param object $type
-     * @param object $fields
+     * @param  $listID
+     * @param  $title
+     * @param  $type
+     * @param  $fields
      * @return 
      */
     public static function updateListing($listID, $title, $type, $fields, $password = false){
@@ -178,7 +178,7 @@ class DataListings{
     
     /**
      * Deletes a listing from database
-     * @param object $listID
+     * @param  $listID
      * @return 
      */
     public static function deleteListing($listID){
@@ -188,7 +188,7 @@ class DataListings{
     
     /**
      * get all listings by formID
-     * @param object $formID
+     * @param  $formID
      * @return 
      */
     public static function getAllByFormID($formID, $noConfig = false){

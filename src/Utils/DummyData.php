@@ -15,7 +15,7 @@ class DummyData{
     /**
      * Gathers all information for Generation dummydata
      * @constructor 
-     * @param object $formID
+     * @param  $formID
      * @return 
      */
     public function DummyData($formID){

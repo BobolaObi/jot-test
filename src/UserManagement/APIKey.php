@@ -14,7 +14,7 @@ class APIKey {
     private static $salt = "::aSdsjD223::";
     /**
      * Generate an API Key
-     * @param object $getLongKey [optional] set this for longer keys
+     * @param  $getLongKey [optional] set this for longer keys
      * @return APIKey
      */
     static function generate($getLongKey=false){
@@ -32,7 +32,7 @@ class APIKey {
     
     /**
      * Validates the API KEY, No DB action. just checks if the given string is an API KEY or not
-     * @param object $key
+     * @param  $key
      * @return boolean
      */
     static function isValid($key){
@@ -43,7 +43,7 @@ class APIKey {
     
     /**
      * Checks database for API KEY existance return boolean
-     * @param object $key
+     * @param  $key
      * @return boolean
      */
     static function isExists($key){
@@ -58,7 +58,7 @@ class APIKey {
     
     /**
      * Brings the associated user for this API KEY
-     * @param object $key
+     * @param  $key
      * @return User|false
      */
     static function getAPIUser($key){

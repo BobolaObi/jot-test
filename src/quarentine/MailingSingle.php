@@ -40,7 +40,7 @@ class MailingSingle extends UserCrawler{
     /**
      * Creates a mail according to given group
      * @return 
-     * @param object $type
+     * @param  $type
      */
     public function createMail($type){
         $mail = "";

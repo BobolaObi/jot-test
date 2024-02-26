@@ -76,7 +76,7 @@ class Console {
      * ie. Use E_ERROR || E_WARNING to log both error and warning messages.
      * or E_ALL ^ E_INFO to log all messages except for info level messages
      * (also except for E_STRICT as defined by PHP core).
-     * @param object $level error level
+     * @param  $level error level
      * @return null 
      */
     public static function setLogLevel($level) {
@@ -85,7 +85,7 @@ class Console {
     
     /**
      * Sets the log file path
-     * @param object $filename path of the log file
+     * @param  $filename path of the log file
      * @return null
      */
     public static function setLogFolder($folder) {
@@ -119,7 +119,7 @@ class Console {
     
     /**
      * Sets $backtrace.
-     * @param object $backtrace
+     * @param  $backtrace
      * @see Console::$backtrace
      */
     public static function setBacktrace($backtrace) {
@@ -129,7 +129,7 @@ class Console {
     /**
      * Forces console to print ourput into oneline
      * for cleaner log outputs 
-     * @param object $oneLine
+     * @param  $oneLine
      * @return 
      */
     public static function setOneLine($oneLine){
@@ -138,9 +138,9 @@ class Console {
     
     /**
      * Make a decent log entry. Used by self::error, self::warning and self:info.
-     * @param object $text Log entry
-     * @param object $title [optional] title of the log entry
-     * @param object $messageLevel [optional] message's log level. Default E_ALL.
+     * @param  $text Log entry
+     * @param  $title [optional] title of the log entry
+     * @param  $messageLevel [optional] message's log level. Default E_ALL.
      * @return mixed returns the $text itself
      */
     public static function log($obj, $title = false, $messageLevel = E_USER_NOTICE, $type="log"){
@@ -232,8 +232,8 @@ class Console {
     /**
      * Writes the content given file
      * Check the file existance and file size before writing
-     * @param object $logFile
-     * @param object $content
+     * @param  $logFile
+     * @param  $content
      * @return 
      */
     static function writeToLog($logFile, $content){
@@ -264,8 +264,8 @@ class Console {
     
     /**
      * Convenience method for logging messages with E_ERROR level.
-     * @param object $text
-     * @param object $title [optional]
+     * @param  $text
+     * @param  $title [optional]
      * @return mixed $text itself 
      */
     static function error($text, $title = false) {
@@ -274,8 +274,8 @@ class Console {
     
     /**
      * Convenience method for logging messages with E_NOTICE level.
-     * @param object $text
-     * @param object $title [optional]
+     * @param  $text
+     * @param  $title [optional]
      * @return  mixed $text itself
      */
     static function info($text, $title = false) {
@@ -284,8 +284,8 @@ class Console {
     
     /**
      * Convenience method for logging messages with E_WARNING level.
-     * @param object $text
-     * @param object $title [optional]
+     * @param  $text
+     * @param  $title [optional]
      * @return  mixed $text itself
      */
     static function warn($text, $title = false) {
@@ -294,8 +294,8 @@ class Console {
     
     /**
      * Log to keep very long queries
-     * @param object $text
-     * @param object $title [optional]
+     * @param  $text
+     * @param  $title [optional]
      * @return 
      */
     static function long($text, $title = false){
@@ -314,7 +314,7 @@ class Console {
     
     /**
      * Catches the uncought exceptions
-     * @param object $e Exception
+     * @param  $e Exception
      * @return null
      */
     static public function exceptionHandler($e) {
@@ -363,7 +363,7 @@ class Console {
     
     /**
      * Remove the color codes from log entries
-     * @param object $str
+     * @param  $str
      * @return 
      */
     static function clearColors($str){
@@ -385,7 +385,7 @@ class Console {
     
     /**
      * Will read given count of lines from log and print it on the screen
-     * @param object $file [optional]
+     * @param  $file [optional]
      * @return 
      */
     static function readConsole($lines = 1000, $file = "all"){

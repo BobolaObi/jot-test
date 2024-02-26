@@ -13,7 +13,7 @@ class TimeZone {
     
     /**
      * Sets the servers time zone
-     * @param object $zone
+     * @param  $zone
      * @return 
      */
     static function setServerTimeZone($zone){
@@ -88,7 +88,7 @@ class TimeZone {
     
     /**
      * Creates the options for dropdown
-     * @param object $selected [optional]
+     * @param  $selected [optional]
      * @return 
      */
     static function createDropdownOptions($selected = ""){
@@ -112,9 +112,9 @@ class TimeZone {
     
     /**
      * Converts given time to given timezone
-     * @param object $time
-     * @param object $zone [optional]
-     * @param object $format [optional]
+     * @param  $time
+     * @param  $zone [optional]
+     * @param  $format [optional]
      * @return 
      */
     static function convert($time, $userZone = 'EST', $format = false){

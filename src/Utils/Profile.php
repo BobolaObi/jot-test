@@ -14,7 +14,7 @@ class Profile {
     private static $timers = array();
     /**
      * Starts the timer for given title
-     * @param object $title
+     * @param  $title
      * @return 
      */
     static function start($title){
@@ -23,7 +23,7 @@ class Profile {
     /**
      * Brings back the result of time spending in seconds with floating point of milli seconds
      * Title must be exact same of the start functon
-     * @param object $title
+     * @param  $title
      * @return 
      */
     static function end($title){

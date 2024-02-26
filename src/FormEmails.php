@@ -29,7 +29,7 @@ class FormEmails{
     
     /**
      * @constructor
-     * @param object $formID
+     * @param  $formID
      * @return 
      */
     function FormEmails($options){
@@ -72,7 +72,7 @@ class FormEmails{
     
     /**
      * Parses email tags from any content
-     * @param object $content
+     * @param  $content
      * @return 
      */
     public function parseTags($content){
@@ -81,7 +81,7 @@ class FormEmails{
     
     /**
      * Parses the email content with submission data
-     * @param object $data
+     * @param  $data
      * @return 
      */
     public function parseEmails(){
@@ -140,7 +140,7 @@ class FormEmails{
     
     /**
      * Replaces the tag with the user answer
-     * @param object $tag
+     * @param  $tag
      * @return 
      */
     private function replaceTags($tag){
@@ -259,7 +259,7 @@ class FormEmails{
     
     /**
      * Adds a banner to emails according to user status or preferences
-     * @param object $body
+     * @param  $body
      * @return 
      */
     public function addBanner($body, $options){

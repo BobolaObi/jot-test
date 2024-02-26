@@ -36,8 +36,8 @@ class Captcha{
     
     /**
      * Checks if the given word is correct or not
-     * @param object $word
-     * @param object $id
+     * @param  $word
+     * @param  $id
      * @return 
      */
     static function checkWord($word, $id){
@@ -55,7 +55,7 @@ class Captcha{
     }
     /**
      * encodes the captcha URL
-     * @param object $num
+     * @param  $num
      * @return 
      */
     public static function encode($num){
@@ -63,7 +63,7 @@ class Captcha{
     }
     /**
      * decodes the captcha image url
-     * @param object $encoded
+     * @param  $encoded
      * @return 
      */
     public static function decode($encoded){
@@ -77,7 +77,7 @@ class Captcha{
     
     /**
      * Prints the given image on the screen
-     * @param object $code
+     * @param  $code
      * @return 
      */
     public static function serveImg($code){
@@ -94,7 +94,7 @@ class Captcha{
     
     /**
      * Prints the captcha correction page
-     * @param object $sid
+     * @param  $sid
      * @return 
      */
     public static function printCaptchaPage($sid){
@@ -106,8 +106,8 @@ class Captcha{
     
     /**
      * Checks the recaptcha parameters
-     * @param object $challenge
-     * @param object $response
+     * @param  $challenge
+     * @param  $response
      * @return 
      */
     public static function checkReCaptcha($challenge, $response){

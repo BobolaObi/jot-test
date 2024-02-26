@@ -15,7 +15,7 @@ class UtilsRequests extends UtilsEmails
      * Gets a value from Request array
      * it can be POST or GET checks if it's set then returns the value
      * if not found returns false
-     * @param object $key
+     * @param  $key
      * @return
      */
     static function get($key)
@@ -66,7 +66,7 @@ class UtilsRequests extends UtilsEmails
 
     /**
      * Retuns the value of debug options
-     * @param object $key
+     * @param  $key
      * @return
      */
     static function debugOption($key)
@@ -102,8 +102,8 @@ class UtilsRequests extends UtilsEmails
 
     /**
      * Sets the current ID for specific type
-     * @param object $type
-     * @param object $id
+     * @param  $type
+     * @param  $id
      * @return
      */
     static function setCurrentID($type, $id)
@@ -113,7 +113,7 @@ class UtilsRequests extends UtilsEmails
 
     /**
      * Dletes the current id
-     * @param object $type
+     * @param  $type
      * @return
      */
     static function deleteCurrentID($type)
@@ -123,9 +123,9 @@ class UtilsRequests extends UtilsEmails
 
     /**
      * Will force given file be downloaded
-     * @param object $file Source file
-     * @param object $name Filename to be seen on the screen
-     * @param object $mime_type [optional]
+     * @param  $file Source file
+     * @param  $name Filename to be seen on the screen
+     * @param  $mime_type [optional]
      * @return
      */
     static function forceDownload($file, $name, $mime_type = '')
@@ -235,7 +235,7 @@ class UtilsRequests extends UtilsEmails
 
     /**
      *
-     * @param object $fullPath
+     * @param  $fullPath
      * @return
      */
     static function downloadFile($fullPath)
@@ -290,7 +290,7 @@ class UtilsRequests extends UtilsEmails
 
     /**
      * Checks if the file existed on V2 or not
-     * @param object $missingPage
+     * @param  $missingPage
      * @return
      */
     static function checkOnV2($missingPage)
@@ -313,7 +313,7 @@ class UtilsRequests extends UtilsEmails
 
     /**
      * Displays a proper 404Page
-     * @param object $missingPage
+     * @param  $missingPage
      * @return
      */
     static function show404($missingPage)
@@ -338,12 +338,12 @@ class UtilsRequests extends UtilsEmails
      * Yesterday,
      * 10/20/2012
      * </pre>
-     * @param object $name Name of the cookie
-     * @param object $value Value of the cookie
-     * @param object $expire Expiration date in as human readable format (ex: 1 Month)
-     * @param object $path [optional] Path of the cookie
-     * @param object $domain [optional] Domain of the cookie
-     * @param object $httponly [optional] Is cookie HTTP only?
+     * @param  $name Name of the cookie
+     * @param  $value Value of the cookie
+     * @param  $expire Expiration date in as human readable format (ex: 1 Month)
+     * @param  $path [optional] Path of the cookie
+     * @param  $domain [optional] Domain of the cookie
+     * @param  $httponly [optional] Is cookie HTTP only?
      * @return boolean
      */
     static function setCookie($name, $value, $expire, $path = "/", $domain = null, $httponly = null)
@@ -359,7 +359,7 @@ class UtilsRequests extends UtilsEmails
 
     /**
      * Reads the cookie
-     * @param object $name Name of the cookie
+     * @param  $name Name of the cookie
      * @return string|boolean if found returns cookie value if not returns false
      */
     static function getCookie($name)
@@ -369,7 +369,7 @@ class UtilsRequests extends UtilsEmails
 
     /**
      * Deletes a cookie
-     * @param object $name Name of the cookie
+     * @param  $name Name of the cookie
      * @return boolean
      */
     static function deleteCookie($name)
@@ -383,8 +383,8 @@ class UtilsRequests extends UtilsEmails
 
     /**
      * Collects all redirects to one function and makes some work on them
-     * @param object $url
-     * @param object $data [optional] Get parameters
+     * @param  $url
+     * @param  $data [optional] Get parameters
      * @return
      */
     static function redirect($url, $data = array(), $bustFrame = false)
@@ -430,8 +430,8 @@ class UtilsRequests extends UtilsEmails
 
     /**
      * Creates the HTML of post form.
-     * @param object $action
-     * @param object $parameters
+     * @param  $action
+     * @param  $parameters
      * @return string HTML of the form
      */
     static function postRedirect($action, $parameters)
@@ -598,7 +598,7 @@ class UtilsRequests extends UtilsEmails
 
     /**
      * Get a page source with curl
-     * @param object $url
+     * @param  $url
      * @return
      */
     static function curlRequest($url, $params = array())
@@ -644,9 +644,9 @@ class UtilsRequests extends UtilsEmails
      * Posts data to a page and gets the result back
      * Put false to a value if you want the key to be deleted before post
      * @TODO When you use this function to a page hosted on the same server it gets into a loop Should find a solution
-     * @param object $url
-     * @param object $data
-     * @param object $optional_headers [optional]
+     * @param  $url
+     * @param  $data
+     * @param  $optional_headers [optional]
      * @return
      */
     static function postRequest($url, $data, $optional_headers = null)
@@ -685,8 +685,8 @@ class UtilsRequests extends UtilsEmails
     /**
      * Tries to suppress the post request, Especially good for requests which take long time to complete
      * IMPORTANT: if you need to know the response use Utils::postRequest
-     * @param object $url Url which data will be posted
-     * @param object $request Data
+     * @param  $url Url which data will be posted
+     * @param  $request Data
      * @return null
      */
     static function suppressRequest($url, $data)

@@ -19,7 +19,7 @@ class FormFactory {
     
     /**
      * Constructor
-     * @param object $id [optional]
+     * @param  $id [optional]
      * @return 
      */
     function __construct($properties, $source="<body></body>", $forceNew = false){
@@ -85,7 +85,7 @@ class FormFactory {
     
     /**
      * Just in case
-     * @param object $property
+     * @param  $property
      * @return 
      */
     public function getProperty($property){
@@ -95,8 +95,8 @@ class FormFactory {
     /**
      * Save the form
      * @return 
-     * @param object $properties
-     * @param object $source
+     * @param  $properties
+     * @param  $source
      */
     public function save(){
         

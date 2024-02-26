@@ -40,7 +40,7 @@ foreach ($users->result as $row){
         continue;
     }
     
-    $result = new stdClass();
+    $result = new \StdClass();
     $result->username = $row['username'];
     $result->email = $row['email'];
     

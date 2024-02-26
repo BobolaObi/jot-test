@@ -62,8 +62,8 @@ class FTPIntegration extends UFS {
     
     /**
      * Send the file to given FTP integration
-     * @param object $baseName
-     * @param object $filePath
+     * @param  $baseName
+     * @param  $filePath
      * @return 
      */
     public function sendFile($baseName, $filePath){
@@ -90,7 +90,7 @@ class FTPIntegration extends UFS {
     
     /**
      * Returns the list of files onad folder under given path
-     * @param object $path
+     * @param  $path
      * @return 
      */
     public function getDir($path){

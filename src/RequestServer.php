@@ -75,7 +75,7 @@ class RequestServer
     /**
      * Constructor
      * @constructor
-     * @param object $request
+     * @param  $request
      */
     function __construct($request, $bypass = false){
         
@@ -122,7 +122,7 @@ class RequestServer
     
     /**
      * Fixes the json_encode bug for php 5.2.08
-     * @param object $array
+     * @param  $array
      * @link http://bugs.php.net/bug.php?id=40503
      * @return
      */
@@ -136,7 +136,7 @@ class RequestServer
     /**
      * Safely brings data from request. No need to check isset
      * It also converts true false values to boolean
-     * @param object $key
+     * @param  $key
      * @return 
      */
     private function get($key){
@@ -159,10 +159,10 @@ class RequestServer
     
     /**
      * Catches any error and responses with success:false
-     * @param object $errno
-     * @param object $message
-     * @param object $filename
-     * @param object $line
+     * @param  $errno
+     * @param  $message
+     * @param  $filename
+     * @param  $line
      */
     public function errorHandler($errno, $message, $filename, $line) {
         if (error_reporting() == 0) {
@@ -231,7 +231,7 @@ class RequestServer
     
     /**
      * Runs the given method
-     * @param object $action This optional you cal call a different action with the same parameters
+     * @param  $action This optional you cal call a different action with the same parameters
      */
     public function runAction($action = false){
         # Support for manual actions
@@ -311,7 +311,7 @@ class RequestServer
      * Prompts a standard error response, all errors must prompt by this function
      * adds success:false automatically
      * @param object|string $message An error message, you can directly pass all parameters here
-     * @param object $addHash[optional] contains the all error parameters will be sent as a response
+     * @param  $addHash[optional] contains the all error parameters will be sent as a response
      */
     private function error($message, $addHash = array(), $status = 400){
         
@@ -354,7 +354,7 @@ class RequestServer
      * Prompts the request response by given hash
      * adds standard success:true message automatically
      * @param object|string $message Success message you can also pass the all parameters as an array here
-     * @param object $addHash [optional] all other parameters to be sent to user as a response
+     * @param  $addHash [optional] all other parameters to be sent to user as a response
      */
     private function success($message, $addHash = array(), $status = 200){
         if(is_array($message)){

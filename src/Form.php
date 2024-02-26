@@ -43,7 +43,7 @@ class Form{
     /**
      * Gets the form from database by given ID
      * @constructor
-     * @param object $id [optional]
+     * @param  $id [optional]
      * @return 
      */
     function __construct($id = false){
@@ -122,7 +122,7 @@ class Form{
     /**
      * This function defined if the field can be used in reports or email notifications
      * Since there is no meaning to add page breaks, images or form collapse tools in the reports
-     * @param object $type
+     * @param  $type
      * @return boolean 
      */
     static function isDataField($type){
@@ -132,7 +132,7 @@ class Form{
     
     /**
      * Returns the given property value
-     * @param object $prop
+     * @param  $prop
      * @return false if not found
      */
     public function getProperty($prop){
@@ -300,8 +300,8 @@ class Form{
      *   folder: clears the cache folder completely on all servers
      *   db: clears the database cache for all forms
      *   id: clears the form cache opn all servers and db, should provide form id
-     * @param object $type
-     * @param object $id [optional] form ID to to clean
+     * @param  $type
+     * @param  $id [optional] form ID to to clean
      * @return 
      */
     public static function clearCache($type, $id = false){
@@ -405,8 +405,8 @@ class Form{
     
     /**
      * Assign given form to a username This static function can be called without an instance
-     * @param object $formID Form ID to be assigned
-     * @param object $username Username of the new owner
+     * @param  $formID Form ID to be assigned
+     * @param  $username Username of the new owner
      * @return boolean 
      */
     static function assignOwner($formID, $username, $checkGuest = false) {
@@ -421,8 +421,8 @@ class Form{
     }
     /**
      * Check if the slug name for this form is available
-     * @param object $username
-     * @param object $slugName
+     * @param  $username
+     * @param  $slugName
      * @return 
      */
     static function checkSlugAvailable($username, $slugName){
@@ -434,8 +434,8 @@ class Form{
     }
     /**
      * Inserts the slug name on database
-     * @param object $formId
-     * @param object $slugName
+     * @param  $formId
+     * @param  $slugName
      * @return 
      */
     static function saveSlug($formId, $slugName){
@@ -461,7 +461,7 @@ class Form{
     
     /**
      * Get questions of the form
-     * @param object $type [optional] filter questions by type
+     * @param  $type [optional] filter questions by type
      * @return 
      */
     public function getQuestions($type = false, $qids = false){
@@ -500,17 +500,17 @@ class Form{
     
     /**
      * Returns the submissions of the form with a given fileter, sort or page order
-     * @param object $sort [optional]      Define "column name" or "question id" to sort results. Defaults to "created_at"
-     * @param object $start [optional]     Define where will the result array range start. Defaults to "0"
-     * @param object $limit [optional]     Define how many item will be returned. Defaults to "10", SET "-1" to get all submissions
-     * @param object $dir [optional]       Define sort direction. Defaults to "ASC"
-     * @param object $keyword [optional]   Define a search parameter for results. If provided, function will return the results
+     * @param  $sort [optional]      Define "column name" or "question id" to sort results. Defaults to "created_at"
+     * @param  $start [optional]     Define where will the result array range start. Defaults to "0"
+     * @param  $limit [optional]     Define how many item will be returned. Defaults to "10", SET "-1" to get all submissions
+     * @param  $dir [optional]       Define sort direction. Defaults to "ASC"
+     * @param  $keyword [optional]   Define a search parameter for results. If provided, function will return the results
      *                                     containing this keyword and will keep the sort and page order. Defaults to FALSE
-     * @param object $onlyData [optional]  When set to true only brings the submissin data, doesn't include total and questions array
-     * @param object $qids [optional]      List of questions IDs to limit columns to be shown on results
-     * @param object $noMarkup [optional]  Don't generate HTML code on results
-     * @param object $startDate [optional] Show only the submissions from this date
-     * @param object $endDate [optional]   Show until the submission to this date
+     * @param  $onlyData [optional]  When set to true only brings the submissin data, doesn't include total and questions array
+     * @param  $qids [optional]      List of questions IDs to limit columns to be shown on results
+     * @param  $noMarkup [optional]  Don't generate HTML code on results
+     * @param  $startDate [optional] Show only the submissions from this date
+     * @param  $endDate [optional]   Show until the submission to this date
      * @return array Array of results
      */
     public function getSubmissions($sort = "created_at", $start = "0", $limit = "10", $dir = "ASC", $keyword=false, $onlyData = false, $qids = false, $noMarkup = false, $startDate = null, $endDate = null){
@@ -806,7 +806,7 @@ class Form{
     
     /**
      * Returns the result for a single submission
-     * @param object $sid
+     * @param  $sid
      * @return 
      */
     public static function getSubmissionResult($sid){
@@ -901,7 +901,7 @@ class Form{
     
     /**
      * Uses The filter of given listing for getSubmissions method
-     * @param object $listID
+     * @param  $listID
      * @return 
      */
     public function useListingFilter($listID){
@@ -1013,11 +1013,11 @@ class Form{
     
     /**
      * Returns an array of result set formatted in ExtJS way
-     * @param object $sort [optional]
-     * @param object $start [optional]
-     * @param object $limit [optional]
-     * @param object $dir [optional]
-     * @param object $keyword [optional]
+     * @param  $sort [optional]
+     * @param  $start [optional]
+     * @param  $limit [optional]
+     * @param  $dir [optional]
+     * @param  $keyword [optional]
      * @param ıbject $startDate [optional]
      * @param ıbject $endDate [optional] 
      * @return array
@@ -1086,8 +1086,8 @@ class Form{
     
     /**
      * Sets the flag value of a submission
-     * @param object $id
-     * @param object $value
+     * @param  $id
+     * @param  $value
      * @return 
      */
     public static function setSubmissionFlag($id, $value){
@@ -1096,9 +1096,9 @@ class Form{
     
     /**
      * Marks submission as read or unread
-     * @param object $formID
-     * @param object $id
-     * @param object $value
+     * @param  $formID
+     * @param  $id
+     * @param  $value
      * @return 
      */
     public static function setSubmissionReadStatus($formID, $id, $value){
@@ -1115,8 +1115,8 @@ class Form{
     
     /**
      * Completely deletes a submission
-     * @param object $id
-     * @param object $formID
+     * @param  $id
+     * @param  $formID
      * @return 
      */
     public static function deleteSubmission($id, $formID){
@@ -1136,7 +1136,7 @@ class Form{
     
     /**
      * Clones the current form
-     * @param object $username [optional] if provided clones the form to given account
+     * @param  $username [optional] if provided clones the form to given account
      * @return 
      */
     public function cloneForm($username = false){
@@ -1585,8 +1585,8 @@ class Form{
     
     /**
      * Display the form on the page, handle cahces and re-create stuff
-     * @param object $id
-     * @param object $forceDisplay [optional]
+     * @param  $id
+     * @param  $forceDisplay [optional]
      * @return 
      */
     public static function displayForm($id, $forceDisplay = false){
@@ -1800,7 +1800,7 @@ class Form{
     
     /**
      * Go ask jotform to create a form source for you.
-     * @param object $id
+     * @param  $id
      * @return 
      */
     public static function retrieveFormSource($id, $properties=false, $conf=array(), $debug = false){
@@ -1834,10 +1834,10 @@ class Form{
     
     /**
      * Create V8 source code for applications that don't have V8 installed
-     * @param object $id
-     * @param object $formProperties
-     * @param object $serverConfig
-     * @param object $debug [optional]
+     * @param  $id
+     * @param  $formProperties
+     * @param  $serverConfig
+     * @param  $debug [optional]
      * @return 
      */
     static function createV8Source($id, $formProperties, $serverConfig, $debug = false){
@@ -1873,7 +1873,7 @@ class Form{
     
     /**
      * Deletes all the forms associated with the given username.
-     * @param object $username
+     * @param  $username
      * @return 
      */
     public static function deleteBy($username) {
@@ -2128,7 +2128,7 @@ class Form{
     
     /**
      * Recounts the form submissions then updates the table
-     * @param object $id
+     * @param  $id
      * @return 
      */
     public static function updateSubmissionCount($id){
@@ -2140,7 +2140,7 @@ class Form{
     
     /**
      * Recounts the new form submissions then updates the table
-     * @param object $id
+     * @param  $id
      * @return 
      */
     public static function updateNewSubmissionCount($id){
@@ -2352,7 +2352,7 @@ class Form{
     
     /**
      * Gets the form source from cache
-     * @param object $id
+     * @param  $id
      * @return 
      */
     public static function getSource($id){
@@ -2365,7 +2365,7 @@ class Form{
     
     /**
      * Delete maxCDN cache
-     * @param object $path
+     * @param  $path
      * @return 
      */
     public static function clearMaxCDNCache($path){

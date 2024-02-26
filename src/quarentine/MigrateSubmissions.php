@@ -59,7 +59,7 @@ class MigrateSubmissions {
     
     /**
      * Checks if the form exists or not
-     * @param object $id
+     * @param  $id
      * @return 
      */
     public function isFormExist($id){

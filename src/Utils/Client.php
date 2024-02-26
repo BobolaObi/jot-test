@@ -57,7 +57,7 @@ class Client{
     }
     /**
      * Matches the client fingerprint
-     * @param object $fingerPrint
+     * @param  $fingerPrint
      * @return 
      */
     static function match($fingerPrint){

@@ -166,7 +166,7 @@ class Session {
 
     /**
      * Check if slug url needs sessions or not
-     * @param object $slug
+     * @param  $slug
      * @return
      */
     public static function slugHasSession($slug){
@@ -176,9 +176,9 @@ class Session {
 
     /**
      * Cheks the password hash of a user
-     * @param object $cUsername
-     * @param object $cPassword
-     * @param object $params [optional]
+     * @param  $cUsername
+     * @param  $cPassword
+     * @param  $params [optional]
      * @return
      */
     public static function checkUserPasswordHash($cUsername, $cPassword, $params = false){
@@ -207,9 +207,9 @@ class Session {
 
     /**
      * Checks the password hash of a user
-     * @param object $cUsername
-     * @param object $cPassword
-     * @param object $params [optional]
+     * @param  $cUsername
+     * @param  $cPassword
+     * @param  $params [optional]
      * @return
      */
     public static function checkAdminPasswordHash($adminCookie, $params){
@@ -219,9 +219,9 @@ class Session {
 
     /**
      * Checks the password hash of a user
-     * @param object $cUsername
-     * @param object $cPassword
-     * @param object $params [optional]
+     * @param  $cUsername
+     * @param  $cPassword
+     * @param  $params [optional]
      * @return
      */
     public static function checkSupportPasswordHash($supportCookie, $params){
@@ -273,7 +273,7 @@ class Session {
 
     /**
      * Set given email to guest session and save this guest account right away
-     * @param object $email
+     * @param  $email
      * @return
      */
     public static function setGuestEmail($email){
@@ -283,7 +283,7 @@ class Session {
 
     /**
      *
-     * @param object $username
+     * @param  $username
      * @return
      */
     public static function claimGuestAccount($username, $deep = true){
@@ -373,8 +373,8 @@ class Session {
 
     /**
      * Opens a session
-     * @param object $save_path
-     * @param object $session_name
+     * @param  $save_path
+     * @param  $session_name
      * @return
      */
     public static function open($save_path, $session_name){
@@ -392,7 +392,7 @@ class Session {
 
     /**
      * Reads a session
-     * @param object $id
+     * @param  $id
      * @return
      */
     public static function read($id){
@@ -402,8 +402,8 @@ class Session {
 
     /**
      * Writes a session
-     * @param object $id
-     * @param object $sess_data
+     * @param  $id
+     * @param  $sess_data
      * @return
      */
     public static function write($id, $sess_data){
@@ -419,7 +419,7 @@ class Session {
 
     /**
      * Destroys a session
-     * @param object $id
+     * @param  $id
      * @return
      */
     public static function destroy($id){
@@ -429,7 +429,7 @@ class Session {
 
     /**
      * Session garbage collector
-     * @param object $maxlifetime
+     * @param  $maxlifetime
      */
     public static function gc($maxlifetime){
         foreach (glob(self::$savePath."/sess_*") as $filename) {
@@ -441,7 +441,7 @@ class Session {
     }
     /**
      * Serializes session data
-     * @param object $data
+     * @param  $data
      * @return
      */
     public static function serializeSession($data) {
@@ -454,7 +454,7 @@ class Session {
 
     /**
      * Unserializes session data
-     * @param object $data
+     * @param  $data
      * @return
      */
     public static function unserializeSession($data) {
@@ -466,7 +466,7 @@ class Session {
     }
     /**
      * Gets stored session data as an array
-     * @param object $id
+     * @param  $id
      * @return
      */
     public static function getRemoteSession($id){
@@ -475,8 +475,8 @@ class Session {
 
     /**
      * Store the session array in session save path
-     * @param object $id
-     * @param object $data
+     * @param  $id
+     * @param  $data
      * @return
      */
     public static function setRemoteSession($id, $data){
@@ -618,7 +618,7 @@ class Session {
 
     /**
      * Save the selected theme
-     * @param object $theme
+     * @param  $theme
      * @return
      */
     public static function setTheme($theme){

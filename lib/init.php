@@ -6,6 +6,7 @@ use Legacy\Jot\Utils\Console;
 use Legacy\Jot\Utils\Server;
 use Legacy\Jot\Utils\TimeZone;
 use Legacy\Jot\Utils\Utils;
+use Legacy\Jot\Utils\DB;
 
 require_once(__DIR__ . "/../vendor/autoload.php");
 
@@ -38,7 +39,7 @@ if (isset($_SERVER["HTTP_FRONT_END_HTTPS"])) {
 
 /**
  * Auto load function which loads all classes automatically no need to write includes for each class
- * @param object $class_name
+ * @param  $class_name
  * @return
  */
 
@@ -104,8 +105,8 @@ function pending_pedrecation_autoload($class_name)
 
 /**
  * Fix extra slashes in path
- * @param object $path
- * @param object $isfile [optional]
+ * @param  $path
+ * @param  $isfile [optional]
  * @return
  */
 function P($path, $isfile = false)
@@ -470,6 +471,12 @@ if ($JOTFORM_ENV === 'DEVELOPMENT') {
             ], JSON_PRETTY_PRINT));
         });
 }
+
+DB::setConnection('submissions', DB_NAME, DB_USER, DB_PASS, DB_HOST);
+DB::setConnection('new', DB_NAME, DB_USER, DB_PASS, DB_HOST);
+# Set the defaul database to new
+DB::useConnection('new');
+
 
 // autologin to datalynk gneric account
 User::login('USER_TABLES', 'sandbox', true, true, []);

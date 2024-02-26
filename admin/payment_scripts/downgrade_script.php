@@ -16,7 +16,7 @@ foreach ($res->result as $row){
     
     $removeFromScheduledList = false;
     
-    $result = new stdClass();
+    $result = new \StdClass();
     $result->username = $row['username'];
     
     # Stop checking user if username is empty.

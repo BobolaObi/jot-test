@@ -78,7 +78,7 @@ class User {
     /**
      *
      * Constructor
-     * @param object $userProps [optional]
+     * @param  $userProps [optional]
      * @return
      */
     public function __construct($userProps = NULL) {
@@ -116,8 +116,8 @@ class User {
 
     /**
      * Finds the user by given E-mail, excludes GUEST accounts. 
-     * @param object $username
-     * @param object $onlyActive [optional]
+     * @param  $username
+     * @param  $onlyActive [optional]
      * @return
      */
     public static function findByEmail($email, $statusCond = array('ACTIVE')) {
@@ -138,7 +138,7 @@ class User {
     }
     /**
      * Will do a search on Users table
-     * @param object $keyword
+     * @param  $keyword
      * @return 
      */
     public static function searchUsers($keyword, $noGuests = false, $limit=false){
@@ -252,7 +252,7 @@ class User {
 	
     /**
      * Returns the given users time zone
-     * @param object $username
+     * @param  $username
      * @return 
      */
     public static function getTimeZone($username){
@@ -262,7 +262,7 @@ class User {
     
     /**
      *
-     * @param object $emailAddress
+     * @param  $emailAddress
      * @return
      */
     public static function sendPasswordReset($resetData) {
@@ -387,8 +387,8 @@ class User {
     
     /**
      * Change all occurances of users email address to given address  
-     * @param object $from
-     * @param object $to
+     * @param  $from
+     * @param  $to
      * @return 
      */
     public function updateALLEmails($to){
@@ -434,7 +434,7 @@ class User {
     /**
      * Really deletes a user from the table, it removes the user completely.
      * Also removes the related tables, ie. MonthlyUsage, Forms, ...
-     * @param object $username
+     * @param  $username
      * @return result object from the DB class.
      */
     public static function reallyDelete($username) { // O RLY o_O
@@ -448,8 +448,8 @@ class User {
      * Throws JotFormException if the status is not defined there, or
      * RecordNotFoundException if the user does not exist.
      *
-     * @param object $username
-     * @param object $status
+     * @param  $username
+     * @param  $status
      * @return
      */
     public static function setStatus($username, $status) {
@@ -496,7 +496,7 @@ class User {
 	
     /**
      * Recover user from being overlimited and activate it's status
-     * @param object $username
+     * @param  $username
      * @return 
      */
     public static function recoverFromOverLimit($username){
@@ -589,7 +589,7 @@ class User {
     
     /**
      * Suspends the user
-     * @param object $username
+     * @param  $username
      * @return
      */
     public static function suspend($username) {
@@ -599,7 +599,7 @@ class User {
     
     /**
      * Marks user as auto suspended
-     * @param object $username
+     * @param  $username
      * @return
      */
     public static function autoSuspend($username) {
@@ -609,7 +609,7 @@ class User {
     
     /**
      * Will clear all user cache
-     * @param object $username
+     * @param  $username
      * @return 
      */
     public static function clearCache($username){
@@ -775,8 +775,8 @@ class User {
      * Doesn't care about the user's status, only that the username and password
      * matches.
      *
-     * @param object $username
-     * @param object $password
+     * @param  $username
+     * @param  $password
      * @return
      */
     public static function checkLogin($username, $password) {
@@ -809,8 +809,8 @@ class User {
     /**
      * Logs in LDAP users and updates their account.
      * We need this because we always have to check LDAP server for password and account changes
-     * @param object $username
-     * @param object $password
+     * @param  $username
+     * @param  $password
      * @return 
      */
     public static function LDAPLogin($username, $password, $remember){
@@ -856,10 +856,10 @@ class User {
     
     /**
      * Authenticates user and sets sessions
-     * @param object $username
-     * @param object $password
-     * @param object $remember
-     * @param object $forceDeleted
+     * @param  $username
+     * @param  $password
+     * @param  $remember
+     * @param  $forceDeleted
      * @return
      */
     public static function login($user, $password = false, $remember = false, $forceDeleted = false){
@@ -946,7 +946,7 @@ class User {
     
     /**
      * Go find user information on LDAP servers and update local user with this information
-     * @param object $username
+     * @param  $username
      * @return 
      */
     public static function updateUserFromLDAP($username, $password){
@@ -980,8 +980,8 @@ class User {
     
     /**
      * Checks the LDAP servers for username
-     * @param object $username
-     * @param object $password
+     * @param  $username
+     * @param  $password
      * @return
      */ 
     public static function checkLDAP($username, $password){
@@ -1011,7 +1011,7 @@ class User {
     
     /**
      * Forces a username to login
-     * @param object $username
+     * @param  $username
      * @return 
      */
     public static function forceLogin($username){
@@ -1021,7 +1021,7 @@ class User {
     
     /**
      * Creates a completeley un recoverable hash from admin password
-     * @param object $pass
+     * @param  $pass
      * @return
      */
     public static function getAdminHash($username, $password, $fingerprint=false){
@@ -1034,7 +1034,7 @@ class User {
     }
     /**
      * Creates a completeley un recoverable hash from support password
-     * @param object $pass
+     * @param  $pass
      * @return
      */
     public static function getSupportHash($username, $password, $fingerprint=false){
@@ -1081,7 +1081,7 @@ class User {
     }
     /**
      * Checks the admin hash if it's correct
-     * @param object $hash
+     * @param  $hash
      * @return
      */
     public static function checkAdminHash($hash){
@@ -1104,7 +1104,7 @@ class User {
 
     /**
      * Checks the support hash if it's correct
-     * @param object $hash
+     * @param  $hash
      * @return
      */
     public static function checkSupportHash($hash){
@@ -1141,9 +1141,9 @@ class User {
     }
     /**
      * Sets the user cookie
-     * @param object $username Username
-     * @param object $password password
-     * @param object $name [optional] Optional name for cookie
+     * @param  $username Username
+     * @param  $password password
+     * @param  $name [optional] Optional name for cookie
      * @return 
      */
     public static function setCookie($username, $password, $name = false) {
@@ -1166,7 +1166,7 @@ class User {
     
     /**
      * Creates a cookie hash
-     * @param object $password
+     * @param  $password
      * @return 
      */
     static function createCookieHash($password, $fingerprint = false){
@@ -1178,7 +1178,7 @@ class User {
     
     /**
      * Old version of the encode password
-     * @param object $password
+     * @param  $password
      * @return 
      */
     public static function oldEncode($password){
@@ -1195,7 +1195,7 @@ class User {
     
     /**
      * creates a new account for user
-     * @param object $propsArray
+     * @param  $propsArray
      * @return
      */
     public static function registerNewUser($propsArray) {
@@ -1263,7 +1263,7 @@ class User {
 
     /**
      * Saves the MyForms page folder and sort configuration into database
-     * @param object $config
+     * @param  $config
      * @return
      */
     public function saveFolderConfig($config){

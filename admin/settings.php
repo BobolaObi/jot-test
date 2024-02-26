@@ -10,7 +10,7 @@ include_once "../lib/init.php";
     $r = $_REQUEST;
     /**
      * Ajax request success propmt
-     * @param object $msg
+     * @param  $msg
      * @return 
      */
     function s($msg){
@@ -26,7 +26,7 @@ include_once "../lib/init.php";
     
     /**
      * Ajax request error prompt
-     * @param object $msg
+     * @param  $msg
      * @return 
      */
     function e($msg){
@@ -41,7 +41,7 @@ include_once "../lib/init.php";
     
     /**
      * Retun the defined constants of a class
-     * @param object $className
+     * @param  $className
      * @return 
      */
     function get_class_constants($className){

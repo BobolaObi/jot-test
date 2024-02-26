@@ -23,8 +23,8 @@ class Utils extends UtilsArrays
     /**
      * Echos a string on the page.
      * Works only in debug mode
-     * @param object $str String to print
-     * @param object $exit [optional] stop script after print
+     * @param  $str String to print
+     * @param  $exit [optional] stop script after print
      * @return 
      */
     static function debug($str, $exit =false){
@@ -44,7 +44,7 @@ class Utils extends UtilsArrays
     
     /**
      * Cleans the buffer and prints the word
-     * @param object $str
+     * @param  $str
      * @return 
      */
     static function clean($str){
@@ -56,7 +56,7 @@ class Utils extends UtilsArrays
     
     /**
      * Gets the error message from exception
-     * @param object $exception
+     * @param  $exception
      * @return 
      */
     static function error($exception){
@@ -80,9 +80,9 @@ class Utils extends UtilsArrays
     
     /**
      * Will show an error page containing the given message
-     * @param object $error_message Message to show on the screen
-     * @param object $error_title [optional] Page title for the error
-     * @param object $error_notes [optional] These notes will be placed in the page as a comment. to identify the problem
+     * @param  $error_message Message to show on the screen
+     * @param  $error_title [optional] Page title for the error
+     * @param  $error_notes [optional] These notes will be placed in the page as a comment. to identify the problem
      * @return 
      */
     static function errorPage($error_message, $error_title="Error", $error_notes="", $status = 500){
@@ -105,9 +105,9 @@ class Utils extends UtilsArrays
     
     /**
      * Will show an error page containing the given message
-     * @param object $error_message Message to show on the screen
-     * @param object $error_title [optional] Page title for the error
-     * @param object $error_notes [optional] These notes will be placed in the page as a comment. to identify the problem
+     * @param  $error_message Message to show on the screen
+     * @param  $error_title [optional] Page title for the error
+     * @param  $error_notes [optional] These notes will be placed in the page as a comment. to identify the problem
      * @return 
      */
     static function successPage($success_message, $success_title="Congratulations!", $success_notes=""){
@@ -121,7 +121,7 @@ class Utils extends UtilsArrays
     
     /**
      * Finds the command's location on the server
-     * @param object $command
+     * @param  $command
      * @return 
      */
     static function findCommand($command){
@@ -165,7 +165,7 @@ class Utils extends UtilsArrays
     
     /**
      * Chart beat tracking code
-     * @param object $type
+     * @param  $type
      * @return 
      */
     static function usageTracking($type){
@@ -200,7 +200,7 @@ class Utils extends UtilsArrays
     
     /**
      * Place Google anlytcis code on the page
-     * @param object $code
+     * @param  $code
      * @return 
      */
     static function putAnalytics($code){
@@ -222,9 +222,9 @@ class Utils extends UtilsArrays
     private static $cache=array();
     /**
      * Stores the data on APC Cache
-     * @param object $key
-     * @param object $value
-     * @param object $ttl [optional] Time To live
+     * @param  $key
+     * @param  $value
+     * @param  $ttl [optional] Time To live
      * @return 
      */
     public static function cacheStore($key, $value, $ttl = "86400"){
@@ -234,7 +234,7 @@ class Utils extends UtilsArrays
     
     /**
      * Gets the data from cache
-     * @param object $key
+     * @param  $key
      * @return 
      */
     public static function cacheGet($key, $returnInstead = false){
@@ -253,7 +253,7 @@ class Utils extends UtilsArrays
     
     /**
      * Deletes the data from cache
-     * @param object $key
+     * @param  $key
      * @return 
      */
     public static function cacheDelete($key){
@@ -263,7 +263,7 @@ class Utils extends UtilsArrays
     
     /**
      * Clears the APC cache completely
-     * @param object $type [optional]
+     * @param  $type [optional]
      * @return 
      */
     public static function cacheClear($type = 'user'){
@@ -274,7 +274,7 @@ class Utils extends UtilsArrays
     
     /**
      * Returns the correct file extension
-     * @param object $filepath
+     * @param  $filepath
      * @return 
      */
     static function getFileExtension($filepath){
@@ -284,7 +284,7 @@ class Utils extends UtilsArrays
     
     /**
      * Returns the file name from an array
-     * @param object $path
+     * @param  $path
      * @return 
      */
     static function getFileName($path){
@@ -294,7 +294,7 @@ class Utils extends UtilsArrays
     
     /**
      * Recursively creates the paths
-     * @param object $path
+     * @param  $path
      * @return 
      */
     static function recursiveMkdir($path, $mod = 0777){
@@ -318,7 +318,7 @@ class Utils extends UtilsArrays
     }
     /**
      * Recursively deletes a folder with it's contents
-     * @param object $folderName
+     * @param  $folderName
      * @return 
      */
     static function recursiveRmdir($folderName){  
@@ -347,7 +347,7 @@ class Utils extends UtilsArrays
     
     /**
      * Includes a template from includes folder
-     * @param object $name
+     * @param  $name
      */
     static function put($name){
         include ROOT."/lib/includes/".$name.".php";
@@ -365,10 +365,10 @@ class Utils extends UtilsArrays
     }
     /**
      * Creates the upload URL
-     * @param object $username
-     * @param object $formID
-     * @param object $submissionID
-     * @param object $fileName
+     * @param  $username
+     * @param  $formID
+     * @param  $submissionID
+     * @param  $fileName
      * @return 
      */
     public static function getUploadURL($username, $formID, $submissionID, $fileName) {
@@ -423,7 +423,7 @@ class Utils extends UtilsArrays
     }
     /**
      * Returns the dimensions of given image
-     * @param object $fileName
+     * @param  $fileName
      * @return 
      */
     static function getImageDimensions($fileName){
@@ -434,8 +434,8 @@ class Utils extends UtilsArrays
     
     /**
      * Gets the total number and sub number and returns the percentage
-     * @param object $total
-     * @param object $number
+     * @param  $total
+     * @param  $number
      * @return 
      */
     static function percent($total, $number){

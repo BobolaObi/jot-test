@@ -14,7 +14,7 @@ class UtilsEmails {
     
     /**
      * Splits the email aaddresses then cheks their format
-     * @param object $string
+     * @param  $string
      * @return 
      */
     static function splitEmails($emails){
@@ -39,7 +39,7 @@ class UtilsEmails {
     
     /**
      * If email address is in bounced list it will return true
-     * @param object $email
+     * @param  $email
      * @return 
      */
     private static function checkEmailInBouncedList($email){
@@ -70,7 +70,7 @@ class UtilsEmails {
     /**
      * Send E-mail With Send Grid using the same options
      * @see UtilsEmails::sendEmail()
-     * @param object $settings
+     * @param  $settings
      * @return 
      */
     static function sendGrid($settings){
@@ -340,7 +340,7 @@ class UtilsEmails {
     }
     /**
      * Checks the mail logs for email sent status
-     * @param object $email
+     * @param  $email
      * @return 
      */
     static function checkEmailStatus($email){
@@ -369,7 +369,7 @@ class UtilsEmails {
     
     /**
      * Validates the email
-     * @param object $email
+     * @param  $email
      * @return 
      */
     static function checkEmail($email, $checkDB = false){

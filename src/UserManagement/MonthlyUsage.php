@@ -100,7 +100,7 @@ class MonthlyUsage {
      * Resets the monthly usages of the given username. Each usage type
      * is reset to zero.
      * 
-     * @param object $username
+     * @param  $username
      * @return DBResponse
      */
     public static function resetUsageBy($username) {
@@ -125,7 +125,7 @@ class MonthlyUsage {
      * Returns a monthlyUsage object containing the usage data of the user with
      * the given username.
      * 
-     * @param object $username
+     * @param  $username
      * @return MonthlyUsage
      */
     public static function find($username = false) {
@@ -202,9 +202,9 @@ class MonthlyUsage {
      * MonthlyUsage::incrementUsageBy(array('payments', 'sslSubmisssions', 1);
      * </code>
      * 
-     * @param object $username
-     * @param object $checkTypes [optional]
-     * @param object $increaseValues [optional]
+     * @param  $username
+     * @param  $checkTypes [optional]
+     * @param  $increaseValues [optional]
      * @return DBResponse
      */
     public static function incrementUsageBy($username, $checkTypes = "submissions", $increaseValues = 1) {
@@ -246,8 +246,8 @@ class MonthlyUsage {
      * in addition to writing these to the DB. 
      * 
      * @see MonthlyUsage::incrementUsageBy()
-     * @param object $checkTypes [optional]
-     * @param object $increaseValues [optional]
+     * @param  $checkTypes [optional]
+     * @param  $increaseValues [optional]
      * @return 
      */
     public function incrementUsage($checkTypes = "submissions", $increaseValues = 1) {
@@ -287,7 +287,7 @@ class MonthlyUsage {
      * database field names. So, ssl_submissions in the table becomes sslSubmissions
      * in PHP. 
      * 
-     * @param object $checkTypes [optional]
+     * @param  $checkTypes [optional]
      * @param boolean $sendMail [optional] 
      * @return 
      */
@@ -379,9 +379,9 @@ class MonthlyUsage {
      * whether an e-mail is to be sent if the user
      * is over quota or he is just about to cross the 90% mark, respectively.
      * 
-     * @param object $checkTypes [optional]
-     * @param object $sendOverQuotaEmail [optional]
-     * @param object $sendAlmostFullEmail [optional]
+     * @param  $checkTypes [optional]
+     * @param  $sendOverQuotaEmail [optional]
+     * @param  $sendAlmostFullEmail [optional]
      * @return 
      */
     public function sendEmails($checkTypes = array('submissions', 
@@ -517,9 +517,9 @@ class MonthlyUsage {
     
     /**
      * Sets a usage statistic by username
-     * @param object $username
-     * @param object $type
-     * @param object $value
+     * @param  $username
+     * @param  $type
+     * @param  $value
      * @return 
      */
     static function setUsageBy($username, $type, $value){
@@ -532,7 +532,7 @@ class MonthlyUsage {
     
     /**
      * Deletes all upload files and folder without a database entry
-     * @param object $username
+     * @param  $username
      * @return 
      */
     static function cleanOrphanUploads($username){
@@ -587,8 +587,8 @@ class MonthlyUsage {
      
     /**
      * Checks the uploads folder for given user calculates the size then updates the monthly usage table
-     * @param object $username Username to calculate uploads for
-     * @param object $deep [optional] if provided cleans the orphan uploads too
+     * @param  $username Username to calculate uploads for
+     * @param  $deep [optional] if provided cleans the orphan uploads too
      * @return 
      */
     static function calculateDiskUsage($username, $deep = false){

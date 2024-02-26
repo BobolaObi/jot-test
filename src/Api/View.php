@@ -27,7 +27,7 @@ class View implements RestView {
             $data = array();
         }
 
-        $response = new StdClass ;
+        $response = new \StdClass ;
         $response->success = $this->success;
         $response->message = $this->message;
         $response->total   = count($data);

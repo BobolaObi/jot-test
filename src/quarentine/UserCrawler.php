@@ -83,7 +83,7 @@ abstract class UserCrawler{
     
     /**
      * Sets the where clause. Don't use parameter binding with : or # just write regular where clause
-     * @param object $criteria
+     * @param  $criteria
      * @return 
      */
     public function setCriteria($criteria){
@@ -119,7 +119,7 @@ abstract class UserCrawler{
     /**
      * Sets the size of each chunk
      * defaults to 100
-     * @param object $size
+     * @param  $size
      * @return 
      */
 	public function setChunkSize($size){

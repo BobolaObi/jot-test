@@ -260,5 +260,6 @@ if(Server::isHost('salmon')){
 # Set the defaul database to new
 DB::useConnection('new');
 
+# disabled, replaced with default user
 # Remembers users from cookie or starts current session
-Session::rememberLogin();
+# Session::rememberLogin();

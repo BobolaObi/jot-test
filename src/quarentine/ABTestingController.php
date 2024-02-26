@@ -13,7 +13,7 @@ class ABTestingController{
     
     /**
      * Adds a test into active tests list
-     * @param object $testName
+     * @param  $testName
      * @return 
      */
     public static function registerTest($testClass){
@@ -52,7 +52,7 @@ class ABTestingController{
     
     /**
      * Assigns a user to a given test
-     * @param object $testName
+     * @param  $testName
      * @return 
      */
     static function assignUserTo($testName, $username = false){
@@ -132,9 +132,9 @@ class ABTestingController{
     }
     /**
      * Returns the total of the given goals by given time range
-     * @param object $goals
-     * @param object $start
-     * @param object $end
+     * @param  $goals
+     * @param  $start
+     * @param  $end
      * @return 
      */
     static function getGoalsDataByDate($testName, $goals, $group, $start, $end){

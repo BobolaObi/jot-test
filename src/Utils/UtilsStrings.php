@@ -16,9 +16,9 @@ class UtilsStrings extends UtilsRequests{
 
     /**
      * Fixes path slashes
-     * @param object $path
-     * @param object $isfile [optional]
-     * @param object $addSlashes [optional]
+     * @param  $path
+     * @param  $isfile [optional]
+     * @param  $addSlashes [optional]
      * @return
      */
     static function path($path, $isfile = false, $addSlashes = false){
@@ -40,7 +40,7 @@ class UtilsStrings extends UtilsRequests{
     }
     /**
      * Display bytes as human readable strings
-     * @param object $octets
+     * @param  $octets
      * @return string human readable bytes
      */
     static function bytesToHuman($octets){
@@ -53,7 +53,7 @@ class UtilsStrings extends UtilsRequests{
     }
     /**
      * This will try to convert given array to JSON string if not array will be returned
-     * @param object $object
+     * @param  $object
      * @return string|array
      */
     static function safeJsonEncode($object){
@@ -67,7 +67,7 @@ class UtilsStrings extends UtilsRequests{
 
     /**
      * This will try to convert given tring to an array. if not string will be returned
-     * @param object $string
+     * @param  $string
      * @return array|string
      */
     static function safeJsonDecode($string){
@@ -88,7 +88,7 @@ class UtilsStrings extends UtilsRequests{
     }
     /**
      * Converts unicode characters
-     * @param object $str
+     * @param  $str
      * @return
      */
     public static function fixUTF($str){
@@ -139,9 +139,9 @@ class UtilsStrings extends UtilsRequests{
      * Method for making a word camel case.
      * Taken from http://php.net/manual/en/function.strtoupper.php
      *
-     * @param object $str
-     * @param object $capitalizeFirst [optional]
-     * @param object $allowed [optional]
+     * @param  $str
+     * @param  $capitalizeFirst [optional]
+     * @param  $allowed [optional]
      * @return
      */
     static function stringToCamel2($str, $capitalizeFirst = false, $allowed = 'A-Za-z0-9') {
@@ -165,9 +165,9 @@ class UtilsStrings extends UtilsRequests{
     /**
      * Gets the substring between two given strings
      * especially useful for XML parsing
-     * @param object $haystack
-     * @param object $start
-     * @param object $end
+     * @param  $haystack
+     * @param  $start
+     * @param  $end
      * @return
      */
     static function substringBetween($haystack,$start,$end) {
@@ -181,7 +181,7 @@ class UtilsStrings extends UtilsRequests{
     }
     /**
      * Returns the abbrevation of the given country
-     * @param object $country
+     * @param  $country
      * @return string abbrivation "US" if non of them found
      */
     static function getCountryAbbr($country){
@@ -194,7 +194,7 @@ class UtilsStrings extends UtilsRequests{
     }
     /**
      * returns state abbrivations
-     * @param object $state
+     * @param  $state
      * @return string state abbrivation return original if not found
      */
     static function getStateAbbr($state){
@@ -212,7 +212,7 @@ class UtilsStrings extends UtilsRequests{
     }
     /**
      * Returns the brand of the credit card.
-     * @param object $workStr Credit card number
+     * @param  $workStr Credit card number
      * @return string card type returns VISA if not found
      */
     static function identifyCreditCard($workStr){
@@ -240,7 +240,7 @@ class UtilsStrings extends UtilsRequests{
     /**
      * fixes the upload files name for non usable chars
      * @return
-     * @param object $name
+     * @param  $name
      */
     static function fixUploadName($name){
 
@@ -261,7 +261,7 @@ class UtilsStrings extends UtilsRequests{
 
     /**
      * Decodes the encoded URL string
-     * @param object $encoded
+     * @param  $encoded
      * @return
      */
     static function decodeURI($encoded){
@@ -275,7 +275,7 @@ class UtilsStrings extends UtilsRequests{
 
     /**
      * Creates an encoded parameter string
-     * @param object $uri
+     * @param  $uri
      * @return
      */
     static function encodeURI($parameters){
@@ -289,7 +289,7 @@ class UtilsStrings extends UtilsRequests{
     }
     /**
      * Fixes the missing HTTP prefix on urls
-     * @param object $url
+     * @param  $url
      * @return
      */
     static function fixHTTP($url){
@@ -304,8 +304,8 @@ class UtilsStrings extends UtilsRequests{
 
     /**
      * Check if string is containing the given string or not
-     * @param object $needle
-     * @param object $haystack
+     * @param  $needle
+     * @param  $haystack
      * @return
      */
     static function contains($needle, $haystack){
@@ -314,9 +314,9 @@ class UtilsStrings extends UtilsRequests{
 
     /**
      * Shortens a string by given length
-     * @param object $string String to get shortened
-     * @param object $length [optional]  length of the new string defaults to 30
-     * @param object $closure [optional] ending string defaults to "..."
+     * @param  $string String to get shortened
+     * @param  $length [optional]  length of the new string defaults to 30
+     * @param  $closure [optional] ending string defaults to "..."
      * @return string shortened string with closure
      */
     static function shorten($string, $length = "30", $closure = "..."){
@@ -327,9 +327,9 @@ class UtilsStrings extends UtilsRequests{
 
     /**
      * Checks if the string starts with gvent string or not
-     * @param object $haystack
-     * @param object $needle
-     * @param object $case [optional]
+     * @param  $haystack
+     * @param  $needle
+     * @param  $case [optional]
      * @return
      */
     static function startsWith($haystack, $needle, $case=true) {
@@ -338,9 +338,9 @@ class UtilsStrings extends UtilsRequests{
     }
     /**
      * Checks if the string ends with gvent string or not
-     * @param object $haystack
-     * @param object $needle
-     * @param object $case [optional]
+     * @param  $haystack
+     * @param  $needle
+     * @param  $case [optional]
      * @return
      */
     static function endsWith($haystack, $needle, $case=true) {
@@ -349,8 +349,8 @@ class UtilsStrings extends UtilsRequests{
     }
     /**
      * Uses PHP's strip_tags and also removes &nbsp; spaces
-     * @param object $str
-     * @return clean string
+     * @param  $str
+     * @return string
      */
     static function stripTags($str){
         $str = preg_replace("/<br\s*\/?>/", "\n", $str);
@@ -380,7 +380,7 @@ class UtilsStrings extends UtilsRequests{
     /**
      * While stripping the HTML tags keeps the formatting of document
      * and clean ups unnecessary white spaces
-     * @param object $string
+     * @param  $string
      * @return
      */
     static function stripHTML($string, $loose = false){
@@ -403,12 +403,12 @@ class UtilsStrings extends UtilsRequests{
     /**
      * Draws a line and marks the place with given percantage and length
      * Utils::drawSlider("70", "250", "30"); prints [0 -----------(100)------------------ 250]
-     * @param object $value
-     * @param object $max [optional]
-     * @param object $length [optional]
-     * @param object $marker [optional]
-     * @param object $filled [optional]
-     * @param object $empty [optional]
+     * @param  $value
+     * @param  $max [optional]
+     * @param  $length [optional]
+     * @param  $marker [optional]
+     * @param  $filled [optional]
+     * @param  $empty [optional]
      * @return
      */
     static function drawSlider($value, $max = 100, $length = 30, $marker=null, $filled = "-",  $empty="-"){
@@ -482,7 +482,7 @@ class UtilsStrings extends UtilsRequests{
 
     /**
      * Fins and replace stupid windows characters that breaks Excel reports and etc
-     * @param object $str
+     * @param  $str
      * @return
      */
     public static function fixMSWordChars($str){

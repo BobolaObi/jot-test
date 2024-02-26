@@ -53,7 +53,7 @@ class DBMigrate extends DB
     }
     /**
      * Gets the any trigger assotiated with given table
-     * @param object $tableName
+     * @param  $tableName
      * @return 
      */
     static private function getTriggers($tableName){
@@ -76,8 +76,8 @@ class DBMigrate extends DB
     }
     /**
      * 
-     * @param object $localDBConfig
-     * @param object $fileDBConfig
+     * @param  $localDBConfig
+     * @param  $fileDBConfig
      * @return 
      */
     static private function addRemoveExtraTablesQueries($localDBConfig, $fileDBConfig){
@@ -89,8 +89,8 @@ class DBMigrate extends DB
     }
     /**
      * Creates queries for missing tables according to the schema file
-     * @param object $localDBConfig
-     * @param object $fileDBConfig
+     * @param  $localDBConfig
+     * @param  $fileDBConfig
      * @return 
      */
     static private function addCreateMissingTablesQueries($localDBConfig, $fileDBConfig){
@@ -124,8 +124,8 @@ class DBMigrate extends DB
     }
     /**
      * Creates ALTER queries according to the schema file
-     * @param object $localDBConfig
-     * @param object $fileDBConfig
+     * @param  $localDBConfig
+     * @param  $fileDBConfig
      * @return 
      */
     static private function addChagedTablesQueries($localDBConfig, $fileDBConfig){
@@ -240,8 +240,8 @@ class DBMigrate extends DB
     }
     /**
      * Compares two configurations. Curren database and schema file
-     * @param object $array1
-     * @param object $array2
+     * @param  $array1
+     * @param  $array2
      * @return 
      */
     static private function compareConfigArrays($array1,$array2){

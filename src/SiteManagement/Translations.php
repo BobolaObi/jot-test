@@ -113,7 +113,7 @@ class Translations
 
     /**
      * Determines the language code from cookie or browser options
-     * @param object $forceLanguage [optional] Forces a language to be used
+     * @param  $forceLanguage [optional] Forces a language to be used
      * @return 
      */
     public static function getLanguageCode($forceLanguage = NULL) {
@@ -180,7 +180,7 @@ class Translations
 
     /**
      * Checks if the language is available as a translation on our end
-     * @param object $lang
+     * @param  $lang
      * @return 
      */
     public static function checkLangAvailable($lang){
@@ -212,7 +212,7 @@ class Translations
     
     /**
      * Reads the translation file parses the JSON and puts it into an array
-     * @param object $lang
+     * @param  $lang
      * @return 
      */
     public static function getLanguageArray($lang){
@@ -228,7 +228,7 @@ class Translations
     public static $notTranslated = array();
     /**
      * translates the given text into the selected language
-     * @param object $string Word to be translated
+     * @param  $string Word to be translated
      * @return string Translated Word
      */
     public static function getText($string){
@@ -269,7 +269,7 @@ class Translations
     
     /**
      * Evaluates all page translates all HTML markup then cleans up the locale classes
-     * @param object $lang
+     * @param  $lang
      * @return 
      */
     public static function translatePage($lang = false){
@@ -503,7 +503,7 @@ class Translations
     
     /**
      * Prompt language file for download
-     * @param object $requestedPage
+     * @param  $requestedPage
      * @return 
      */
     static function downloadLanguageFile($requestedPage){        

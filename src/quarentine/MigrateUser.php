@@ -72,7 +72,7 @@ class MigrateUser{
     
     /**
      * @constructor
-     * @param object $username
+     * @param  $username
      * @return 
      */
     public function __construct($username, $merge = true, $addPrefix = false, $skipMigrated = false){
@@ -193,7 +193,7 @@ class MigrateUser{
     
     /**
      * Create Default Email
-     * @param object $formID
+     * @param  $formID
      * @return 
      */
     public function createDefaultEmail($formID, $isHTML = true){
@@ -257,8 +257,8 @@ class MigrateUser{
     
     /**
      * Will change all tags to new ones
-     * @param object $emailStr
-     * @param object $formID
+     * @param  $emailStr
+     * @param  $formID
      * @return 
      */
     public function parseTags($emailStr, $formID) {
@@ -269,7 +269,7 @@ class MigrateUser{
     
     /**
      * Replaces the tag with the user answer
-     * @param object $tag
+     * @param  $tag
      * @return 
      */
     private function replaceTags($match){
@@ -290,8 +290,8 @@ class MigrateUser{
     
     /**
      * Creates a question name for given question
-     * @param object $qid
-     * @param object $formID
+     * @param  $qid
+     * @param  $formID
      * @return 
      */
     public function createQuestionName($qid, $formID){
@@ -319,7 +319,7 @@ class MigrateUser{
     /**
      * Converts the emails then add to the form properties
      * @TODO create default email template and replace all tags with the new ones
-     * @param object $formProperties
+     * @param  $formProperties
      * @return 
      */
     public function convertEmails($formProperties, $formID){
@@ -364,7 +364,7 @@ class MigrateUser{
     
     /**
      * Will convert the old properties to new ones
-     * @param object $properties
+     * @param  $properties
      * @return 
      */
     public function convertProperties($properties, $formID){
@@ -565,7 +565,7 @@ class MigrateUser{
     
     /**
      * Converts the changed questions types
-     * @param object $type
+     * @param  $type
      * @return 
      */
     public function convertTypeName($type){
@@ -586,8 +586,8 @@ class MigrateUser{
     
     /**
      * Converts subscription duration texts for new version
-     * @param object $type
-     * @param object $duration
+     * @param  $type
+     * @param  $duration
      * @return 
      */
     public function convertSubscriptionDurations($type, $duration){
@@ -621,8 +621,8 @@ class MigrateUser{
     
     /**
      * Converts trial duration texts to new version
-     * @param object $type
-     * @param object $duration
+     * @param  $type
+     * @param  $duration
      * @return 
      */
     public function convertTrialDurations($type, $duration){
@@ -955,7 +955,7 @@ class MigrateUser{
     
     /**
      * Will count the submissions for given form
-     * @param object $id
+     * @param  $id
      * @return 
      */
     public function countSubmissions($id){
@@ -963,7 +963,7 @@ class MigrateUser{
     }
     /**
      * Checks if the form exists or not
-     * @param object $id
+     * @param  $id
      * @return 
      */
     public function isFormExist($id){
@@ -972,7 +972,7 @@ class MigrateUser{
     }
     /**
      * Checks if the user exists or not
-     * @param object $username
+     * @param  $username
      * @return 
      */
     public function isUserExist($username){

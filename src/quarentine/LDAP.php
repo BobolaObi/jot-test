@@ -12,8 +12,8 @@ class LDAP{
     
     /**
      * Constructs LDAP object
-     * @param object $host
-     * @param object $port [optional]
+     * @param  $host
+     * @param  $port [optional]
      * @return 
      */
     public function __construct($host,  $port = 389){
@@ -28,9 +28,9 @@ class LDAP{
     } 
     /**
      * Bind to LDAP server
-     * @param object $username [optional]
-     * @param object $domain [optional]
-     * @param object $password [optional]
+     * @param  $username [optional]
+     * @param  $domain [optional]
+     * @param  $password [optional]
      * @return 
      */
     public function bind($username = null, $domain="", $password=null){

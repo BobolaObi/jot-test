@@ -21,7 +21,7 @@ class PageInfo
     /**
      * Returns the page info
      * @return 
-     * @param object $page
+     * @param  $page
      */
     static function getPage($page){
         if(array_key_exists($page, self::$pages)){
@@ -33,10 +33,10 @@ class PageInfo
     /**
      * Creates a new page
      * @return 
-     * @param object $pageName
-     * @param object $pageTitle
-     * @param object $contentFile
-     * @param object $cssIncludes[optional]
+     * @param  $pageName
+     * @param  $pageTitle
+     * @param  $contentFile
+     * @param  $cssIncludes[optional]
      */
     static function setPage($options){
     

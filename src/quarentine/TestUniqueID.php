@@ -26,7 +26,7 @@ class TestUniqueID {
     
     /**
      * Gets the sum of the ID for validation
-     * @param object $base First digits of the ID except last 2 digit 
+     * @param  $base First digits of the ID except last 2 digit 
      * @return sum of the ID 
      */
     public static function getSum($base){
@@ -38,7 +38,7 @@ class TestUniqueID {
     
     /**
      * Splits the id to base and sum
-     * @param object $id
+     * @param  $id
      * @return (array) base, sum
      */
     public static function splitID($id){
@@ -50,7 +50,7 @@ class TestUniqueID {
     
     /**
      * Validates the number if it's a JotForm ID or not
-     * @param object $id
+     * @param  $id
      * @return 
      */
     public static function validateID($id){
@@ -63,7 +63,7 @@ class TestUniqueID {
     
     /**
      * Encodes given ID
-     * @param object $id
+     * @param  $id
      * @return 
      */
     public static function encodeID($id){
@@ -75,7 +75,7 @@ class TestUniqueID {
     }
     /**
      * Decodes the encoded IDs
-     * @param object $encoded
+     * @param  $encoded
      * @return 
      */
     public static function decodeID($encoded){

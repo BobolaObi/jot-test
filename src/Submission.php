@@ -231,7 +231,7 @@ class Submission {
     
     /**
      * Add aditional data to use in further operations
-     * @param object $data
+     * @param  $data
      * @return 
      */
     public function addAdditional($data){
@@ -257,7 +257,7 @@ class Submission {
     
     /**
      * Deletes the submissions by a username
-     * @param object $username
+     * @param  $username
      * @return 
      */
     public static function deleteBy($username) {
@@ -275,7 +275,7 @@ class Submission {
     
     /**
      * Returns the form desired form property and caches the results
-     * @param object $prop
+     * @param  $prop
      * @return 
      */
     public function getFormProperty($prop){
@@ -289,7 +289,7 @@ class Submission {
     
     /**
      * Stores serialized submission on the database
-     * @param object $token [optional] token for identifying paypal pro submissions
+     * @param  $token [optional] token for identifying paypal pro submissions
      * @return 
      */
     private function stopSubmission($type, $token = "", $sessionID = ""){
@@ -325,9 +325,9 @@ class Submission {
     
     /**
      * Contiues the stopped submission
-     * @param object $id
-     * @param object $type [optional]
-     * @param object $continuous [optional]
+     * @param  $id
+     * @param  $type [optional]
+     * @param  $continuous [optional]
      * @return 
      */
     public static function continueSubmission($id, $type = '', $continuous = false, $additionalInfo = false){
@@ -363,7 +363,7 @@ class Submission {
     
     /**
      * Completes all pending submissions of a form
-     * @param object $formID
+     * @param  $formID
      * @return 
      */
     public static function continueAllSubmissions($formID){
@@ -711,8 +711,8 @@ class Submission {
     
     /**
      * Creates a question name for given question
-     * @param object $qid
-     * @param object $formID
+     * @param  $qid
+     * @param  $formID
      * @return 
      */
     public function createQuestionName($text){
@@ -897,8 +897,8 @@ class Submission {
      * submitted value for some fields so it should only be used for
      * display purposes not for DB actions
      * 
-     * @param object $pvalue
-     * @param object $qid
+     * @param  $pvalue
+     * @param  $qid
      * @return 
      */
     public function fixFlatValue($pvalue, $qid){
@@ -932,8 +932,8 @@ class Submission {
     
     /**
      * Fix the array value for display and saving
-     * @param object $pvalue
-     * @param object $qid
+     * @param  $pvalue
+     * @param  $qid
      * @return 
      */
     public function fixValue($pvalue, $qid){
@@ -1080,7 +1080,7 @@ class Submission {
     
     /**
      * Creates a representative text for the products selected. their real values are kept on the database too.
-     * @param object $selectedProducts
+     * @param  $selectedProducts
      * @return 
      */
     public function makeProductText($selectedProducts){
@@ -1224,8 +1224,8 @@ class Submission {
     
 	/**
 	 * Checks if the given answer is exist on database or not
-	 * @param object $qid
-	 * @param object $item_name [optional]
+	 * @param  $qid
+	 * @param  $item_name [optional]
 	 * @return 
 	 */
 	public function checkAnswerExists($qid, $item_name = ''){
@@ -1395,8 +1395,8 @@ class Submission {
     
     /**
      * Gets an upload propery and completes the upload
-     * @param object $uploadProp
-     * @param object $questionProp
+     * @param  $uploadProp
+     * @param  $questionProp
      * @return 
      */
     private function doUpload($uploadProp, $questionProp){
@@ -1798,9 +1798,9 @@ class Submission {
     
     /**
      * Checks the rule according to given operator
-     * @param object $operator
-     * @param object $field
-     * @param object $value
+     * @param  $operator
+     * @param  $field
+     * @param  $value
      * @return 
      */
     public function checkTerm($operator, $id, $value){
@@ -1860,7 +1860,7 @@ class Submission {
     
     /**
      * Checks the condition as a whole, checks all terms the checks their link
-     * @param object $cond
+     * @param  $cond
      * @return 
      */
     public function checkCondition($cond){
@@ -1885,7 +1885,7 @@ class Submission {
     
     /**
      * Redirects the user after submission to a specified place.
-     * @param object $store [optional] if true stores redirect parameters instead of applying
+     * @param  $store [optional] if true stores redirect parameters instead of applying
      * @return 
      */
     private function handleRedirects($store = false){
@@ -1963,10 +1963,10 @@ class Submission {
     
     /**
      * Completes the redirect action
-     * @param object $type Type of the redirect action
-     * @param object $value value of the redirect such as URL or text
-     * @param object $params [optional] paramaters for URL
-     * @param object $store [optional] if provided redirect action will be saved in pending table 
+     * @param  $type Type of the redirect action
+     * @param  $value value of the redirect such as URL or text
+     * @param  $params [optional] paramaters for URL
+     * @param  $store [optional] if provided redirect action will be saved in pending table 
      * @return 
      */
     public static function doRedirect($type, $value="", $params = array(), $store = false){
@@ -2014,7 +2014,7 @@ class Submission {
     
     /**
      * Completes the pending redirect action
-     * @param object $submissionID
+     * @param  $submissionID
      * @return 
      */
     public static function completeRedirect($submissionID){
@@ -2123,7 +2123,7 @@ class Submission {
     
     /**
      * Completes the rest of the submission
-     * @param object $noRedirect [optional] If set to true then skips the redirect process, only saves the submission and sends the emails
+     * @param  $noRedirect [optional] If set to true then skips the redirect process, only saves the submission and sends the emails
      * @return 
      */
     public function complete($noRedirect = false){

@@ -43,7 +43,7 @@ abstract class ABTesting {
     /**
      * Checks if the participiant is suitiable for this test
      * return true if it's OK
-     * @param object $user
+     * @param  $user
      * @return bool
      */
     abstract function checkParticipant();
@@ -120,7 +120,7 @@ abstract class ABTesting {
     
     /**
      * Returns the participant info from database
-     * @param object $username
+     * @param  $username
      * @return 
      */
     public function getTestParticipant($username){
@@ -223,8 +223,8 @@ abstract class ABTesting {
     
     /**
      * Check if the user already set the goal
-     * @param object $goalName
-     * @param object $username [optional] if provided checks the user from database
+     * @param  $goalName
+     * @param  $username [optional] if provided checks the user from database
      * @return 
      */
     public function hasGoal($goalName, $username = false){
@@ -247,7 +247,7 @@ abstract class ABTesting {
     
     /**
      * Saves the goal to database
-     * @param object $goalName
+     * @param  $goalName
      * @return 
      */
     public function saveGoal($goalName, $username = false, $className = false){
@@ -291,8 +291,8 @@ abstract class ABTesting {
     
     /**
      * Save a goal for test participant
-     * @param object $goalName
-     * @param object $username [optional]
+     * @param  $goalName
+     * @param  $username [optional]
      * @return 
      */
     public static function setGoal($goalName, $className, $username = false){

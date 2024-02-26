@@ -25,8 +25,8 @@ class MigrateAll{
     
     /**
      * Gets a pile of users from database
-     * @param object $start Where to start
-     * @param object $limit How many
+     * @param  $start Where to start
+     * @param  $limit How many
      * @return 
      */
     static function getChunk($start, $limit){
