@@ -561,7 +561,7 @@ class User {
     
     /**
      * Reverses the effects of suspend and auto-suspend.
-     * @param unknown_type $username
+     * @param  $username
      * @return 
      */
     public static function activate($username) {

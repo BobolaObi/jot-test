@@ -2,7 +2,8 @@
 
 namespace Legacy\Jot;
 
-use Legacy\Jot\Integrations\DropBoxIntegration;
+use forms\DBMigrate;
+use forms\DropBoxIntegration;
 use Legacy\Jot\Integrations\FTPIntegration;
 use Legacy\Jot\Integrations\Integrations;
 use Legacy\Jot\UserManagement\AccountType;

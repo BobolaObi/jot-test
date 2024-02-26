@@ -7,7 +7,7 @@
 
 namespace Legacy\Jot;
 
-use Legacy\Jot\Integrations\DropBoxIntegration;
+use forms\DropBoxIntegration;
 use Legacy\Jot\Integrations\FTPIntegration;
 use Legacy\Jot\UserManagement\MonthlyUsage;
 use Legacy\Jot\Utils\Captcha;
@@ -1459,7 +1459,7 @@ class Submission {
             if(!$this->isEdit){
                $this->monthlyUsage->incrementUsage('uploads', $uploadProp["size"]);
             }
-        }catch (Exception $e){
+        }catch (\Exception $e){
             Utils::errorPage("File could not be uploaded for some reason.".$this->goBackMessage, "Upload Error", print_r(error_get_last(), true));
         }
     }

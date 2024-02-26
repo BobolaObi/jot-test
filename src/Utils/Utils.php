@@ -409,7 +409,7 @@ class Utils extends UtilsArrays
     
     /**
      * This function converts the old note to array from old database.
-     * @param unknown_type $note
+     * @param  $note
      */
     static function convertOldPaymentLogToArray($note){
         $result = array();

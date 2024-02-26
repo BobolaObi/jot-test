@@ -8,6 +8,8 @@
 namespace Legacy\Jot;
 
 use Legacy\Jot\Api\Core\RestServer;
+use Legacy\Jot\Exceptions\RecordNotFoundException;
+use Legacy\Jot\Exceptions\SoftException;
 use Legacy\Jot\SiteManagement\PageInfo;
 use Legacy\Jot\UserManagement\MonthlyUsage;
 use Legacy\Jot\UserManagement\Session;
@@ -1018,8 +1020,8 @@ class Form{
      * @param  $limit  // [optional]
      * @param  $dir  // [optional]
      * @param  $keyword  // [optional]
-     * @param ıbject $startDate [optional]
-     * @param ıbject $endDate [optional] 
+     * @param  $startDate [optional]
+     * @param  $endDate [optional] 
      * @return array
      */
     public function getExtGridSubmissions($sort="created_at", $start="0", $limit="10", $dir="DESC", $keyword=false, $startDate = null, $endDate = null){
@@ -1127,9 +1129,9 @@ class Form{
         # UFSCONTROLLER DELETE---------------------------------------------------------------------------
         #------------------------------------------------------------------------------------------------
         # Create UFSController.
-        $ufsc = new UFSController(Session::$username, $formID, $id);
-        $ufsc->deleteSubmissionFiles();
-        MonthlyUsage::calculateDiskUsage(Session::$username);
+//        $ufsc = new UFSController(Session::$username, $formID, $id);
+//        $ufsc->deleteSubmissionFiles();
+//        MonthlyUsage::calculateDiskUsage(Session::$username);
         #------------------------------------------------------------------------------------------------
         return true;
     }
@@ -1470,7 +1472,7 @@ class Form{
     
     /**
      * Creates a zip file for the source codes.
-     * @param unknown_type $id
+     * @param  $id
      * @return 
      */
     public static function createZip($id, $source){

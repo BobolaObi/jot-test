@@ -363,7 +363,7 @@ class FormEmails{
                     }
                     $email['customHeader'] = "X-Related-FormID:". $this->formID;
                     Utils::sendEmail($email);
-                } catch (Exception $e) {
+                } catch (\Exception $e) {
                     Console::error($e);
                 }
             } 
