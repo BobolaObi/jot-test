@@ -6,8 +6,15 @@
  * @package JotForm_Exceptions
  */
 
-namespace Legacy\Jot\_exceptions;
-
+namespace Legacy\Jot\Exceptions;
+use Legacy\Jot\Exceptions\DBException;
+use Legacy\Jot\Exceptions\JotFormException;
+use Legacy\Jot\Exceptions\LDAPException;
+use Legacy\Jot\Exceptions\NoChangesMadeException;
+use Legacy\Jot\Exceptions\RecordNotFoundException;
+use Legacy\Jot\Exceptions\SoftException;
+use Legacy\Jot\Exceptions\SystemException;
+use Legacy\Jot\Exceptions\Warning;
 use Legacy\Jot\Utils\Console;
 
 class JotFormException extends Exception {
