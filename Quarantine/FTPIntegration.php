@@ -1,7 +1,16 @@
 <?php
 # require_once ('./lib/classes/UFS.php');
 
-namespace Legacy\Jot\Integrations;
+namespace Quarantine;
+
+use Legacy\Jot\Integrations\Console;
+use Legacy\Jot\Integrations\Exception;
+use Legacy\Jot\Integrations\Form;
+use Legacy\Jot\Integrations\FTPLib;
+use Legacy\Jot\Integrations\Integrations;
+use Legacy\Jot\Integrations\Server;
+use Legacy\Jot\Integrations\UFS;
+use Legacy\Jot\Integrations\Utils;
 
 class FTPIntegration extends UFS {
     

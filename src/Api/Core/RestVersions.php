@@ -33,7 +33,7 @@ class RestVersions{
     
     /**
      * Get the instance of the RestVersions class
-     * @return RestVersions
+     * @return \\ RestVersions
      */
     public static function getInstance(){
          if (!isset(self::$instance)) {
@@ -48,7 +48,7 @@ class RestVersions{
      * the system.
      * 
      * @param string $verison
-     * @return booloan $isAvailable
+     * @return \\ booloan $isAvailable
      */
     public function isVersionAvailable($version){
         return isset($this->versions[$version]); 
@@ -57,7 +57,7 @@ class RestVersions{
     /**
      * Return if the version is disabled.
      * @param string $version
-     * @return boolean $isDisabled
+     * @return \\ boolean $isDisabled
      */
     public function isVersionDisabled($version){
         return !$this->versions[$version];
@@ -90,7 +90,7 @@ class RestVersions{
      * Test the $fetchedVersion if it is ordinary
      * for a version number or not.
      * @param string $fetchedVersion
-     * @return bool
+     * @return \\ bool
      */
     public function isVersionSyntaxCorrect($fetchedVersion){
     	return preg_match ('/^v\d+(\.\d+)?$/', $fetchedVersion);

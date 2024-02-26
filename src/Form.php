@@ -125,7 +125,7 @@ class Form{
      * This function defined if the field can be used in reports or email notifications
      * Since there is no meaning to add page breaks, images or form collapse tools in the reports
      * @param  $type
-     * @return boolean 
+     * @return \\ boolean 
      */
     static function isDataField($type){
         $nonDataFields = array("control_button", "control_text", "control_head", "control_image", "control_captcha", "control_collapse", "control_pagebreak");
@@ -135,7 +135,7 @@ class Form{
     /**
      * Returns the given property value
      * @param  $prop
-     * @return false if not found
+     * @return \\ false if not found
      */
     public function getProperty($prop){
         $res = DB::read("SELECT `value` FROM `form_properties` WHERE `form_id`=#id AND `prop`=':prop' AND (`type` IS NULL OR `type`='')", $this->id, $prop);
@@ -147,7 +147,7 @@ class Form{
     /**
      * Returns the saved and zipped version of the form properties
      * Which will be used in Form Builder
-     * @return array 
+     * @return \\ array 
      */
     public function getSavedProperties($checkAuth = true) {
          
@@ -270,7 +270,7 @@ class Form{
     
     /**
      * Get the owner of the form
-     * @return User
+     * @return \\ User
      */
     public function getOwner(){
         return $this->owner;
@@ -280,7 +280,7 @@ class Form{
      * Checks the status of the form starting from the User status
      * User status has more priority than form status
      * @todo complete this function by adding form status check 
-     * @return boolean
+     * @return \\ boolean
      */
     public function checkStatus(){
         
@@ -380,7 +380,7 @@ class Form{
     
     /**
      * Checks if the form has captcha or not
-     * @return boolean
+     * @return \\ boolean
      */
     public function hasCaptcha(){
         return !!$this->getQuestions('control_capthca');
@@ -390,7 +390,7 @@ class Form{
      * Checks if the form has a payment field or not
      * this function can be real slow find a way to make it faster
      * @deprecated slow and useless
-     * @return boolean
+     * @return \\ boolean
      */
     public function hasPayment(){
         return !!$this->getQuestions('control_paypal');
@@ -399,7 +399,7 @@ class Form{
     /**
      * Checks if the form has any upload field or what
      * @deprecated only submissions page uses this and it has a better implementation
-     * @return boolean
+     * @return \\ boolean
      */
     public function hasUpload(){
         return !!$this->getQuestions('control_fileupload');
@@ -409,7 +409,7 @@ class Form{
      * Assign given form to a username This static function can be called without an instance
      * @param  $formID  // Form ID to be assigned
      * @param  $username  // Username of the new owner
-     * @return boolean 
+     * @return \\ boolean 
      */
     static function assignOwner($formID, $username, $checkGuest = false) {
         if($checkGuest){
@@ -513,7 +513,7 @@ class Form{
      * @param  $noMarkup  // [optional]  Don't generate HTML code on results
      * @param  $startDate  // [optional] Show only the submissions from this date
      * @param  $endDate  // [optional]   Show until the submission to this date
-     * @return array Array of results
+     * @return \\ array Array of results
      */
     public function getSubmissions($sort = "created_at", $start = "0", $limit = "10", $dir = "ASC", $keyword=false, $onlyData = false, $qids = false, $noMarkup = false, $startDate = null, $endDate = null){
         if(USE_DIFFERENT_DB_FOR_SUBMISSONS){
@@ -914,7 +914,7 @@ class Form{
     
     /**
      * Returns an array of result for ExtJS column structure
-     * @return array
+     * @return \\ array
      */
     public function getExtGridStructure($type){
         
@@ -1022,7 +1022,7 @@ class Form{
      * @param  $keyword  // [optional]
      * @param  $startDate [optional]
      * @param  $endDate [optional] 
-     * @return array
+     * @return \\ array
      */
     public function getExtGridSubmissions($sort="created_at", $start="0", $limit="10", $dir="DESC", $keyword=false, $startDate = null, $endDate = null){
         
@@ -1071,7 +1071,7 @@ class Form{
     
     /**
      * Returns the array of products associated with this form
-     * @return array|boolean
+     * @return \\ array|boolean
      */
     public function getProducts(){
         $response = DB::read("SELECT * FROM `form_properties` WHERE `form_id`=#id AND `type`='products'", $this->id);

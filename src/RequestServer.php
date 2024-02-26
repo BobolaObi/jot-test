@@ -4,7 +4,6 @@ namespace Legacy\Jot;
 
 use forms\DBMigrate;
 use forms\DropBoxIntegration;
-use Legacy\Jot\Integrations\FTPIntegration;
 use Legacy\Jot\Integrations\Integrations;
 use Legacy\Jot\UserManagement\AccountType;
 use Legacy\Jot\UserManagement\MonthlyUsage;
@@ -19,6 +18,7 @@ use Legacy\Jot\Utils\Profile;
 use Legacy\Jot\Utils\Server;
 use Legacy\Jot\Utils\Settings;
 use Legacy\Jot\Utils\Utils;
+use Quarantine\FTPIntegration;
 
 class RequestServer
 {
@@ -487,7 +487,7 @@ class RequestServer
 
     /**
      * Save form
-     * @return float Id of the form
+     * @return \\ float Id of the form
      */
     private function saveForm(){
 
@@ -1426,7 +1426,7 @@ class RequestServer
     /**
      * Get the usernames and return emails of users for JCM system.
      * @param usernames: Array
-     * @return emails: Array
+     * @return \\ emails: Array
      */
     private function getEmailsJCM(){
         $usernames = Utils::safeJsonDecode($this->request['usernames']);

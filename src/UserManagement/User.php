@@ -99,7 +99,7 @@ class User {
      *
      * @param string $username
      * @param boolean $onlyActive
-     * @return found user.
+     * @return \\ found user.
      */
     public static function find($username, $onlyActive = false) {
         
@@ -180,7 +180,7 @@ class User {
     
     /**
      * This function returns an array of object-.
-     * @return array
+     * @return \\ array
      */
     public static function getAdminAndSupportUsers(){
         $response = DB::read("SELECT * FROM `users` WHERE `account_type` = 'SUPPORT' OR `account_type` = 'ADMIN'");
@@ -309,7 +309,7 @@ class User {
      * in the DB everytime. Furthermore, you cannot change the username this way, username
      * has to be given as a parameter. Fix these errors.
      *
-     * @return result object from the DB class.
+     * @return \\ result object from the DB class.
      */
     public function save() {
         // By default users have account_type FREE. New accounts are created 
@@ -435,7 +435,7 @@ class User {
      * Really deletes a user from the table, it removes the user completely.
      * Also removes the related tables, ie. MonthlyUsage, Forms, ...
      * @param  $username
-     * @return result object from the DB class.
+     * @return \\ result object from the DB class.
      */
     public static function reallyDelete($username) { // O RLY o_O
         $resultObj = DB::write(self::$reallyDeleteQuery, array('username' => $username));
@@ -647,7 +647,7 @@ class User {
     /**
      * Check if user has exceed it limits.
      * 
-     * @return boolean
+     * @return \\ boolean
      */
     public function isExceeded($accountType = false, $resultRow = false){
         $exceeded = false;
@@ -687,7 +687,7 @@ class User {
     /**
      * Check if user has exceed it limits.
      * 
-     * @return boolean
+     * @return \\ boolean
      */
     public function isLimitOver($percent, $limits = false){
         $exceeded = false;

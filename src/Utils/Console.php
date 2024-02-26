@@ -77,7 +77,7 @@ class Console {
      * or E_ALL ^ E_INFO to log all messages except for info level messages
      * (also except for E_STRICT as defined by PHP core).
      * @param  $level  // // error level
-     * @return null 
+     * @return \\ null 
      */
     public static function setLogLevel($level) {
         self::$logLevel = $level;
@@ -86,7 +86,7 @@ class Console {
     /**
      * Sets the log file path
      * @param  $filename  // // path of the log file
-     * @return null
+     * @return \\ null
      */
     public static function setLogFolder($folder) {
         if(!file_exists($folder)){
@@ -141,7 +141,7 @@ class Console {
      * @param  $text  // // Log entry
      * @param  $title  // // [optional] title of the log entry
      * @param  $messageLevel  // // [optional] message's log level. Default E_ALL.
-     * @return mixed returns the $text itself
+     * @return \\ mixed returns the $text itself
      */
     public static function log($obj, $title = false, $messageLevel = E_USER_NOTICE, $type="log"){
         // If the defined log level is lower than the message level, don't log, return.
@@ -266,7 +266,7 @@ class Console {
      * Convenience method for logging messages with E_ERROR level.
      * @param  $text
      * @param  $title  // [optional]
-     * @return mixed $text itself 
+     * @return \\ mixed $text itself 
      */
     static function error($text, $title = false) {
         return self::log($text, $title, E_ERROR, "error");
@@ -315,7 +315,7 @@ class Console {
     /**
      * Catches the uncought exceptions
      * @param  $e  // \Exception
-     * @return null
+     * @return \\ null
      */
     static public function exceptionHandler($e) {
         // Log exception.
@@ -330,7 +330,7 @@ class Console {
     /**
      * Parses the log file and converts into an array
      * Groups logs by their types
-     * @return array log entries
+     * @return \\ array log entries
      */
     static public function parseLog($file){
         /**

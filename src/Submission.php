@@ -8,7 +8,6 @@
 namespace Legacy\Jot;
 
 use forms\DropBoxIntegration;
-use Legacy\Jot\Integrations\FTPIntegration;
 use Legacy\Jot\UserManagement\MonthlyUsage;
 use Legacy\Jot\Utils\Captcha;
 use Legacy\Jot\Utils\Console;
@@ -16,6 +15,7 @@ use Legacy\Jot\Utils\DB;
 use Legacy\Jot\Utils\Server;
 use Legacy\Jot\Utils\Settings;
 use Legacy\Jot\Utils\Utils;
+use Quarantine\FTPIntegration;
 
 class Submission {
     
@@ -267,7 +267,7 @@ class Submission {
     
     /**
      * Serialize this object
-     * @return string serialized object
+     * @return \\ string serialized object
      */
     public function serialize(){
         return Utils::serialize($this);
@@ -766,7 +766,7 @@ class Submission {
     
     /**
      * Check if the form has a captcha tool
-     * @return boolean
+     * @return \\ boolean
      */
     private function formHasCaptcha(){
         $ret = false;
@@ -780,7 +780,7 @@ class Submission {
     
     /**
      * Check if the form has a payment
-     * @return boolean
+     * @return \\ boolean
      */
     private function formHasPayment(){
         $ret = false;
@@ -794,7 +794,7 @@ class Submission {
     
     /**
      * Check if the form has a payment
-     * @return boolean
+     * @return \\ boolean
      */
     private function getPaymentField(){
         $ret = false;
@@ -808,7 +808,7 @@ class Submission {
     
     /**
      * Check if the form has an upload field
-     * @return boolean
+     * @return \\ boolean
      */
     private function formHasUpload(){
         $ret = false;
@@ -822,7 +822,7 @@ class Submission {
     
     /**
      * Check if the form has given type of field
-     * @return boolean
+     * @return \\ boolean
      */
     private function formHas($type){
         $ret = false;
@@ -1727,7 +1727,7 @@ class Submission {
     
     /**
      * Updates the forms table for submission counts
-     * @return null
+     * @return \\ null
      */
     private function updateFormStats(){
         if($this->form->form['count'] < 0){

@@ -179,7 +179,7 @@ class UtilsEmails {
      *  
      * @TODO: Add new options to the settings hash as there is a need.
      *  For example, add attachement support.
-     * @return throws an exception when an error happens. Returns nothing when successful. 
+     * @return \\ throws an exception when an error happens. Returns nothing when successful. 
      */
     static function sendEmail($settings, $forceSending = false) {
         

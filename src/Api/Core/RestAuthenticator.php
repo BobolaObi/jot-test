@@ -50,7 +50,7 @@ class RestAuthenticator {
     /**
      * Return internal RestServer
     * Return  RestServer used;
-    * @return RestServer
+    * @return \\ RestServer
     */
     public function getRest() {
         return $this->rest;
@@ -58,7 +58,7 @@ class RestAuthenticator {
     
     /**
     * Return user sent on BASIC Authentication
-    * @return string
+    * @return \\ string
     */
     public function getUser() {
         return $this->user;
@@ -66,7 +66,7 @@ class RestAuthenticator {
 
     /**
     * Return password sent for Authentication
-    * @return string
+    * @return \\ string
     */
     public function getPassword() {
         return $this->pwd ;
@@ -74,7 +74,7 @@ class RestAuthenticator {
     
     /**
     * Return if is using digest authentication
-    * @return bool
+    * @return \\ bool
     */
     public function isDigest() {
         return $this->isDigest ;
@@ -84,7 +84,7 @@ class RestAuthenticator {
     * Set if authentication should be Digest(true) 
     * @param bool $bool
     * @param string $realm
-    * @return RestAuthenticator
+    * @return \\ RestAuthenticator
     */
     public function forceDigest($bool=true,$realm=null) {
         if($realm != null) $this->setRealm($realm);
@@ -95,7 +95,7 @@ class RestAuthenticator {
 
     /**
     * Get the http Realm name
-    * @return string $realm
+    * @return \\ string $realm
     */
     public function getRealm() {
         return $this->realm;
@@ -104,7 +104,7 @@ class RestAuthenticator {
     /**
     * Set the http Realm name
     * @param string $realm
-    * @return RestAuthenticator
+    * @return \\ RestAuthenticator
     */
     public function setRealm($realm) {
         $this->realm = $realm ;
@@ -114,7 +114,7 @@ class RestAuthenticator {
     /**
     * Sets if authentication is required
     * @param bool $isRequered 
-    * @return RestAuthenticator
+    * @return \\ RestAuthenticator
     */
     public function requireAuthentication($isRequired=true) {
         if($isRequired !== null) $this->requireAuth = $isRequired ;
@@ -123,7 +123,7 @@ class RestAuthenticator {
     
     /**
     * Checks if authenticated is required
-    * @return bool $auth;
+    * @return \\ bool $auth;
     */
     public function isAuthenticationRequired() {
         return $this->requireAuth ;
@@ -131,7 +131,7 @@ class RestAuthenticator {
 
     /**
     * Checks if is authenticated
-    * @return bool $auth;
+    * @return \\ bool $auth;
     */
     public function isAuthenticated() {
         return $this->auth ;
@@ -140,7 +140,7 @@ class RestAuthenticator {
     /**
     * Sets authentication status
     * @param bool $auth Status
-    * @return RestServer
+    * @return \\ RestServer
     */
     public function setAuthenticated($bool) {
         $this->auth = $bool;
@@ -149,7 +149,7 @@ class RestAuthenticator {
     
     /**
     * Test if user is authenticated, and set proper headers if not
-    * @return bool
+    * @return \\ bool
     */
     public function tryAuthenticate() {
         if($this->isAuthenticationRequired() === false) return true;
@@ -171,7 +171,7 @@ class RestAuthenticator {
     * Test authentication against password for given username in Digest 
     * @param string $user
     * @param string $password
-    * @return RestAuthenticator
+    * @return \\ RestAuthenticator
     */
     public function validate($user,$password) {
         if($this->isDigest()) {
@@ -198,7 +198,7 @@ class RestAuthenticator {
     /**
      * Parse the digest auth message
      * @param string $message
-     * @return mixed
+     * @return \\ mixed
      */
     private function digestParse($txt) {
         $needed_parts = array('nonce'=>1, 'nc'=>1, 'cnonce'=>1, 'qop'=>1, 'username'=>1, 'uri'=>1, 'response'=>1);
@@ -220,7 +220,7 @@ class RestAuthenticator {
     
     /**
      * Digest header
-     * @return string
+     * @return \\ string
      */
     private function digestHeader() {
         $op = array(

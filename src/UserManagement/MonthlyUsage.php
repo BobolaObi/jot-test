@@ -101,7 +101,7 @@ class MonthlyUsage {
      * is reset to zero.
      * 
      * @param  $username
-     * @return DBResponse
+     * @return \\ DBResponse
      */
     public static function resetUsageBy($username) {
         $query = "UPDATE `monthly_usage` SET ";
@@ -126,7 +126,7 @@ class MonthlyUsage {
      * the given username.
      * 
      * @param  $username
-     * @return MonthlyUsage
+     * @return \\ MonthlyUsage
      */
     public static function find($username = false) {
         if(is_object($username)){
@@ -205,7 +205,7 @@ class MonthlyUsage {
      * @param  $username
      * @param  $checkTypes  // [optional]
      * @param  $increaseValues  // [optional]
-     * @return DBResponse
+     * @return \\ DBResponse
      */
     public static function incrementUsageBy($username, $checkTypes = "submissions", $increaseValues = 1) {
         $query = "UPDATE `monthly_usage` SET ";
@@ -616,7 +616,7 @@ class MonthlyUsage {
     /**
      * This function returs the used bytes from the database.
      * @param String $username
-     * @return integer $usedBytes
+     * @return \\ integer $usedBytes
      */
     static function getDiskUsage($username){
     	if (ENABLE_UFS){

@@ -67,7 +67,7 @@ class Utils extends UtilsArrays
     /**
      * 
      * @param $exception
-     * @return array => $message , $notes
+     * @return \\ array => $message , $notes
      */
     static function generateErrorMessage ($exception) {
         $message = $exception->getMessage()."<hr>";

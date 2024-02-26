@@ -29,7 +29,7 @@ class RestResponse {
     /**
     * Adds a header to the response
     * @param string $header
-    * @return RestResponse
+    * @return \\ RestResponse
     */
     public function addHeader($header) {
         $this->headers[] = $header;
@@ -38,7 +38,7 @@ class RestResponse {
 
     /**
     * Clean the headers set on the response
-    * @return RestResponse
+    * @return \\ RestResponse
     */
     public function cleanHeader() {
         $this->headers = Array();
@@ -47,7 +47,7 @@ class RestResponse {
 
     /**
     * Show the headers
-    * @return RestResponse
+    * @return \\ RestResponse
     */
     public function showHeader() {
         if(count($this->headers) >=1) {
@@ -60,7 +60,7 @@ class RestResponse {
 
     /**
     * Check if headers were sent
-    * @return bool
+    * @return \\ bool
     */
     public function headerSent() {
         return headers_sent();
@@ -69,7 +69,7 @@ class RestResponse {
     /**
     * Set the response
     * @param mixed $response
-    * @return RestResponse
+    * @return \\ RestResponse
     */
     public function setResponse($response) {
         $this->response = $response ;
@@ -78,7 +78,7 @@ class RestResponse {
 
     /**
     * Set the response to null
-    * @return RestResponse
+    * @return \\ RestResponse
     */
     public function cleanResponse() {
         $this->response = null ;
@@ -88,7 +88,7 @@ class RestResponse {
     /**
     * Add a string to the response, only work if response is a string
     * @param string $response
-    * @return RestResponse
+    * @return \\ RestResponse
     */
     public function appendResponse($response) {
         return $this->addResponse($response);
@@ -97,7 +97,7 @@ class RestResponse {
     /**
     * Add a string to the response, only work if response is a string
     * @param string $response
-    * @return RestResponse
+    * @return \\ RestResponse
     */
     public function addResponse($response) {
         $this->response .= $response ;
@@ -106,7 +106,7 @@ class RestResponse {
 
     /**
     * Return the reponse set
-    * @return mixed $response;
+    * @return \\ mixed $response;
     */
     public function getResponse() {
         return $this->response ;
@@ -116,7 +116,7 @@ class RestResponse {
     * Sets a parameter in a global scope that can be recovered at any request.
     * @param mixed $key The identifier of the parameter
     * @param mixed $value The content of the parameter
-    * @return RestServer $this
+    * @return \\ RestServer $this
     */
     public function setParameter($key,$value) {
         $this->params[$key] = $value ;
@@ -126,7 +126,7 @@ class RestResponse {
     /**
     * Return the specified parameter
     * @param mixed $key The parameter identifier
-    * @return mixed
+    * @return \\ mixed
     */
     public function getParameter($key) {
         return $this->params[$key];

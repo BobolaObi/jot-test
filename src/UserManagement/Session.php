@@ -526,7 +526,7 @@ class Session {
 
     /**
      * Gets the User object from Session
-     * @return User
+     * @return \\ User
      */
     public static function getUser(){
         return $_SESSION[COOKIE_KEY];

@@ -20,7 +20,7 @@ class AccountType {
      * @param string $name Unique type name
      * @param string $prettyName Reprensentitive type name
      * @param  $newLimits  // // hash of limits
-     * @return mixed
+     * @return \\ mixed
      */
     public function __construct($name, $prettyName, $newLimits) {
         $this->name = $name;
@@ -38,7 +38,7 @@ class AccountType {
     /**
      * Creates an account and adds it to the $accounts array.
      * @param  $conf  // 
-     * @return null
+     * @return \\ null
      */
     public static function create($conf) {
         self::$accounts[$conf['name']] = new AccountType($conf['name'], $conf['prettyName'], $conf['limits']);
@@ -57,7 +57,7 @@ class AccountType {
      * }
      * </code>
      * @param  $name
-     * @return AccountType specified account type or FREE account by default
+     * @return \\ AccountType specified account type or FREE account by default
      */
     public static function find($name) {
         if (isset($name) && self::$accounts[$name]) {

@@ -21,7 +21,7 @@ class DummyData{
     public function DummyData($formID){
         $this->form = new Form($formID);
         $this->questions = $this->form->getQuestions();
-        $this->lorem = new LoremIpsumGenerator();
+//        $this->lorem = new LoremIpsumGenerator();
     }
     
     public function generate(){

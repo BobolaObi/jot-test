@@ -21,7 +21,7 @@ class RestMapper{
 	/**
 	 * Contructer of the RestMapper
 	 * @param  RestServer $rest
-	 * @return RestMapper
+	 * @return \\ RestMapper
 	 */
 	public function __constructer(RestServer $rest=null){
 		$this->rest = $rest;

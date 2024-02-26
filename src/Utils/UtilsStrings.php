@@ -41,7 +41,7 @@ class UtilsStrings extends UtilsRequests{
     /**
      * Display bytes as human readable strings
      * @param  $octets
-     * @return string human readable bytes
+     * @return \\ string human readable bytes
      */
     static function bytesToHuman($octets){
         $units = array('B', 'kB', 'MB', 'GB', 'TB'); // ...etc
@@ -54,7 +54,7 @@ class UtilsStrings extends UtilsRequests{
     /**
      * This will try to convert given array to JSON string if not array will be returned
      * @param  $object
-     * @return string|array
+     * @return \\ string|array
      */
     static function safeJsonEncode($object){
         if(is_object($object) || is_array($object)){
@@ -68,7 +68,7 @@ class UtilsStrings extends UtilsRequests{
     /**
      * This will try to convert given tring to an array. if not string will be returned
      * @param  $string
-     * @return array|string
+     * @return \\ array|string
      */
     static function safeJsonDecode($string){
         if(!is_string($string)){ return $string; }
@@ -182,7 +182,7 @@ class UtilsStrings extends UtilsRequests{
     /**
      * Returns the abbrevation of the given country
      * @param  $country
-     * @return string abbrivation "US" if non of them found
+     * @return \\ string abbrivation "US" if non of them found
      */
     static function getCountryAbbr($country){
         foreach(Utils::$countries as $abbr => $name){
@@ -195,7 +195,7 @@ class UtilsStrings extends UtilsRequests{
     /**
      * returns state abbrivations
      * @param  $state
-     * @return string state abbrivation return original if not found
+     * @return \\ string state abbrivation return original if not found
      */
     static function getStateAbbr($state){
 
@@ -213,7 +213,7 @@ class UtilsStrings extends UtilsRequests{
     /**
      * Returns the brand of the credit card.
      * @param  $workStr  // Credit card number
-     * @return string card type returns VISA if not found
+     * @return \\ string card type returns VISA if not found
      */
     static function identifyCreditCard($workStr){
 
@@ -317,7 +317,7 @@ class UtilsStrings extends UtilsRequests{
      * @param  $string  // String to get shortened
      * @param  $length  // [optional]  length of the new string defaults to 30
      * @param  $closure  // [optional] ending string defaults to "..."
-     * @return string shortened string with closure
+     * @return \\ string shortened string with closure
      */
     static function shorten($string, $length = "30", $closure = "..."){
         $sh  = substr($string, 0, $length);
@@ -350,7 +350,7 @@ class UtilsStrings extends UtilsRequests{
     /**
      * Uses PHP's strip_tags and also removes &nbsp; spaces
      * @param  $str
-     * @return string
+     * @return \\ string
      */
     static function stripTags($str){
         $str = preg_replace("/<br\s*\/?>/", "\n", $str);

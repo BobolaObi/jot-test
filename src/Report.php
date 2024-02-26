@@ -57,7 +57,7 @@ class Report{
 	 * Saves or updates the report on database
 	 * @param string $title Title of the report
 	 * @param json_string $config configuration of the report
-	 * @return int ID of the saved report
+	 * @return \\ int ID of the saved report
 	 */
 	public function save($title, $config, $password = false){
 		

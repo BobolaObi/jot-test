@@ -41,7 +41,7 @@ class ID {
     /**
      * Gets the sum of the ID for validation
      * @param  $base  // First digits of the ID except last 2 digit
-     * @return sum of the ID 
+     * @return \\ sum of the ID 
      */
     public static function getSum($base){
         $sum = 7; # Dont you ever change this number or you'll break the space time continium

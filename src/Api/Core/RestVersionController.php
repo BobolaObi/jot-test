@@ -23,7 +23,7 @@ class RestVersionController {
     /**
     * Contructor of RestVersionController
     * @param RestServer $rest
-    * @return RestVersionController $rest;
+    * @return \\ RestVersionController $rest;
     */
     public function __construct($rest=null) {
         $this->rest = $rest;
@@ -31,7 +31,7 @@ class RestVersionController {
 
     /**
      * Returns the current version used in the API
-     * @return string $currentVersion
+     * @return \\ string $currentVersion
      */
     public function getCurrentVersion(){
         return $this->currentVersion;
@@ -41,7 +41,7 @@ class RestVersionController {
      * Sets the current version of the resp api.
      * Return true if a valid versio is wanted,
      * false in otherwise
-     * @return boolean
+     * @return \\ boolean
      */
     public function setCurrentVersion(){
         # wanted api version is fetched from request
