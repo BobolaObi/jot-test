@@ -7,41 +7,48 @@
  */
 
 namespace Legacy\Jot\SiteManagement;
+
 use Legacy\Jot\UserManagement\User;
 use Legacy\Jot\Utils\Utils;
 
-class Page {
+class Page
+{
     private $page;
+
     /**
      * Constructer
-     * @return 
      * @param  $pageName
+     * @return
      */
-    function __construct($pageName){
-    	$this->page = PageInfo::getPage($pageName);
-    	$this->checkCredentials();
+    function __construct($pageName)
+    {
+        $this->page = PageInfo::getPage($pageName);
+        $this->checkCredentials();
     }
-    
+
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
-    function checkCredentials(){
+    function checkCredentials()
+    {
         /**
          * TODO: What will this do?
          */
-        
+
         //if($this->page["loginNeeded"]){
-            //if(!Session::isLoggedIn() && !Session::isGuest()){
-            //    Utils::redirect("page.php?p=signup");
-            //}
+        //if(!Session::isLoggedIn() && !Session::isGuest()){
+        //    Utils::redirect("page.php?p=signup");
         //}
-        if(!isset($this->page['name'])){ $this->page['name']=''; }
+        //}
+        if (!isset($this->page['name'])) {
+            $this->page['name'] = '';
+        }
         // Check for password reset stuff.
-        switch($this->page['name']) {
+        switch ($this->page['name']) {
             case 'passwordreset':
-                $username = isset($_GET['username'])? $_GET['username'] : "";
-                $token = isset($_GET['token'])? $_GET['token'] : "";
+                $username = isset($_GET['username']) ? $_GET['username'] : "";
+                $token = isset($_GET['token']) ? $_GET['token'] : "";
                 if (empty($username) || empty($token)) {
                     Utils::errorPage("Password reset code has expired. Please issue a reset request again.", "Reset code expired");
                     //$this->page = PageInfo::getPage('passwordresetexpired');
@@ -60,55 +67,68 @@ class Page {
                 }
                 break;
         }
-        
-    } 
+
+    }
+
     /**
      * Checks if the page hasFullscreen options
-     * @return 
+     * @return
      */
-    function hasFullScreen(){
-        return isset($this->page['hasFullScreen'])? $this->page['hasFullScreen'] : false;
+    function hasFullScreen()
+    {
+        return isset($this->page['hasFullScreen']) ? $this->page['hasFullScreen'] : false;
     }
-    
+
     /**
-     * Converts css files to html includes 
-     * @return 
+     * Converts css files to html includes
+     * @return
      */
-    function putCSSIncludes(){
+    function putCSSIncludes()
+    {
         $incs = array();
-        foreach($this->page['css'] as $css){
-        	if(empty($css)){ continue; }
-            array_push($incs, '<link rel="stylesheet" type="text/css" href="'.$css.'"/>');
+        foreach ($this->page['css'] as $css) {
+            if (empty($css)) {
+                continue;
+            }
+            array_push($incs, '<link rel="stylesheet" type="text/css" href="' . $css . '"/>');
         }
-        echo join("\n", $incs)."\n";
-    } 
+        echo join("\n", $incs) . "\n";
+    }
+
     /**
      * Convers js files to html includes
-     * @return 
+     * @return
      */
-    function putJSIncludes(){
+    function putJSIncludes()
+    {
         $incs = array();
-        foreach($this->page['js'] as $js){
-        	if(empty($js)){ continue; }
-        	if (PROTOCOL == 'https://' && ($js == 'http://maps.google.com/maps/api/js?sensor=true' || $js == 'js/googlemap.js')) {
-        	   continue;   
-        	}
-            array_push($incs, '<script src="'.$js.'" type="text/javascript"></script>');
+        foreach ($this->page['js'] as $js) {
+            if (empty($js)) {
+                continue;
+            }
+            if (PROTOCOL == 'https://' && ($js == 'http://maps.google.com/maps/api/js?sensor=true' || $js == 'js/googlemap.js')) {
+                continue;
+            }
+            array_push($incs, '<script src="' . $js . '" type="text/javascript"></script>');
         }
-        echo join("\n", $incs)."\n";
+        echo join("\n", $incs) . "\n";
     }
+
     /**
      * get page title
-     * @return 
+     * @return
      */
-    function getTitle(){
+    function getTitle()
+    {
         return $this->page['title'];
     }
+
     /**
      * Include the page content
-     * @return 
+     * @return
      */
-    function putContent(){
-        include ROOT."/".$this->page['content'];
+    function putContent()
+    {
+        include ROOT . "/" . $this->page['content'];
     }
 }

@@ -9,7 +9,8 @@
 
 namespace Legacy\Jot\UserManagement;
 
-class AccountType {
+class AccountType
+{
     # Account variables.
     private static $accounts = array();
     public $name, $prettyName;
@@ -19,13 +20,14 @@ class AccountType {
      * Constructs account types
      * @param string $name Unique type name
      * @param string $prettyName Reprensentitive type name
-     * @param  $newLimits  // // hash of limits
+     * @param  $newLimits // // hash of limits
      * @return // mixed
      */
-    public function __construct($name, $prettyName, $newLimits) {
+    public function __construct($name, $prettyName, $newLimits)
+    {
         $this->name = $name;
         $this->prettyName = $prettyName;
-        foreach(MonthlyUsage::$limitFields as $classField => $dbField) {
+        foreach (MonthlyUsage::$limitFields as $classField => $dbField) {
             if (isset($newLimits[$classField])) {
                 $this->limits[$classField] = $newLimits[$classField];
             } else {
@@ -34,18 +36,19 @@ class AccountType {
             }
         }
     }
-    
+
     /**
      * Creates an account and adds it to the $accounts array.
-     * @param  $conf  // 
+     * @param  $conf //
      * @return // null
      */
-    public static function create($conf) {
+    public static function create($conf)
+    {
         self::$accounts[$conf['name']] = new AccountType($conf['name'], $conf['prettyName'], $conf['limits']);
     }
-    
+
     /**
-     * Gets all properties of an account type. Use this static method to 
+     * Gets all properties of an account type. Use this static method to
      * retrieve an account type you want. Ex.
      * <code>
      * $free = AccountType::find('FREE');
@@ -59,7 +62,8 @@ class AccountType {
      * @param  $name
      * @return // AccountType specified account type or FREE account by default
      */
-    public static function find($name) {
+    public static function find($name)
+    {
         if (isset($name) && self::$accounts[$name]) {
             return self::$accounts[$name];
         } else {
@@ -67,10 +71,11 @@ class AccountType {
             return self::$accounts['FREE'];
         }
     }
-    
-    public static function getAllAccountTypes () {
+
+    public static function getAllAccountTypes()
+    {
         $accountTypes = array();
-        foreach (self::$accounts as $account){
+        foreach (self::$accounts as $account) {
             array_push($accountTypes, $account->name);
         }
         return $accountTypes;

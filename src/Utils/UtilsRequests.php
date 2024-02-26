@@ -123,9 +123,9 @@ class UtilsRequests extends UtilsEmails
 
     /**
      * Will force given file be downloaded
-     * @param  $file  // Source file
-     * @param  $name  // Filename to be seen on the screen
-     * @param  $mime_type  // [optional]
+     * @param  $file // Source file
+     * @param  $name // Filename to be seen on the screen
+     * @param  $mime_type // [optional]
      * @return
      */
     static function forceDownload($file, $name, $mime_type = '')
@@ -338,12 +338,12 @@ class UtilsRequests extends UtilsEmails
      * Yesterday,
      * 10/20/2012
      * </pre>
-     * @param  $name  // Name of the cookie
-     * @param  $value  // Value of the cookie
-     * @param  $expire  // Expiration date in as human readable format (ex: 1 Month)
-     * @param  $path  // [optional] Path of the cookie
-     * @param  $domain  // [optional] Domain of the cookie
-     * @param  $httponly  // [optional] Is cookie HTTP only?
+     * @param  $name // Name of the cookie
+     * @param  $value // Value of the cookie
+     * @param  $expire // Expiration date in as human readable format (ex: 1 Month)
+     * @param  $path // [optional] Path of the cookie
+     * @param  $domain // [optional] Domain of the cookie
+     * @param  $httponly // [optional] Is cookie HTTP only?
      * @return // boolean
      */
     static function setCookie($name, $value, $expire, $path = "/", $domain = null, $httponly = null)
@@ -359,7 +359,7 @@ class UtilsRequests extends UtilsEmails
 
     /**
      * Reads the cookie
-     * @param  $name  // Name of the cookie
+     * @param  $name // Name of the cookie
      * @return // string|boolean if found returns cookie value if not returns false
      */
     static function getCookie($name)
@@ -369,7 +369,7 @@ class UtilsRequests extends UtilsEmails
 
     /**
      * Deletes a cookie
-     * @param  $name  // Name of the cookie
+     * @param  $name // Name of the cookie
      * @return // boolean
      */
     static function deleteCookie($name)
@@ -384,7 +384,7 @@ class UtilsRequests extends UtilsEmails
     /**
      * Collects all redirects to one function and makes some work on them
      * @param  $url
-     * @param  $data  // [optional] Get parameters
+     * @param  $data // [optional] Get parameters
      * @return
      */
     static function redirect($url, $data = array(), $bustFrame = false)
@@ -646,7 +646,7 @@ class UtilsRequests extends UtilsEmails
      * @TODO When you use this function to a page hosted on the same server it gets into a loop Should find a solution
      * @param  $url
      * @param  $data
-     * @param  $optional_headers  // [optional]
+     * @param  $optional_headers // [optional]
      * @return
      */
     static function postRequest($url, $data, $optional_headers = null)
@@ -685,8 +685,8 @@ class UtilsRequests extends UtilsEmails
     /**
      * Tries to suppress the post request, Especially good for requests which take long time to complete
      * IMPORTANT: if you need to know the response use Utils::postRequest
-     * @param  $url  // Url which data will be posted
-     * @param  $request  // Data
+     * @param  $url // Url which data will be posted
+     * @param  $request // Data
      * @return // null
      */
     static function suppressRequest($url, $data)

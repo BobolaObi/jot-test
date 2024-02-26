@@ -9,25 +9,30 @@
 namespace Legacy\Jot\Utils;
 
 
-class Profile {
-    
+class Profile
+{
+
     private static $timers = array();
+
     /**
      * Starts the timer for given title
      * @param  $title
-     * @return 
+     * @return
      */
-    static function start($title){
+    static function start($title)
+    {
         self::$timers[$title] = microtime(true);
     }
+
     /**
      * Brings back the result of time spending in seconds with floating point of milli seconds
      * Title must be exact same of the start functon
      * @param  $title
-     * @return 
+     * @return
      */
-    static function end($title){
+    static function end($title)
+    {
         $end = microtime(true);
-        return  sprintf("%01.3f", ($end - self::$timers[$title]));
+        return sprintf("%01.3f", ($end - self::$timers[$title]));
     }
 }

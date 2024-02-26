@@ -1,8 +1,6 @@
 <?php
 
-use Legacy\Jot\Integrations\DropBoxIntegration;
-use Legacy\Jot\Integrations\FTPIntegration;
-use Legacy\Jot\JotRequestServer as RequestServer;
+use Legacy\Jot\RequestServer;
 
 include_once "lib/init.php";
 

@@ -106,7 +106,7 @@ function pending_pedrecation_autoload($class_name)
 /**
  * Fix extra slashes in path
  * @param  $path
- * @param  $isfile  // [optional]
+ * @param  $isfile // [optional]
  * @return
  */
 function P($path, $isfile = false)

@@ -2,8 +2,9 @@
 
 namespace Legacy\Jot;
 
-class JotErrors{
-    
+class JotErrors
+{
+
     public static $MIGRATION_USER_NOT_FOUND = array("User cannot be found in old database.", "1000");
     public static $MIGRATED_USER_NOT_FOUND = array("This user has not been migrated yet.", "1001");
     /*
@@ -24,14 +25,15 @@ class JotErrors{
     public static $DB_QUERY_ERROR = array("Error on query: %s<br>Error returned:%s", "1011");
     public static $DB_REPLACE_NOT_ALLOWED = array("REPLACE INTO in %s table is not allowed.<br>Query: %s", "1012");
     public static $DB_UPDATE_WITHOUT_WHERE = array("Update without WHERE clause is not allowed", "1013");
-    
+
     /*
      * Form errors
      */
     public static $FORM_AUTH_ERROR = array("You don't have permission to view this form's submissions", "1014");
-    
-    
-    public static function get(){
+
+
+    public static function get()
+    {
         $args = func_get_args();
         $err = self::$$args[0];
         $args[0] = $err[0];

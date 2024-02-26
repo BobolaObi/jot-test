@@ -10,6 +10,7 @@
  */
 
 namespace Legacy\Jot\Utils;
+
 use Legacy\Jot\Configs;
 use Legacy\Jot\Exceptions\DBException;
 use Legacy\Jot\JotErrors;
@@ -39,10 +40,10 @@ class DB
 
     /**
      * Creates aconnection with given parameters and keeps it open
-     * @param  $database  // Database name
-     * @param  $username  // [optional] DB user username
-     * @param  $password  // [optional] DB User password
-     * @param  $hostname  // [optional] DB hostname
+     * @param  $database // Database name
+     * @param  $username // [optional] DB user username
+     * @param  $password // [optional] DB User password
+     * @param  $hostname // [optional] DB hostname
      * @return
      */
     static function setConnection($name, $database, $username = "root", $password = "", $hostname = "localhost")
@@ -279,7 +280,7 @@ Thank you for your patience.", "Temporarily Unavailable", mysqli_error(self::$dl
         # this will cause foreign keys to cascade then delete everything related
         # to this entry such as when you replace into users table you will lose
         # all forms, submissions, ansers and all. So don't change this ever.
-        if (Utils::startsWith(trim(''.'' . $query), "replace", false)) {
+        if (Utils::startsWith(trim('' . '' . $query), "replace", false)) {
             if (preg_match("/replace\s*into\s*\`?(users|forms)\`?/i", $query, $m)) {
                 throw new DBException(JotErrors::get('DB_REPLACE_NOT_ALLOWED', strtoupper($m[1]), $query));
             }
@@ -296,9 +297,9 @@ Thank you for your patience.", "Temporarily Unavailable", mysqli_error(self::$dl
         */
 
 
-        try{
+        try {
             $result = mysqli_query(self::$dlink, $query);
-        }catch (\Throwable $_){
+        } catch (\Throwable $_) {
             function_exists('xdebug_break') && xdebug_break();
             throw $_;
         }

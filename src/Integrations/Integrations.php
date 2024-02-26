@@ -7,111 +7,123 @@ use Legacy\Jot\Utils\DB;
 use Legacy\Jot\Utils\OpenSSL;
 use Legacy\Jot\Utils\Utils;
 
-class Integrations{
-    
+class Integrations
+{
+
     public $partner, $username, $formID;
     public $newEntry = false;
     public $settings;
+
     /**
      * Sets the integraion config object
      * @constructor
      * @param  $partner
-     * @param  $formID  // [optional]
-     * @param  $username  // [optional]
-     * @return 
+     * @param  $formID // [optional]
+     * @param  $username // [optional]
+     * @return
      */
-    public function Integrations($partner, $formID = null, $username = null){
+    public function Integrations($partner, $formID = null, $username = null)
+    {
         $this->partner = $partner;
-        $this->username = $username? $username : Session::$username;
-        $this->formID = $formID? $formID : Utils::getCurrentID('form');
+        $this->username = $username ? $username : Session::$username;
+        $this->formID = $formID ? $formID : Utils::getCurrentID('form');
         $this->getSettings();
     }
+
     /**
      * Gets the complete settings of integration
-     * @return 
+     * @return
      */
-    public function getSettings(){
+    public function getSettings()
+    {
         $res = DB::read("SELECT `key`, `value` FROM `integrations` WHERE `partner`=':partner' AND `username`=':username' AND `form_id`=#id",
-        $this->partner, $this->username, $this->formID);
-        if($res->rows > 0){
-            foreach($res->result as $line){
+            $this->partner, $this->username, $this->formID);
+        if ($res->rows > 0) {
+            foreach ($res->result as $line) {
                 $this->settings[$line['key']] = Utils::safeJsonDecode($line['value']);
             }
-        }else{
+        } else {
             $this->newEntry = true;
             $this->settings = array();
         }
     }
-    
+
     /**
      * Checks if this integration is a new entry or an update
-     * @return 
+     * @return
      */
-    public function isNew(){
+    public function isNew()
+    {
         return $this->newEntry;
     }
-    
+
     /**
      * Returns the asked value
      * @param  $key
-     * @return 
+     * @return
      */
-    public function getValue($key){
-        if(isset($this->settings[$key])){
-            if($key === 'password'){
+    public function getValue($key)
+    {
+        if (isset($this->settings[$key])) {
+            if ($key === 'password') {
                 $value = OpenSSL::getInstance()->decryptData($this->settings[$key]);
-            }else{
+            } else {
                 $value = $this->settings[$key];
             }
             return $value;
         }
         return false;
     }
-    
+
     /**
      * Sets a value on the fly
      * it should be saved to DB
      * @param  $key
      * @param  $value
-     * @return 
+     * @return
      */
-    public function setValue($key, $value){
-        if($key == 'password'){
+    public function setValue($key, $value)
+    {
+        if ($key == 'password') {
             $value = OpenSSL::getInstance()->encryptData($value);
         }
         $this->settings[$key] = $value;
     }
+
     /**
      * Removes a property from configuration
      * @param  $key
-     * @return 
+     * @return
      */
-    public function removeValue($key){
+    public function removeValue($key)
+    {
         unset($this->settings[$key]);
     }
-    
+
     /**
      * Saves all config to database
-     * @return 
+     * @return
      */
-    public function save(){
-        foreach($this->settings as $key => $value){
+    public function save()
+    {
+        foreach ($this->settings as $key => $value) {
             DB::insert('integrations', array(
-                "partner"  => $this->partner,
+                "partner" => $this->partner,
                 "username" => $this->username,
-                "form_id"  => $this->formID,
-                "key"      => $key,
-                "value"    => Utils::safeJsonEncode($value)
+                "form_id" => $this->formID,
+                "key" => $key,
+                "value" => Utils::safeJsonEncode($value)
             ));
         }
     }
-    
+
     /**
      * Remove all configurations from database
-     * @return 
+     * @return
      */
-    public function removeAll(){
-        DB::write("DELETE FROM `integrations` WHERE `partner`=':partner' AND `username`=':username' AND `form_id`=#id", 
-                   $this->partner, $this->username, $this->formID);
+    public function removeAll()
+    {
+        DB::write("DELETE FROM `integrations` WHERE `partner`=':partner' AND `username`=':username' AND `form_id`=#id",
+            $this->partner, $this->username, $this->formID);
     }
 }

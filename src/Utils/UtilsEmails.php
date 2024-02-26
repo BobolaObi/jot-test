@@ -6,105 +6,113 @@
  */
 
 namespace Legacy\Jot\Utils;
+
 use Legacy\Jot\Configs;
 use Legacy\Jot\Exceptions\SystemException;
 
-class UtilsEmails {
-    
+class UtilsEmails
+{
+
     /**
      * Splits the email aaddresses then cheks their format
      * @param  $string
-     * @return 
+     * @return
      */
-    static function splitEmails($emails){
+    static function splitEmails($emails)
+    {
         # Emails will be collected in this array.
         $mails = array();
-        
-        if(is_array($emails)){
-            foreach ($emails as $email){
-                $mails = array_merge( $mails, Utils::splitEmails($email) );
+
+        if (is_array($emails)) {
+            foreach ($emails as $email) {
+                $mails = array_merge($mails, Utils::splitEmails($email));
             }
-        }else{
+        } else {
             $tokens = preg_split("/\;|\,|\s+|\n/", $emails);
-            foreach($tokens as $t){
-                if(Utils::checkEmail($t, true)){
+            foreach ($tokens as $t) {
+                if (Utils::checkEmail($t, true)) {
                     array_push($mails, $t);
                 }
             }
         }
-        
+
         return $mails;
     }
-    
+
     /**
      * If email address is in bounced list it will return true
      * @param  $email
-     * @return 
+     * @return
      */
-    private static function checkEmailInBouncedList($email){
+    private static function checkEmailInBouncedList($email)
+    {
         $r = DB::read("SELECT * FROM `bounced_emails` WHERE `email` = ':email'", $email);
         return $r->rows > 0;
     }
-    
+
     /**
      * Send all pending email now
-     * @return 
+     * @return
      */
-    static function sendDelayedEmails(){
+    static function sendDelayedEmails()
+    {
         $countRes = DB::read('SELECT count(*) as `cnt` FROM `pending_emails` WHERE `created_at` <= NOW()');
         $chunk = 100;               // Split emails into chunks in order to protect server from overload
         $currentChunk = 0;           // Set initial chunk
-        
-        while($currentChunk < $countRes->first['cnt']){
+
+        while ($currentChunk < $countRes->first['cnt']) {
             $currentChunk += $chunk;
             $res = DB::read('SELECT * FROM `pending_emails` LIMIT #currentChunk #chunk', $currentChunk, $chunk);
-            foreach($res->result as $line){
-                if($settings = json_decode($line['settings'], true)){
+            foreach ($res->result as $line) {
+                if ($settings = json_decode($line['settings'], true)) {
                     Utils::sendEmail($settings);
                 }
             }
         }
     }
-    
+
     /**
      * Send E-mail With Send Grid using the same options
-     * @see UtilsEmails::sendEmail()
      * @param  $settings
-     * @return 
+     * @return
+     * @see UtilsEmails::sendEmail()
      */
-    static function sendGrid($settings){
-        
+    static function sendGrid($settings)
+    {
+
         # If there is no one to send this email then continue to next one
-        if (empty($settings['to'])) { return; } 
-        
+        if (empty($settings['to'])) {
+            return;
+        }
+
         # Send grid configuration
         $send = array(
-            "api_user"=>Configs::SENDGRID_APIUSER,
-            "api_key"=>Configs::SENDGRID_APIKEY
+            "api_user" => Configs::SENDGRID_APIUSER,
+            "api_key" => Configs::SENDGRID_APIKEY
         );
-        
+
         $html = true;
         # Check if this is an HTML E-mail or not
         if (isset($settings['html'])) {
             if ($settings['html'] == "1" || $settings['html'] == true) {
                 $html = true;
-            }else {
+            } else {
                 $html = false;
             }
         }
         # Default sender is set here.
         $noReply = array(NOREPLY, NOREPLY_NAME);
-        
+
         # If default is selected for sender name, then remove it
-        if(isset($settings['from'][1]) && ($settings['from'][1] == "none" || $settings['from'][1] == "default")){
+        if (isset($settings['from'][1]) && ($settings['from'][1] == "none" || $settings['from'][1] == "default")) {
             unset($settings['from'][1]);
         }
-        
+
         # If no
-        if(empty($settings['from']) || $settings['from'] == "none" || $settings['from'] == "default"){
+        if (empty($settings['from']) || $settings['from'] == "none" || $settings['from'] == "default") {
             $settings['from'] = $noReply;
         }
-        
+
         # Set from address.
         if (is_array($settings['from'])) {
             if (count($settings['from']) > 1) {
@@ -129,43 +137,43 @@ class UtilsEmails {
             # $mail->Sender = $noReply[0];
         } else {
             # If the only thing sent is an e-mail
-            if(Utils::checkEmail($settings['from'])){
+            if (Utils::checkEmail($settings['from'])) {
                 $send['from'] = $settings['from'];
-            }else{ # If not a valid email address then use noReply instead
+            } else { # If not a valid email address then use noReply instead
                 $send['from'] = $noReply[0];
                 $send['fromname'] = $settings['from'];
             }
         }
-        
+
         # Split email addresses into tokens, check their validation then return the one can be used in the email
         $toAddresses = Utils::splitEmails($settings['to']);
-        
-        if(count($toAddresses) < 1){
+
+        if (count($toAddresses) < 1) {
             # No address found don't send this email
-            return; 
-        }else if(count($toAddresses) == 1){
+            return;
+        } else if (count($toAddresses) == 1) {
             # If there is only one address add it as one
             $send['to'] = $toAddresses[0];
-        }else{
+        } else {
             # If multiple to addresses sent, then add them oneby one
             $send['to'] = $toAddresses;
         }
-        
+
         $send['subject'] = $settings['subject'];
-        if($html){
+        if ($html) {
             $send['html'] = $settings['body'];
             # $send['text'] = Utils::stripHTML($settings['body']); // Make sure you add alternative text version
-        }else{
+        } else {
             $send['text'] = Utils::stripHTML($settings['body']);
         }
         $r = Utils::postRequest("https://sendgrid.com/api/mail.send.json", $send);
         $response = json_decode($r);
-        if(isset($response->error)){
+        if (isset($response->error)) {
             throw new SystemException($response->error);
         }
         return $response;
     }
-    
+
     /**
      * Wrapper around sending e-mails, using the PHPMailer library.
      * @param array $settings
@@ -175,10 +183,10 @@ class UtilsEmails {
      *      a "subject" string
      *      a "message" string
      *  and sends the e-mail.
-     *  
+     *
      * @TODO: Add new options to the settings hash as there is a need.
      *  For example, add attachement support.
-     * @return // throws an exception when an error happens. Returns nothing when successful. 
+     * @return // throws an exception when an error happens. Returns nothing when successful.
      */
     static function sendEmail($settings, $forceSending = false)
     {
@@ -290,9 +298,9 @@ class UtilsEmails {
         }
         /**/
     }
+
     /**
      * Sends mail
-     * @return 
      * @param $to Object address of receiver. one mail or mails seperated by comma
      * @param $subject Object Subject of the mail
      * @param $contents Object Contents of the mail
@@ -300,88 +308,95 @@ class UtilsEmails {
      * @param $frm Object[optional] From address.
      * @param $cc Object[optional] CC address
      * @param $sendanyway Object[optional] If true. Sends email also blocked users. and Doesn't add block message
+     * @return
      */
-    static function sendOldMail($to, $subject, $contents, $is_html = true, $frm = false, $cc = "", $sendanyway = true, $customHeader = ""){
-        
-        if(Configs::USE_SENDGRID){
+    static function sendOldMail($to, $subject, $contents, $is_html = true, $frm = false, $cc = "", $sendanyway = true, $customHeader = "")
+    {
+
+        if (Configs::USE_SENDGRID) {
             preg_match("/(.*?)\<(.*?)\>/", $frm, $m);
-            if(count($m) > 0){
+            if (count($m) > 0) {
                 $frm = array($m[2], $m[1]);
             }
             return Utils::sendGrid(array(
-                "from"    => $frm,
-                "to"      => $to,
+                "from" => $frm,
+                "to" => $to,
                 "subject" => $subject,
-                "body"    => $contents,
-                "html"    => $is_html
+                "body" => $contents,
+                "html" => $is_html
             ));
         }
-        
-        $from = ($frm)? $frm : NOREPLY_NAME."<".NOREPLY.">";
+
+        $from = ($frm) ? $frm : NOREPLY_NAME . "<" . NOREPLY . ">";
         $from_header = "From: $from\r\nReturn-Path: $from\r\n";
-        if($cc){
-            $from_header .= "Cc: ".join(", ", Utils::splitEmails($cc))."\r\n";
+        if ($cc) {
+            $from_header .= "Cc: " . join(", ", Utils::splitEmails($cc)) . "\r\n";
         }
-        
-        if($customHeader){
-            $from_header .= $customHeader."\r\n";
+
+        if ($customHeader) {
+            $from_header .= $customHeader . "\r\n";
         }
-        
-        if($is_html) $from_header .="Content-Type: text/html; charset=\"UTF-8\"\r\n";
+
+        if ($is_html) $from_header .= "Content-Type: text/html; charset=\"UTF-8\"\r\n";
         $to = str_replace(" ", "", $to);
         $to = preg_replace("/\n\r|\n|\r\n|\r/", "\n", $to);
-        
-        $subject = preg_replace('/([^a-z ])/ie', 'sprintf("=%02x",ord(StripSlashes("\\1")))', $subject); 
-        $subject = str_replace(' ', '_', $subject); 
+
+        $subject = preg_replace('/([^a-z ])/ie', 'sprintf("=%02x",ord(StripSlashes("\\1")))', $subject);
+        $subject = str_replace(' ', '_', $subject);
         $subject = "=?UTF-8?Q?$subject?=";
-    
+
         $mails = Utils::splitEmails($to);
-        foreach($mails as $to){
+        foreach ($mails as $to) {
             $o = @mail($to, $subject, stripslashes($contents), $from_header); // removed block message  
         }
     }
+
     /**
      * Checks the mail logs for email sent status
      * @param  $email
-     * @return 
+     * @return
      */
-    static function checkEmailStatus($email){
-        
+    static function checkEmailStatus($email)
+    {
+
         # Get the last two lines of the log grep for this e-mail addres
         $grep = Utils::findCommand("grep");
-        exec($grep.' '. escapeshellarg($email) .' /var/log/mail.log', $res);
+        exec($grep . ' ' . escapeshellarg($email) . ' /var/log/mail.log', $res);
         $log = array_slice($res, -2, 2);
-        
-        if(count($log) < 2){
-            
+
+        if (count($log) < 2) {
+
         }
-        
+
         # Check email sent status        
-        if(strpos($log[1], "stat=Sent") !== false){
+        if (strpos($log[1], "stat=Sent") !== false) {
             # Check if the last line is recipient response
-            if(strpos($log[1], "sm-mta") !== false){
-               return "E-mail successfully sent";
-            }else{
-               return "E-mail appears to be sent";
+            if (strpos($log[1], "sm-mta") !== false) {
+                return "E-mail successfully sent";
+            } else {
+                return "E-mail appears to be sent";
             }
-        }else{
-             return "E-mail cannot be sent";
+        } else {
+            return "E-mail cannot be sent";
         }
     }
-    
+
     /**
      * Validates the email
      * @param  $email
-     * @return 
+     * @return
      */
-    static function checkEmail($email, $checkDB = false){
-        
+    static function checkEmail($email, $checkDB = false)
+    {
+
         // Check to see if this email was in bounced list
-        if($checkDB && self::checkEmailInBouncedList($email)){ return false; }
-        
+        if ($checkDB && self::checkEmailInBouncedList($email)) {
+            return false;
+        }
+
         // 22 TLDs as of Sep 2009. From http://en.wikipedia.org/wiki/Tld
         // eregi DEPRECATED as of PHP 5.3.0 and REMOVED as of PHP 6.0.0.
         return preg_match('/^[a-z0-9_\-\+]+(\.[_a-z0-9\-\+]+)*@([_a-z0-9\-]+\.)+([a-z]{2}|aero|asia|arpa|biz|cat|com|coop|edu|gov|info|int|jobs|mil|mobi|museum|name|nato|net|org|pro|tel|travel)$/i', $email);
     }
-    
+
 }
