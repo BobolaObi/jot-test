@@ -568,8 +568,7 @@ echo Translations::getJsInclude();
 <?php Utils::usageTracking("body"); ?>
 </body>
 </html>
-
 <?php
-// Translations::translatePage();
+Translations::translatePage();
 ob_flush();
 ?>

@@ -1,7 +1,6 @@
 <?php
 
 use Legacy\Jot\Configs;
-use Legacy\Jot\Configs;
 use Legacy\Jot\Form;
 use Legacy\Jot\UserManagement\Session;
 use Legacy\Jot\Utils\Settings;

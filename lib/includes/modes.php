@@ -1,7 +1,6 @@
 <?php
 
 use Legacy\Jot\Configs;
-use Legacy\Jot\Configs;
 use Legacy\Jot\Utils\Utils;
 
 

@@ -281,6 +281,10 @@ class Translations
         $html = ob_get_contents();
         ob_clean();
 
+        /* dumest thing possible */
+        echo $html;
+        return;
+
         /*$md5 = md5($html.$lang);
         
         # Check Cache Here
