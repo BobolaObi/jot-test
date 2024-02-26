@@ -1,5 +1,5 @@
-<?php 
-    function train( $incomingformID, $incomingformTitle, $isSpam){      
+<?php
+function train( $incomingformID, $incomingformTitle, $isSpam){
         
         # Look if incoming form id is setled.
         if( $incomingformID ){
@@ -19,7 +19,7 @@
                     # If a form is ignored, it is stored in spam_prob table with spam probability 0.5
                     $phishingFilter->setSpamProb(0.5);
                 }
-            }catch (Exception $e){
+            }catch (\Exception $e){
             }
         }
     }
