@@ -949,7 +949,7 @@ class User {
      * @param  $username
      * @return 
      */
-    public static function updateUserFromLDAP($username, $password){
+    public static function updateUserFromLDAP($username, $password){/*
         
         $l = new LDAPInterface();
         $l->setOption('server', Configs::LDAP_SERVER);
@@ -976,6 +976,7 @@ class User {
         $LDAPUser->save();
         
         return $LDAPUser;
+    /**/
     }
     
     /**
@@ -984,7 +985,7 @@ class User {
      * @param  $password
      * @return
      */ 
-    public static function checkLDAP($username, $password){
+    public static function checkLDAP($username, $password){/*
         if(!Configs::USELDAP){ return false; }
         
         $l = new LDAPInterface();
@@ -1007,7 +1008,7 @@ class User {
         }
         
         return false;
-    }
+    /**/}
     
     /**
      * Forces a username to login
@@ -1213,7 +1214,9 @@ class User {
         
         // Check if there are any genuine users who registered with the same 
         // username/email combination.
-        if (empty($propsArray['username']) || empty($propsArray['password']) || empty($propsArray['email']) || AccountUtils::emailAlreadyRegistered($propsArray['email'])) {
+        if (empty($propsArray['username']) || empty($propsArray['password']) || empty($propsArray['email'])
+//            || AccountUtils::emailAlreadyRegistered($propsArray['email'])
+        ) {
             throw new JotFormException('User with this e-mail address already registered.');
         }
         

@@ -31,7 +31,7 @@ class TimeZone {
      */
     static function createTimeZoneList() {
         $list = array();
-        $zlist = DateTimeZone::listIdentifiers();
+        $zlist = \DateTimeZone::listIdentifiers();
         foreach ($zlist as $zone) {
             if(!strstr($zone, "/")){
                 continue; // Don't add values without a continent
@@ -54,9 +54,9 @@ class TimeZone {
             }
             
             
-            $d = new DateTimeZone($zone);
-            $gmt = new DateTimeZone('GMT');
-            $s = new DateTime('now', $gmt);
+            $d = new \DateTimeZone($zone);
+            $gmt = new \DateTimeZone('GMT');
+            $s = new \DateTime('now', $gmt);
             
             $off = $d->getOffset($s);
             
@@ -123,10 +123,10 @@ class TimeZone {
             $userZone = 'EST';
         }
         
-        $userDTZ = new DateTimeZone($userZone);
+        $userDTZ = new \DateTimeZone($userZone);
   
-        $off1 = $userDTZ->getOffset(new DateTime('now'));
-        $off2 = self::$serverDTZ->getOffset(new DateTime('now'));
+        $off1 = $userDTZ->getOffset(new \DateTime('now'));
+        $off2 = self::$serverDTZ->getOffset(new \DateTime('now'));
         
         $off = $off1 - $off2;
         $epoc = strtotime($time. $off. " Seconds");
