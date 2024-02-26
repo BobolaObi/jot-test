@@ -2,8 +2,10 @@
 
 namespace Legacy\Jot;
 
-use forms\DBMigrate;
-use forms\DropBoxIntegration;
+use Legacy\Jot\Exceptions\SoftException;
+use Legacy\Jot\Exceptions\Warning;
+use Quarantine\DropBoxIntegration;
+use Quarantine\DBMigrate;
 use Legacy\Jot\Integrations\Integrations;
 use Legacy\Jot\UserManagement\AccountType;
 use Legacy\Jot\UserManagement\MonthlyUsage;
@@ -19,6 +21,7 @@ use Legacy\Jot\Utils\Server;
 use Legacy\Jot\Utils\Settings;
 use Legacy\Jot\Utils\Utils;
 use Quarantine\FTPIntegration;
+
 
 class RequestServer
 {
@@ -293,7 +296,7 @@ class RequestServer
         }catch (Warning $e){
         	$this->warning = $e->getMessage();
         	$this->success("Operation Completed");
-        }catch(SoftException $e){
+        }catch( SoftException $e){
             $err = $e->getMessage();
             if(is_array($err)){
                 return $this->error(array("message"=>$err[0], "errorNo"=>$err[1]), null, 200);
@@ -487,7 +490,7 @@ class RequestServer
 
     /**
      * Save form
-     * @return \\ float Id of the form
+     * @return // float Id of the form
      */
     private function saveForm(){
 
@@ -518,7 +521,7 @@ class RequestServer
      * @todo Must move contents to a function
      * @return
      */
-    private function exportPDF() {
+    private function exportPDF() {/*
         $id = $this->request["formID"];
         $cacheFilePath = CACHEPATH . $id . "_facebook.html";
         
@@ -539,16 +542,17 @@ class RequestServer
         $wkpdf->render();
         $wkpdf->output(WKPDF::$PDF_DOWNLOAD, 'form.pdf');
         exit;
+        /**/
     }
 
-    private function getSubmissionPDF(){
+    private function getSubmissionPDF(){/*
         $wkpdf = new WKPDF();
         $url   = HTTP_URL."pdfview/".$this->get('sid');
         $wkpdf->set_url($url);
         $wkpdf->render();
         $wkpdf->output(WKPDF::$PDF_DOWNLOAD, 'form.pdf');
         exit;
-        
+     /**/   
     }
 
     /**
@@ -1426,7 +1430,7 @@ class RequestServer
     /**
      * Get the usernames and return emails of users for JCM system.
      * @param usernames: Array
-     * @return \\ emails: Array
+     * @return // emails: Array
      */
     private function getEmailsJCM(){
         $usernames = Utils::safeJsonDecode($this->request['usernames']);
@@ -2585,3 +2589,4 @@ class RequestServer
     	}
     }
 }
+

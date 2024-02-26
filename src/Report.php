@@ -1,6 +1,7 @@
 <?php
 
 namespace Legacy\Jot;
+use Legacy\Jot\Exceptions\SoftException;
 use Legacy\Jot\Utils\DB;
 use Legacy\Jot\Utils\Utils;
 
@@ -55,9 +56,9 @@ class Report{
 	
 	/**
 	 * Saves or updates the report on database
-	 * @param string $title Title of the report
-	 * @param json_string $config configuration of the report
-	 * @return \\ int ID of the saved report
+	 * @param // string $title Title of the report
+	 * @param // string $config configuration of the report
+	 * @return // int ID of the saved report
 	 */
 	public function save($title, $config, $password = false){
 		

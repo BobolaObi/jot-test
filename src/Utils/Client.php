@@ -66,7 +66,7 @@ class Client{
     }
     /**
      * Returns the Internet explorer version
-     * @return \\ false if not an IE browser
+     * @return // false if not an IE browser
      */
     static function getIEVersion($agent = false){
         if($agent !== false){

@@ -24,7 +24,7 @@ class OpenSSL{
     
     /**
      * Get the instance of the OpenSSL class
-     * @return \\ OpenSSL
+     * @return // OpenSSL
      */
     public static function getInstance(){
          if (!isset(self::$instance)) {
@@ -36,7 +36,7 @@ class OpenSSL{
     
     /**
      * 
-     * @return \\ OpenSSL
+     * @return // OpenSSL
      */
     private function __construct(){
     	$this->privateKeyPath = Configs::PRIVATE_KEY_PATH;

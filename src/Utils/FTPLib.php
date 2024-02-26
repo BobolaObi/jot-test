@@ -59,7 +59,7 @@ class FTPLib{
     /**
      * Parses the size value of folder
      * @param $size Object
-     * @return \\ Human readible version of size string
+     * @return // Human readible version of size string
      */
     public function getSize($size){
          if ($size < 1024){
@@ -122,7 +122,7 @@ class FTPLib{
     /**
      * Gets the file type from list string.
      * @param $perms Object
-     * @return \\ file, folder or link
+     * @return // file, folder or link
      */
     public function getFileType($perms){
         if (substr($perms, 0, 1) == "d"){

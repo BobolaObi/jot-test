@@ -72,9 +72,9 @@ class Session {
 
         self::setThemeForMemberkit();
 
-        if($type == 'login'){
-            ABTestingController::dropGuest();
-        }
+//        if($type == 'login'){
+//            ABTestingController::dropGuest();
+//        }
 
         # Don't work on every refresh
         if($type != "remember"){
@@ -84,9 +84,9 @@ class Session {
             }
         }
 
-        if($type == 'login' || $type=='register'){
-            ABTestingController::updateGuest();
-        }
+//        if($type == 'login' || $type=='register'){
+//            ABTestingController::updateGuest();
+//        }
 
         self::sendXAccountManagementHeaders();
     }
@@ -526,7 +526,7 @@ class Session {
 
     /**
      * Gets the User object from Session
-     * @return \\ User
+     * @return // User
      */
     public static function getUser(){
         return $_SESSION[COOKIE_KEY];

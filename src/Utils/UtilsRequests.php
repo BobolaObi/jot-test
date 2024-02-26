@@ -344,7 +344,7 @@ class UtilsRequests extends UtilsEmails
      * @param  $path  // [optional] Path of the cookie
      * @param  $domain  // [optional] Domain of the cookie
      * @param  $httponly  // [optional] Is cookie HTTP only?
-     * @return \\ boolean
+     * @return // boolean
      */
     static function setCookie($name, $value, $expire, $path = "/", $domain = null, $httponly = null)
     {
@@ -360,7 +360,7 @@ class UtilsRequests extends UtilsEmails
     /**
      * Reads the cookie
      * @param  $name  // Name of the cookie
-     * @return \\ string|boolean if found returns cookie value if not returns false
+     * @return // string|boolean if found returns cookie value if not returns false
      */
     static function getCookie($name)
     {
@@ -370,7 +370,7 @@ class UtilsRequests extends UtilsEmails
     /**
      * Deletes a cookie
      * @param  $name  // Name of the cookie
-     * @return \\ boolean
+     * @return // boolean
      */
     static function deleteCookie($name)
     {
@@ -432,7 +432,7 @@ class UtilsRequests extends UtilsEmails
      * Creates the HTML of post form.
      * @param  $action
      * @param  $parameters
-     * @return \\ string HTML of the form
+     * @return // string HTML of the form
      */
     static function postRedirect($action, $parameters)
     {
@@ -687,7 +687,7 @@ class UtilsRequests extends UtilsEmails
      * IMPORTANT: if you need to know the response use Utils::postRequest
      * @param  $url  // Url which data will be posted
      * @param  $request  // Data
-     * @return \\ null
+     * @return // null
      */
     static function suppressRequest($url, $data)
     {

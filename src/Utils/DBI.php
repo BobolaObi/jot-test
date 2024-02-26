@@ -75,7 +75,7 @@ class DBI {
   
     /**
      * Sets the connection to a database
-     * @return \\ object database link referance
+     * @return // object database link referance
      */
     static function connect(){
         
@@ -108,7 +108,7 @@ class DBI {
 
     /**
      * Getter for link
-     * @return \\ object database link reference
+     * @return // object database link reference
      */
     static function getLink(){
         return self::$dlink;
@@ -119,7 +119,7 @@ class DBI {
      * Use <b>:name</b> for strings
      * Use <b>#name</b> for numbers
      * @param  $args
-     * @return \\ string Parsed Query
+     * @return // string Parsed Query
      */
     public static function parseQuery($args){
         # If there's no connection, do a connection first.
@@ -149,7 +149,7 @@ class DBI {
      * Parses the query from a given hash
      * @param  $query
      * @param  $args
-     * @return \\ string Parsed Query
+     * @return // string Parsed Query
      */
     public static function parseQueryHashedArgs($query, $args) {
         # If there's no connection, do a connection first.
@@ -266,7 +266,7 @@ class DBI {
      * <code> DB::read("SELECT * FROM users WHERE accountType=':type' AND id=#id", $type, $id) </code>
      * Arguments can either be a query string and a hash of (column_name => value) pairs
      * or a query and the values to be replaced one by one.
-     * @return \\ object response an object consists of :
+     * @return // object response an object consists of :
      *      - response: (success=>true if query is successfull),
      *      - rows: (mysql_affected_rows),
      *      - query: (parsed query),
@@ -311,7 +311,7 @@ class DBI {
     /**
      * Use for the write queries to database, gets the query as a first parameter then the veraibles from the other parameters
      * <code> DB::write("DELETE FROM users WHERE accountType=':type' AND id=#id", $type, $id) </code>
-     * @return \\ object response an object consists of :
+     * @return // object response an object consists of :
      *      - response: (success=>true if query is successfull),
      *      - rows: (mysql_affected_rows),
      *      - time: (Execution time in seconds),
@@ -347,7 +347,7 @@ class DBI {
     }
     /**
      * Active Record insert
-     * @return \\ string Query
+     * @return // string Query
      */
     static function insert($table_name, $data, $insert = false){
         # If there's no connection, do a connection first.
@@ -382,7 +382,7 @@ class DBI {
     /**
      * Return the array of columns (with table name index) with details
      * @param  $table
-     * @return \\ array list of table columns with column details
+     * @return // array list of table columns with column details
      */
     static function getTableColumns($table){
 
@@ -399,7 +399,7 @@ class DBI {
 
     /**
      * Return table names in the database
-     * @return \\ array list of tables in database
+     * @return // array list of tables in database
      */
     static function getTables(){
         $response = self::read("SHOW TABLES");
@@ -413,7 +413,7 @@ class DBI {
     /**
      * Check if the table exists or not
      * @param  $table
-     * @return \\ bool
+     * @return // bool
      */
     static function tableExists($table){
         $tables = self::getTables();
@@ -423,7 +423,7 @@ class DBI {
     /**
      * Starts the timer for given title
      * @param  $title
-     * @return \\ null
+     * @return // null
      */
     static function profileStart($title){
         self::$timers[$title] = microtime(true);
@@ -433,7 +433,7 @@ class DBI {
      * Brings back the result of time spending in seconds
      * Title must be exact same of the start functon
      * @param  $title
-     * @return \\ float time in seconds
+     * @return // float time in seconds
      */
     static function profileEnd($title){
         $end = microtime(true);

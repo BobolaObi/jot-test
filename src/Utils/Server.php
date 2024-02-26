@@ -22,7 +22,7 @@ class Server{
     
     /**
      * Returns the host name of the server
-     * @return \\ server name or false if not found
+     * @return // server name or false if not found
      */
     static function whoAmI($otherIP = false){
         
@@ -55,7 +55,7 @@ class Server{
     /**
      * Checks if the given ip is a sibling or not?
      * @param  $ip
-     * @return \\ sibling name or false if not found
+     * @return // sibling name or false if not found
      */
     static function isSibling($ip){
         return self::whoAmI($ip);
@@ -65,7 +65,7 @@ class Server{
      * Returns the information of specific server instance
      * If no name provided returns the self information
      * @param  $name  // [optional]
-     * @return \\ false if not an instance or localhost 
+     * @return // false if not an instance or localhost 
      */
     static function getInstance($name = false){
         if($name === false){
@@ -87,7 +87,7 @@ class Server{
     
     /**
      * Returns the other servers except this
-     * @return \\ array of sibling names
+     * @return // array of sibling names
      */
     static function getSiblings(){
         $me = self::whoAmI();
@@ -104,7 +104,7 @@ class Server{
     
     /**
      * Check if the server is localhost
-     * @return \\ boolean
+     * @return // boolean
      */
     static function isLocalhost(){
         $addr = $_SERVER['SERVER_ADDR'];
@@ -132,7 +132,7 @@ class Server{
      * Check if script runs on the the given host or hosts.
      * 
      * @param string|array $hostname single hostname or array of hostnames to check
-     * @return \\ boolean
+     * @return // boolean
      */
     static function isHost($hostname){
         # make sure you always have the host name

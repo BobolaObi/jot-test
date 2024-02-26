@@ -217,7 +217,7 @@ class UtilsArrays extends UtilsStrings{
     /**
      * Serializes PHP Objects, then GZIP the output
      * @param  $value
-     * @return \\ string
+     * @return // string
      */
     public static function serialize($value){
         # serialize the given object
@@ -230,7 +230,7 @@ class UtilsArrays extends UtilsStrings{
     /**
      * Unserializes GZIPPED strings to PHP objects
      * @param  $str
-     * @return \\ Submission
+     * @return // Submission
      */
     public static function unserialize($str){
         # inflate the deflated string to get serialized object

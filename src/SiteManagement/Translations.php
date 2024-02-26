@@ -229,7 +229,7 @@ class Translations
     /**
      * translates the given text into the selected language
      * @param  $string  // Word to be translated
-     * @return \\ string Translated Word
+     * @return // string Translated Word
      */
     public static function getText($string){
         # Zombie language, do enable: uncomment zb-ZB in languages list, go to locale.js un comment zombie converter and uncomment below line 

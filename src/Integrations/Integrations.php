@@ -2,6 +2,11 @@
 
 namespace Legacy\Jot\Integrations;
 
+use Legacy\Jot\UserManagement\Session;
+use Legacy\Jot\Utils\DB;
+use Legacy\Jot\Utils\OpenSSL;
+use Legacy\Jot\Utils\Utils;
+
 class Integrations{
     
     public $partner, $username, $formID;
@@ -26,7 +31,7 @@ class Integrations{
      * @return 
      */
     public function getSettings(){
-        $res = DB::read("SELECT `key`, `value` FROM `integrations` WHERE `partner`=':partner' AND `username`=':username' AND `form_id`=#id", 
+        $res = DB::read("SELECT `key`, `value` FROM `integrations` WHERE `partner`=':partner' AND `username`=':username' AND `form_id`=#id",
         $this->partner, $this->username, $this->formID);
         if($res->rows > 0){
             foreach($res->result as $line){

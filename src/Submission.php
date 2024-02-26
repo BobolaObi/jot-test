@@ -267,7 +267,7 @@ class Submission {
     
     /**
      * Serialize this object
-     * @return \\ string serialized object
+     * @return // string serialized object
      */
     public function serialize(){
         return Utils::serialize($this);
@@ -766,7 +766,7 @@ class Submission {
     
     /**
      * Check if the form has a captcha tool
-     * @return \\ boolean
+     * @return // boolean
      */
     private function formHasCaptcha(){
         $ret = false;
@@ -780,7 +780,7 @@ class Submission {
     
     /**
      * Check if the form has a payment
-     * @return \\ boolean
+     * @return // boolean
      */
     private function formHasPayment(){
         $ret = false;
@@ -794,7 +794,7 @@ class Submission {
     
     /**
      * Check if the form has a payment
-     * @return \\ boolean
+     * @return // boolean
      */
     private function getPaymentField(){
         $ret = false;
@@ -808,7 +808,7 @@ class Submission {
     
     /**
      * Check if the form has an upload field
-     * @return \\ boolean
+     * @return // boolean
      */
     private function formHasUpload(){
         $ret = false;
@@ -822,7 +822,7 @@ class Submission {
     
     /**
      * Check if the form has given type of field
-     * @return \\ boolean
+     * @return // boolean
      */
     private function formHas($type){
         $ret = false;
@@ -1454,11 +1454,11 @@ class Submission {
         #------------------------------------------------------------------------------------------------
         try{
             # Create UFSController.
-            $ufsc = new UFSController($this->owner->username, $this->formID, $this->sid, $uploadProp, null, $this);
-            $ufsc->uploadFile();
-            if(!$this->isEdit){
-               $this->monthlyUsage->incrementUsage('uploads', $uploadProp["size"]);
-            }
+//            $ufsc = new UFSController($this->owner->username, $this->formID, $this->sid, $uploadProp, null, $this);
+//            $ufsc->uploadFile();
+//            if(!$this->isEdit){
+//               $this->monthlyUsage->incrementUsage('uploads', $uploadProp["size"]);
+//            }
         }catch (\Exception $e){
             Utils::errorPage("File could not be uploaded for some reason.".$this->goBackMessage, "Upload Error", print_r(error_get_last(), true));
         }
@@ -1469,7 +1469,7 @@ class Submission {
      * Handle the payments
      * @return 
      */
-    private function handlePayments(){
+    private function handlePayments(){/*
         
         if($this->isEdit){ return; } # Do not allow users to edit payments
         
@@ -1668,7 +1668,7 @@ class Submission {
             case "control_onebip":
             	# Make redirects pending and complete after payment is done
                 $this->handleRedirects(true);
-                
+
             	$this->payment = new OneBip(array(
                     "formID"        => $this->formID,
                     "sid"           => $this->sid,
@@ -1685,7 +1685,7 @@ class Submission {
                 $this->payment->transact();
             break;
         }
-    }
+    /**/}
     
     /**
      * Handle Emails, send them according to user settings, such as conditions
@@ -1727,7 +1727,7 @@ class Submission {
     
     /**
      * Updates the forms table for submission counts
-     * @return \\ null
+     * @return // null
      */
     private function updateFormStats(){
         if($this->form->form['count'] < 0){

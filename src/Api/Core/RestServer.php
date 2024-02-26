@@ -19,7 +19,7 @@ class RestServer {
     /**
      * Contructor of RestServer
      * @param string $query Optional query to be treat as the URL
-     * @return \\ RestServer $rest;
+     * @return // RestServer $rest;
     */
     public function __construct($query=null) {
         
@@ -44,7 +44,7 @@ class RestServer {
     
     /**
      * Returns the mapper of the RestServer
-     * @return \\ RestMapper $mapper
+     * @return // RestMapper $mapper
      */
     public function getMapper(){
     	return $this->mapper;
@@ -54,7 +54,7 @@ class RestServer {
     * Sets a parameter in a global scope that can be recovered at any request.
     * @param mixed $key The identifier of the parameter
     * @param mixed $value The content of the parameter
-    * @return \\ RestServer $rest
+    * @return // RestServer $rest
     */
     public function setParameter($key,$value) {
     	return $this->getResponse()->setParameter($key, $value);
@@ -63,7 +63,7 @@ class RestServer {
     /**
     * Return the specified parameter
     * @param mixed $key The parameter identifier
-    * @return \\ mixed
+    * @return // mixed
     */
     public function getParameter($key) {
         return $this->getResponse()->getParameter($key);
@@ -71,7 +71,7 @@ class RestServer {
 
     /**
     * Get the Response handler object
-    * @return \\ RestResponse
+    * @return // RestResponse
     */
     public function getResponse() {
         return $this->response ;
@@ -79,7 +79,7 @@ class RestServer {
 
     /**
      * Get the Request handler object
-    * @return \\ RestRequest
+    * @return // RestRequest
     */
     public function getRequest() {
         return $this->request ;
@@ -87,7 +87,7 @@ class RestServer {
 
     /**
      * Get the Authentication handler object
-    * @return \\ RestAuthenticator
+    * @return // RestAuthenticator
     */
     public function getAuthenticator() {
         return $this->authenticator ;
@@ -95,7 +95,7 @@ class RestServer {
     
     /**
      * Get the Version handler object
-     * @return \\ RestVersionController
+     * @return // RestVersionController
      */
     public function getVersionController(){
         return $this->versionController;
@@ -103,7 +103,7 @@ class RestServer {
     
     /**
     * Return last class name from RestServer stack trace
-    * @return \\ string 
+    * @return // string 
     */
     public function lastClass() {
         $i = count($this->stack);
@@ -112,7 +112,7 @@ class RestServer {
 
     /**
     * Run the Server to handle the request and prepare the response
-    * @return \\ string $responseContent
+    * @return // string $responseContent
     */
     public function execute() {
     	# If auth is required and its not ok, response is 401
@@ -186,7 +186,7 @@ class RestServer {
      * Includes the control file that the method will be
      * called.
      * @param string $class: The action that is defined in the map
-     * @throws Exception: Throws exception when the file cannot be included.
+     * @throws \Exception: Throws exception when the file cannot be included.
      */
     private function includeControllerFile($className){
         $filename = dirname(__FILE__) . DIRECTORY_SEPARATOR .

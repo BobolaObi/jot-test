@@ -56,7 +56,7 @@ class RestRequest {
 
     /**
     * Return  RestServer used;
-    * @return \\ RestServer
+    * @return // RestServer
     */
     public function getRest() {
         return $this->rest;
@@ -64,7 +64,7 @@ class RestRequest {
 
     /**
     * Returns if Request is GET
-    * @return \\ boolean
+    * @return // boolean
     */
     public function isGet() {
         if($this->requestMethod == "GET") {
@@ -75,7 +75,7 @@ class RestRequest {
 
     /** 
     * Returns if Request is POST
-    * @return \\ boolean
+    * @return // boolean
     */
     public function isPost() {
         if($this->requestMethod == "POST") {
@@ -86,7 +86,7 @@ class RestRequest {
 
     /**
     * Return if Request is PUT
-    * @return \\ boolean
+    * @return // boolean
     */
     public function isPut() {
         if($this->requestMethod == "PUT") {
@@ -97,7 +97,7 @@ class RestRequest {
 
     /**
     * Return true if Request is DELETE
-    * @return \\ boolean
+    * @return // boolean
     */
     public function isDelete() {
         if($this->requestMethod == "DELETE") {
@@ -110,7 +110,7 @@ class RestRequest {
     /** 
     * Get parameters sent with GET (url parameters)
     * @param mixed $k get[$key]
-    * @return \\ mixed
+    * @return // mixed
     */
     public function getGet($k=null) {
         if($k==null) return $this->get ;
@@ -120,7 +120,7 @@ class RestRequest {
     /**
     * Return parameters sent on a POST
     * @param mixed $k post[$key]
-    * @return \\ mixed
+    * @return // mixed
     */
     public function getPost($k=null) {
         if($k==null) return $this->post ;
@@ -130,7 +130,7 @@ class RestRequest {
     /**
     * Return FILES sent on a POSt
     * @param mixed $k file[$key]
-    * @return \\ mixed
+    * @return // mixed
     */
     public function getFiles($k=null) {
         if($k==null) return $this->files ;
@@ -140,7 +140,7 @@ class RestRequest {
     /**
     * Return content sent with PUT
     * @param mixed $k
-    * @return \\ mixed 
+    * @return // mixed 
     */
     public function getPut($k=null) {
         $_PUT  = array();
@@ -160,7 +160,7 @@ class RestRequest {
 
     /**
     * Return content sent with PUT
-    * @return \\ mixed 
+    * @return // mixed 
     */
     public function getInput() {
         return file_get_contents('php://input');
@@ -168,7 +168,7 @@ class RestRequest {
 
     /**
     * Return request BODY
-    * @return \\ string 
+    * @return // string 
     */
     public function getBody() {
         return $this->getInput();
@@ -176,7 +176,7 @@ class RestRequest {
 
     /**
     * Return user sent on BASIC Authentication
-    * @return \\ string
+    * @return // string
     */
     public function getUser() {
         return $this->rest->getAuthenticator()->getUser();
@@ -184,7 +184,7 @@ class RestRequest {
 
     /**
     * Return password sent on Basic Authentication
-    * @return \\ string
+    * @return // string
     */
     public function getPassword() {
         return $this->rest->getAuthenticator()->getPassword();
@@ -192,7 +192,7 @@ class RestRequest {
 
     /**
     * Return Request Method(PUT, DELETE, OPTION, GET...)
-    * @return \\ string
+    * @return // string
     */
     public function getMethod() {
         return $this->requestMethod ;
@@ -201,7 +201,7 @@ class RestRequest {
     /**
     * Set request method
     * @param string $method
-    * @return \\ RestRequest
+    * @return // RestRequest
     */
     public function setMethod($method) {
         $this->requestMethod = $method ;
@@ -210,7 +210,7 @@ class RestRequest {
 
     /**
     * Return the URI requested
-    * @return \\ string
+    * @return // string
     */
     public function getRequestURI() {
         return $this->requestURI ;
@@ -219,7 +219,7 @@ class RestRequest {
     /**
     * Return part of the URL
     * @param int $i part of the uri
-    * @return \\ string
+    * @return // string
     */
     public function getURIpart($i) {
         if(isset($this->URIParts[$i]))
@@ -231,7 +231,7 @@ class RestRequest {
     /**
     * Return the URI or part of it
     * @param int $i part of the uri
-    * @return \\ string
+    * @return // string
     */
     public function getURI($i=null) {
         if($i !== null) return $this->getURIpart($i);
@@ -241,7 +241,7 @@ class RestRequest {
     /**
     * Sets the URI to deal
     * @param string $uri
-    * @return \\ RestRequest 
+    * @return // RestRequest 
     */
     public function setURI($uri) {
     	$tempParts = explode("/", $uri);
@@ -271,7 +271,7 @@ class RestRequest {
     
     /**
      * Return the uri of the api.
-     * @return \\ string $apiURI
+     * @return // string $apiURI
      */
     public function getAPIURI(){
        return $this->apiURI; 
@@ -279,7 +279,7 @@ class RestRequest {
 
     /**
     * Return the extension of the URI (if any)
-    * @return \\ string
+    * @return // string
     */
     public function getExtension() {
         $reg = array();
@@ -293,7 +293,7 @@ class RestRequest {
     /**
     * Return true if given mime is accepted
     * @param string $mime to check
-    * @return \\ boolean
+    * @return // boolean
     */
     public function acceptMime($mime) {
         if(($pos = strpos($_SERVER["HTTP_ACCEPT"],$mime)) !== false) {
@@ -305,7 +305,7 @@ class RestRequest {
     
     /**
      * Returns the wanted API version fetched from the url.
-     * @return \\ string $wantedAPIVersion
+     * @return // string $wantedAPIVersion
      */
     public function getWantedAPIVersion(){
         return $this->wantedAPIVersion;

@@ -13,7 +13,7 @@ class CountryDropdown
 {
     /**
      * No need but it's good to have
-     * @return \\ array Countries
+     * @return // array Countries
      */
     static function getCountries(){
         $response = DB::read("SELECT * FROM countries WHERE 1");
@@ -27,7 +27,7 @@ class CountryDropdown
     /**
      * Get states by country
      * @param  $countryID  // ID of the country
-     * @return \\ array States by country
+     * @return // array States by country
      */
     static function getStates($countryID){
         $response = DB::read("SELECT * FROM states WHERE country_id =#countryID", $countryID);
@@ -41,7 +41,7 @@ class CountryDropdown
     /**
      * Get cities by state
      * @param  $stateID  // ID of the state
-     * @return \\ array cities by state
+     * @return // array cities by state
      */
     static function getCities($stateID){
         $response = DB::read("SELECT * FROM cities WHERE state_id=#stateID", $stateID);
@@ -56,7 +56,7 @@ class CountryDropdown
      * Will save freauqenty added country
      * @todo complete this function
      * @param  $country
-     * @return \\ null
+     * @return // null
      */
     static function saveNewCountry($country){
 
@@ -67,7 +67,7 @@ class CountryDropdown
      * @todo complete this function
      * @param  $countryID
      * @param  $state
-     * @return \\ null
+     * @return // null
      */
     static function saveNewState($countryID, $state){
 

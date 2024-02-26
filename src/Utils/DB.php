@@ -87,7 +87,7 @@ class DB
 
     /**
      * Sets the connection to a database
-     * @return \\ object database link referance
+     * @return // object database link referance
      */
     static function connect($noloop = false)
     {
@@ -136,7 +136,7 @@ Thank you for your patience.", "Temporarily Unavailable", mysqli_error(self::$dl
 
     /**
      * Getter for link
-     * @return \\ object database link reference
+     * @return // object database link reference
      */
     static function getLink()
     {
@@ -148,7 +148,7 @@ Thank you for your patience.", "Temporarily Unavailable", mysqli_error(self::$dl
      * Use <b>:name</b> for strings
      * Use <b>#name</b> for numbers
      * @param  $args
-     * @return \\ string Parsed Query
+     * @return // string Parsed Query
      */
     public static function parseQuery($args)
     {
@@ -181,7 +181,7 @@ Thank you for your patience.", "Temporarily Unavailable", mysqli_error(self::$dl
      * Parses the query from a given hash
      * @param  $query
      * @param  $args
-     * @return \\ string Parsed Query
+     * @return // string Parsed Query
      */
     public static function parseQueryHashedArgs($query, $args)
     {
@@ -335,7 +335,7 @@ Thank you for your patience.", "Temporarily Unavailable", mysqli_error(self::$dl
      * <code> DB::read("SELECT * FROM users WHERE accountType=':type' AND id=#id", $type, $id) </code>
      * Arguments can either be a query string and a hash of (column_name => value) pairs
      * or a query and the values to be replaced one by one.
-     * @return \\ object response an object consists of :
+     * @return // object response an object consists of :
      *      - response: (success=>true if query is successfull),
      *      - rows: (mysql_affected_rows),
      *      - query: (parsed query),
@@ -381,7 +381,7 @@ Thank you for your patience.", "Temporarily Unavailable", mysqli_error(self::$dl
     /**
      * Use for the write queries to database, gets the query as a first parameter then the veraibles from the other parameters
      * <code> DB::write("DELETE FROM users WHERE accountType=':type' AND id=#id", $type, $id) </code>
-     * @return \\ object response an object consists of :
+     * @return // object response an object consists of :
      *      - response: (success=>true if query is successfull),
      *      - rows: (mysql_affected_rows),
      *      - time: (Execution time in seconds),
@@ -420,7 +420,7 @@ Thank you for your patience.", "Temporarily Unavailable", mysqli_error(self::$dl
 
     /**
      * Active Record insert
-     * @return \\ string Query
+     * @return // string Query
      */
     static function insert($table_name, $data, $insert = false)
     {
@@ -458,7 +458,7 @@ Thank you for your patience.", "Temporarily Unavailable", mysqli_error(self::$dl
     /**
      * Return the array of columns (with table name index) with details
      * @param  $table
-     * @return \\ array list of table columns with column details
+     * @return // array list of table columns with column details
      */
     static function getTableColumns($table)
     {
@@ -476,7 +476,7 @@ Thank you for your patience.", "Temporarily Unavailable", mysqli_error(self::$dl
 
     /**
      * Return table names in the database
-     * @return \\ array list of tables in database
+     * @return // array list of tables in database
      */
     static function getTables()
     {
@@ -493,7 +493,7 @@ Thank you for your patience.", "Temporarily Unavailable", mysqli_error(self::$dl
     /**
      * Check if the table exists or not
      * @param  $table
-     * @return \\ bool
+     * @return // bool
      */
     static function tableExists($table)
     {
@@ -504,7 +504,7 @@ Thank you for your patience.", "Temporarily Unavailable", mysqli_error(self::$dl
     /**
      * Starts the timer for given title
      * @param  $title
-     * @return \\ null
+     * @return // null
      */
     static function profileStart($title)
     {
@@ -515,7 +515,7 @@ Thank you for your patience.", "Temporarily Unavailable", mysqli_error(self::$dl
      * Brings back the result of time spending in seconds
      * Title must be exact same of the start functon
      * @param  $title
-     * @return \\ float time in seconds
+     * @return // float time in seconds
      */
     static function profileEnd($title)
     {
