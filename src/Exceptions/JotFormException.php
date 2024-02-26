@@ -6,7 +6,7 @@
  * @package JotForm_Exceptions
  */
 
-namespace Legacy\Jot\Exceptions;
+namespace Legacy\Jot\_exceptions;
 
 use Legacy\Jot\Utils\Console;
 

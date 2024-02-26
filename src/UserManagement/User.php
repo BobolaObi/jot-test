@@ -16,7 +16,7 @@
 namespace Legacy\Jot\UserManagement;
 
 use Legacy\Jot\Configs;
-use Legacy\Jot\exceptions\JotFormException;
+use Legacy\Jot\Exceptions\JotFormException;
 use Legacy\Jot\Form;
 use Legacy\Jot\JotRequestServer as RequestServer;
 use Legacy\Jot\Utils\Client;

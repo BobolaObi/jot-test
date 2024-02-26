@@ -1,5 +1,5 @@
 <?php
 
-namespace Legacy\Jot\Exceptions;
+namespace Legacy\Jot\_exceptions;
 
 class Warning extends  JotFormException {}

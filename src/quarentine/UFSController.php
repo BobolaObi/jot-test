@@ -1,6 +1,6 @@
 <?php
 
-use Legacy\Jot\exceptions\JotFormException;
+use Legacy\Jot\Exceptions\JotFormException;
 use Legacy\Jot\Utils\DB;
 
 

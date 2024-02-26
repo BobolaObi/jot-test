@@ -1,5 +1,16 @@
 <?php
 
+
+use Legacy\Jot\Exceptions\DBException;
+use Legacy\Jot\Exceptions\JotFormException;
+use Legacy\Jot\Exceptions\LDAPException;
+use Legacy\Jot\Exceptions\NoChangesMadeException;
+use Legacy\Jot\Exceptions\RecordNotFoundException;
+use Legacy\Jot\Exceptions\SoftException;
+use Legacy\Jot\Exceptions\SystemException;
+use Legacy\Jot\Exceptions\Warning;
+
+
 use \Legacy\Jot\DataListings;
 use \Legacy\Jot\SiteManagement\PageInfo;
 use \Legacy\Jot\UserManagement\MonthlyUsage;
@@ -30,7 +41,7 @@ use \Legacy\Jot\Utils\DBI;
 use \Legacy\Jot\Utils\UtilsEmails;
 use \Legacy\Jot\Utils\CSV;
 use \Legacy\Jot\Utils\Client;
-use \Legacy\Jot\exceptions\JotFormException;
+use \Legacy\Jot\_exceptions\JotFormException;
 use \Legacy\Jot\Submission;
 use \Legacy\Jot\JotRequestServer as RequestServer;
 use \Legacy\Jot\Integrations\FTPIntegration;

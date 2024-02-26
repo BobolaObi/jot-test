@@ -1,6 +1,6 @@
 <?php
 
-namespace Legacy\Jot\Exceptions;
+namespace Legacy\Jot\_exceptions;
 
 /**
  * When a system exception has occured
