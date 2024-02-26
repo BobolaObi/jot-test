@@ -1469,14 +1469,15 @@ class Form{
             exit;
         }
     }
-    
+
+
     /**
      * Creates a zip file for the source codes.
      * @param  $id
      * @return 
      */
     public static function createZip($id, $source){
-    	
+        /* * /
         # Get the form
         $form = new Form($id);
 		
@@ -1546,6 +1547,7 @@ class Form{
             throw new \Exception ("Cannot change permission of zip file.");
         }
         return $zipFile;
+        /* */
     }
     
     /**
@@ -2190,100 +2192,103 @@ class Form{
      * Prompts the excel for download
      * @return 
      */
-    public function getExcel($fieldList = array(), $filter = 'exclude', $startDate="", $endDate=""){
-        
-        if(!is_array($fieldList)){
-            $fieldList = explode(',', $fieldList);
-        }
-        
-        $letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        $length = strlen($letters);
-        
-        $data = $this->createDataDump($fieldList, $filter, $startDate, $endDate);
-        
-        $objPHPExcel = new PHPExcel();
-        
-        // Set properties
-        $objPHPExcel->getProperties()->setCreator("JotForm")
-                    ->setLastModifiedBy("Session Username")
-                    ->setTitle($this->form['title'])
-                    ->setSubject($this->form['title']." Submissions")
-                    ->setDescription($this->form['title']." Submissions received at JotForm.com ".time())
-                    ->setKeywords("submissions excel jotform")
-                    ->setCategory("Submissions");
-        
-        $sheet = $objPHPExcel->setActiveSheetIndex(0);
-        
-        foreach($data as $i => $line){
-            foreach($line as $li => $value){
-                # Prevent Excel column limit
-                if($li > 253){ continue; }
-                
-                if(isset($letters[$li])){
-    		        $col = $letters[$li];
-                }
-                if($li >= $length){
-                    $col = $letters[$li/$length-1].$letters[$li%$length];
-                }
-                
-                $value = Utils::stripTags($value);
-                # Remove Formula mark
-                $value = preg_replace("/^=/", "(=", $value);
-                
-                if($i == 0){ # This is column headers
-                    $value = $value;
-                }
-                
-                $sheet->setCellValue($col.($i+1), $value);
-                if($i == 0){ # This is column headers
-                    $sheet->getColumnDimension($col)->setAutoSize(true);
+    public function getExcel($fieldList = array(), $filter = 'exclude', $startDate="", $endDate="")
+    {
+        /* * /
+
+            if(!is_array($fieldList)){
+                $fieldList = explode(',', $fieldList);
+            }
+
+            $letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            $length = strlen($letters);
+
+            $data = $this->createDataDump($fieldList, $filter, $startDate, $endDate);
+
+            $objPHPExcel = new PHPExcel();
+
+            // Set properties
+            $objPHPExcel->getProperties()->setCreator("JotForm")
+                        ->setLastModifiedBy("Session Username")
+                        ->setTitle($this->form['title'])
+                        ->setSubject($this->form['title']." Submissions")
+                        ->setDescription($this->form['title']." Submissions received at JotForm.com ".time())
+                        ->setKeywords("submissions excel jotform")
+                        ->setCategory("Submissions");
+
+            $sheet = $objPHPExcel->setActiveSheetIndex(0);
+
+            foreach($data as $i => $line){
+                foreach($line as $li => $value){
+                    # Prevent Excel column limit
+                    if($li > 253){ continue; }
+
+                    if(isset($letters[$li])){
+                        $col = $letters[$li];
+                    }
+                    if($li >= $length){
+                        $col = $letters[$li/$length-1].$letters[$li%$length];
+                    }
+
+                    $value = Utils::stripTags($value);
+                    # Remove Formula mark
+                    $value = preg_replace("/^=/", "(=", $value);
+
+                    if($i == 0){ # This is column headers
+                        $value = $value;
+                    }
+
+                    $sheet->setCellValue($col.($i+1), $value);
+                    if($i == 0){ # This is column headers
+                        $sheet->getColumnDimension($col)->setAutoSize(true);
+                    }
                 }
             }
-        }
-        
-        $sheet->getStyle('A1:IV1')->applyFromArray(
-            array('fill'    => array(
-                    'type'      => PHPExcel_Style_Fill::FILL_SOLID,
-                    'color'     => array('argb' => 'FFCCFFCC')
-                ),
-                'borders' => array(   
-                    'bottom'    => array('style' => PHPExcel_Style_Border::BORDER_THIN),
-                    'right'     => array('style' => PHPExcel_Style_Border::BORDER_MEDIUM)
-                ),
-                'font' => array(
-                    'bold' =>true,
-                    'size' => 11,
-                    'align'=> 'center'
-                ),
-                'alignment' => array(
-                    'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
-                    'vertical'   => PHPExcel_Style_Alignment::VERTICAL_CENTER,
-                    'rotation'   => 0,
-                    'wrap'       => true
+
+            $sheet->getStyle('A1:IV1')->applyFromArray(
+                array('fill'    => array(
+                        'type'      => PHPExcel_Style_Fill::FILL_SOLID,
+                        'color'     => array('argb' => 'FFCCFFCC')
+                    ),
+                    'borders' => array(
+                        'bottom'    => array('style' => PHPExcel_Style_Border::BORDER_THIN),
+                        'right'     => array('style' => PHPExcel_Style_Border::BORDER_MEDIUM)
+                    ),
+                    'font' => array(
+                        'bold' =>true,
+                        'size' => 11,
+                        'align'=> 'center'
+                    ),
+                    'alignment' => array(
+                        'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+                        'vertical'   => PHPExcel_Style_Alignment::VERTICAL_CENTER,
+                        'rotation'   => 0,
+                        'wrap'       => true
+                    )
                 )
-            )
-        );
-        
-        $sheet->setTitle('Submissions');
-        $date = TimeZone::convert(date('Y-m-d H:i:s'), $this->timeZone, $this->timeFormat);
-        $title = preg_replace("/\W+/", "-", $this->form['title']);
-        
-        // Redirect output to a client’s web browser (Excel5)
-        header('Content-Type: application/vnd.ms-excel');
-        header('Content-Disposition: attachment;filename="'.$title.' - ('.$date.').xls"');
-        header("Expires: 0");
-        header("Cache-Control: must-revalidate, post-check=0,pre-check=0");
-        header("Pragma: public");
-        
-        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
-        $objWriter->save('php://output'); 
-        exit;
-    }
-    
-    /**
-     * Prints a calendar for this form
-     * @return 
-     */
+            );
+
+            $sheet->setTitle('Submissions');
+            $date = TimeZone::convert(date('Y-m-d H:i:s'), $this->timeZone, $this->timeFormat);
+            $title = preg_replace("/\W+/", "-", $this->form['title']);
+
+            // Redirect output to a client’s web browser (Excel5)
+            header('Content-Type: application/vnd.ms-excel');
+            header('Content-Disposition: attachment;filename="'.$title.' - ('.$date.').xls"');
+            header("Expires: 0");
+            header("Cache-Control: must-revalidate, post-check=0,pre-check=0");
+            header("Pragma: public");
+
+            $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+            $objWriter->save('php://output');
+            exit;
+            /* */
+        }
+
+        /**
+         * Prints a calendar for this form
+         * @return
+         */
     public function getCalendar($titleField, $dateField){
         
         $format = "mmddyyyy";
@@ -2370,7 +2375,9 @@ class Form{
      * @param  $path
      * @return 
      */
-    public static function clearMaxCDNCache($path){
+    public static function clearMaxCDNCache($path)
+    {
+        /* * /
         if(APP){ return; }
         date_default_timezone_set('America/Los_Angeles');
         @include_once(ROOT."lib/classes/xmlrpc/xmlrpc.php");
@@ -2398,12 +2405,15 @@ class Form{
             throw new \Exception($r->errmsg);
         }
         return true;
+    /* */
     }
     
     /**
      * Purge all caches from max cdn
      */
-    public static function purgeAllMaxCDNCache(){
+    public static function purgeAllMaxCDNCache()
+    {
+        /* * /
         if(APP){ return; }
         date_default_timezone_set('America/Los_Angeles');
         @include_once(ROOT."lib/classes/xmlrpc/xmlrpc.php");
@@ -2429,6 +2439,7 @@ class Form{
             throw new \Exception($r->errmsg);
         }
         return true;
+        /* */
     }
 
 }
