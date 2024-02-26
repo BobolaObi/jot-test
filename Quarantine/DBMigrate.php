@@ -10,10 +10,9 @@
  * @copyright Copyright (c) 2009, Interlogy LLC
  */
 
-namespace forms;
-use DB;
+namespace Quarantine;
 
-namespace Quarantine;;
+use DB;
 
 class DBMigrate extends DB
 {

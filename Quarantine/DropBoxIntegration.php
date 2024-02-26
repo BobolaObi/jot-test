@@ -5,7 +5,7 @@
  * @copyright Copyright (c) 2010, Interlogy LLC
  */
 
-namespace forms;
+namespace Quarantine;
 
 use Legacy\Jot\Integrations\Configs;
 use Legacy\Jot\Integrations\Console;
