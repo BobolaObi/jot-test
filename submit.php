@@ -1,7 +1,5 @@
 <?
 
-use Legacy\Jot\Integrations\DropBoxIntegration;
-use Legacy\Jot\Integrations\FTPIntegration;
 use Legacy\Jot\Submission;
 use Legacy\Jot\Utils\Utils;
 

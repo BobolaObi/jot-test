@@ -1,8 +1,6 @@
 <?
 
 use Legacy\Jot\Form;
-use Legacy\Jot\Integrations\DropBoxIntegration;
-use Legacy\Jot\Integrations\FTPIntegration;
 
 include_once "lib/init.php";
 # Secure form ID
