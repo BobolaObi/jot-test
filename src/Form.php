@@ -43,7 +43,7 @@ class Form{
     /**
      * Gets the form from database by given ID
      * @constructor
-     * @param  $id [optional]
+     * @param  $id  // [optional]
      * @return 
      */
     function __construct($id = false){
@@ -301,7 +301,7 @@ class Form{
      *   db: clears the database cache for all forms
      *   id: clears the form cache opn all servers and db, should provide form id
      * @param  $type
-     * @param  $id [optional] form ID to to clean
+     * @param  $id  // [optional] form ID to to clean
      * @return 
      */
     public static function clearCache($type, $id = false){
@@ -405,8 +405,8 @@ class Form{
     
     /**
      * Assign given form to a username This static function can be called without an instance
-     * @param  $formID Form ID to be assigned
-     * @param  $username Username of the new owner
+     * @param  $formID  // Form ID to be assigned
+     * @param  $username  // Username of the new owner
      * @return boolean 
      */
     static function assignOwner($formID, $username, $checkGuest = false) {
@@ -461,7 +461,7 @@ class Form{
     
     /**
      * Get questions of the form
-     * @param  $type [optional] filter questions by type
+     * @param  $type  // [optional] filter questions by type
      * @return 
      */
     public function getQuestions($type = false, $qids = false){
@@ -500,17 +500,17 @@ class Form{
     
     /**
      * Returns the submissions of the form with a given fileter, sort or page order
-     * @param  $sort [optional]      Define "column name" or "question id" to sort results. Defaults to "created_at"
-     * @param  $start [optional]     Define where will the result array range start. Defaults to "0"
-     * @param  $limit [optional]     Define how many item will be returned. Defaults to "10", SET "-1" to get all submissions
-     * @param  $dir [optional]       Define sort direction. Defaults to "ASC"
-     * @param  $keyword [optional]   Define a search parameter for results. If provided, function will return the results
+     * @param  $sort  // [optional]      Define "column name" or "question id" to sort results. Defaults to "created_at"
+     * @param  $start  // [optional]     Define where will the result array range start. Defaults to "0"
+     * @param  $limit  // [optional]     Define how many item will be returned. Defaults to "10", SET "-1" to get all submissions
+     * @param  $dir  // [optional]       Define sort direction. Defaults to "ASC"
+     * @param  $keyword  // [optional]   Define a search parameter for results. If provided, function will return the results
      *                                     containing this keyword and will keep the sort and page order. Defaults to FALSE
-     * @param  $onlyData [optional]  When set to true only brings the submissin data, doesn't include total and questions array
-     * @param  $qids [optional]      List of questions IDs to limit columns to be shown on results
-     * @param  $noMarkup [optional]  Don't generate HTML code on results
-     * @param  $startDate [optional] Show only the submissions from this date
-     * @param  $endDate [optional]   Show until the submission to this date
+     * @param  $onlyData  // [optional]  When set to true only brings the submissin data, doesn't include total and questions array
+     * @param  $qids  // [optional]      List of questions IDs to limit columns to be shown on results
+     * @param  $noMarkup  // [optional]  Don't generate HTML code on results
+     * @param  $startDate  // [optional] Show only the submissions from this date
+     * @param  $endDate  // [optional]   Show until the submission to this date
      * @return array Array of results
      */
     public function getSubmissions($sort = "created_at", $start = "0", $limit = "10", $dir = "ASC", $keyword=false, $onlyData = false, $qids = false, $noMarkup = false, $startDate = null, $endDate = null){
@@ -1013,11 +1013,11 @@ class Form{
     
     /**
      * Returns an array of result set formatted in ExtJS way
-     * @param  $sort [optional]
-     * @param  $start [optional]
-     * @param  $limit [optional]
-     * @param  $dir [optional]
-     * @param  $keyword [optional]
+     * @param  $sort  // [optional]
+     * @param  $start  // [optional]
+     * @param  $limit  // [optional]
+     * @param  $dir  // [optional]
+     * @param  $keyword  // [optional]
      * @param ıbject $startDate [optional]
      * @param ıbject $endDate [optional] 
      * @return array
@@ -1136,7 +1136,7 @@ class Form{
     
     /**
      * Clones the current form
-     * @param  $username [optional] if provided clones the form to given account
+     * @param  $username  // [optional] if provided clones the form to given account
      * @return 
      */
     public function cloneForm($username = false){
@@ -1471,7 +1471,7 @@ class Form{
     /**
      * Creates a zip file for the source codes.
      * @param unknown_type $id
-     * @return unknown_type
+     * @return 
      */
     public static function createZip($id, $source){
     	
@@ -1586,7 +1586,7 @@ class Form{
     /**
      * Display the form on the page, handle cahces and re-create stuff
      * @param  $id
-     * @param  $forceDisplay [optional]
+     * @param  $forceDisplay  // [optional]
      * @return 
      */
     public static function displayForm($id, $forceDisplay = false){
@@ -1837,7 +1837,7 @@ class Form{
      * @param  $id
      * @param  $formProperties
      * @param  $serverConfig
-     * @param  $debug [optional]
+     * @param  $debug  // [optional]
      * @return 
      */
     static function createV8Source($id, $formProperties, $serverConfig, $debug = false){

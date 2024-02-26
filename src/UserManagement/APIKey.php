@@ -1,7 +1,7 @@
 <?php
 /**
  * Generates a random API key and makes it validated
- * @type VARCHAR(24)
+ * @ type VARCHAR(24)
  * @package JotForm_User_Management
  * @copyright Copyright (c) 2009, Interlogy LLC
  */
@@ -14,7 +14,7 @@ class APIKey {
     private static $salt = "::aSdsjD223::";
     /**
      * Generate an API Key
-     * @param  $getLongKey [optional] set this for longer keys
+     * @param  $getLongKey  // [optional] set this for longer keys
      * @return APIKey
      */
     static function generate($getLongKey=false){

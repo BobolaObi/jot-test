@@ -22,8 +22,8 @@ class DropBoxIntegration extends UFS{
     /**
      * If inititated empty uses the current session values
      * @constructor
-     * @param  $formID [optional]
-     * @param  $username [optional]
+     * @param  $formID  // [optional]
+     * @param  $username  // [optional]
      * @return 
      */
     public function __construct($username=null, $formID=null, $sid = null, $uploadProperties = null, $submission = null){

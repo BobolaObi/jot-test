@@ -246,7 +246,7 @@
 		public function getBrowser() { return $this->_browser_name; }
 		/**
 		* Set the name of the browser
-		* @param $browser The name of the Browser
+		* @param $browser // The name of the Browser
 		*/
 		public function setBrowser($browser) { return $this->_browser_name = $browser; }
 		/**
@@ -256,7 +256,7 @@
 		public function getPlatform() { return $this->_platform; }
 		/**
 		* Set the name of the platform
-		* @param $platform The name of the Platform
+		* @param $platform // The name of the Platform
 		*/
 		public function setPlatform($platform) { return $this->_platform = $platform; }
 		/**
@@ -266,7 +266,7 @@
 		public function getVersion() { return $this->_version; }
 		/**
 		* Set the version of the browser
-		* @param $version The version of the Browser
+		* @param $version // The version of the Browser
 		*/
 		public function setVersion($version) { $this->_version = preg_replace('/[^0-9,.,a-z,A-Z-]/','',$version); }
 		/**
@@ -276,7 +276,7 @@
 		public function getAolVersion() { return $this->_aol_version; }
 		/**
 		* Set the version of AOL
-		* @param $version The version of AOL
+		* @param $version // The version of AOL
 		*/
 		public function setAolVersion($version) { $this->_aol_version = preg_replace('/[^0-9,.,a-z,A-Z]/','',$version); }
 		/**
@@ -316,7 +316,7 @@
 		public function getUserAgent() { return $this->_agent; }
 		/**
 		* Set the user agent value (the construction will use the HTTP header value - this will overwrite it)
-		* @param $agent_string The value for the User Agent
+		* @param $agent_string // The value for the User Agent
 		*/
 		public function setUserAgent($agent_string) {
 			$this->reset();

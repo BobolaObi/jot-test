@@ -31,7 +31,7 @@ class UFSController {
      * @params sid
      * @params uploadProperties - Array with keys 'name', 'type', 'tmp_name' and 'size'
      * @params definedInterfaces - Array with keys UploadControllers ( Ex: UploadControllers::AmazonS3Controller )
-     * @return unknown_type
+     * @return 
      */
     public function __construct($username, $formID, $sid, $uploadProperties = null, $definedInterfaces = null, $submission = null){
 

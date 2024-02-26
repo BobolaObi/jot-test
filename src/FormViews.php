@@ -11,7 +11,7 @@ class FormViews{
     /**
      * Gets the list of recently updated forms
      * @param  $username
-     * @param  $number [optional]
+     * @param  $number  // [optional]
      * @return 
      */
     static function getRecentForms($username, $number = 5){

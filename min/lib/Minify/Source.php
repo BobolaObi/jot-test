@@ -100,7 +100,7 @@ class Minify_Source {
     /**
      * Added from Utils.php, gets the filename from a path.
      * @param $path
-     * @return unknown_type
+     * @return 
      */
     static function getRelativePath($path){
         if (!empty($_SERVER['DOCUMENT_ROOT'])) {

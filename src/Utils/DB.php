@@ -39,10 +39,10 @@ class DB
 
     /**
      * Creates aconnection with given parameters and keeps it open
-     * @param  $database Database name
-     * @param  $username [optional] DB user username
-     * @param  $password [optional] DB User password
-     * @param  $hostname [optional] DB hostname
+     * @param  $database  // Database name
+     * @param  $username  // [optional] DB user username
+     * @param  $password  // [optional] DB User password
+     * @param  $hostname  // [optional] DB hostname
      * @return
      */
     static function setConnection($name, $database, $username = "root", $password = "", $hostname = "localhost")

@@ -178,7 +178,7 @@ class Session {
      * Cheks the password hash of a user
      * @param  $cUsername
      * @param  $cPassword
-     * @param  $params [optional]
+     * @param  $params  // [optional]
      * @return
      */
     public static function checkUserPasswordHash($cUsername, $cPassword, $params = false){
@@ -209,7 +209,7 @@ class Session {
      * Checks the password hash of a user
      * @param  $cUsername
      * @param  $cPassword
-     * @param  $params [optional]
+     * @param  $params  // [optional]
      * @return
      */
     public static function checkAdminPasswordHash($adminCookie, $params){
@@ -221,7 +221,7 @@ class Session {
      * Checks the password hash of a user
      * @param  $cUsername
      * @param  $cPassword
-     * @param  $params [optional]
+     * @param  $params  // [optional]
      * @return
      */
     public static function checkSupportPasswordHash($supportCookie, $params){

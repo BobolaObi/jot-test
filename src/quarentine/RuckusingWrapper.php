@@ -25,7 +25,7 @@ class RuckusingWrapper {
     /**
      * Returns a hash with success value and the related message.
      * @param $name
-     * @return unknown_type
+     * @return 
      */
     public static function createNewMigration($name, $code) {
         

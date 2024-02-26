@@ -76,7 +76,7 @@ class Console {
      * ie. Use E_ERROR || E_WARNING to log both error and warning messages.
      * or E_ALL ^ E_INFO to log all messages except for info level messages
      * (also except for E_STRICT as defined by PHP core).
-     * @param  $level error level
+     * @param  $level  // // error level
      * @return null 
      */
     public static function setLogLevel($level) {
@@ -85,7 +85,7 @@ class Console {
     
     /**
      * Sets the log file path
-     * @param  $filename path of the log file
+     * @param  $filename  // // path of the log file
      * @return null
      */
     public static function setLogFolder($folder) {
@@ -138,9 +138,9 @@ class Console {
     
     /**
      * Make a decent log entry. Used by self::error, self::warning and self:info.
-     * @param  $text Log entry
-     * @param  $title [optional] title of the log entry
-     * @param  $messageLevel [optional] message's log level. Default E_ALL.
+     * @param  $text  // // Log entry
+     * @param  $title  // // [optional] title of the log entry
+     * @param  $messageLevel  // // [optional] message's log level. Default E_ALL.
      * @return mixed returns the $text itself
      */
     public static function log($obj, $title = false, $messageLevel = E_USER_NOTICE, $type="log"){
@@ -186,7 +186,7 @@ class Console {
         }
         
         // If the first argument is an exception, set title etc.
-        if ($obj instanceof Exception) {
+        if ($obj instanceof \Exception) {
             $title = get_class($obj);
             $text = "\nUncaught Exception " . $obj->getMessage() . " at \n";
             $text .= $obj->getFile() . " on line " . $obj->getLine();
@@ -256,7 +256,7 @@ class Console {
                 @fwrite($fh, $content);
                 @fclose($fh);
             }else{
-                throw new Exception("cannot open log file:".($file)."\n");
+                throw new \Exception("cannot open log file:".($file)."\n");
             }
         }
     }
@@ -265,7 +265,7 @@ class Console {
     /**
      * Convenience method for logging messages with E_ERROR level.
      * @param  $text
-     * @param  $title [optional]
+     * @param  $title  // [optional]
      * @return mixed $text itself 
      */
     static function error($text, $title = false) {
@@ -275,7 +275,7 @@ class Console {
     /**
      * Convenience method for logging messages with E_NOTICE level.
      * @param  $text
-     * @param  $title [optional]
+     * @param  $title  // [optional]
      * @return  mixed $text itself
      */
     static function info($text, $title = false) {
@@ -285,7 +285,7 @@ class Console {
     /**
      * Convenience method for logging messages with E_WARNING level.
      * @param  $text
-     * @param  $title [optional]
+     * @param  $title  // [optional]
      * @return  mixed $text itself
      */
     static function warn($text, $title = false) {
@@ -295,7 +295,7 @@ class Console {
     /**
      * Log to keep very long queries
      * @param  $text
-     * @param  $title [optional]
+     * @param  $title  // [optional]
      * @return 
      */
     static function long($text, $title = false){
@@ -306,7 +306,7 @@ class Console {
      * 
      * @param $text
      * @param $title
-     * @return unknown_type
+     * @return 
      */
     static function customLog($fileName = "log", $text = "", $title = false){
         return self::log($text, $title, E_ALL, $fileName);
@@ -314,7 +314,7 @@ class Console {
     
     /**
      * Catches the uncought exceptions
-     * @param  $e Exception
+     * @param  $e  // \Exception
      * @return null
      */
     static public function exceptionHandler($e) {
@@ -385,7 +385,7 @@ class Console {
     
     /**
      * Will read given count of lines from log and print it on the screen
-     * @param  $file [optional]
+     * @param  $file  // [optional]
      * @return 
      */
     static function readConsole($lines = 1000, $file = "all"){

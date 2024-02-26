@@ -289,7 +289,7 @@ class Submission {
     
     /**
      * Stores serialized submission on the database
-     * @param  $token [optional] token for identifying paypal pro submissions
+     * @param  $token  // [optional] token for identifying paypal pro submissions
      * @return 
      */
     private function stopSubmission($type, $token = "", $sessionID = ""){
@@ -326,8 +326,8 @@ class Submission {
     /**
      * Contiues the stopped submission
      * @param  $id
-     * @param  $type [optional]
-     * @param  $continuous [optional]
+     * @param  $type  // [optional]
+     * @param  $continuous  // [optional]
      * @return 
      */
     public static function continueSubmission($id, $type = '', $continuous = false, $additionalInfo = false){
@@ -1225,7 +1225,7 @@ class Submission {
 	/**
 	 * Checks if the given answer is exist on database or not
 	 * @param  $qid
-	 * @param  $item_name [optional]
+	 * @param  $item_name  // [optional]
 	 * @return 
 	 */
 	public function checkAnswerExists($qid, $item_name = ''){
@@ -1885,7 +1885,7 @@ class Submission {
     
     /**
      * Redirects the user after submission to a specified place.
-     * @param  $store [optional] if true stores redirect parameters instead of applying
+     * @param  $store  // [optional] if true stores redirect parameters instead of applying
      * @return 
      */
     private function handleRedirects($store = false){
@@ -1963,10 +1963,10 @@ class Submission {
     
     /**
      * Completes the redirect action
-     * @param  $type Type of the redirect action
-     * @param  $value value of the redirect such as URL or text
-     * @param  $params [optional] paramaters for URL
-     * @param  $store [optional] if provided redirect action will be saved in pending table 
+     * @param  $type  // Type of the redirect action
+     * @param  $value  // value of the redirect such as URL or text
+     * @param  $params  // [optional] paramaters for URL
+     * @param  $store  // [optional] if provided redirect action will be saved in pending table 
      * @return 
      */
     public static function doRedirect($type, $value="", $params = array(), $store = false){
@@ -2123,7 +2123,7 @@ class Submission {
     
     /**
      * Completes the rest of the submission
-     * @param  $noRedirect [optional] If set to true then skips the redirect process, only saves the submission and sends the emails
+     * @param  $noRedirect  // [optional] If set to true then skips the redirect process, only saves the submission and sends the emails
      * @return 
      */
     public function complete($noRedirect = false){

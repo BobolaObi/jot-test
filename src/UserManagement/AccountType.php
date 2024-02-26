@@ -19,7 +19,7 @@ class AccountType {
      * Constructs account types
      * @param string $name Unique type name
      * @param string $prettyName Reprensentitive type name
-     * @param  $newLimits hash of limits
+     * @param  $newLimits  // // hash of limits
      * @return mixed
      */
     public function __construct($name, $prettyName, $newLimits) {
@@ -37,7 +37,7 @@ class AccountType {
     
     /**
      * Creates an account and adds it to the $accounts array.
-     * @param  $conf 
+     * @param  $conf  // 
      * @return null
      */
     public static function create($conf) {

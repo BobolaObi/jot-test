@@ -49,7 +49,7 @@ class UtilsArrays extends UtilsStrings{
     }
     /**
      * Strip slashes each element of an array
-     * @param  $value array to be stripped
+     * @param  $value  // array to be stripped
      * @return 
      */
     static function stripslashesDeep($value){
@@ -63,8 +63,8 @@ class UtilsArrays extends UtilsStrings{
     /**
      * Convert array key to camel case literal
      * @param  $arr
-     * @param  $capitalizeFirst [optional]
-     * @param  $allowed [optional]
+     * @param  $capitalizeFirst  // [optional]
+     * @param  $allowed  // [optional]
      * @return 
      */
     static function arrayKeysToCamel($arr, $capitalizeFirst = false, $allowed = 'A-Za-z0-9') {

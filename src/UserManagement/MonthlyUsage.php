@@ -82,7 +82,7 @@ class MonthlyUsage {
     }
     /**
      * Saves the new monthly usage object to the DB.
-     * @return unknown_type
+     * @return 
      */
     public function save() {
         $query = "INSERT INTO  `monthly_usage` " . 
@@ -203,8 +203,8 @@ class MonthlyUsage {
      * </code>
      * 
      * @param  $username
-     * @param  $checkTypes [optional]
-     * @param  $increaseValues [optional]
+     * @param  $checkTypes  // [optional]
+     * @param  $increaseValues  // [optional]
      * @return DBResponse
      */
     public static function incrementUsageBy($username, $checkTypes = "submissions", $increaseValues = 1) {
@@ -246,8 +246,8 @@ class MonthlyUsage {
      * in addition to writing these to the DB. 
      * 
      * @see MonthlyUsage::incrementUsageBy()
-     * @param  $checkTypes [optional]
-     * @param  $increaseValues [optional]
+     * @param  $checkTypes  // [optional]
+     * @param  $increaseValues  // [optional]
      * @return 
      */
     public function incrementUsage($checkTypes = "submissions", $increaseValues = 1) {
@@ -287,7 +287,7 @@ class MonthlyUsage {
      * database field names. So, ssl_submissions in the table becomes sslSubmissions
      * in PHP. 
      * 
-     * @param  $checkTypes [optional]
+     * @param  $checkTypes  // [optional]
      * @param boolean $sendMail [optional] 
      * @return 
      */
@@ -379,9 +379,9 @@ class MonthlyUsage {
      * whether an e-mail is to be sent if the user
      * is over quota or he is just about to cross the 90% mark, respectively.
      * 
-     * @param  $checkTypes [optional]
-     * @param  $sendOverQuotaEmail [optional]
-     * @param  $sendAlmostFullEmail [optional]
+     * @param  $checkTypes  // [optional]
+     * @param  $sendOverQuotaEmail  // [optional]
+     * @param  $sendAlmostFullEmail  // [optional]
      * @return 
      */
     public function sendEmails($checkTypes = array('submissions', 
@@ -587,8 +587,8 @@ class MonthlyUsage {
      
     /**
      * Checks the uploads folder for given user calculates the size then updates the monthly usage table
-     * @param  $username Username to calculate uploads for
-     * @param  $deep [optional] if provided cleans the orphan uploads too
+     * @param  $username  // Username to calculate uploads for
+     * @param  $deep  // [optional] if provided cleans the orphan uploads too
      * @return 
      */
     static function calculateDiskUsage($username, $deep = false){

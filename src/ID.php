@@ -40,7 +40,7 @@ class ID {
     
     /**
      * Gets the sum of the ID for validation
-     * @param  $base First digits of the ID except last 2 digit 
+     * @param  $base  // First digits of the ID except last 2 digit
      * @return sum of the ID 
      */
     public static function getSum($base){

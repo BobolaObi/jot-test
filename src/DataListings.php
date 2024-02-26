@@ -115,10 +115,10 @@ class DataListings{
                 $form = new Form($list['form_id']);
                 $form->getCalendar($list['fields']['title'], $list['fields']['datetime']);
                 break;
-            case "rss":
-                $rss = new RSSHelper($list['form_id'], $list['fields']);
-                $rss->show();
-                break;
+//            case "rss":
+//                $rss = new RSSHelper($list['form_id'], $list['fields']);
+//                $rss->show();
+//                break;
             case "csv":
             	$form = new Form($list['form_id']);
                 $form->getCSV($list['fields'], 'include');

@@ -26,7 +26,7 @@ class CountryDropdown
 
     /**
      * Get states by country
-     * @param  $countryID ID of the country
+     * @param  $countryID  // ID of the country
      * @return array States by country
      */
     static function getStates($countryID){
@@ -40,7 +40,7 @@ class CountryDropdown
 
     /**
      * Get cities by state
-     * @param  $stateID ID of the state
+     * @param  $stateID  // ID of the state
      * @return array cities by state
      */
     static function getCities($stateID){

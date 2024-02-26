@@ -88,7 +88,7 @@ class TimeZone {
     
     /**
      * Creates the options for dropdown
-     * @param  $selected [optional]
+     * @param  $selected  // [optional]
      * @return 
      */
     static function createDropdownOptions($selected = ""){
@@ -113,8 +113,8 @@ class TimeZone {
     /**
      * Converts given time to given timezone
      * @param  $time
-     * @param  $zone [optional]
-     * @param  $format [optional]
+     * @param  $zone  // [optional]
+     * @param  $format  // [optional]
      * @return 
      */
     static function convert($time, $userZone = 'EST', $format = false){

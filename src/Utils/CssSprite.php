@@ -63,7 +63,7 @@ class CssSprite {
 	
 	/**
 	 * Main function of the class.
-	 * @return unknown_type
+	 * @return 
 	 */
 	public static function convertToCssSprite(){
 		# Control if GD library is installed.

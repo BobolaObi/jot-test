@@ -811,7 +811,7 @@ class FirePHP {
    * 
    * Uses PHP's jeson_encode() if available
    * 
-   * @param  $Object The object to be encoded
+   * @param  $Object  // The object to be encoded
    * @return string The JSON string
    */
   protected function jsonEncode($Object, $skipObjectEncode=false)

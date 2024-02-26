@@ -1,7 +1,6 @@
 <?php
 
 use Legacy\Jot\Configs;
-use Legacy\Jot\Configs;
 use Legacy\Jot\Form;
 use Legacy\Jot\Utils\DB;
 use Legacy\Jot\Utils\Utils;
@@ -28,7 +27,7 @@ class RSSHelper {
      * 
      * @param $formID
      * @param $fieldList
-     * @return unknown_type
+     * @return 
      */
     public function __construct($formID, $fieldList = array()) {
         $this->form = new Form($formID);
@@ -113,7 +112,7 @@ class RSSHelper {
      * Fetches each text of the questions in the field list for a form.
      * Returns an array such as ['3' => 'Your Name', '6' => 'Country', '7' => 'Message'] etc.
      * 
-     * @return unknown_type
+     * @return 
      */
     public function fetchQuestionText() {
         $query = 'SELECT `question_id`, `value` FROM `question_properties` WHERE `form_id` = #formID AND (`prop` = "text" OR (`prop` = "type" AND `value` = "control_fileupload"))';

@@ -113,7 +113,7 @@ class Translations
 
     /**
      * Determines the language code from cookie or browser options
-     * @param  $forceLanguage [optional] Forces a language to be used
+     * @param  $forceLanguage  // [optional] Forces a language to be used
      * @return 
      */
     public static function getLanguageCode($forceLanguage = NULL) {
@@ -228,7 +228,7 @@ class Translations
     public static $notTranslated = array();
     /**
      * translates the given text into the selected language
-     * @param  $string Word to be translated
+     * @param  $string  // Word to be translated
      * @return string Translated Word
      */
     public static function getText($string){

@@ -78,7 +78,7 @@ class User {
     /**
      *
      * Constructor
-     * @param  $userProps [optional]
+     * @param  $userProps  // [optional]
      * @return
      */
     public function __construct($userProps = NULL) {
@@ -117,7 +117,7 @@ class User {
     /**
      * Finds the user by given E-mail, excludes GUEST accounts. 
      * @param  $username
-     * @param  $onlyActive [optional]
+     * @param  $onlyActive  // [optional]
      * @return
      */
     public static function findByEmail($email, $statusCond = array('ACTIVE')) {
@@ -562,7 +562,7 @@ class User {
     /**
      * Reverses the effects of suspend and auto-suspend.
      * @param unknown_type $username
-     * @return unknown_type
+     * @return 
      */
     public static function activate($username) {
         // Can't use statusJobs because users.status.active = forms.status.enabled
@@ -1141,9 +1141,9 @@ class User {
     }
     /**
      * Sets the user cookie
-     * @param  $username Username
-     * @param  $password password
-     * @param  $name [optional] Optional name for cookie
+     * @param  $username  // Username
+     * @param  $password  // password
+     * @param  $name  // [optional] Optional name for cookie
      * @return 
      */
     public static function setCookie($username, $password, $name = false) {

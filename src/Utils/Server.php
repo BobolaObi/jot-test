@@ -64,7 +64,7 @@ class Server{
     /**
      * Returns the information of specific server instance
      * If no name provided returns the self information
-     * @param  $name [optional]
+     * @param  $name  // [optional]
      * @return false if not an instance or localhost 
      */
     static function getInstance($name = false){
@@ -167,7 +167,7 @@ class Server{
     }
     /**
      * Check if the php version is bigger then given number
-     * @param  $version [optional]
+     * @param  $version  // [optional]
      * @return 
      */
     static function isPHP($version = '5.0.0'){

@@ -11,8 +11,8 @@ class Integrations{
      * Sets the integraion config object
      * @constructor
      * @param  $partner
-     * @param  $formID [optional]
-     * @param  $username [optional]
+     * @param  $formID  // [optional]
+     * @param  $username  // [optional]
      * @return 
      */
     public function Integrations($partner, $formID = null, $username = null){

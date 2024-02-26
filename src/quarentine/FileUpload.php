@@ -12,8 +12,8 @@ class FileUpload{
     
     /**
      * Initiate the object
-     * @param  $type [optional] cloud or local
-     * @param  $fileProperties [optional] $_FILES configuration for the file
+     * @param  $type  // [optional] cloud or local
+     * @param  $fileProperties  // [optional] $_FILES configuration for the file
      * @return 
      */
     function __construct( $fileProperties = null){
@@ -23,7 +23,7 @@ class FileUpload{
     
     /**
      * Copy file to the destination
-     * @param  $destination Path where the file will be saved
+     * @param  $destination  // Path where the file will be saved
      * @return 
      */
     public function uploadFile($destination){

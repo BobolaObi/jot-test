@@ -231,7 +231,7 @@ class RequestServer
     
     /**
      * Runs the given method
-     * @param  $action This optional you cal call a different action with the same parameters
+     * @param  $action  // This optional you cal call a different action with the same parameters
      */
     public function runAction($action = false){
         # Support for manual actions
@@ -354,7 +354,7 @@ class RequestServer
      * Prompts the request response by given hash
      * adds standard success:true message automatically
      * @param object|string $message Success message you can also pass the all parameters as an array here
-     * @param  $addHash [optional] all other parameters to be sent to user as a response
+     * @param  $addHash  // [optional] all other parameters to be sent to user as a response
      */
     private function success($message, $addHash = array(), $status = 200){
         if(is_array($message)){
@@ -887,7 +887,7 @@ class RequestServer
     }
     /**
      * Save the slug
-     * @return unknown_type
+     * @return 
      */
     private function saveSlug(){
         if (Form::saveSlug($this->request["id"], $this->request["slugName"])){
@@ -997,7 +997,7 @@ class RequestServer
      * You cannot sort for question_id 6 for example, although the grid interface shows the
      * otherwise.
      * @TODO TERRIBLE TERRIBLE Must move contents to a function
-     * @return unknown_type
+     * @return 
      */
     private function getSubmissionIndex() {
         // Get total number of submissions for this form.
@@ -1215,7 +1215,7 @@ class RequestServer
     
     /**
      * creates css sprites
-     * @return unknown_type
+     * @return 
      */
     private function createCssSprite(){
         CssSprite::convertToCssSprite();
@@ -1361,7 +1361,7 @@ class RequestServer
     
     /**
      * This function checks if the cookie is set correctly
-     * @return unknown_type
+     * @return 
      */
     private function checkCookie(){
         $params = false;
@@ -1394,7 +1394,7 @@ class RequestServer
     }
     /**
      * This function checks if the admin cookie is set correctly
-     * @return unknown_type
+     * @return 
      */
     private function checkAdminCookie(){
         if ( $this->request['REMOTE_ADDR'] ){ # Send from memberkit server
@@ -1409,7 +1409,7 @@ class RequestServer
     }
     /**
      * This function checks if the admin cookie is set correctly
-     * @return unknown_type
+     * @return 
      */
     private function checkSupportCookie(){
         if ( $this->request['REMOTE_ADDR'] ){ # Send from memberkit server
@@ -2568,7 +2568,7 @@ class RequestServer
     
     /**
      * Move submissions to CouchDB
-     * @return unknown_type
+     * @return 
      */
     private function migrateToCouchDB(){
     	$id = $this->get('formID');

@@ -17,8 +17,8 @@ class UtilsStrings extends UtilsRequests{
     /**
      * Fixes path slashes
      * @param  $path
-     * @param  $isfile [optional]
-     * @param  $addSlashes [optional]
+     * @param  $isfile  // [optional]
+     * @param  $addSlashes  // [optional]
      * @return
      */
     static function path($path, $isfile = false, $addSlashes = false){
@@ -140,8 +140,8 @@ class UtilsStrings extends UtilsRequests{
      * Taken from http://php.net/manual/en/function.strtoupper.php
      *
      * @param  $str
-     * @param  $capitalizeFirst [optional]
-     * @param  $allowed [optional]
+     * @param  $capitalizeFirst  // [optional]
+     * @param  $allowed  // [optional]
      * @return
      */
     static function stringToCamel2($str, $capitalizeFirst = false, $allowed = 'A-Za-z0-9') {
@@ -212,7 +212,7 @@ class UtilsStrings extends UtilsRequests{
     }
     /**
      * Returns the brand of the credit card.
-     * @param  $workStr Credit card number
+     * @param  $workStr  // Credit card number
      * @return string card type returns VISA if not found
      */
     static function identifyCreditCard($workStr){
@@ -314,9 +314,9 @@ class UtilsStrings extends UtilsRequests{
 
     /**
      * Shortens a string by given length
-     * @param  $string String to get shortened
-     * @param  $length [optional]  length of the new string defaults to 30
-     * @param  $closure [optional] ending string defaults to "..."
+     * @param  $string  // String to get shortened
+     * @param  $length  // [optional]  length of the new string defaults to 30
+     * @param  $closure  // [optional] ending string defaults to "..."
      * @return string shortened string with closure
      */
     static function shorten($string, $length = "30", $closure = "..."){
@@ -329,7 +329,7 @@ class UtilsStrings extends UtilsRequests{
      * Checks if the string starts with gvent string or not
      * @param  $haystack
      * @param  $needle
-     * @param  $case [optional]
+     * @param  $case  // [optional]
      * @return
      */
     static function startsWith($haystack, $needle, $case=true) {
@@ -340,7 +340,7 @@ class UtilsStrings extends UtilsRequests{
      * Checks if the string ends with gvent string or not
      * @param  $haystack
      * @param  $needle
-     * @param  $case [optional]
+     * @param  $case  // [optional]
      * @return
      */
     static function endsWith($haystack, $needle, $case=true) {
@@ -404,11 +404,11 @@ class UtilsStrings extends UtilsRequests{
      * Draws a line and marks the place with given percantage and length
      * Utils::drawSlider("70", "250", "30"); prints [0 -----------(100)------------------ 250]
      * @param  $value
-     * @param  $max [optional]
-     * @param  $length [optional]
-     * @param  $marker [optional]
-     * @param  $filled [optional]
-     * @param  $empty [optional]
+     * @param  $max  // [optional]
+     * @param  $length  // [optional]
+     * @param  $marker  // [optional]
+     * @param  $filled  // [optional]
+     * @param  $empty  // [optional]
      * @return
      */
     static function drawSlider($value, $max = 100, $length = 30, $marker=null, $filled = "-",  $empty="-"){

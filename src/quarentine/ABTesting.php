@@ -224,7 +224,7 @@ abstract class ABTesting {
     /**
      * Check if the user already set the goal
      * @param  $goalName
-     * @param  $username [optional] if provided checks the user from database
+     * @param  $username  // [optional] if provided checks the user from database
      * @return 
      */
     public function hasGoal($goalName, $username = false){
@@ -292,7 +292,7 @@ abstract class ABTesting {
     /**
      * Save a goal for test participant
      * @param  $goalName
-     * @param  $username [optional]
+     * @param  $username  // [optional]
      * @return 
      */
     public static function setGoal($goalName, $className, $username = false){

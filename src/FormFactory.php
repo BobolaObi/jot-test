@@ -19,7 +19,7 @@ class FormFactory {
     
     /**
      * Constructor
-     * @param  $id [optional]
+     * @param  $id  // [optional]
      * @return 
      */
     function __construct($properties, $source="<body></body>", $forceNew = false){

@@ -23,8 +23,8 @@ class Utils extends UtilsArrays
     /**
      * Echos a string on the page.
      * Works only in debug mode
-     * @param  $str String to print
-     * @param  $exit [optional] stop script after print
+     * @param  $str  // String to print
+     * @param  $exit  // [optional] stop script after print
      * @return 
      */
     static function debug($str, $exit =false){
@@ -80,9 +80,9 @@ class Utils extends UtilsArrays
     
     /**
      * Will show an error page containing the given message
-     * @param  $error_message Message to show on the screen
-     * @param  $error_title [optional] Page title for the error
-     * @param  $error_notes [optional] These notes will be placed in the page as a comment. to identify the problem
+     * @param  $error_message  // Message to show on the screen
+     * @param  $error_title  // [optional] Page title for the error
+     * @param  $error_notes  // [optional] These notes will be placed in the page as a comment. to identify the problem
      * @return 
      */
     static function errorPage($error_message, $error_title="Error", $error_notes="", $status = 500){
@@ -105,9 +105,9 @@ class Utils extends UtilsArrays
     
     /**
      * Will show an error page containing the given message
-     * @param  $error_message Message to show on the screen
-     * @param  $error_title [optional] Page title for the error
-     * @param  $error_notes [optional] These notes will be placed in the page as a comment. to identify the problem
+     * @param  $error_message  // Message to show on the screen
+     * @param  $error_title  // [optional] Page title for the error
+     * @param  $error_notes  // [optional] These notes will be placed in the page as a comment. to identify the problem
      * @return 
      */
     static function successPage($success_message, $success_title="Congratulations!", $success_notes=""){
@@ -224,7 +224,7 @@ class Utils extends UtilsArrays
      * Stores the data on APC Cache
      * @param  $key
      * @param  $value
-     * @param  $ttl [optional] Time To live
+     * @param  $ttl  // [optional] Time To live
      * @return 
      */
     public static function cacheStore($key, $value, $ttl = "86400"){
@@ -263,7 +263,7 @@ class Utils extends UtilsArrays
     
     /**
      * Clears the APC cache completely
-     * @param  $type [optional]
+     * @param  $type  // [optional]
      * @return 
      */
     public static function cacheClear($type = 'user'){
@@ -354,7 +354,7 @@ class Utils extends UtilsArrays
     }
     /**
      * Returns the cloud url
-     * @return unknown_type
+     * @return 
      */
     public static function getCloudURL(){
     	if (IS_SECURE){
@@ -451,7 +451,7 @@ class Utils extends UtilsArrays
      * Phishing filter functions from old version is using
      * this function a lot. no time for me to testing (seyhun).
      * @param $query
-     * @return unknown_type
+     * @return 
      */
     static function do_query($query){
         $result = mysql_query($query);

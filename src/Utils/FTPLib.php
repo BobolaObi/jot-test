@@ -182,7 +182,7 @@ class FTPLib{
     
     /**
      * Returns the list of local files
-     * @param  $start_dir [optional]
+     * @param  $start_dir  // [optional]
      * @return 
      */
     public function getLocalFiles($start_dir='.') {
@@ -240,7 +240,7 @@ class FTPLib{
     /**
      * Creates all folders in the path
      * @param  $path
-     * @param  $mode [optional]
+     * @param  $mode  // [optional]
      * @return 
      */
     private function createFilePath($filePath, $mode = 0777){
