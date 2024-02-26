@@ -48,6 +48,6 @@ class Configs
     const REDIS_PORT = "6379";
     const REDIS_PASSWORD = "";
 
-    public static $servers = array();
+    public static $servers = [];
 
 }

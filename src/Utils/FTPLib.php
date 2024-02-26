@@ -86,7 +86,7 @@ class FTPLib
     function chmodNum($mode)
     {
         $realmode = "";
-        $legal = array("", "w", "r", "x", "-");
+        $legal = ["", "w", "r", "x", "-"];
         $attarray = preg_split("//", $mode);
         for ($i = 0; $i < count($attarray); $i++) {
             if ($key = array_search($attarray[$i], $legal)) {
@@ -94,7 +94,7 @@ class FTPLib
             }
         }
         $mode = str_pad($realmode, 9, '-');
-        $trans = array('-' => '0', 'r' => '4', 'w' => '2', 'x' => '1');
+        $trans = ['-' => '0', 'r' => '4', 'w' => '2', 'x' => '1'];
         $mode = strtr($mode, $trans);
         $newmode = '';
         $newmode .= $mode[0] + $mode[1] + $mode[2];
@@ -110,7 +110,7 @@ class FTPLib
      */
     public function getFileDetails($folder)
     {
-        $struc = array();
+        $struc = [];
         $current = preg_split("/[\s]+/", $folder, 9);
 
         $struc['perms'] = $current[0];
@@ -157,7 +157,7 @@ class FTPLib
                 $details = $this->getFileDetails($path);
                 $type = $this->getFileType($details[perms]);
                 if (!is_array($tree[$type])) {
-                    $tree[$type] = array();
+                    $tree[$type] = [];
                 }
                 if ($type == "link") {
                     $n = explode(" -> ", $details['name']);
@@ -168,11 +168,11 @@ class FTPLib
                 if (strpos($details['name'], ".") === 0) {
                     continue;
                 }
-                array_push($tree[$type], array("path" => $folder, "name" => $details['name'], "type" => $this->getFileType($details['perms']), "link" => $link, "permission" => $details['permsn']));
+                array_push($tree[$type], ["path" => $folder, "name" => $details['name'], "type" => $this->getFileType($details['perms']), "link" => $link, "permission" => $details['permsn']]);
             }
         }
 
-        $result = array();
+        $result = [];
         if (is_array($tree['folder'])) {
             foreach ($tree['folder'] as $folder) {
                 array_push($result, $folder);
@@ -198,8 +198,8 @@ class FTPLib
      */
     public function getLocalFiles($start_dir = '.')
     {
-        $files = array();
-        $folders = array();
+        $files = [];
+        $folders = [];
         if (is_dir($start_dir)) {
             $fh = opendir($start_dir);
             while (($file = readdir($fh)) !== false) {
@@ -223,7 +223,7 @@ class FTPLib
             # false if the function was called with an invalid non-directory argument
             $files = false;
         }
-        return array("files" => $files, "folders" => $folders);
+        return ["files" => $files, "folders" => $folders];
     }
 
     /**

@@ -11,7 +11,7 @@ class Ruckusing_MigratorUtil {
 		which make analysis much easier.
 	*/
 	public static function get_migration_files($direction, $directory, $nested = false) { 
-   $valid_files = array();
+   $valid_files = [];
   	if(!is_dir($directory)) {
   	  die("Ruckusing_MigratorUtil - ({$dir}) is not a directory.");
   	}
@@ -35,16 +35,16 @@ class Ruckusing_MigratorUtil {
 		}
 		
 		//user wants a nested structure
-		$files = array();
+		$files = [];
 		$cnt = count($valid_files);
 		for($i = 0; $i < $cnt; $i++) {
 			$migration = $valid_files[$i];
 			if(preg_match('/^(\d+)_(\w+)\.php$/', $migration, $matches)) {
-				$files[] = array(
+				$files[] = [
 										'version' => (int)$matches[1],
 										'class' 	=> $matches[2],
 										'file'		=> $matches[0]
-									);					
+                ];
 			}
 		}//for
 		return $files;
@@ -60,7 +60,7 @@ class Ruckusing_MigratorUtil {
 
 	public static function get_relevant_files($direction, $files, $current, $destination) {
 		$cnt = count($files);
-		$valid = array();
+		$valid = [];
 		for($i = 0; $i < $cnt; $i++) {
 			$set = $files[$i];
 			if( count($set) != 3) {

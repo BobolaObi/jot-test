@@ -52,7 +52,7 @@ class FormViews
             ) AS fc
             LIMIT 0 , :limit", $username, $number);
 
-        $forms = array();
+        $forms = [];
         foreach ($allForms->result as $line) {
             $form = DB::read('SELECT * FROM `forms` WHERE `id`=#id', $line['form_id']);
 

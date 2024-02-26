@@ -57,13 +57,13 @@ class FTPIntegration extends UFS {
         # $folder .= " - ".date("M j, Y");
         $baseName = Utils::path($this->config->getValue('path')."/".$this->form->getTitle()."/".$folder."/".$fileName, true);
         
-        $prop = array(
+        $prop = [
             "action"   => "sendFileToFTP",
             "username" => $this->username,
             "formID"   => $this->formID,
             "basePath" => urlencode($baseName),
             "filePath" => $transferFile
-        );
+        ];
         
         # Console::log($prop, $serverAddr."/server.php");
         Utils::suppressRequest($serverAddr."/server.php", $prop);

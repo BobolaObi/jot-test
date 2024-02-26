@@ -41,13 +41,13 @@ class FileController extends UFS
 
         $dir = UPLOAD_FOLDER . $this->username . "/" . $this->formID . "/" . $this->submissionID;
         if (file_exists($dir)) {
-            $request = new RequestServer(array(
+            $request = new RequestServer([
                 "action" => 'removeSubmissionUpload',
                 "toAll" => "yes",
                 "formID" => $this->formID,
                 "username" => $this->username,
                 "submissionID" => $this->submissionID
-            ), true);
+            ], true);
         }
 
     }

@@ -26,7 +26,7 @@ class TaskManagerTest extends PHPUnit_Framework_TestCase {
 		
   public function test_db_schema_creation() {
     $schema = new Ruckusing_DB_Schema($this->adapter);
-    $schema->execute(array());
+    $schema->execute([]);
     $this->assertEquals(true, file_exists(RUCKUSING_DB_DIR . '/schema.txt') );
   }
   

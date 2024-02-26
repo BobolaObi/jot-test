@@ -65,12 +65,12 @@
     		    log_suspends( "Forms skipped because it's owned by a Premium user: ".
     		                  $line['id']." => $formTitle : $prob%", "Step 4");
 
-    		    Utils::sendEmail(array(
+    		    Utils::sendEmail([
         			"from" => NOREPLY,
 					"to"=> "jotformsupport@gmail.com",
 					"subject" => "Form Manual Check: ".$line['id'],
 					"body" => "Form skipped because $username is Premium.<br>\n\nhttp://www.jotform.com/admin/checkPhishing.php?formID=".$line['id']
-			    ));
+                ]);
 			    
     		    $skipped++; // Count skipped forms
                 continue;
@@ -81,16 +81,16 @@
 		    # 2. Check which country
 		    $c = get_user_country($username);
 		    log_suspends("Form from $c", "Step 4");
-		    if( in_array($c, array("US", "CA", "UK", "FR", "ES", "AU")) ){
+		    if( in_array($c, ["US", "CA", "UK", "FR", "ES", "AU"]) ){
     			
 		    	log_suspends("Forms skipped because it's from $c", "Step 4");
 			    
-		    	Utils::sendEmail(array(
+		    	Utils::sendEmail([
 					"from" => NOREPLY,
 					"to"=> "jotformsupport@gmail.com",
 					"subject" => "Form Manual Check: ".$line['id'],
 					"body" => "Forms skipped because it's from $c<br>\n\nhttp://www.jotform.com/admin/checkPhishing.php?formID=".$line['id']
-			    ));
+                ]);
 
 			    $skipped++; // Count skipped forms
 				
@@ -103,12 +103,12 @@
 
 		    	log_suspends("Forms skipped because it was created $age days ago!", "Step 4");
 			    
-		    	Utils::sendEmail(array(
+		    	Utils::sendEmail([
 					"from" => NOREPLY,
 					"to"=> "jotformsupport@gmail.com",
 					"subject" => "Form Manual Check: ".$line['id'],
 					"body" => "Form skipped because the account is $age days old.<br>\n\nhttp://www.jotform.com/admin/checkPhishing.php?formID=".$line['id']
-			    ));
+                ]);
 			    
 				$skipped++; // Count skipped forms
 				continue;
@@ -120,12 +120,12 @@
 
 		    	log_suspends("Forms skipped because it has $fc forms", "Step 4");
 			    
-		    	Utils::sendEmail(array(
+		    	Utils::sendEmail([
 					"from" => NOREPLY,
 					"to"=> "jotformsupport@gmail.com",
 					"subject" => "Form Manual Check: ".$line['id'],
 					"body" => "Form skipped because it has $fc forms.<br>\n\nhttp://www.jotform.com/admin/checkPhishing.php?formID=".$line['id']
-			    ));
+                ]);
 				
 			    $skipped++; // Count skipped forms
 				continue;

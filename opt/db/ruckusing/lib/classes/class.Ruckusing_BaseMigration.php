@@ -34,7 +34,7 @@ class Ruckusing_BaseMigration {
 		return $this->adapter->rename_column($tbl_name, $column_name, $new_column_name);
 	}
 
-	public function add_column($table_name, $column_name, $type, $options = array()) {
+	public function add_column($table_name, $column_name, $type, $options = []) {
 		return $this->adapter->add_column($table_name, $column_name, $type, $options);
 	}
 	
@@ -42,19 +42,19 @@ class Ruckusing_BaseMigration {
 		return $this->adapter->remove_column($table_name, $column_name);
 	}
 
-	public function change_column($table_name, $column_name, $type, $options = array()) {
+	public function change_column($table_name, $column_name, $type, $options = []) {
 		return $this->adapter->change_column($table_name, $column_name, $type, $options);	
 	}
 	
-	public function add_index($table_name, $column_name, $options = array()) {
+	public function add_index($table_name, $column_name, $options = []) {
 		return $this->adapter->add_index($table_name, $column_name, $options);			
 	}
 	
-	public function remove_index($table_name, $column_name, $options = array()) {
+	public function remove_index($table_name, $column_name, $options = []) {
 		return $this->adapter->remove_index($table_name, $column_name, $options);					
 	}
 	
-	public function create_table($table_name, $options = array()) {
+	public function create_table($table_name, $options = []) {
 		return $this->adapter->create_table($table_name, $options);
 	}
 	

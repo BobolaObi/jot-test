@@ -12,7 +12,7 @@ class Ruckusing_FrameworkRunner {
 	
 	private $db = null; //reference to our DB connection
 	private $active_db_config; //the currently active config 
-	private $db_config = array(); //all available DB configs (e.g. test,development, production)
+	private $db_config = []; //all available DB configs (e.g. test,development, production)
 	private $task_mgr = null;
 	private $adapter = null;
 	private $cur_task_name = "";
@@ -20,13 +20,13 @@ class Ruckusing_FrameworkRunner {
 	private $ENV = "development"; //default (can also be one 'test', 'production')
 	
 	//set up some defaults
-	private $opt_map = array(
+	private $opt_map = [
 		'ENV'					=> 'development'
-	);
+    ];
 	
 	function __construct($db, $argv) {
 		try {
-			set_error_handler( array("Ruckusing_FrameworkRunner", "scr_error_handler"), E_ALL );
+			set_error_handler( ["Ruckusing_FrameworkRunner", "scr_error_handler"], E_ALL );
 
 			//parse arguments
 			$this->parse_args($argv);
@@ -106,7 +106,7 @@ class Ruckusing_FrameworkRunner {
 
 		if($num_args >= 2) {					
 			$this->cur_task_name = $argv[1];			
-			$options = array();
+			$options = [];
 			for($i = 2; $i < $num_args;$i++) {
 				$arg = $argv[$i];
 				if(strpos($arg, '=') !== FALSE) {

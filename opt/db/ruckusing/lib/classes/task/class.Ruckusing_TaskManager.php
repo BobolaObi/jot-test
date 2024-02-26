@@ -8,7 +8,7 @@ define('RUCKUSING_TASK_DIR', RUCKUSING_BASE . '/lib/tasks');
 class Ruckusing_TaskManager  {
 	
 	private $adapter;
-	private $tasks = array();
+	private $tasks = [];
 	
 	function __construct($adapter) {
 		$this->set_adapter($adapter);

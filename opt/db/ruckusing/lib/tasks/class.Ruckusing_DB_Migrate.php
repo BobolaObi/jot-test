@@ -16,7 +16,7 @@ require_once RUCKUSING_BASE . '/lib/classes/class.Ruckusing_BaseMigration.php';
 class Ruckusing_DB_Migrate implements Ruckusing_iTask {
 	
 	private $adapter = null;
-	private $task_args = array(); 
+	private $task_args = [];
 	private $regexp = '/^(\d+)\_/';
 	
 	function __construct($adapter) {
@@ -142,7 +142,7 @@ class Ruckusing_DB_Migrate implements Ruckusing_iTask {
 			}//is_file			
 		}//foreach
 		//update the schema info
-		$result = array('last_version' => $last_version);
+		$result = ['last_version' => $last_version];
 		return $result;
 	}//run_migrations
 	
@@ -184,8 +184,8 @@ class Ruckusing_DB_Migrate implements Ruckusing_iTask {
 	private function auto_create_schema_info_table() {
 	  try {
   		echo sprintf("\n\tCreating table: %s", RUCKUSING_SCHEMA_TBL_NAME . "\n\n");
-  		$table=$this->adapter->create_table(RUCKUSING_SCHEMA_TBL_NAME, array('id' => false));
-  		$table->column('version', 'integer', array('default' => 0, 'null' => false));
+  		$table=$this->adapter->create_table(RUCKUSING_SCHEMA_TBL_NAME, ['id' => false]);
+  		$table->column('version', 'integer', ['default' => 0, 'null' => false]);
   		$table->finish();
   		$this->adapter->execute_ddl(sprintf('INSERT INTO %s (version) VALUES (0)', $this->adapter->qualify_entity(RUCKUSING_SCHEMA_TBL_NAME)));
   		return true;

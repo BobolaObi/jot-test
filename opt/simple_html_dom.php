@@ -83,11 +83,11 @@ function str_get_dom($str, $lowercase=true) {
 class simple_html_dom_node {
     public $nodetype = HDOM_TYPE_TEXT;
     public $tag = 'text';
-    public $attr = array();
-    public $children = array();
-    public $nodes = array();
+    public $attr = [];
+    public $children = [];
+    public $nodes = [];
     public $parent = null;
-    public $_ = array();
+    public $_ = [];
     private $dom = null;
 
     function __construct($dom) {
@@ -179,7 +179,7 @@ class simple_html_dom_node {
 
         // trigger callback
         if ($this->dom->callback!==null)
-            call_user_func_array($this->dom->callback, array($this));
+            call_user_func_array($this->dom->callback, [$this]);
 
         if (isset($this->_[HDOM_INFO_OUTER])) return $this->_[HDOM_INFO_OUTER];
         if (isset($this->_[HDOM_INFO_TEXT])) return $this->dom->restore_noise($this->_[HDOM_INFO_TEXT]);
@@ -260,19 +260,19 @@ class simple_html_dom_node {
     // find elements by css selector
     function find($selector, $idx=null) {
         $selectors = $this->parse_selector($selector);
-        if (($count=count($selectors))===0) return array();
-        $found_keys = array();
+        if (($count=count($selectors))===0) return [];
+        $found_keys = [];
 
         // find each selector
         for ($c=0; $c<$count; ++$c) {
-            if (($levle=count($selectors[0]))===0) return array();
-            if (!isset($this->_[HDOM_INFO_BEGIN])) return array();
+            if (($levle=count($selectors[0]))===0) return [];
+            if (!isset($this->_[HDOM_INFO_BEGIN])) return [];
 
-            $head = array($this->_[HDOM_INFO_BEGIN]=>1);
+            $head = [$this->_[HDOM_INFO_BEGIN]=>1];
 
             // handle descendant selectors, no recursive!
             for ($l=0; $l<$levle; ++$l) {
-                $ret = array();
+                $ret = [];
                 foreach($head as $k=>$v) {
                     $n = ($k===-1) ? $this->dom->root : $this->dom->nodes[$k];
                     $n->seek($selectors[$c][$l], $ret);
@@ -289,7 +289,7 @@ class simple_html_dom_node {
         // sort keys
         ksort($found_keys);
 
-        $found = array();
+        $found = [];
         foreach($found_keys as $k=>$v)
             $found[] = $this->dom->nodes[$k];
 
@@ -385,8 +385,8 @@ class simple_html_dom_node {
         // pattern of CSS selectors, modified from mootools
         $pattern = "/([\w-:\*]*)(?:\#([\w-]+)|\.([\w-]+))?(?:\[@?(!?[\w-]+)(?:([!*^$]?=)[\"']?(.*?)[\"']?)?\])?([\/, ]+)/is";
         preg_match_all($pattern, trim($selector_string).' ', $matches, PREG_SET_ORDER);
-        $selectors = array();
-        $result = array();
+        $selectors = [];
+        $result = [];
         //print_r($matches);
 
         foreach ($matches as $m) {
@@ -395,7 +395,7 @@ class simple_html_dom_node {
             // for borwser grnreated xpath
             if ($m[1]==='tbody') continue;
 
-            list($tag, $key, $val, $exp, $no_key) = array($m[1], null, null, '=', false);
+            list($tag, $key, $val, $exp, $no_key) = [$m[1], null, null, '=', false];
             if(!empty($m[2])) {$key='id'; $val=$m[2];}
             if(!empty($m[3])) {$key='class'; $val=$m[3];}
             if(!empty($m[4])) {$key=$m[4];}
@@ -407,10 +407,10 @@ class simple_html_dom_node {
             //elements that do NOT have the specified attribute
             if (isset($key[0]) && $key[0]==='!') {$key=substr($key, 1); $no_key=true;}
 
-            $result[] = array($tag, $key, $val, $exp, $no_key);
+            $result[] = [$tag, $key, $val, $exp, $no_key];
             if (trim($m[7])===',') {
                 $selectors[] = $result;
-                $result = array();
+                $result = [];
             }
         }
         if (count($result)>0)
@@ -437,7 +437,7 @@ class simple_html_dom_node {
                 return $this->_[HDOM_INFO_INNER] = $value;
         }
         if (!isset($this->attr[$name])) {
-            $this->_[HDOM_INFO_SPACE][] = array(' ', '', ''); 
+            $this->_[HDOM_INFO_SPACE][] = [' ', '', ''];
             $this->_[HDOM_INFO_QUOTE][] = HDOM_QUOTE_DOUBLE;
         }
         $this->attr[$name] = $value;
@@ -480,7 +480,7 @@ class simple_html_dom_node {
 // -----------------------------------------------------------------------------
 class simple_html_dom {
     public $root = null;
-    public $nodes = array();
+    public $nodes = [];
     public $callback = null;
     public $lowercase = false;
     protected $pos;
@@ -489,25 +489,25 @@ class simple_html_dom {
     protected $size;
     protected $cursor;
     protected $parent;
-    protected $noise = array();
+    protected $noise = [];
     protected $token_blank = " \t\r\n";
     protected $token_equal = ' =/>';
     protected $token_slash = " />\r\n\t";
     protected $token_attr = ' >';
     // use isset instead of in_array, performance boost about 30%...
-    protected $self_closing_tags = array('img'=>1, 'br'=>1, 'input'=>1, 'meta'=>1, 'link'=>1, 'hr'=>1, 'base'=>1, 'embed'=>1, 'spacer'=>1);
-    protected $block_tags = array('root'=>1, 'body'=>1, 'form'=>1, 'div'=>1, 'span'=>1, 'table'=>1);
-    protected $optional_closing_tags = array(
-        'tr'=>array('tr'=>1, 'td'=>1, 'th'=>1),
-        'th'=>array('th'=>1),
-        'td'=>array('td'=>1),
-        'li'=>array('li'=>1),
-        'dt'=>array('dt'=>1, 'dd'=>1),
-        'dd'=>array('dd'=>1, 'dt'=>1),
-        'dl'=>array('dd'=>1, 'dt'=>1),
-        'p'=>array('p'=>1),
-        'nobr'=>array('nobr'=>1),
-    );
+    protected $self_closing_tags = ['img'=>1, 'br'=>1, 'input'=>1, 'meta'=>1, 'link'=>1, 'hr'=>1, 'base'=>1, 'embed'=>1, 'spacer'=>1];
+    protected $block_tags = ['root'=>1, 'body'=>1, 'form'=>1, 'div'=>1, 'span'=>1, 'table'=>1];
+    protected $optional_closing_tags = [
+        'tr'=> ['tr'=>1, 'td'=>1, 'th'=>1],
+        'th'=> ['th'=>1],
+        'td'=> ['td'=>1],
+        'li'=> ['li'=>1],
+        'dt'=> ['dt'=>1, 'dd'=>1],
+        'dd'=> ['dd'=>1, 'dt'=>1],
+        'dl'=> ['dd'=>1, 'dt'=>1],
+        'p'=> ['p'=>1],
+        'nobr'=> ['nobr'=>1],
+    ];
 
     function __construct($str=null) {
         if ($str) {
@@ -596,8 +596,8 @@ class simple_html_dom {
         $this->doc = $str;
         $this->pos = 0;
         $this->cursor = 1;
-        $this->noise = array();
-        $this->nodes = array();
+        $this->noise = [];
+        $this->nodes = [];
         $this->lowercase = $lowercase;
         $this->root = new simple_html_dom_node($this);
         $this->root->tag = 'root';
@@ -747,7 +747,7 @@ class simple_html_dom {
         }
 
         $guard = 0; // prevent infinity loop
-        $space = array($this->copy_skip($this->token_blank), '', '');
+        $space = [$this->copy_skip($this->token_blank), '', ''];
 
         // attributes
         do {
@@ -773,7 +773,7 @@ class simple_html_dom {
             if($this->doc[$this->pos-1]=='<') {
                 $node->nodetype = HDOM_TYPE_TEXT;
                 $node->tag = 'text';
-                $node->attr = array();
+                $node->attr = [];
                 $node->_[HDOM_INFO_END] = 0;
                 $node->_[HDOM_INFO_TEXT] = substr($this->doc, $begin_tag_pos, $this->pos-$begin_tag_pos-1);
                 $this->pos -= 2;
@@ -797,7 +797,7 @@ class simple_html_dom {
                     if ($this->char!='>') $this->char = $this->doc[--$this->pos]; // prev
                 }
                 $node->_[HDOM_INFO_SPACE][] = $space;
-                $space = array($this->copy_skip($this->token_blank), '', '');
+                $space = [$this->copy_skip($this->token_blank), '', ''];
             }
             else
                 break;

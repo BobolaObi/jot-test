@@ -21,7 +21,7 @@ class UtilsEmails
     static function splitEmails($emails)
     {
         # Emails will be collected in this array.
-        $mails = array();
+        $mails = [];
 
         if (is_array($emails)) {
             foreach ($emails as $email) {
@@ -86,10 +86,10 @@ class UtilsEmails
         }
 
         # Send grid configuration
-        $send = array(
+        $send = [
             "api_user" => Configs::SENDGRID_APIUSER,
             "api_key" => Configs::SENDGRID_APIKEY
-        );
+        ];
 
         $html = true;
         # Check if this is an HTML E-mail or not
@@ -101,7 +101,7 @@ class UtilsEmails
             }
         }
         # Default sender is set here.
-        $noReply = array(NOREPLY, NOREPLY_NAME);
+        $noReply = [NOREPLY, NOREPLY_NAME];
 
         # If default is selected for sender name, then remove it
         if (isset($settings['from'][1]) && ($settings['from'][1] == "none" || $settings['from'][1] == "default")) {
@@ -316,15 +316,15 @@ class UtilsEmails
         if (Configs::USE_SENDGRID) {
             preg_match("/(.*?)\<(.*?)\>/", $frm, $m);
             if (count($m) > 0) {
-                $frm = array($m[2], $m[1]);
+                $frm = [$m[2], $m[1]];
             }
-            return Utils::sendGrid(array(
+            return Utils::sendGrid([
                 "from" => $frm,
                 "to" => $to,
                 "subject" => $subject,
                 "body" => $contents,
                 "html" => $is_html
-            ));
+            ]);
         }
 
         $from = ($frm) ? $frm : NOREPLY_NAME . "<" . NOREPLY . ">";

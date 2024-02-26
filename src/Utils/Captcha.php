@@ -20,7 +20,7 @@ class Captcha
      * Array of words which will be used in captchas
      * @var //array
      */
-    public static $words = array("polish", "past", "part", "when", "much", "seed", "soap", "glove", "sticky", "soap", "profit", "bent", "collar",
+    public static $words = ["polish", "past", "part", "when", "much", "seed", "soap", "glove", "sticky", "soap", "profit", "bent", "collar",
         "where", "weight", "again", "weight", "boat", "small", "profit", "sound", "chin", "flag", "body", "salt", "birth",
         "crime", "false", "sleep", "square", "canvas", "mine", "safe", "mark", "degree", "bell", "color", "expert", "rule",
         "parcel", "degree", "waste", "after", "army", "moon", "brain", "news", "silver", "rain", "stiff", "horse", "smile",
@@ -34,7 +34,7 @@ class Captcha
         "narrow", "still", "hope", "glass", "lock", "hand", "face", "fear", "copper", "debt", "shoe", "paint", "butter",
         "roll", "blood", "story", "doubt", "meat", "offer", "clean", "memory", "like", "wrong", "jump", "amount", "regret",
         "free", "crush", "pull", "dress", "door", "male", "black", "please", "flag", "fact", "nose", "taste", "snake", "cold",
-        "attack", "crush", "canvas", "shame", "book", "wound", "nation", "fire", "good");
+        "attack", "crush", "canvas", "shame", "book", "wound", "nation", "fire", "good"];
 
     /**
      * Checks if the given word is correct or not

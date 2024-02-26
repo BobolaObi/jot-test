@@ -146,7 +146,7 @@ class UtilsRequests extends UtilsEmails
         $name = rawurldecode($name);
 
         /* Figure out the MIME type (if not specified) */
-        $known_mime_types = array(
+        $known_mime_types = [
             "pdf" => "application/pdf",
             "txt" => "text/plain",
             "html" => "text/html",
@@ -161,7 +161,7 @@ class UtilsRequests extends UtilsEmails
             "jpeg" => "image/jpg",
             "jpg" => "image/jpg",
             "php" => "text/plain"
-        );
+        ];
 
         if ($mime_type == '') {
             $file_extension = strtolower(substr(strrchr($file, "."), 1));
@@ -387,10 +387,10 @@ class UtilsRequests extends UtilsEmails
      * @param  $data // [optional] Get parameters
      * @return
      */
-    static function redirect($url, $data = array(), $bustFrame = false)
+    static function redirect($url, $data = [], $bustFrame = false)
     {
 
-        $quesryString = array();
+        $quesryString = [];
         session_write_close();
         if (is_array($data)) {
             foreach ($data as $key => $value) {
@@ -501,7 +501,7 @@ class UtilsRequests extends UtilsEmails
             $url = explode("/", $url, 2);
             $url[1] = "/" . $url[1];
         } else {
-            $url = array($url, "/");
+            $url = [$url, "/"];
         }
 
         $fh = @fsockopen($url[0], 80);
@@ -526,7 +526,7 @@ class UtilsRequests extends UtilsEmails
      */
     static function getMimeType($filename)
     {
-        $mime_types = array(
+        $mime_types = [
 
             'txt' => 'text/plain',
             'htm' => 'text/html',
@@ -580,7 +580,7 @@ class UtilsRequests extends UtilsEmails
             // open office
             'odt' => 'application/vnd.oasis.opendocument.text',
             'ods' => 'application/vnd.oasis.opendocument.spreadsheet',
-        );
+        ];
 
         $ext = strtolower(array_pop(explode('.', $filename)));
         if (array_key_exists($ext, $mime_types)) {
@@ -601,10 +601,10 @@ class UtilsRequests extends UtilsEmails
      * @param  $url
      * @return
      */
-    static function curlRequest($url, $params = array())
+    static function curlRequest($url, $params = [])
     {
 
-        $options = array(
+        $options = [
             CURLOPT_RETURNTRANSFER => true,     // return web page
             CURLOPT_HEADER => false,    // don't return headers
             CURLOPT_FOLLOWLOCATION => true,     // follow redirects
@@ -615,11 +615,11 @@ class UtilsRequests extends UtilsEmails
             CURLOPT_CONNECTTIMEOUT => 120,      // timeout on connect
             CURLOPT_TIMEOUT => 120,      // timeout on response
             CURLOPT_MAXREDIRS => 10,       // stop after 10 redirects
-        );
+        ];
 
         if (count($params) > 0) {
             $options[CURLOPT_POST] = true;
-            $paramPairs = array();
+            $paramPairs = [];
             foreach ($params as $key => $value) {
                 $paramPairs[] = $key . "=" . urlencode($value);
             }
@@ -664,11 +664,11 @@ class UtilsRequests extends UtilsEmails
         if (!is_string($data)) {
             $data = http_build_query($data);
         }
-        $params = array('http' => array(
+        $params = ['http' => [
             'method' => 'POST',
             'content' => $data,
             'header' => 'Content-type:application/x-www-form-urlencoded'
-        ));
+        ]];
 
         if ($optional_headers !== null) {
             $params['http']['header'] = $optional_headers;
@@ -694,7 +694,7 @@ class UtilsRequests extends UtilsEmails
         # Check curl exists 
         if ($curl = Utils::findCommand('curl')) {
 
-            $params = array();
+            $params = [];
             foreach ($data as $key => $value) {
                 array_push($params, $key . "=" . $value);
             }
@@ -750,7 +750,7 @@ class UtilsRequests extends UtilsEmails
             return false;
         }
 
-        $selectedTweets = array();
+        $selectedTweets = [];
 
         foreach ($tweets as $tweet) {
             # Do not display reply tweets
@@ -767,11 +767,11 @@ class UtilsRequests extends UtilsEmails
             }
 
 
-            $selectedTweets[] = array(
+            $selectedTweets[] = [
                 "id" => $tweet['id_str'],
                 "tweet" => self::processTweetLinks($tweet['text']),
                 "date" => Utils::dateToWords(strtotime($tweet["created_at"]))
-            );
+            ];
 
             if (count($selectedTweets) >= $count) {
                 break; # collect only what we need

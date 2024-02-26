@@ -10,7 +10,7 @@ namespace Legacy\Jot\Utils;
 class Server
 {
 
-    public static $servers = array();
+    public static $servers = [];
 
     /**
      * Set servers in list and convert the list into an object
@@ -80,11 +80,11 @@ class Server
         $siblings = self::getServerList();
 
         if (isset($siblings['remote'][$name])) {
-            return array(
+            return [
                 "remote_ip" => $siblings['remote'][$name],
                 "local_ip" => $siblings['local'][$name],
                 "name" => $name
-            );
+            ];
         }
 
         return false;
@@ -98,13 +98,13 @@ class Server
     {
         $me = self::whoAmI();
         if ($me == 'localhost') {
-            return array();
+            return [];
         } // localhost has no sibling
         $siblingList = self::getServerList();
-        $siblings = array();
+        $siblings = [];
         foreach ($siblingList['remote'] as $name => $ip) {
             if ($name != $me) {
-                $siblings[] = array("name" => $name, "ip" => $ip);
+                $siblings[] = ["name" => $name, "ip" => $ip];
             }
         }
         return $siblings;
@@ -152,12 +152,12 @@ class Server
         }
 
         # defined domains for checking
-        $domains = array("interlogy.com", "jotform.com", "jotfor.ms");
+        $domains = ["interlogy.com", "jotform.com", "jotfor.ms"];
 
         # check host name for each domain
         foreach ($domains as $domain) {
             if (!is_array($hostname)) {
-                $hostname = array($hostname);
+                $hostname = [$hostname];
             }
             # check each host name
             foreach ($hostname as $host) {
@@ -241,10 +241,10 @@ class Server
          * }
          * }
          */
-        return array(
+        return [
             "remote" => $listRemote,
             "local" => $listLocal
-        );
+        ];
     }
 
     /**
@@ -282,7 +282,7 @@ class Server
 
     static function isCacheable()
     {
-        $list = array("/jsform/", "/form/");
+        $list = ["/jsform/", "/form/"];
 
         foreach ($list as $path) {
             if (Utils::startsWith($_SERVER['REQUEST_URI'], $path)) {

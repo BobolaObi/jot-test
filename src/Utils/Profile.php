@@ -12,7 +12,7 @@ namespace Legacy\Jot\Utils;
 class Profile
 {
 
-    private static $timers = array();
+    private static $timers = [];
 
     /**
      * Starts the timer for given title

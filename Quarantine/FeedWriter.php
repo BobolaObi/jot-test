@@ -27,10 +27,10 @@ define ('RSS1', 'RSS 1.0', true);
   */
  class FeedWriter
  {
-     private $channels = array();  // Collection of channel elements
-     private $items = array();  // Collection of items as object of FeedItem class.
-     private $data = array();  // Store some other version wise data
-     private $CDATAEncoding = array();  // The tag names which have to encoded as CDATA
+     private $channels = [];  // Collection of channel elements
+     private $items = [];  // Collection of items as object of FeedItem class.
+     private $data = [];  // Store some other version wise data
+     private $CDATAEncoding = [];  // The tag names which have to encoded as CDATA
 
      private $version = null;
 
@@ -48,7 +48,7 @@ define ('RSS1', 'RSS 1.0', true);
          $this->channels['link'] = 'http://www.ajaxray.com/blog';
 
          //Tag names to encode in CDATA
-         $this->CDATAEncoding = array('description', 'content:encoded', 'summary');
+         $this->CDATAEncoding = ['description', 'content:encoded', 'summary'];
      }
 
      // Start # public functions ---------------------------------------------
@@ -171,7 +171,7 @@ define ('RSS1', 'RSS 1.0', true);
       */
      public function setImage($title, $link, $url)
      {
-         $this->setChannelElement('image', array('title' => $title, 'link' => $link, 'url' => $url));
+         $this->setChannelElement('image', ['title' => $title, 'link' => $link, 'url' => $url]);
      }
 
      /**
@@ -315,7 +315,7 @@ define ('RSS1', 'RSS 1.0', true);
          foreach ($this->channels as $key => $value) {
              if ($this->version == ATOM && $key == 'link') {
                  // ATOM prints link element as href attribute
-                 echo $this->makeNode($key, '', array('href' => $value));
+                 echo $this->makeNode($key, '', ['href' => $value]);
                  //Add the id for ATOM
                  echo $this->makeNode('id', $this->uuid($value, 'urn:uuid:'));
              } else {

@@ -7,7 +7,7 @@ class FixUploadURLs extends Ruckusing_BaseMigration {
     public function up() {
         $result = $this->select_all("SELECT * FROM `answers`");
         
-        $uploadValues = array();
+        $uploadValues = [];
         foreach($result as $line){
             if(Utils::startsWith($line["value"], UPLOAD_URL)){
                 $line["value"] = Utils::getFileName($line["value"]);

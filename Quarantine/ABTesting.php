@@ -18,7 +18,7 @@ abstract class ABTesting
     protected $resetOnLogin = false;
     public $user;
     public $className;
-    static $instances = array();
+    static $instances = [];
     const     SESSION = 'ABTest';
 
     abstract static function getClass();
@@ -170,7 +170,7 @@ abstract class ABTesting
     public function getParticipantsGoalNames()
     {
         $res = DB::read("SELECT `goal_name` FROM `test_goals` WHERE `username`=':username'", $this->user->username);
-        $goals = array();
+        $goals = [];
         foreach ($res->result as $line) {
             $goals[] = $line['goal_name'];
         }
@@ -189,17 +189,17 @@ abstract class ABTesting
         if ($participant === false) {
             $group = $this->assignGroup();
 
-            $_SESSION[ABTesting::SESSION] = array(
+            $_SESSION[ABTesting::SESSION] = [
                 "test_name" => $this->className,
                 "group_name" => $group,
-                "goals" => array()
-            );
+                "goals" => []
+            ];
 
-            DB::insert('test_participants', array(
+            DB::insert('test_participants', [
                 "username" => $this->user->username,
                 "test_name" => $this->className,
                 "group_name" => $group
-            ));
+            ]);
         } else {
             $_SESSION[ABTesting::SESSION] = $participant;
             $_SESSION[ABTesting::SESSION]['goals'] = $this->getParticipantsGoalNames();
@@ -294,10 +294,10 @@ abstract class ABTesting
                 $_SESSION[ABTesting::SESSION]['goals'][] = $goalName;
             }
 
-            DB::insert('test_goals', array(
+            DB::insert('test_goals', [
                 "username" => $username,
                 "goal_name" => $goalName
-            ));
+            ]);
         }
     }
 

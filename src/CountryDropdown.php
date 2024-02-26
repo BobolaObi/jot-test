@@ -18,9 +18,9 @@ class CountryDropdown
     static function getCountries()
     {
         $response = DB::read("SELECT * FROM countries WHERE 1");
-        $countries = array();
+        $countries = [];
         foreach ($response->result as $line) {
-            array_push($countries, array("id" => $line[id], "state" => $line['state']));
+            array_push($countries, ["id" => $line[id], "state" => $line['state']]);
         }
         return $countries;
     }
@@ -33,9 +33,9 @@ class CountryDropdown
     static function getStates($countryID)
     {
         $response = DB::read("SELECT * FROM states WHERE country_id =#countryID", $countryID);
-        $states = array();
+        $states = [];
         foreach ($response->result as $line) {
-            array_push($states, array("id" => $line[id], "state" => $line['state']));
+            array_push($states, ["id" => $line[id], "state" => $line['state']]);
         }
         return $states;
     }
@@ -48,9 +48,9 @@ class CountryDropdown
     static function getCities($stateID)
     {
         $response = DB::read("SELECT * FROM cities WHERE state_id=#stateID", $stateID);
-        $cities = array();
+        $cities = [];
         foreach ($response->result as $line) {
-            array_push($cities, array($line['city']));
+            array_push($cities, [$line['city']]);
         }
         return $cities;
     }

@@ -29,7 +29,7 @@ class MigrateUser
      * List of the formIDs this user has
       * @var //array
      */
-    private $formIDList = array();
+    private $formIDList = [];
     /**
      * Defines if a prefix should be added to migrated user account or not
       * @var //boolean
@@ -62,7 +62,7 @@ class MigrateUser
      * This submission ids errored and must be skipped
       * @var //\Legacy\Jot\submission id
      */
-    public $erroredSubmission = array();
+    public $erroredSubmission = [];
 
     /**
      * if set we will skip already migrated accounts
@@ -213,7 +213,7 @@ class MigrateUser
             $sortedProp[$prop["order"]] = $prop;
         }
         if (!is_array($sortedProp)) {
-            $sortedProp = array();
+            $sortedProp = [];
         }
 
         ksort($sortedProp);
@@ -277,7 +277,7 @@ class MigrateUser
     public function parseTags($emailStr, $formID)
     {
         $this->currentReplaceForm = $formID;
-        $parsed = preg_replace_callback("/\{([^\n\{\}]+)\}/m", array($this, "replaceTags"), $emailStr);
+        $parsed = preg_replace_callback("/\{([^\n\{\}]+)\}/m", [$this, "replaceTags"], $emailStr);
         return $parsed;
     }
 
@@ -345,13 +345,13 @@ class MigrateUser
     public function convertEmails($formProperties, $formID)
     {
 
-        $emails = array();
+        $emails = [];
 
         # If notifications set to yes then create the default email
         if (strtolower($formProperties["email"]) == "yes") {
             $isHTML = strtolower($this->user["is_html"]) === "no" ? false : true;
 
-            $emails[] = array(
+            $emails[] = [
                 "type" => "notification",                                                  # Type of the email
                 "name" => "Notification",                                                  # Email Name
                 "from" => $this->parseTags("{" . $formProperties["not_reply"] . "}", $formID), # From address, In old version these field does not contain template tags, so we add them manually
@@ -360,12 +360,12 @@ class MigrateUser
                 "disabled" => false,                                                           # Set if the email is disabled or not
                 "html" => $isHTML,                                                         # Set HTML status
                 "body" => $this->createDefaultEmail($formID, $isHTML)                      # Put email body here
-            );
+            ];
         }
 
         # If confirmation emails is set to yes then create an autoresponder
         if (strtolower($formProperties["conf_send"]) == "yes") {
-            $emails[] = array(
+            $emails[] = [
                 "type" => "autorespond",                                                   # Type of the email
                 "name" => "Auto Respond",                                                  # Email Name
                 "from" => $formProperties["conf_from"],                                    # From address
@@ -374,7 +374,7 @@ class MigrateUser
                 "disabled" => false,                                                           # Set if the email is disabled or not
                 "html" => false,                                                           # Set HTML status
                 "body" => $this->parseTags($formProperties["conf_body"], $formID)          # Body of the confirmation
-            );
+            ];
         }
         # Collect all email together
         $formProperties["emails"] = $emails;
@@ -394,7 +394,7 @@ class MigrateUser
         /**
           * @var //Array containing deleted properties
          */
-        $deletedOnes = array(
+        $deletedOnes = [
             "spamcheck",
             "conf_body",
             "conf_from",
@@ -416,23 +416,23 @@ class MigrateUser
             "2co_productName",
             "2co_productPrice",
             "2co_setupFee"
-        );
+        ];
 
         /**
           * @var //\Legacy\Jot\Associated array containing conversion of style names
          */
-        $styleNames = array(
+        $styleNames = [
             "Default" => "form",
             "BabyBlue" => "baby_blue",
             "IndustrialDark" => "industrial_dark",
             "JotTheme" => "jottheme",
             "PaperGery" => "paper_grey",
             "PostItYellow" => "post_it_yellow"
-        );
+        ];
         /**
           * @var //\Legacy\Jot\Associated array contains conversion of the property names
          */
-        $newOnes = array(
+        $newOnes = [
             "desc" => "description",
             "theme" => "styles",
             "submittext" => "text",
@@ -452,15 +452,15 @@ class MigrateUser
             "gco_merchantId" => "merchantID",
             "wp_instId" => "installationID",
             "2co_vendorNo" => "vendorNumber"
-        );
+        ];
 
         /**
           * @var //\Legacy\Jot\These values must be converted to first letter capital, in order to make them work in v3
          */
-        $ucFirstTexts = array("yes", "no", "true", "false", "none", "left", "center", "right");
+        $ucFirstTexts = ["yes", "no", "true", "false", "none", "left", "center", "right"];
 
         # New array to collect properties
-        $newProp = array();
+        $newProp = [];
 
         foreach ($properties as $key => $value) {
 
@@ -599,10 +599,10 @@ class MigrateUser
         /**
           * @var //\Legacy\Jot\Keps the type names chanded in the new version
          */
-        $types = array(
+        $types = [
             "control_datetimepicker" => "control_datetime",
             "control_html" => "control_text"
-        );
+        ];
 
         # Check if the value name is changed or not
         if (array_key_exists($type, $types)) {
@@ -794,7 +794,7 @@ class MigrateUser
             $this->forms[$id]['listings'] = $listings->result;
 
 
-            $this->forms[$id]['submissions'] = array();
+            $this->forms[$id]['submissions'] = [];
 
             \Legacy\Jot\Console::log('Getting submissions');
 
@@ -839,14 +839,14 @@ class MigrateUser
             # Get the default properties from javascript using V8
             $defaultRawProperties = \Legacy\Jot\Form::getDefaultProperties();
 
-            $defaultProperties = array();
+            $defaultProperties = [];
             /*
              * When we retrieve properties from javascript they are useless multidimensional objects 
              * we should process them to be used in these kind of actions.
              * Convert them to a one dimensional array
              */
             foreach ($defaultRawProperties as $key => $rawProperty) {
-                $defaultProperties[$key] = array();
+                $defaultProperties[$key] = [];
                 foreach ($rawProperty as $prop => $rawValue) {
                     if (empty($rawValue['value'])) {
                         continue;
@@ -861,14 +861,14 @@ class MigrateUser
             }
 
             # Collect properties
-            $properties = array("form" => array());
+            $properties = ["form" => []];
             $questions = \Legacy\Jot\DB::read("SELECT * FROM `questions` WHERE `form_id`=#id", $id);
             foreach ($questions->result as $question) {
-                $properties[$question['id']] = array(
+                $properties[$question['id']] = [
                     "qid" => $question['id'],
                     "type" => $this->convertTypeName($question['type']), # Conevrt the question type name to new version names
                     "order" => $question['order']
-                );
+                ];
             }
 
             # Collect question properties
@@ -895,7 +895,7 @@ class MigrateUser
             }
 
             # New array for collection default properties and form properties together
-            $mergedProperties = array();
+            $mergedProperties = [];
             foreach ($properties as $qid => $property) {
                 if ($qid === 'form') {
                     $property = $this->convertEmails($property, $id);    # Convert Emails
@@ -928,7 +928,7 @@ class MigrateUser
             # Change the form with for old forms because new width is too wide for them
             $this->forms[$id]['properties']['form']['formWidth'] = '520';
 
-            $products = array();
+            $products = [];
             # Get Products for this form
             $productsRes = \Legacy\Jot\DB::read("SELECT * FROM `products` WHERE `form_id`=#id", $id);
             $pid = 100;
@@ -938,7 +938,7 @@ class MigrateUser
                     continue; // This product is deleted earlier. So we should not include it.
                 }
 
-                $products[] = array(
+                $products[] = [
                     "pid" => $pid++,           # Product id's for new version
                     "name" => $product['name'],
                     "price" => $product['price'],
@@ -946,7 +946,7 @@ class MigrateUser
                     "setupfee" => $product['price'] + $product['setup_fee'],
                     "trial" => $this->convertTrialDurations($product["trial_type"], $product["trial_duration"]),
                     "icon" => ""
-                );
+                ];
             }
             # Place products in the forms properties
             $this->forms[$id]['properties']["form"]["products"] = $products;
@@ -963,14 +963,14 @@ class MigrateUser
 
         # Insert Monthly Usage
         \Legacy\Jot\DB::write("REPLACE INTO `monthly_usage` (`username`, `submissions`, `ssl_submissions`, `payments`, `uploads`, `tickets`) 
-                   VALUES(':username', #submissions, #ssl_submissions, #payments, #uploads, #tickets)", array(
+                   VALUES(':username', #submissions, #ssl_submissions, #payments, #uploads, #tickets)", [
             'username' => $this->user['username'],
             'submissions' => $this->user['monthly_usage']["submissions"],
             'ssl_submissions' => $this->user['monthly_usage']["ssl_submissions"],
             'payments' => $this->user['monthly_usage']["payments"],
             'uploads' => $this->user['monthly_usage']["uploads"],
             'tickets' => $this->user['monthly_usage']["tickets"]
-        ));
+        ]);
     }
 
     /**
@@ -1001,7 +1001,7 @@ class MigrateUser
 
         try {
 
-            $values = array(
+            $values = [
                 'username' => $this->user["username"],
                 'password' => \Legacy\Jot\User::encodePassword($this->user["password"]), # Encode password
                 'name' => $this->user["name"],
@@ -1014,7 +1014,7 @@ class MigrateUser
                 'friends' => $this->user["friends"],
                 'createdate' => $this->user["creation_date"],
                 'last_seen' => $this->user["last_seen"]
-            );
+            ];
 
             # @TODO if user exists then check the emails
             # if they are equal then merge the accounts
@@ -1115,7 +1115,7 @@ class MigrateUser
 
                 if (empty($form['skipForm'])) {
 
-                    $values = array(
+                    $values = [
                         "id" => $form["id"],
                         "username" => $this->user["username"],
                         "title" => $form['title'],
@@ -1125,7 +1125,7 @@ class MigrateUser
                         "created_at" => date("Y-m-d H:i:s"), # NOW()
                         "count" => -1, # $this->countSubmissions($form["id"]), # Count the form submission for cacheing
                         "new" => 0   # there is no new submissions
-                    );
+                    ];
 
                     if ($this->isFormExist($form["id"])) {
                         # update the converted form
@@ -1163,22 +1163,22 @@ class MigrateUser
                                 # Loop through every item of this property
                                 # If this is an email there can be more than one email
                                 foreach ($typeValues as $typeProp => $typeValue) {
-                                    \Legacy\Jot\DB::insert("form_properties", array(
+                                    \Legacy\Jot\DB::insert("form_properties", [
                                         "form_id" => $form["id"],
                                         "item_id" => $item_id,
                                         "type" => $prop,
                                         "prop" => $typeProp,
                                         "value" => $typeValue
-                                    ));
+                                    ]);
                                 }
                             }
                         } else {
                             # Save property regularly
-                            \Legacy\Jot\DB::insert("form_properties", array(
+                            \Legacy\Jot\DB::insert("form_properties", [
                                 "form_id" => $form["id"],
                                 "prop" => $prop,
                                 "value" => $value
-                            ));
+                            ]);
                         }
                     }
 
@@ -1189,12 +1189,12 @@ class MigrateUser
                     foreach ($form["properties"] as $qid => $properties) {
                         foreach ($properties as $prop => $value) {
                             # Regularly insert every question property
-                            \Legacy\Jot\DB::insert("question_properties", array(
+                            \Legacy\Jot\DB::insert("question_properties", [
                                 "form_id" => $form["id"],
                                 "question_id" => $qid,
                                 "prop" => $prop,
                                 "value" => $value
-                            ));
+                            ]);
                         }
                     }
                 }
@@ -1203,14 +1203,14 @@ class MigrateUser
                 # Submissions also contains their answers
                 foreach ($form["submissions"] as $sid => $submission) {
                     # Insert submission
-                    \Legacy\Jot\DB::insert("submissions", array(
+                    \Legacy\Jot\DB::insert("submissions", [
                         "id" => $submission["id"],
                         "form_id" => $form["id"],
                         "ip" => $submission["ip"],
                         "created_at" => $submission["date_time"],
                         "status" => $submission["status"],
                         "new" => 0   # Mark it as read because default value is unread
-                    ));
+                    ]);
 
                     # Loop through the all answers of this submission
                     foreach ($submission["answers"] as $answer) {
@@ -1219,12 +1219,12 @@ class MigrateUser
                         }
                         try {
                             # Insert the answer first
-                            \Legacy\Jot\DB::insert("answers", array(
+                            \Legacy\Jot\DB::insert("answers", [
                                 "form_id" => $answer["form_id"],
                                 "submission_id" => $answer["submission_id"],
                                 "question_id" => $answer["question_id"],
                                 "value" => $answer["value"]
-                            ));
+                            ]);
 
                             # if inserted answer was a splittable value such as Check box
                             # then insert it as splitted also
@@ -1233,13 +1233,13 @@ class MigrateUser
                                 $options = explode("|", $answer["value"]);
                                 # For each value
                                 foreach ($options as $itemID => $optValue) {
-                                    \Legacy\Jot\DB::insert("answers", array(
+                                    \Legacy\Jot\DB::insert("answers", [
                                         "form_id" => $answer["form_id"],
                                         "submission_id" => $answer["submission_id"],
                                         "question_id" => $answer["question_id"],
                                         "item_name" => $itemID,
                                         "value" => $optValue
-                                    ));
+                                    ]);
                                 }
                             }
                         } catch (\Legacy\Jot\Exception $e) {
@@ -1256,14 +1256,14 @@ class MigrateUser
 
                 # Move listings
                 foreach ($form['listings'] as $listing) {
-                    \Legacy\Jot\DB::insert('listings', array(
+                    \Legacy\Jot\DB::insert('listings', [
                         "id" => $listing["id"],
                         "form_id" => $listing["form_id"],
                         "title" => $listing["title"],
                         "fields" => $listing["fields"],
                         "list_type" => $listing["list_type"],
                         "status" => ($listing["status"] != 'DELETED') ? 'ENABLED' : 'DELETED'
-                    ));
+                    ]);
                 }
             }
         } catch (\Legacy\Jot\Exception $e) {

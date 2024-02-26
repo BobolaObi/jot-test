@@ -68,7 +68,7 @@ class ID
         $sum = substr($id, -2, 2);
         $base = preg_replace("/..$/", "", $id);
 
-        return array("base" => $base, "sum" => $sum);
+        return ["base" => $base, "sum" => $sum];
     }
 
     /**

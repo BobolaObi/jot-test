@@ -220,8 +220,8 @@ class RestAuthenticator
      */
     private function digestParse($txt)
     {
-        $needed_parts = array('nonce' => 1, 'nc' => 1, 'cnonce' => 1, 'qop' => 1, 'username' => 1, 'uri' => 1, 'response' => 1);
-        $data = array();
+        $needed_parts = ['nonce' => 1, 'nc' => 1, 'cnonce' => 1, 'qop' => 1, 'username' => 1, 'uri' => 1, 'response' => 1];
+        $data = [];
         $parts = explode(",", $txt);
         foreach ($parts as $part) {
             $div = strpos($part, "=");
@@ -243,14 +243,14 @@ class RestAuthenticator
      */
     private function digestHeader()
     {
-        $op = array(
+        $op = [
             'realm' => $this->getRealm(),
             'domain' => '/',
             'qop' => 'auth',
             'algorithm' => 'MD5',
             'nonce' => uniqid(),
             'opaque' => md5($this->getRealm()),
-        );
+        ];
         $str = 'realm="' . $op['realm'] . '",';
         $str .= 'qop="' . $op['qop'] . '",';
         $str .= 'nonce="' . $op['nonce'] . '",';

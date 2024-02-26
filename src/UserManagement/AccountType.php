@@ -12,9 +12,9 @@ namespace Legacy\Jot\UserManagement;
 class AccountType
 {
     # Account variables.
-    private static $accounts = array();
+    private static $accounts = [];
     public $name, $prettyName;
-    public $limits = array();
+    public $limits = [];
 
     /**
      * Constructs account types
@@ -74,7 +74,7 @@ class AccountType
 
     public static function getAllAccountTypes()
     {
-        $accountTypes = array();
+        $accountTypes = [];
         foreach (self::$accounts as $account) {
             array_push($accountTypes, $account->name);
         }

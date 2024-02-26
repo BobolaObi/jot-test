@@ -75,16 +75,16 @@ EXP;
 	
 	public function test_column_definition() {
 		
-		$c = new Ruckusing_ColumnDefinition($this->adapter, "last_name", "string", array('limit' => 32));
+		$c = new Ruckusing_ColumnDefinition($this->adapter, "last_name", "string", ['limit' => 32]);
 		$this->assertEquals("`last_name` varchar(32)", trim($c));
 
-		$c = new Ruckusing_ColumnDefinition($this->adapter, "last_name", "string", array('null' => false));
+		$c = new Ruckusing_ColumnDefinition($this->adapter, "last_name", "string", ['null' => false]);
 		$this->assertEquals("`last_name` varchar(255) NOT NULL", trim($c));
 
-		$c = new Ruckusing_ColumnDefinition($this->adapter, "last_name", "string", array('default' => 'abc', 'null' => false));
+		$c = new Ruckusing_ColumnDefinition($this->adapter, "last_name", "string", ['default' => 'abc', 'null' => false]);
 		$this->assertEquals("`last_name` varchar(255) DEFAULT 'abc' NOT NULL", trim($c));
 
-		$c = new Ruckusing_ColumnDefinition($this->adapter, "created_at", "datetime", array('null' => false));
+		$c = new Ruckusing_ColumnDefinition($this->adapter, "created_at", "datetime", ['null' => false]);
 		$this->assertEquals("`created_at` datetime NOT NULL", trim($c));
 
 
@@ -96,9 +96,9 @@ EXP;
 	//test that we can generate a table w/o a primary key
 	public function test_generate_table_without_primary_key() {
 
-		$t1 = new Ruckusing_MySQLTableDefinition($this->adapter, "users", array('id' => false, 'options' => 'Engine=InnoDB') );
+		$t1 = new Ruckusing_MySQLTableDefinition($this->adapter, "users", ['id' => false, 'options' => 'Engine=InnoDB']);
 		$t1->column("first_name", "string");
-		$t1->column("last_name", "string", array('limit' => 32));
+		$t1->column("last_name", "string", ['limit' => 32]);
 		$actual = $t1->finish();
 		
 		$col = $this->adapter->column_info("users", "id");
@@ -112,8 +112,8 @@ CREATE TABLE `users` (
 , PRIMARY KEY (`guid`)
 ) Engine=InnoDB;
 SQL;
-	  $t1 = new Ruckusing_MySQLTableDefinition($this->adapter, "users", array('id' => false, 'options' => 'Engine=InnoDB') );
-		$t1->column("guid", "string", array('primary_key' => true));
+	  $t1 = new Ruckusing_MySQLTableDefinition($this->adapter, "users", ['id' => false, 'options' => 'Engine=InnoDB']);
+		$t1->column("guid", "string", ['primary_key' => true]);
 		$generated_sql = $t1->finish(true);
 		$this->assertEquals($actual_sql, $generated_sql);		
   }
@@ -126,8 +126,8 @@ SQL;
   // the framework will throw an exception, which we expected so have PHPUnit verify that this exception
   //gets thrown
   public function test_generate_table_with_forced_primary_key_and_with_user_specified_key() {
-    $t1 = new Ruckusing_MySQLTableDefinition($this->adapter, "users", array('options' => 'Engine=InnoDB') );
-  	$t1->column("guid", "string", array('primary_key' => true));
+    $t1 = new Ruckusing_MySQLTableDefinition($this->adapter, "users", ['options' => 'Engine=InnoDB']);
+  	$t1->column("guid", "string", ['primary_key' => true]);
   	$t1->finish();
   }
 	

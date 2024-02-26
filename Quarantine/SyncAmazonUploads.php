@@ -21,7 +21,7 @@ class SyncAmazonUploads extends UserCrawler
 
     const connectionLimit = 90;
     private $as3c;
-    private $usersSubmissions = array();
+    private $usersSubmissions = [];
 
     public function setProperties()
     {
@@ -110,7 +110,7 @@ class SyncAmazonUploads extends UserCrawler
             if (!file_exists($filePath)) {
                 Console::log("File is not uploaded in this server. Looking to other servers..");
 
-                $request = new RequestServer(array(
+                $request = new RequestServer([
                     "action" => "sendFileToAmazonS3",
                     "filePath" => $filePath,
                     "baseName" => $baseName,
@@ -118,7 +118,7 @@ class SyncAmazonUploads extends UserCrawler
                     "toAll" => "yes",
                     "async" => "no",
                     "skipSelf" => "yes"
-                ), true);
+                ], true);
 
                 $responses = $request->getResponse()->other_responses;
                 $found = false;
@@ -151,7 +151,7 @@ class SyncAmazonUploads extends UserCrawler
     private function addToSubmissions($formId, $submissionId)
     {
         if (!isset($this->usersSubmissions[$formId])) {
-            $this->usersSubmissions[$formId] = array();
+            $this->usersSubmissions[$formId] = [];
         }
         array_push($this->usersSubmissions[$formId], $submissionId);
     }

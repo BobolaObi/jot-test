@@ -18,7 +18,7 @@ use srting;
  */
  class FeedItem
  {
-     private $elements = array();    //Collection of feed elements
+     private $elements = [];    //Collection of feed elements
      private $version;
 
      /**
@@ -139,7 +139,7 @@ use srting;
          if ($this->version == RSS2 || $this->version == RSS1) {
              $this->addElement('link', $link);
          } else {
-             $this->addElement('link', '', array('href' => $link));
+             $this->addElement('link', '', ['href' => $link]);
              $this->addElement('id', FeedWriter::uuid($link, 'urn:uuid:'));
          }
 
@@ -157,7 +157,7 @@ use srting;
       */
      public function setEncloser($url, $length, $type)
      {
-         $attributes = array('url' => $url, 'length' => $length, 'type' => $type);
+         $attributes = ['url' => $url, 'length' => $length, 'type' => $type];
          $this->addElement('enclosure', '', $attributes);
      }
 

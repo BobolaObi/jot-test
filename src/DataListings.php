@@ -21,7 +21,7 @@ class DataListings
         }
 
         if (strstr($res->first['fields'], ":")) {
-            $newFieldList = array();
+            $newFieldList = [];
             foreach (explode(",", $res->first['fields']) as $line) {
                 @list($key, $value) = explode(":", $line);
                 if (!isset($value)) {
@@ -31,7 +31,7 @@ class DataListings
             }
         } else {
             $res->first['fields'] = explode(",", $res->first['fields']);
-            $newFieldList = array();
+            $newFieldList = [];
 
             foreach ($res->first['fields'] as $field) {
                 if ($field == 'ip') {
@@ -148,7 +148,7 @@ class DataListings
             $password = true;
         }
 
-        DB::insert('listings', array(
+        DB::insert('listings', [
             "id" => $id,
             "form_id" => $formID,
             "title" => $title,
@@ -156,7 +156,7 @@ class DataListings
             "list_type" => $type,
             "status" => "ENABLED",
             "password" => $password
-        ));
+        ]);
         return $id;
     }
 
@@ -204,15 +204,15 @@ class DataListings
     {
 
         $res = DB::read("SELECT * FROM `listings` WHERE `form_id` = #id", $formID);
-        $listings = array();
+        $listings = [];
         foreach ($res->result as $line) {
-            $listings[] = array(
+            $listings[] = [
                 "id" => $line["id"],
                 "title" => $line["title"],
                 "configuration" => $noConfig ? "" : explode(",", $line["fields"]),
                 "hasPassword" => !empty($line['password']),
                 "type" => $line['list_type']
-            );
+            ];
         }
 
         return $listings;

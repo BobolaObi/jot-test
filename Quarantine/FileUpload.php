@@ -13,7 +13,7 @@ class FileUpload
 
     private $uploadType; /* "cloud" or "local"  */
 
-    private $neverAllow = array('php', 'pl', 'rb', 'asp', 'aspx', 'exe', 'scr', 'dll', 'msi', 'vbs', 'bat', 'com', 'pif', 'cmd', 'vxd', 'cpl');
+    private $neverAllow = ['php', 'pl', 'rb', 'asp', 'aspx', 'exe', 'scr', 'dll', 'msi', 'vbs', 'bat', 'com', 'pif', 'cmd', 'vxd', 'cpl'];
     private $file;
 
     /**
@@ -93,7 +93,7 @@ class FileUpload
      */
     public function getUploadedFiles($path)
     {
-        $files = array();
+        $files = [];
         if ($this->uploadType == 'cloud') {
 
             if (!($s3Files = Utils::cacheGet("S3::" . $path))) {

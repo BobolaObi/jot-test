@@ -45,7 +45,7 @@ class PhishingFilter
      * spam probability
       * @var //string array
      */
-    private $words = array();
+    private $words = [];
 
     /**
      * The total score for the form.
@@ -274,7 +274,7 @@ class PhishingFilter
      */
     private function addToWordsArray($word)
     {
-        $ignoreWords = array('1', '2', '3', '4', '5', '6', '7', '8', '9', 'name', 'undefined', 'personal', 'his', 'her', 'we', 'you', 'and', 'untitled', 'form', 'e', 'i', 'a', 'about', 'an', 'are', 'as', 'at', 'be', 'by', 'com', 'de', 'en', 'for', 'from', 'how', 'in', 'is', 'it', 'la', 'of', 'on', 'or', 'that', 'the', 'this', 'to', 'was', 'what', 'when', 'where', 'who', 'will', 'with', 'und', 'the', 'www', 'click', 'edit', 'submit');
+        $ignoreWords = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'name', 'undefined', 'personal', 'his', 'her', 'we', 'you', 'and', 'untitled', 'form', 'e', 'i', 'a', 'about', 'an', 'are', 'as', 'at', 'be', 'by', 'com', 'de', 'en', 'for', 'from', 'how', 'in', 'is', 'it', 'la', 'of', 'on', 'or', 'that', 'the', 'this', 'to', 'was', 'what', 'when', 'where', 'who', 'will', 'with', 'und', 'the', 'www', 'click', 'edit', 'submit'];
         # return if the word is in ignore array and if its added before
         if (in_array($word, $ignoreWords) || in_array($word, $this->words)) return;
         # return if word is small

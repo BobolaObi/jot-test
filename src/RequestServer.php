@@ -55,7 +55,7 @@ class RequestServer
     public $callback, $response, $request;
 
     # In order to call these methods, user needs to be admin
-    private $adminOnlyActions = array("phpInfo", "codeEditor", "evalCode",
+    private $adminOnlyActions = ["phpInfo", "codeEditor", "evalCode",
         "resetCacheFolder", "loginToAccount", "deployServers",
         "getLatestVersionNumber", "getLatestVersionNumber", "migrateToVersion",  // Ruckusing stuff
         "migrateUser", "migrateAllUsers", "migrateAllSubmissions",               // jotform_main to jotform_new migration stuff
@@ -63,26 +63,26 @@ class RequestServer
         "crawlUsers", "syncWithAmazonS3", "uploadToS3", "userOperations",
         "getUserDetails", "getStatus", "setStatus", "recalculateUploads", "deleteUserFromScheduledDowngrade",
         "listServers", "clearFormCacheBySearch"
-    );
+    ];
 
     # These methods are only allowed for sibling servers
-    private $serverTalk = array("clearAllCache", "clearFormCache", "clearUserCache", "removeSubmissionUpload");
+    private $serverTalk = ["clearAllCache", "clearFormCache", "clearUserCache", "removeSubmissionUpload"];
 
     # These methods are only allowed for friend servers
     # TODO: Complete the friendTalk checks.
-    private $friendTalk = array("checkCookie", "checkAdminCookie", "checkSupportCookie", "getEmailsJCM", "getAccountTypesJCM", "getUserPaymentGateway", "upgradeUserToProfessional");
+    private $friendTalk = ["checkCookie", "checkAdminCookie", "checkSupportCookie", "getEmailsJCM", "getAccountTypesJCM", "getUserPaymentGateway", "upgradeUserToProfessional"];
 
     # In order to call these methods, user needs to be logged in
-    private $loginNeededActions = array();
+    private $loginNeededActions = [];
 
     # These methods cannot be called from requests
-    private $protectedActions = array("error", "success", "runAction", "errorHandler", "php5208BugFix", "checkServerTalk", "checkOtherServers", "get");
+    private $protectedActions = ["error", "success", "runAction", "errorHandler", "php5208BugFix", "checkServerTalk", "checkOtherServers", "get"];
 
     # These action does not need session varaibles
-    private $noSessionActions = array("getStates", "getCities", "clearFormCache", "clearCache",
+    private $noSessionActions = ["getStates", "getCities", "clearFormCache", "clearCache",
         "testEmail", "getCaptchaId", "getCaptchaImg", "correctCaptcha",
         "getExtGridStructure", "getExtGridSubmissions", "getFormSource",
-        "clearAllCache", "clearFormCache", "clearUserCache", "removeSubmissionUpload", "multipleUpload");
+        "clearAllCache", "clearFormCache", "clearUserCache", "removeSubmissionUpload", "multipleUpload"];
 
     # Simulate web latency
     private $lazy;
@@ -198,7 +198,7 @@ class RequestServer
             return;
         }
         if ($errno & (E_ALL ^ E_NOTICE)) {
-            $types = array(1 => 'error', 2 => 'warning', 4 => 'parse error', 8 => 'notice', 16 => 'core error', 32 => 'core warning', 64 => 'compile error', 128 => 'compile warning', 256 => 'user error', 512 => 'user warning', 1024 => 'user notice', 2048 => 'strict warning');
+            $types = [1 => 'error', 2 => 'warning', 4 => 'parse error', 8 => 'notice', 16 => 'core error', 32 => 'core warning', 64 => 'compile error', 128 => 'compile warning', 256 => 'user error', 512 => 'user warning', 1024 => 'user notice', 2048 => 'strict warning'];
             $entry = "<div style='text-align:left;'><span><b>" . @$types[$errno] . "</b></span>: $message <br><br>
             <span> <b>in</b> </span>: $filename <br>
             <span> <b>on line</b> </span>: $line </div>";
@@ -248,7 +248,7 @@ class RequestServer
                 unset($request['skipSelf']);
             }
 
-            $this->responses = array();        # Collect all responses coming from other servers
+            $this->responses = [];        # Collect all responses coming from other servers
 
             foreach ($siblings as $sibling) {    # loop through servers
                 if ($this->get('async') != "no") {
@@ -331,13 +331,13 @@ class RequestServer
         } catch (SoftException $e) {
             $err = $e->getMessage();
             if (is_array($err)) {
-                return $this->error(array("message" => $err[0], "errorNo" => $err[1]), null, 200);
+                return $this->error(["message" => $err[0], "errorNo" => $err[1]], null, 200);
             }
             return $this->error($err, null, 200);
         } catch (\Exception $e) { # Catch if any exception was thrown
             $err = $e->getMessage();
             if (is_array($err)) {
-                return $this->error(array("message" => $err[0], "errorNo" => $err[1]), null, 500);
+                return $this->error(["message" => $err[0], "errorNo" => $err[1]], null, 500);
             }
             return $this->error($err, null, 500);
         }
@@ -349,7 +349,7 @@ class RequestServer
      * @param object|string $message An error message, you can directly pass all parameters here
      * @param  $addHash [optional] contains the all error parameters will be sent as a response
      */
-    private function error($message, $addHash = array(), $status = 400)
+    private function error($message, $addHash = [], $status = 400)
     {
 
         Console::info($message, "Request Server Error");
@@ -393,7 +393,7 @@ class RequestServer
      * @param object|string $message Success message you can also pass the all parameters as an array here
      * @param  $addHash // [optional] all other parameters to be sent to user as a response
      */
-    private function success($message, $addHash = array(), $status = 200)
+    private function success($message, $addHash = [], $status = 200)
     {
         if (is_array($message)) {
             $addHash = $message;
@@ -502,9 +502,9 @@ class RequestServer
     private function getStates()
     {
         $states = CountryDropdown::getStates($this->request['countryId']);
-        $this->success(array(
+        $this->success([
             "states" => $states
-        ));
+        ]);
     }
 
     /**
@@ -513,9 +513,9 @@ class RequestServer
     private function getCities()
     {
         $cities = CountryDropdown::getCities($this->request['stateId']);
-        $this->success(array(
+        $this->success([
             "cities" => $cities
-        ));
+        ]);
     }
 
     /**
@@ -524,9 +524,9 @@ class RequestServer
     private function newForm()
     {
         $form = new FormFactory($this->request['properties']);
-        $this->success(array(
+        $this->success([
             "id" => $form->save()
-        ));
+        ]);
     }
 
     /**
@@ -542,9 +542,9 @@ class RequestServer
         if ($res === false) {
             $this->error($res);
         } else {
-            $this->success("Form Saved", array(
+            $this->success("Form Saved", [
                 "id" => $res
-            ));
+            ]);
         }
     }
 
@@ -556,7 +556,7 @@ class RequestServer
     {
         $form = new Form($this->request["formID"]);
         $newID = $form->cloneForm();
-        $this->success(array("newID" => $newID));
+        $this->success(["newID" => $newID]);
     }
 
     /**
@@ -807,13 +807,13 @@ class RequestServer
             $this->error($response);
         }
 
-        $this->success(array(
+        $this->success([
             "form" => $response,
-            "submissions" => array(
+            "submissions" => [
                 "total" => $form->getSubmissionCount(),
                 "new" => $form->getNewSubmissionCount()
-            )
-        ));
+            ]
+        ]);
     }
 
     /**
@@ -837,9 +837,9 @@ class RequestServer
             $this->success("Form Cloned");
         } else {
             $form = new FormFactory(json_encode($response), false, true);
-            $this->success(array(
+            $this->success([
                 "id" => $form->save()
-            ));
+            ]);
         }
     }
 
@@ -848,13 +848,13 @@ class RequestServer
      */
     private function testEmail()
     {
-        Utils::sendEmail(array(
+        Utils::sendEmail([
             "from" => $this->request['from'],
             "to" => $this->request['to'],
             "subject" => "(TEST) " . $this->request['subject'],
             "body" => $this->request['body'],
             "html" => $this->request['html'] == 'true'
-        ));
+        ]);
         $this->success("E-mail Sent");
     }
 
@@ -865,9 +865,9 @@ class RequestServer
     private function getCaptchaID()
     {
         $num = Captcha::encode(Captcha::getRandom());
-        $this->success(array(
+        $this->success([
             "num" => $num
-        ));
+        ]);
     }
 
     /**
@@ -909,11 +909,11 @@ class RequestServer
         # No server-side validation is necessary. Username is unique so
         # you cannot create more than one empty username. E-mail could be
         # checked on the client along with others.
-        $message = User::registerNewUser(array('username' => $this->request['username'],
+        $message = User::registerNewUser(['username' => $this->request['username'],
             'password' => $this->request['password'],
             'email' => $this->request['email'],
             'ip' => $_SERVER['REMOTE_ADDR']
-        ));
+        ]);
         $this->success($message);
     }
 
@@ -925,7 +925,7 @@ class RequestServer
     private function updateUserAccount()
     {
 
-        $user = new User(array('username' => Session::$username, 'id' => Session::$id));
+        $user = new User(['username' => Session::$username, 'id' => Session::$id]);
 
         if (isset($this->request['email'])) {
             $_SESSION[COOKIE_KEY]->email = $user->email = $this->request['email'];
@@ -1013,7 +1013,7 @@ class RequestServer
     private function getFormList()
     {
         $list = User::getFormList(Session::$username);
-        $this->success(array("forms" => $list));
+        $this->success(["forms" => $list]);
     }
 
     /**
@@ -1025,7 +1025,7 @@ class RequestServer
         $reports = Report::getAllByFormID($this->get('formID'), true);
         $listings = DataListings::getAllByFormID($this->get('formID'));
         $list = array_merge($reports, $listings);
-        $this->success(array('reports' => $list));
+        $this->success(['reports' => $list]);
     }
 
     /**
@@ -1041,7 +1041,7 @@ class RequestServer
         }
         $username = $this->get('username');
         $response = DB::read("SELECT * FROM `forms` WHERE `username`=':username' ORDER BY `title` ASC", $username);
-        $forms = array();
+        $forms = [];
         foreach ($response->result as $line) {
             if ($line['count'] < 0) {
                 $line['count'] = Form::updateSubmissionCount($line["id"]);
@@ -1056,7 +1056,7 @@ class RequestServer
         $usage = (array)MonthlyUsage::find();
         unset($usage['user']);
 
-        $this->success(array("forms" => $forms, "usage" => $usage));
+        $this->success(["forms" => $forms, "usage" => $usage]);
     }
 
     /**
@@ -1163,10 +1163,10 @@ class RequestServer
         $submissions = $form->getSubmissions($this->request['sort'], $this->request['start'], $this->request['limit'], $this->request['dir'], $this->request["keyword"]);
         $questions = $submissions["questions"];
         unset($submissions["questions"]);
-        $this->success(array(
+        $this->success([
             "questions" => $questions,
             "submissions" => $submissions
-        ));
+        ]);
     }
 
     /**
@@ -1176,7 +1176,7 @@ class RequestServer
     private function getSubmissionResults()
     {
         $result = Form::getSubmissionResult($this->request["formID"]);
-        $this->success(array("result" => $result));
+        $this->success(["result" => $result]);
     }
 
     private function getSavedUploadResults()
@@ -1192,7 +1192,7 @@ class RequestServer
     {
         $res = DB::read("SELECT * FROM `pending_submissions` WHERE `form_id`=#formID AND `type`=':type' AND `session_id`=':sessid'", $this->get('formID'), 'SAVED', $this->get('sessionID'));
 
-        $result = array();
+        $result = [];
         if ($res->rows > 0) {
             $line = $res->first;
             $obj = Utils::unserialize($line['serialized_data']);
@@ -1220,15 +1220,15 @@ class RequestServer
                 if ($obj->formQuestions[$qid]['type'] == 'control_fileupload') {
                     $fvalue = Utils::getUploadURL(Session::$username, $this->get('formID'), $obj->sid, $fvalue);
                 }
-                $result[$question['qid']] = array(
+                $result[$question['qid']] = [
                     "text" => $question["text"],
                     "value" => $fvalue,
                     "items" => $value,
                     "type" => $obj->formQuestions[$qid]['type']
-                );
+                ];
             }
         }
-        $this->success(array("result" => $result, "currentPage" => $obj->currentPage, "submissionID" => $obj->sid));
+        $this->success(["result" => $result, "currentPage" => $obj->currentPage, "submissionID" => $obj->sid]);
     }
 
     /**
@@ -1239,7 +1239,7 @@ class RequestServer
     {
         $form = new Form($this->request["formID"]);
         $result = $form->getReportsData();
-        $this->success(array("data" => $result));
+        $this->success(["data" => $result]);
     }
 
     /**
@@ -1254,13 +1254,13 @@ class RequestServer
         if ($this->request["includeUsage"]) {
             $usage = (array)MonthlyUsage::find();
         } else {
-            $usage = array();
+            $usage = [];
         }
         include_once ROOT . "lib/includes/accountInfo.php";
         $accountHTML = ob_get_contents();
         ob_clean();
 
-        $this->success("Login Successfull.", array("user" => Session::getPublicUserInformation(), "usage" => $usage, "accountBox" => $accountHTML));
+        $this->success("Login Successfull.", ["user" => Session::getPublicUserInformation(), "usage" => $usage, "accountBox" => $accountHTML]);
     }
 
     /**
@@ -1335,7 +1335,7 @@ class RequestServer
     private function getDatabaseChanges()
     {
         DBMigrate::getDatabaseChanges();
-        $this->success(array("changes" => DBMigrate::$syncQueries));
+        $this->success(["changes" => DBMigrate::$syncQueries]);
     }
 
     /**
@@ -1357,7 +1357,7 @@ class RequestServer
     {
         Session::setGuestEmail($this->request["email"]);
         // User::findByEmail does not find guest accounts.
-        $this->success(array("hasAccount" => !!User::findByEmail($this->request["email"])));
+        $this->success(["hasAccount" => !!User::findByEmail($this->request["email"])]);
 
     }
 
@@ -1380,9 +1380,9 @@ class RequestServer
             $usage = (array)MonthlyUsage::find();
             unset($usage['user']);
         } else {
-            $usage = array();
+            $usage = [];
         }
-        $this->success(array("user" => Session::getPublicUserInformation(), "usage" => $usage));
+        $this->success(["user" => Session::getPublicUserInformation(), "usage" => $usage]);
     }
 
     /**
@@ -1425,7 +1425,7 @@ class RequestServer
 
         $value = Settings::getSetting($this->request['identifier'], $this->request['key']);
         if ($value) {
-            $this->success(array("value" => Utils::safeJsonDecode($value["value"])));
+            $this->success(["value" => Utils::safeJsonDecode($value["value"])]);
         } else {
             $this->error("Setting not found");
         }
@@ -1437,12 +1437,12 @@ class RequestServer
      */
     private function sendEmail()
     {
-        Utils::sendEmail(array(
+        Utils::sendEmail([
             'to' => $this->request['to'],
-            'from' => array($this->request['from'], ""),
+            'from' => [$this->request['from'], ""],
             'subject' => $this->request['subject'],
             'body' => $this->request['body']
-        ));
+        ]);
     }
 
     /**
@@ -1460,7 +1460,7 @@ class RequestServer
             $id = $report->save($this->get("title"), $this->get("configuration"), $this->get('password'));
         }
 
-        $this->success(array('id' => $id));
+        $this->success(['id' => $id]);
     }
 
     /**
@@ -1471,12 +1471,12 @@ class RequestServer
     {
         $report = new Report($this->request["reportID"]);
 
-        $this->success(array(
+        $this->success([
             "title" => $report->title,
             "id" => Utils::getCurrentID('report'),
             "hasPassword" => $report->hasPassword,
             "config" => $report->config
-        ));
+        ]);
     }
 
     /**
@@ -1510,7 +1510,7 @@ class RequestServer
         if ($passed === true) {
             $this->success("User is logged in.");
         } else {
-            $this->error("User cookie is wrong.", array("hash" => print_r($passed, true)));
+            $this->error("User cookie is wrong.", ["hash" => print_r($passed, true)]);
         }
     }
 
@@ -1525,7 +1525,7 @@ class RequestServer
         }
         $username = Session::checkAdminPasswordHash($this->request['cookie'], $params);
         if ($username !== false) {
-            $this->success(array("username" => $username));
+            $this->success(["username" => $username]);
         } else {
             $this->error();
         }
@@ -1542,7 +1542,7 @@ class RequestServer
         }
         $username = Session::checkSupportPasswordHash($this->request['cookie'], $params);
         if ($username !== false) {
-            $this->success(array("username" => $username));
+            $this->success(["username" => $username]);
         } else {
             $this->error();
         }
@@ -1557,12 +1557,12 @@ class RequestServer
     {
         $usernames = Utils::safeJsonDecode($this->request['usernames']);
         # Emails addresses that will return
-        $emails = array();
+        $emails = [];
         foreach ($usernames as $username) {
             $user = User::find($username, true);
             array_push($emails, $user->email);
         }
-        $this->success(array("emails" => $emails));
+        $this->success(["emails" => $emails]);
     }
 
     /**
@@ -1570,7 +1570,7 @@ class RequestServer
      */
     private function getStatus()
     {
-        $this->success(array("status" => array("ACTIVE", "SUSPENDED", "DELETED", "AUTOSUSPENDED", "OVERLIMIT")));
+        $this->success(["status" => ["ACTIVE", "SUSPENDED", "DELETED", "AUTOSUSPENDED", "OVERLIMIT"]]);
     }
 
     /**
@@ -1578,7 +1578,7 @@ class RequestServer
      */
     private function getAccountTypes()
     {
-        $this->success(array("accountTypes" => AccountType::getAllAccountTypes()));
+        $this->success(["accountTypes" => AccountType::getAllAccountTypes()]);
     }
 
     private function setStatus()
@@ -1630,13 +1630,13 @@ class RequestServer
      */
     private function upgradeUserToProfessional()
     {
-        Utils::sendEmail(array(
+        Utils::sendEmail([
             "from" => "jotform@interlogy.com",
             "to" => "jotformsupport@gmail.com",
             "subject" => "Upgrade request to Professional: " . $this->request['username'],
             "body" => "Username: " . $this->request['username'] . "\n RequestedContract: " . $this->request['type'],
             "html" => true
-        ));
+        ]);
 
         $user = User::find($this->request['username']);
         $user->setAccountType(AccountType::find('PROFESSIONAL'));
@@ -1655,13 +1655,13 @@ class RequestServer
     {
         $usernames = Utils::safeJsonDecode($this->request['usernames']);
         # Emails addresses that will return
-        $accountTypes = array();
+        $accountTypes = [];
         foreach ($usernames as $username) {
             $user = User::find($username, true);
             $accountType = $user->accountType;
             array_push($accountTypes, $accountType);
         }
-        $this->success(array("accountTypes" => $accountTypes));
+        $this->success(["accountTypes" => $accountTypes]);
     }
 
     /**
@@ -1674,16 +1674,16 @@ class RequestServer
         Form::displayForm($this->request['formID']);
         $source = ob_get_contents();
         ob_clean();
-        $this->success(array("source" => $source));
+        $this->success(["source" => $source]);
     }
 
     private function getV8Source()
     {
         $source = Form::createV8Source($this->get('id'), $this->get('formProperties'), $this->get('config'), $this->get('debug'));
 
-        $this->success(array(
+        $this->success([
             "source" => $source
-        ));
+        ]);
     }
 
     /**
@@ -1706,7 +1706,7 @@ class RequestServer
         }
 
         # After creating the zip, print with header
-        $this->success(array("zipURL" => $url));
+        $this->success(["zipURL" => $url]);
     }
 
     /**
@@ -1852,9 +1852,9 @@ class RequestServer
         $res = $crawler->browseUsers();
 
         if ($res !== true) {
-            $this->success(array("completed" => true, "complete_message" => $res));
+            $this->success(["completed" => true, "complete_message" => $res]);
         } else {
-            $this->success(array("completed" => $crawler->isFinished()));
+            $this->success(["completed" => $crawler->isFinished()]);
         }
     }
 
@@ -1905,7 +1905,7 @@ class RequestServer
 
         $newUsage = MonthlyUsage::calculateDiskUsage($username);
 
-        $this->success(array("byte" => Utils::bytesToHuman($newUsage)));
+        $this->success(["byte" => Utils::bytesToHuman($newUsage)]);
     }
 
     /**
@@ -1959,14 +1959,14 @@ class RequestServer
      */
     private function getQuestions()
     {
-        $questions = array();
-        $singleQuestion = array();
+        $questions = [];
+        $singleQuestion = [];
         $res = DB::read("SELECT `question_id`, `prop`, `value` from `question_properties` WHERE " .
             "`form_id` = :formID AND (`prop` = 'type' OR `prop` = 'qid' OR `prop` = 'text' OR `prop` = 'order') ",
             $this->request['formID']);
 
         if ($res->rows < 0) {
-            $this->success(array("questions" => array_values($questions)));
+            $this->success(["questions" => array_values($questions)]);
         }
 
         $currentID = false;
@@ -1974,7 +1974,7 @@ class RequestServer
             if ($currentID !== $line['question_id']) {
                 if ($currentID !== false) {
                     $questions[$singleQuestion['order']] = $singleQuestion;
-                    $singleQuestion = array();
+                    $singleQuestion = [];
                 }
                 $currentID = $line['question_id'];
             }
@@ -1985,7 +1985,7 @@ class RequestServer
         ksort($questions);
 
         if ($this->get('onlyDataFields')) {
-            $filtered = array();
+            $filtered = [];
             foreach ($questions as $question) {
                 if (Form::isDataField($question['type'])) {
                     $filtered[] = $question;
@@ -1994,7 +1994,7 @@ class RequestServer
             $questions = $filtered;
         }
 
-        $this->success(array("questions" => array_values($questions)));
+        $this->success(["questions" => array_values($questions)]);
     }
 
     /**
@@ -2044,7 +2044,7 @@ class RequestServer
     private function createListing()
     {
         $id = DataListings::createListing($this->request['formID'], $this->request['title'], $this->request['type'], $this->request['fields'], $this->get('password'));
-        $this->success(array("id" => $id));
+        $this->success(["id" => $id]);
     }
 
     /**
@@ -2054,7 +2054,7 @@ class RequestServer
     private function updateListing()
     {
         $id = DataListings::updateListing($this->request['listID'], $this->request['title'], $this->request['type'], $this->request['fields'], $this->get('password'));
-        $this->success(array("id" => $id));
+        $this->success(["id" => $id]);
     }
 
     /**
@@ -2091,7 +2091,7 @@ class RequestServer
     private function calculateDiskUsage()
     {
         $res = MonthlyUsage::calculateDiskUsage($this->get('username'), $this->get('deep'));
-        $this->success(array("newSize" => Utils::bytesToHuman($res)));
+        $this->success(["newSize" => Utils::bytesToHuman($res)]);
     }
 
     /**
@@ -2117,7 +2117,7 @@ class RequestServer
     private function getPendingCount()
     {
         $res = DB::read("SELECT count(*) as `cnt` FROM `pending_submissions` WHERE `form_id`=#formID AND `type`=':type'", $this->get('formID'), $this->get('type'));
-        $this->success(array("total" => $res->first['cnt']));
+        $this->success(["total" => $res->first['cnt']]);
     }
 
     /**
@@ -2132,7 +2132,7 @@ class RequestServer
         require_once(DROOT . DIRECTORY_SEPARATOR . "min/generateMinUrl.php");
         $cacheId = generateMinUrl(); # Generate cache ID.
         # Console::log("Calculated cache id is: " . $cacheId);
-        $this->success(array("cacheId" => $cacheId));
+        $this->success(["cacheId" => $cacheId]);
     }
 
     /**
@@ -2143,10 +2143,10 @@ class RequestServer
     private function getPendingSubmissions()
     {
         $res = DB::read("SELECT * FROM `pending_submissions` WHERE `form_id`=#formID AND `type`=':type'", $this->get('formID'), $this->get('type'));
-        $submissions = array();
+        $submissions = [];
         foreach ($res->result as $line) {
             $obj = Utils::unserialize($line['serialized_data']);
-            $submissions[$line['submission_id']] = array("date" => $line['created_at'], "questions" => array());
+            $submissions[$line['submission_id']] = ["date" => $line['created_at'], "questions" => []];
             if ($obj === false) {
                 continue;
             }
@@ -2161,13 +2161,13 @@ class RequestServer
                     $value = $obj->fixValue($value, $qid);
                 }
 
-                $submissions[$line['submission_id']]["questions"][$question['qid']] = array(
+                $submissions[$line['submission_id']]["questions"][$question['qid']] = [
                     "text" => $question["text"],
                     "answer" => $value
-                );
+                ];
             }
         }
-        $this->success(array("submissions" => $submissions));
+        $this->success(["submissions" => $submissions]);
     }
 
     /**
@@ -2260,7 +2260,7 @@ class RequestServer
     private function listServers()
     {
         $list = Server::getServerList();
-        $this->success(array('serverList' => $list));
+        $this->success(['serverList' => $list]);
     }
 
     /**
@@ -2270,7 +2270,7 @@ class RequestServer
     private function deployServers()
     {
         $response = Server::deployServers();
-        $this->success("Build request has been sent. It will take a while", array("response" => $response));
+        $this->success("Build request has been sent. It will take a while", ["response" => $response]);
     }
 
     /**
@@ -2305,11 +2305,11 @@ class RequestServer
             $this->error("No integration found", null, 200);
         } else {
             $keys = explode(",", $this->get('keys'));
-            $values = array();
+            $values = [];
             foreach ($keys as $key) {
                 $values[$key] = $in->getValue($key);
             }
-            $this->success(array("values" => $values));
+            $this->success(["values" => $values]);
         }
     }
 
@@ -2380,12 +2380,12 @@ class RequestServer
             $instance = ABTesting::getInstance($className);
             $user = $instance->getTestParticipant($username);
             if ($user['test_name'] == $className) {
-                call_user_func(array($className, "setGoal"), $name, $className, $username);
+                call_user_func([$className, "setGoal"], $name, $className, $username);
             }
         } else {
             if (isset($_SESSION[ABTesting::SESSION])) {
                 if ($_SESSION[ABTesting::SESSION]['test_name'] == $className) {
-                    call_user_func(array($className, "setGoal"), $name, $className);
+                    call_user_func([$className, "setGoal"], $name, $className);
                 }
             }
         }
@@ -2399,7 +2399,7 @@ class RequestServer
     private function getAllTestInformation()
     {
         $res = ABTestingController::getAllTestsInfo();
-        $this->success(array("tests" => $res));
+        $this->success(["tests" => $res]);
     }
 
     /**
@@ -2449,7 +2449,7 @@ class RequestServer
         }
 
         if (file_exists(ROOT . $tmpFolder . "/" . $zipName)) {
-            $this->success(array("url" => $url . "/" . $tmpFolder . "/" . $zipName, "scriptResult" => "No change was found"));
+            $this->success(["url" => $url . "/" . $tmpFolder . "/" . $zipName, "scriptResult" => "No change was found"]);
         }
 
         $result = shell_exec(ROOT . "opt/installer/makeapp.sh " . $svnbase . " " . $output);
@@ -2457,10 +2457,10 @@ class RequestServer
 
         if (file_exists($output . "jotapp.zip")) {
             rename($output . "jotapp.zip", ROOT . $tmpFolder . "/" . $zipName);
-            $this->success(array("url" => $url . "/" . $tmpFolder . "/" . $zipName, "scriptResult" => $result));
+            $this->success(["url" => $url . "/" . $tmpFolder . "/" . $zipName, "scriptResult" => $result]);
         } else {
             Console::error($result);
-            $this->error("ZIP Cannot be created.", array("details" => $result));
+            $this->error("ZIP Cannot be created.", ["details" => $result]);
         }
     }
 
@@ -2573,7 +2573,7 @@ class RequestServer
         $cmd = 'grep ' . escapeshellarg($this->get('email')) . ' /var/log/mail.log ' . $onlyError . ' | tail -n ' . $line;
         $output = shell_exec($cmd);
 
-        $this->success(array("output" => $output, "command" => $cmd));
+        $this->success(["output" => $output, "command" => $cmd]);
     }
 
     /**
@@ -2594,15 +2594,15 @@ class RequestServer
                           WHERE `form_id` = #id
                           AND `type` LIKE 'emails'
                           AND prop = 'to'",
-            array(
+            [
                 "id" => Utils::getCurrentID('form'),
                 "to" => $email
-            )
+            ]
         );
         if (Session::isGuest()) {
             Session::setGuestEmail($email);
         }
-        $this->success(array("id" => Utils::getCurrentID('form'), "email" => $email));
+        $this->success(["id" => Utils::getCurrentID('form'), "email" => $email]);
     }
 
     /**
@@ -2614,9 +2614,9 @@ class RequestServer
         $form = new FormFactory($this->request['form']);
         $id = $form->save();
         Form::clearCache('id', $id);
-        $this->success(array(
+        $this->success([
             "id" => $id
-        ));
+        ]);
     }
 
     /**
@@ -2640,7 +2640,7 @@ class RequestServer
         include_once "file-uploader.php";
 
         // list of valid extensions, ex. array("jpeg", "xml", "bmp")
-        $allowedExtensions = array();
+        $allowedExtensions = [];
         // max file size in bytes
         $sizeLimit = 1000 * MB;
         $notAllowedExtensions = Submission::$neverAllow;
@@ -2702,9 +2702,9 @@ class RequestServer
 
         $ftpi = new FTPIntegration($this->get('username'), $this->get('formID'));
         $files = $ftpi->getDir($this->get('folder'));
-        $this->success(array(
+        $this->success([
             "dir" => $files
-        ));
+        ]);
     }
 
     private function geckoPanel()
@@ -2713,17 +2713,17 @@ class RequestServer
         // $prop = file_get_contents("/tmp/crawlStatus.json");
         if ($prop) {
             $obj = json_decode($prop, true);
-            $item = array(
+            $item = [
                 "item" => $obj['chunkStart'] + $obj['index'],
-                "max" => array(
+                "max" => [
                     "text" => "Total",
                     "value" => $obj['totalUsers']
-                ),
-                "min" => array(
+                ],
+                "min" => [
                     "text" => "start",
                     "value" => 0
-                ),
-            );
+                ],
+            ];
             $this->success($item);
         } else {
             $this->error("No Property yet");
@@ -2735,8 +2735,8 @@ class RequestServer
         DB::setConnection('stats', "jotform_stats", DB_USER, DB_PASS, DB_HOST);
         DB::useConnection("stats");
         $res = DB::read("SELECT * FROM `table_stats` WHERE `date` > DATE_SUB(NOW(),INTERVAL 3 MONTH)");
-        $users = array();
-        $dates = array();
+        $users = [];
+        $dates = [];
         $last = false;
 
         foreach ($res->result as $line) {
@@ -2748,14 +2748,14 @@ class RequestServer
             }
             $last = $l;
         }
-        $item = array(
+        $item = [
             "item" => $users,
-            "settings" => array(
+            "settings" => [
                 "axisx" => $dates,
-                "axisy" => array(min($users), round((max($users) + min($users)) / 2), max($users)),
+                "axisy" => [min($users), round((max($users) + min($users)) / 2), max($users)],
                 "colour" => "ff9900"
-            )
-        );
+            ]
+        ];
 
         $this->success($item);
     }
@@ -2766,14 +2766,14 @@ class RequestServer
         $stats->setDiffMode(true);
         $result = $stats->getGraphData($this->get('column'), $this->get('duration'), $this->get('interval'));
         $res = array_values($result);
-        $item = array(
+        $item = [
             "item" => $res,
-            "settings" => array(
+            "settings" => [
                 "axisx" => array_keys($result),
-                "axisy" => array(min($res), round((max($res) + min($res)) / 2), max($res)),
+                "axisy" => [min($res), round((max($res) + min($res)) / 2), max($res)],
                 "colour" => "ff9900"
-            )
-        );
+            ]
+        ];
 
         $this->success($item);
     }

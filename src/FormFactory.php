@@ -16,7 +16,7 @@ use Legacy\Jot\Utils\Utils;
 class FormFactory
 {
 
-    private $newForm, $id, $rawProperties, $questionProperties = array(), $formProperties = array(), $username, $source;
+    private $newForm, $id, $rawProperties, $questionProperties = [], $formProperties = [], $username, $source;
 
     /**
      * Constructor
@@ -48,7 +48,7 @@ class FormFactory
 
                 # If array node is not created yet, create it now.
                 if (!is_array($this->questionProperties[$qid])) {
-                    $this->questionProperties[$qid] = array();
+                    $this->questionProperties[$qid] = [];
                 }
                 # Place the value
                 $this->questionProperties[$qid][$prop] = $value;
@@ -108,10 +108,10 @@ class FormFactory
     public function save()
     {
 
-        $errors = array();                  # collect all errors here
-        $defaultValues = array();           # collect default values then clean them from database
-        $insertValues = array();           # values will be inserted to DB
-        $questionPropInsertArray = array(); # database insert values for question properties
+        $errors = [];                  # collect all errors here
+        $defaultValues = [];           # collect default values then clean them from database
+        $insertValues = [];           # values will be inserted to DB
+        $questionPropInsertArray = []; # database insert values for question properties
 
         # If current user is guest then save guest user to database
         # @TODO save user only if it was not saved before
@@ -194,7 +194,7 @@ class FormFactory
                             $itemValue = Utils::safeJsonEncode($itemValue);
                         }
                         # Get the parameters for database insert
-                        $insertValues[] = DB::parseQuery(array("(#form_id, #item_id, ':type', ':prop', ':value')", $this->id, $itemID, $key, $itemKey, $itemValue));
+                        $insertValues[] = DB::parseQuery(["(#form_id, #item_id, ':type', ':prop', ':value')", $this->id, $itemID, $key, $itemKey, $itemValue]);
                     }
 
                 }
@@ -212,7 +212,7 @@ class FormFactory
                 }
 
                 # get the parameters for database insert
-                $insertValues[] = DB::parseQuery(array("(#form_id, #item_id, ':type', ':prop', ':value')", $this->id, 0, '', $key, $value));
+                $insertValues[] = DB::parseQuery(["(#form_id, #item_id, ':type', ':prop', ':value')", $this->id, 0, '', $key, $value]);
             }
         }
 
@@ -229,7 +229,7 @@ class FormFactory
         }
 
         # reset defaults
-        $defaultValues = array();
+        $defaultValues = [];
 
         # {@TODO: run this query only if a question was deleted on the form builder.} -> this may not be necessary after all it's database cleanup
         $response = DB::write('DELETE FROM `question_properties` WHERE `form_id`=#id', $this->id);
@@ -251,7 +251,7 @@ class FormFactory
                 # Collect default values
                 if ($value == "%%default%%") {
                     if (!is_array($defaultValues[$qid])) {
-                        $defaultValues[$qid] = array();
+                        $defaultValues[$qid] = [];
                     }
                     array_push($defaultValues[$qid], $key);
                     continue;
@@ -268,7 +268,7 @@ class FormFactory
                 }
 
                 # Get the values for database insert
-                $questionPropInsertArray[] = DB::parseQuery(array("(#form_id, #question_id, ':prop', ':value')", $this->id, $qid, $key, $value));
+                $questionPropInsertArray[] = DB::parseQuery(["(#form_id, #question_id, ':prop', ':value')", $this->id, $qid, $key, $value]);
             }
         }
 

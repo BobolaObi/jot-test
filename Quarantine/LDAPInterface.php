@@ -21,7 +21,7 @@ class LDAPInterface
         $this->port = "389";
         $this->secretKey = NULL;
         $this->tls = FALSE;
-        $this->attr_filter = array('LDAPInterface', '__empty_attr_filter');
+        $this->attr_filter = ['LDAPInterface', '__empty_attr_filter'];
         if (!function_exists("ldap_connect")) {
             throw new LDAPException("php_ldap is missing.");
         }
@@ -89,7 +89,7 @@ class LDAPInterface
      */
     function normalizeSearchResult($result)
     {
-        $normalized = array();
+        $normalized = [];
         foreach ($result as $key => $value) {
             if ($key == "count") {
                 continue;
@@ -210,7 +210,7 @@ class LDAPInterface
     function bind($dn, $pass)
     {
         ob_start();
-        set_error_handler(array('forms.datalynk.ca\Quarantine\LDAPInterface', 'void_error_handler'));
+        set_error_handler(['forms.datalynk.ca\Quarantine\LDAPInterface', 'void_error_handler']);
         $ret = ldap_bind($this->connection, $dn, $pass);
         restore_error_handler();
 
@@ -227,9 +227,9 @@ class LDAPInterface
         }
     }
 
-    function search($base_dn, $filter, $attributes = array())
+    function search($base_dn, $filter, $attributes = [])
     {
-        $ret = array();
+        $ret = [];
 
         // For the AD the '\,' should be replaced by the '\\,' in the search filter.
         $filter = preg_replace('/\\\,/', '\\\\\,', $filter);
@@ -249,7 +249,7 @@ class LDAPInterface
     // Don't blame me, blame PHP's own ldap_get_entries()
     function retrieveAttributes($dn)
     {
-        set_error_handler(array('forms.datalynk.ca\Quarantine\LDAPInterface', 'void_error_handler'));
+        set_error_handler(['forms.datalynk.ca\Quarantine\LDAPInterface', 'void_error_handler']);
         $result = ldap_read($this->connection, $dn, 'objectClass=*');
         $entries = ldap_get_entries($this->connection, $result);
         restore_error_handler();
@@ -267,9 +267,9 @@ class LDAPInterface
     {
         $entries = $this->retrieveAttributes($dn);
 
-        $result = array();
+        $result = [];
         $retrieved = $entries[strtolower($attrname)];
-        $retrieved = $retrieved ? $retrieved : array();
+        $retrieved = $retrieved ? $retrieved : [];
         foreach ($retrieved as $key => $value) {
             if ($key !== 'count') {
                 $result[] = $value;
@@ -285,7 +285,7 @@ class LDAPInterface
                 unset($attributes[$key]);
                 $old_value = $this->retrieveAttribute($dn, $key);
                 if (isset($old_value)) {
-                    ldap_mod_del($this->connection, $dn, array($key => $old_value));
+                    ldap_mod_del($this->connection, $dn, [$key => $old_value]);
                 }
             }
             if (is_array($cur_val)) {
@@ -304,7 +304,7 @@ class LDAPInterface
 
     function create_entry($dn, $attributes)
     {
-        set_error_handler(array('forms.datalynk.ca\Quarantine\LDAPInterface', 'void_error_handler'));
+        set_error_handler(['forms.datalynk.ca\Quarantine\LDAPInterface', 'void_error_handler']);
         $ret = ldap_add($this->connection, $dn, $attributes);
         restore_error_handler();
 
@@ -313,7 +313,7 @@ class LDAPInterface
 
     function rename_entry($dn, $newrdn, $newparent, $deleteoldrdn)
     {
-        set_error_handler(array('forms.datalynk.ca\Quarantine\LDAPInterface', 'void_error_handler'));
+        set_error_handler(['forms.datalynk.ca\Quarantine\LDAPInterface', 'void_error_handler']);
         $ret = ldap_rename($this->connection, $dn, $newrdn, $newparent, $deleteoldrdn);
         restore_error_handler();
 
@@ -322,7 +322,7 @@ class LDAPInterface
 
     function delete_entry($dn)
     {
-        set_error_handler(array('forms.datalynk.ca\Quarantine\LDAPInterface', 'void_error_handler'));
+        set_error_handler(['forms.datalynk.ca\Quarantine\LDAPInterface', 'void_error_handler']);
         $ret = ldap_delete($this->connection, $dn);
         restore_error_handler();
 
@@ -336,7 +336,7 @@ class LDAPInterface
     // http://bugs.php.net/bug.php?id=7168
     function deleteAttribute($dn, $attribute)
     {
-        ldap_mod_del($this->connection, $dn, array($attribute => array()));
+        ldap_mod_del($this->connection, $dn, [$attribute => []]);
     }
 
     // This should be static, but that's not supported in PHP4

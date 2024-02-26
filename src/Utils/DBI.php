@@ -23,11 +23,11 @@ class DBI
         $hostname,                # Host Address or Name
         $dlink = NULL,     # PHP - MySQL resource ID
         $queryTime,        # For keeping query time.
-        $timers = array(), # Query times, for benchmarking
-        $connections = array(),
+        $timers = [], # Query times, for benchmarking
+        $connections = [],
         $currentDB;
 
-    public static $syncQueries = array();  # Query that will be executed for syncronization of the database.
+    public static $syncQueries = [];  # Query that will be executed for syncronization of the database.
 
     /**
      * Will log the queries slower than this
@@ -45,12 +45,12 @@ class DBI
     static function setConnection($name, $database, $username = "root", $password = "", $hostname = "localhost")
     {
 
-        self::$connections[$name] = array(
+        self::$connections[$name] = [
             "database" => $database,
             "username" => $username,
             "password" => $password,
             "hostname" => $hostname
-        );
+        ];
 
     }
 
@@ -315,7 +315,7 @@ class DBI
         }
 
         if ($result = self::query($query)) {
-            $data = array();
+            $data = [];
             while ($line = @mysqli_fetch_assoc($result)) {
                 array_push($data, $line);
             }
@@ -323,10 +323,10 @@ class DBI
                 mysqli_free_result($result);
             }
         } else {
-            return (object)array("success" => false, "error" => mysqli_error(self::$dlink), "time" => self::$queryTime, "query" => $query);
+            return (object)["success" => false, "error" => mysqli_error(self::$dlink), "time" => self::$queryTime, "query" => $query];
         }
 
-        return (object)array("success" => true, "rows" => mysqli_affected_rows(self::$dlink), "time" => self::$queryTime, "first" => @$data[0], "result" => $data, "query" => $query);
+        return (object)["success" => true, "rows" => mysqli_affected_rows(self::$dlink), "time" => self::$queryTime, "first" => @$data[0], "result" => $data, "query" => $query];
     }
 
     /**
@@ -358,9 +358,9 @@ class DBI
         }
 
         if ($result = self::query($query)) {
-            $response = (object)array("success" => true, "rows" => mysqli_affected_rows(self::$dlink), "time" => self::$queryTime, "insert_id" => mysqli_insert_id(self::$dlink), "query" => $query);
+            $response = (object)["success" => true, "rows" => mysqli_affected_rows(self::$dlink), "time" => self::$queryTime, "insert_id" => mysqli_insert_id(self::$dlink), "query" => $query];
         } else {
-            $response = (object)array("success" => false, "error" => mysqli_error(self::$dlink), "time" => self::$queryTime, "query" => $query);
+            $response = (object)["success" => false, "error" => mysqli_error(self::$dlink), "time" => self::$queryTime, "query" => $query];
         }
         if (is_resource($result)) {
             mysqli_free_result($result);
@@ -395,9 +395,9 @@ class DBI
         $query = $replace . " INTO `" . self::escape($table_name) . "` (`" . join('`, `', array_keys($values)) . "`) VALUES ('" . join("', '", array_values($values)) . "') ";
 
         if ($result = self::query($query)) {
-            $response = (object)array("success" => true, "rows" => mysqli_affected_rows(self::$dlink), "time" => self::$queryTime, "query" => $query);
+            $response = (object)["success" => true, "rows" => mysqli_affected_rows(self::$dlink), "time" => self::$queryTime, "query" => $query];
         } else {
-            $response = (object)array("success" => false, "error" => mysqli_error(self::$dlink), "time" => self::$queryTime, "query" => $query);
+            $response = (object)["success" => false, "error" => mysqli_error(self::$dlink), "time" => self::$queryTime, "query" => $query];
         }
         if (is_resource($result)) {
             mysqli_free_result($result);
@@ -415,9 +415,9 @@ class DBI
 
         $response = self::read("SHOW FULL COLUMNS FROM `:table`", $table);
         if ($response->rows < 1) {
-            return array();
+            return [];
         }
-        $fields = array();
+        $fields = [];
         foreach ($response->result as $line) {
             $fields[$line["Field"]] = $line;
         }
@@ -431,7 +431,7 @@ class DBI
     static function getTables()
     {
         $response = self::read("SHOW TABLES");
-        $tables = array();
+        $tables = [];
         foreach ($response->result as $line) {
             array_push($tables, $line['Tables_in_' . self::$database]);
         }

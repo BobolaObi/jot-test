@@ -62,7 +62,7 @@ class NamingUtilTest extends PHPUnit_Framework_TestCase
 			$column = "age";
       $this->assertEquals("idx_users_age", Ruckusing_NamingUtil::index_name("users", $column));
 
-			$column = array('listing_id', 'review_id');
+			$column = ['listing_id', 'review_id'];
       $this->assertEquals("idx_users_listing_id_and_review_id", Ruckusing_NamingUtil::index_name("users", $column));
 
 

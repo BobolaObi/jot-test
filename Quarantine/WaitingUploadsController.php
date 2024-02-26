@@ -115,7 +115,7 @@ class WaitingUploadsController
             if (!file_exists($filePath)) {
                 Console::log("File is not uploaded in this server. Looking to other servers..");
 
-                $request = new RequestServer(array(
+                $request = new RequestServer([
                     "action" => "sendFileToAmazonS3",
                     "filePath" => $filePath,
                     "baseName" => $baseName,
@@ -123,7 +123,7 @@ class WaitingUploadsController
                     "toAll" => "yes",
                     "async" => "no",
                     "skipSelf" => "yes"
-                ), true);
+                ], true);
 
                 $responses = $request->getResponse()->other_responses;
                 $found = false;

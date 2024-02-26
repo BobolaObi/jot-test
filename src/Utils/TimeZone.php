@@ -34,7 +34,7 @@ class TimeZone
      */
     static function createTimeZoneList()
     {
-        $list = array();
+        $list = [];
         $zlist = \DateTimeZone::listIdentifiers();
         foreach ($zlist as $zone) {
             if (!strstr($zone, "/")) {
@@ -82,10 +82,10 @@ class TimeZone
             }
 
             if (!isset($list[$cont]) || !is_array($list[$cont])) {
-                $list[$cont] = array();
+                $list[$cont] = [];
             }
 
-            $list[$cont][] = array($zone, $city . " (" . $str . ")");
+            $list[$cont][] = [$zone, $city . " (" . $str . ")"];
         }
         return $list;
     }

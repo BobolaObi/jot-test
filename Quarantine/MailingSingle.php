@@ -75,10 +75,10 @@ class MailingSingle extends UserCrawler
 
         if ((time() - $time) > 30) {
             $url = "http://api.chartbeat.com/quickstats/";
-            $json = Utils::postRequest($url, array(
+            $json = Utils::postRequest($url, [
                 "host" => "jotform.com",
                 "apikey" => "fbed942d171ce4c5dec04b757866b276"
-            ));
+            ]);
             $result = json_decode($json);
             Utils::cacheStore("chartbeat_time", time());
             Utils::cacheStore("chartbeat_visitors", $result->visits);
@@ -150,7 +150,7 @@ class MailingSingle extends UserCrawler
 
         # Subject and from settings
         $subject = "7 Great New Reasons to Use JotForm for your Upload Forms";
-        $from = array("noreply@jotform.com", "JotForm Form Builder");
+        $from = ["noreply@jotform.com", "JotForm Form Builder"];
 
         # We put TRY/CATCH because mail script may throw and exception and we want this script to continue
         try {
@@ -158,13 +158,13 @@ class MailingSingle extends UserCrawler
             $content = $this->createMail($mail);
 
             # create e-mail configuration
-            $conf = array(
+            $conf = [
                 "from" => $from,
                 "subject" => $subject,
                 "to" => $this->userDetails['email'],
                 "html" => true,
                 "body" => $content
-            );
+            ];
 
             # Check preference and send e-mail
             if ($useSendGrid) {

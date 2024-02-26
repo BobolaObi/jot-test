@@ -50,9 +50,9 @@ class RestRequest
         if (isset($_SERVER["REQUEST_URI"]))
             $this->setURI($_SERVER["REQUEST_URI"]);
 
-        $this->get = $_GET ? $_GET : array();
-        $this->post = $_POST ? $_POST : array();
-        $this->files = $_FILES ? $_FILES : array();
+        $this->get = $_GET ? $_GET : [];
+        $this->post = $_POST ? $_POST : [];
+        $this->files = $_FILES ? $_FILES : [];
 
     }
 
@@ -154,7 +154,7 @@ class RestRequest
      */
     public function getPut($k = null)
     {
-        $_PUT = array();
+        $_PUT = [];
         if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
             $putdata = file_get_contents('php://input');
             $exploded = explode('&', $putdata);
@@ -305,7 +305,7 @@ class RestRequest
      */
     public function getExtension()
     {
-        $reg = array();
+        $reg = [];
         preg_match('@\.([a-zA-Z0-9]{1,5})$@', $this->getURI(), $reg);
         if (isset($reg[1]))
             return $reg[1];

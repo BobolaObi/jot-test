@@ -13,7 +13,7 @@ require_once RUCKUSING_BASE . '/config/database.inc.php';
 require_once RUCKUSING_BASE . '/lib/classes/class.Ruckusing_FrameworkRunner.php';
 
 if(!isset($argv)){
-    $argv=array_merge(array("main.php"), $_GET["argv"]);
+    $argv=array_merge(["main.php"], $_GET["argv"]);
 }
 
 $main = new Ruckusing_FrameworkRunner($ruckusing_db_config, $argv);

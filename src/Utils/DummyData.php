@@ -30,7 +30,7 @@ class DummyData
     public function generate()
     {
 
-        $answers = array();
+        $answers = [];
         Utils::print_r($this->questions);
         foreach ($this->questions as $id => $question) {
 

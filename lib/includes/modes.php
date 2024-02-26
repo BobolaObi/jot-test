@@ -11,7 +11,7 @@ use Legacy\Jot\Utils\Utils;
  * Specify document mode for Javascript. 
  */
 
-$modes = array();
+$modes = [];
 
 if (DEBUGMODE) {
     $modes[] = "document.DEBUG = true";

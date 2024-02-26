@@ -20,7 +20,7 @@ $users = DB::read("SELECT `username`, `email` ".
                 "OR `account_type` = 'OLDPREMIUM' ".
                 "OR `account_type` = 'PROFESSIONAL'");
 
-$ignoreArray = array(   "rossg","timcoxjr","YNN","SUPERIA70","plumtucker","sealkc","knuivert",
+$ignoreArray = ["rossg","timcoxjr","YNN","SUPERIA70","plumtucker","sealkc","knuivert",
                         "contemps","cngc-revadmin","johnfunk","alnairc","visitglendale","glendaleweb",
                         "pmayberry","shelley","jaybudhram","dbark","StyleWeekly","saschav","formor","prcalves",
                         "VizionDesign","datheatre","the707","mhick","markever","John1957","kkochsy","guard12n",
@@ -28,11 +28,11 @@ $ignoreArray = array(   "rossg","timcoxjr","YNN","SUPERIA70","plumtucker","sealk
                         "danielchapterone","mp3leak","goldcoastah","cpcarey1225","MHYC_CO_SPRINGS","darnold953 ","sbrunson","sehdtech",
                         "bryangarnier","Dagbladet","tribejj",'www.livingbeyond.us', 'wjbkwebteam', 'namechangeorguk', 'andycharrington',
                         'giamma72', 'savicomm', 'jodiferus', 'yourenglishsolution', 'jasnet34',
-                        'bronteprize', 'mimasua', 'edrrxllc', 'VRadio', 'vsbrazil', 'Ben Sap', 'sebdu30', 'tahee22', 'etptv', 'domesa', 'simonpage');
+                        'bronteprize', 'mimasua', 'edrrxllc', 'VRadio', 'vsbrazil', 'Ben Sap', 'sebdu30', 'tahee22', 'etptv', 'domesa', 'simonpage'];
 
 $faultCount = 0;
 $successCount = 0;
-$results = array();
+$results = [];
 
 foreach ($users->result as $row){
     

@@ -149,7 +149,7 @@ class ReCaptchaResponse {
   * @param array $extra_params an array of extra variables to post to the server
   * @return ReCaptchaResponse
   */
-function recaptcha_check_answer ($privkey, $remoteip, $challenge, $response, $extra_params = array())
+function recaptcha_check_answer ($privkey, $remoteip, $challenge, $response, $extra_params = [])
 {
 	if ($privkey == null || $privkey == '') {
 		die ("To use reCAPTCHA you must get an API key from <a href='http://recaptcha.net/api/getkey'>http://recaptcha.net/api/getkey</a>");
@@ -170,12 +170,12 @@ function recaptcha_check_answer ($privkey, $remoteip, $challenge, $response, $ex
         }
 
         $response = _recaptcha_http_post (RECAPTCHA_VERIFY_SERVER, "/verify",
-                                          array (
+                                          [
                                                  'privatekey' => $privkey,
                                                  'remoteip' => $remoteip,
                                                  'challenge' => $challenge,
                                                  'response' => $response
-                                                 ) + $extra_params
+                                          ] + $extra_params
                                           );
 
         $answers = explode ("\n", $response [1]);
@@ -200,7 +200,7 @@ function recaptcha_check_answer ($privkey, $remoteip, $challenge, $response, $ex
  * @param string $appname The name of your application
  */
 function recaptcha_get_signup_url ($domain = null, $appname = null) {
-	return "http://recaptcha.net/api/getkey?" .  _recaptcha_qsencode (array ('domain' => $domain, 'app' => $appname));
+	return "http://recaptcha.net/api/getkey?" .  _recaptcha_qsencode (['domain' => $domain, 'app' => $appname]);
 }
 
 function _recaptcha_aes_pad($val) {

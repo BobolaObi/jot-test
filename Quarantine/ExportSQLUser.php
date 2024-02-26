@@ -9,8 +9,8 @@ class ExportSQLUser
 {
 
     private $username;
-    private $tables = array();
-    private $queries = array();
+    private $tables = [];
+    private $queries = [];
 
     public function __construct($username)
     {
@@ -19,7 +19,7 @@ class ExportSQLUser
         $this->username = $username;
 
         # Set the username selector
-        $usernameSelector = array("username" => $this->username);
+        $usernameSelector = ["username" => $this->username];
 
         # Get data from tables using the selectors.
         $userTable = new ESU_Table("users", $usernameSelector);
@@ -29,16 +29,16 @@ class ExportSQLUser
         $this->insertQuery($formsTable->exportSql());
 
         # Set the form id selector
-        $formIds = $formsTable->getRows(array('id'), true);
-        $formIdSelector = array("form_id" => $formIds["id"]);
+        $formIds = $formsTable->getRows(['id'], true);
+        $formIdSelector = ["form_id" => $formIds["id"]];
 
         # export submission table
         $submissionTable = new ESU_Table("submissions", $formIdSelector);
         $this->insertQuery($submissionTable->exportSql());
 
         # Set the submission table selector
-        $submissionIds = $submissionTable->getRows(array('id'), true);
-        $submissionIdSelector = array("submission_id" => $submissionIds['id']);
+        $submissionIds = $submissionTable->getRows(['id'], true);
+        $submissionIdSelector = ["submission_id" => $submissionIds['id']];
 
         # export api_iphone table
         $apiPhoneTable = new ESU_Table("api_iphone", $usernameSelector);
@@ -93,8 +93,8 @@ class ExportSQLUser
         $this->insertQuery($productsTable->exportSql());
 
         # Set the product id selector
-        $productIds = $productsTable->getRows(array('product_id'), true);
-        $productIdSelector = array("product_id" => $productIds["product_id"]);
+        $productIds = $productsTable->getRows(['product_id'], true);
+        $productIdSelector = ["product_id" => $productIds["product_id"]];
 
         # export payment_products table
         $paymentProductsTable = new ESU_Table("payment_products", $productIdSelector);
@@ -136,11 +136,11 @@ class ESU_Table
 {
 
     private $tableName;
-    private $fetchFields = array();
+    private $fetchFields = [];
     private $tableColumns;
     private $nl = "\n";    # this is for new line maybe \n or <br/>
 
-    public function __construct($tableName, $fetchFields = array())
+    public function __construct($tableName, $fetchFields = [])
     {
 
         $this->tableName = $tableName;
@@ -152,10 +152,10 @@ class ESU_Table
     public function exportSql($isReplace = false)
     {
         # Fetch values from results to complete the insert query.
-        $insertValues = array();
+        $insertValues = [];
         # Get all the rows for the user to generate the insert values.
         foreach ($this->getRows() as $row) {
-            $escaped = array();
+            $escaped = [];
             foreach ($row as $key => $value) {
                 $escaped[$key] = mysql_real_escape_string($value);
             }
@@ -176,7 +176,7 @@ class ESU_Table
         }
     }
 
-    public function getRows($selectFields = array(), $returnMergedArr = false)
+    public function getRows($selectFields = [], $returnMergedArr = false)
     {
         if (count($selectFields) === 0) {
             $selectValues = "*";
@@ -187,9 +187,9 @@ class ESU_Table
         $query = "SELECT {$selectValues} FROM `{$this->tableName}` WHERE {$this->whereClause}";
         $res = DB::read($query);
         if ($returnMergedArr) {
-            $values = array();
+            $values = [];
             foreach ($selectFields as $fieldName) {
-                $values[$fieldName] = array();
+                $values[$fieldName] = [];
             }
             foreach ($res->result as $row) {
                 foreach ($row as $fieldName => $value) {
@@ -205,7 +205,7 @@ class ESU_Table
     private function generateWhereClause()
     {
         # loop all results
-        $whereClause = array();
+        $whereClause = [];
 
         foreach ($this->fetchFields as $fieldName => $valueArr) {
             if (is_array($valueArr)) {

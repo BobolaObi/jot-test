@@ -277,23 +277,23 @@ use Legacy\Jot\Utils\Utils;
 <? if(!APP){
    
     if(false){ # Disabled now
-        $greetings = array(
-            array(
+        $greetings = [
+            [
                 "link"   => "blog/26-Jotform-Now-Supports-Multiple-File-Uploads",
                 "image"  => "images/banners/multiple-upload-not.png",
                 "bottom" => "-250px"
-            ), 
-            array(
+            ],
+            [
                 "link"   => "blog/24-Upload-Spaces-Increased-10x-for-All-Users",
                 "image"  => "images/banners/10xmorespace.png",
                 "bottom" => "-260px"
-            ),
-            array(
+            ],
+            [
                 "link"   => "blog/28-Create-Dropbox-Forms-with-JotForm",
                 "image"  => "images/banners/dropbox-notification-copy.png",
                 "bottom" => "-290px"
-            )
-        );
+            ]
+        ];
         
         $cindex = Utils::getCookie('greetings') !== false? Utils::getCookie('greetings') : 0; 
         

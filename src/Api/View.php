@@ -28,7 +28,7 @@ class View implements RestView
         if ($this->success) {
             $data = $rest->getParameter("data");
         } else {
-            $data = array();
+            $data = [];
         }
 
         $response = new \StdClass;
@@ -50,13 +50,13 @@ class View implements RestView
 
         $data = $rest->getParameter("data");
         if (count($data) >= 1) {
-            $columns = array();
+            $columns = [];
             foreach ($data[0] as $k => $value) {
                 $columns[] = '"' . $k . '"';
             }
             $rest->getResponse()->addResponse(implode(",", $columns) . "\n");
             foreach ($data as $record) {
-                $values = array();
+                $values = [];
                 foreach ($record as $value) {
                     $values[] = '"' . $value . '"';
                 }

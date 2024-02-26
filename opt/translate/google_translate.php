@@ -5,7 +5,7 @@
 #print_r($a);
 
 
-function translateText($src_texts = array(), $src_lang, $dest_lang){
+function translateText($src_texts = [], $src_lang, $dest_lang){
   //setting language pair
   $lang_pair = $src_lang.'|'.$dest_lang;
  
@@ -60,7 +60,7 @@ function translateText($src_texts = array(), $src_lang, $dest_lang){
 
   $results = $json['responseData'];
   
-  $return_array = array();
+  $return_array = [];
   
   foreach ($results as $result){
     if ($result['responseStatus'] == 200){
@@ -72,7 +72,7 @@ function translateText($src_texts = array(), $src_lang, $dest_lang){
   
   $i=0;
   if( count($cache)==0 ){
-	  $cache = array("tr"	=>	array());
+	  $cache = ["tr"	=>	[]];
   }
   foreach ($src_texts as $src){
 	if($cache[$dest_lang][$src] == "" && $return_array[$i] != ""){

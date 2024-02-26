@@ -26,7 +26,7 @@ use Legacy\Jot\Utils\Utils;
 class Translations
 {
     // Static array of available languages.
-    public static $languagesAvailable = array(
+    public static $languagesAvailable = [
         "English" => "en-US",
         "Español" => "es-ES",
         "Français" => "fr-FR",
@@ -43,7 +43,7 @@ class Translations
         "Română" => "ro-RO",
         "Finnish" => "fi-FI"
         #, "Zombie" => "zb-ZB"
-    );
+    ];
     //public static $languagesAvailable = array( "English" => "en-US", "Türkçe" => "tr-TR");
     // Instance variable for the language code, as used internally 
     // (includes country code).
@@ -100,7 +100,7 @@ class Translations
 
     public static function getBrowserLang()
     {
-        $langs = array();
+        $langs = [];
         if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
             // break up string into pieces (languages and q factors)
             preg_match_all('/([a-z]{1,8}(-[a-z]{1,8})?)\s*(;\s*q\s*=\s*(1|0\.[0-9]+))?(,|$)/i', $_SERVER['HTTP_ACCEPT_LANGUAGE'], $lang_parse);
@@ -162,7 +162,7 @@ class Translations
         }
 
         // Check the browser accept language header.
-        $langs = array();
+        $langs = [];
         if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
             // break up string into pieces (languages and q factors)
             preg_match_all('/([a-z]{1,8}(-[a-z]{1,8})?)\s*(;\s*q\s*=\s*(1|0\.[0-9]+))?(,|$)/i', $_SERVER['HTTP_ACCEPT_LANGUAGE'], $lang_parse);
@@ -248,7 +248,7 @@ class Translations
         self::$language = json_decode($file, true);
     }
 
-    public static $notTranslated = array();
+    public static $notTranslated = [];
 
     /**
      * translates the given text into the selected language

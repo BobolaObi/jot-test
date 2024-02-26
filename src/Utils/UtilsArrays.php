@@ -60,7 +60,7 @@ class UtilsArrays extends UtilsStrings
     static function stripslashesDeep($value)
     {
         $value = is_array($value) ?
-            array_map(array('Utils', 'stripslashesDeep'), $value) :
+            array_map(['Utils', 'stripslashesDeep'], $value) :
             stripslashes($value);
 
         return $value;
@@ -228,7 +228,7 @@ class UtilsArrays extends UtilsStrings
      */
     static function convertPrintrStringToArray($string)
     {
-        $resultArray = array();
+        $resultArray = [];
         $lines = preg_split('/\n/', $string);
 
         foreach ($lines as $line) {

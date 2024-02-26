@@ -36,8 +36,8 @@ class RuckusingWrapper
     {
 
         if (!is_dir(RUCKUSING_MIGRATION_DIR)) {
-            return array('success' => false, 'message' => "ERROR: migration directory '" .
-                RUCKUSING_MIGRATION_DIR . "' does not exist. Specify MIGRATION_DIR in config/config.inc.php and try again.");
+            return ['success' => false, 'message' => "ERROR: migration directory '" .
+                RUCKUSING_MIGRATION_DIR . "' does not exist. Specify MIGRATION_DIR in config/config.inc.php and try again."];
         }
 
         $highestVersion = Ruckusing_VersionUtil::get_highest_migration(RUCKUSING_MIGRATION_DIR);
@@ -56,18 +56,18 @@ TPL;
 
         //check to make sure our destination directory is writable
         if (!is_writable(RUCKUSING_MIGRATION_DIR . '/')) {
-            return array('success' => false, 'message' => "ERROR: migration directory '" .
-                RUCKUSING_MIGRATION_DIR . "' is not writable by the current user. Check permissions and try again.");
+            return ['success' => false, 'message' => "ERROR: migration directory '" .
+                RUCKUSING_MIGRATION_DIR . "' is not writable by the current user. Check permissions and try again."];
         }
 
         //write it out!
         $file_result = file_put_contents($fullPath, $code);
         if ($file_result === FALSE) {
-            return array('success' => false, 'message' =>
-                "Error writing to migrations directory/file. Do you have sufficient privileges?");
+            return ['success' => false, 'message' =>
+                "Error writing to migrations directory/file. Do you have sufficient privileges?"];
         } else {
-            return array('success' => true, 'message' =>
-                "Migration $fileName successfully created.");
+            return ['success' => true, 'message' =>
+                "Migration $fileName successfully created."];
         }
     }
 
@@ -81,7 +81,7 @@ TPL;
         // It seems that ruckusing is pretty complex to be used on it's own for migrating
         // to the latest version, unlike createNewMigration. Thus, reverting to use a hack.
         ob_start();
-        $argv = array("main.php", "db:migrate");
+        $argv = ["main.php", "db:migrate"];
         if (isset(Server::$servers->db) && DB_HOST == Server::$servers->db->local->yunus) {
             array_push($argv, "ENV=production");
         }
@@ -90,7 +90,7 @@ TPL;
         ob_end_clean();
         // Is the migration to latest really successful? I do not know. 
         // Return "success" nonetheless. 
-        return array('success' => true, 'message' => $output);
+        return ['success' => true, 'message' => $output];
     }
 
     public static function migrateToVersion($version)
@@ -98,7 +98,7 @@ TPL;
         // It seems that ruckusing is pretty complex to be used on it's own for migrating
         // to the latest version, unlike createNewMigration. Thus, reverting to use a hack.
         ob_start();
-        $argv = array("main.php", "db:migrate", "VERSION=" . $version);
+        $argv = ["main.php", "db:migrate", "VERSION=" . $version];
         if (DB_HOST == Server::$servers->db->local->yunus) {
             array_push($argv, "ENV=production");
         }
@@ -107,6 +107,6 @@ TPL;
         ob_end_clean();
         // Is the migration to latest really successful? I do not know. 
         // Return "success" nonetheless. 
-        return array('success' => true, 'message' => $output);
+        return ['success' => true, 'message' => $output];
     }
 }

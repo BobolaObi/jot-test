@@ -64,10 +64,10 @@ class FormEmails
         if ($response->rows < 1) {
             return false;
         }
-        $emails = array();
+        $emails = [];
         foreach ($response->result as $line) {
             if (!is_array(@$emails[$line['item_id']])) {
-                $emails[$line['item_id']] = array();
+                $emails[$line['item_id']] = [];
             }
 
             $emails[$line['item_id']][$line['prop']] = $line['value'];
@@ -82,7 +82,7 @@ class FormEmails
      */
     public function parseTags($content)
     {
-        return @preg_replace_callback($this->tagMatch, array($this, "replaceTags"), $content);
+        return @preg_replace_callback($this->tagMatch, [$this, "replaceTags"], $content);
     }
 
     /**
@@ -137,7 +137,7 @@ class FormEmails
                 $from = explode("|", $from);
             }
 
-            $this->emailsToBeSent[] = array(
+            $this->emailsToBeSent[] = [
                 "type" => $email['type'],
                 "html" => $email['html'],
                 "from" => $from,
@@ -145,7 +145,7 @@ class FormEmails
                 "useOld" => ($email['type'] == "notification" && (!isset($email['dirty']) || $email['dirty'] != true)),
                 "subject" => $subject,
                 "body" => $body
-            );
+            ];
         }
     }
 
@@ -399,7 +399,7 @@ class FormEmails
 
         $questions = $this->submission->questions;
 
-        $titles = array();
+        $titles = [];
         $res = DB::read("SELECT `question_id`, `value` FROM `question_properties` WHERE `form_id`=#id AND `prop`='text' AND `question_id` IN ('" . join("', '", array_keys($questions)) . "')", $this->submission->formID);
         foreach ($res->result as $line) {
             $titles[$line['question_id']] = $line['value'];

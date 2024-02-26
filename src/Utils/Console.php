@@ -14,13 +14,13 @@ class Console
     public static $logLevel = E_ERROR;
     public static $logFile = 'jotform.all';
     public static $logFolder = '/tmp/';
-    public static $emailAddresses = array();
+    public static $emailAddresses = [];
     public static $backtrace = false;
     public static $useColors = true;
     public static $fh;
     public static $defaultTitle = "Log Entry";
     public static $oneLine = false;
-    public static $logFiles = array(
+    public static $logFiles = [
         "all" => "jotform.all",
         "log" => "jotform.log",
         "error" => "jotform.error",
@@ -32,10 +32,10 @@ class Console
         "feedback" => "jotform.feedback",
         "overlimit" => "jotform.overlimit",
         "temp" => "jotform.temp"
-    );
+    ];
 
     # Error Type hash for printing errors.
-    private static $errorType = array(
+    private static $errorType = [
         E_ERROR => 'ERROR',    // Integer 1
         E_WARNING => 'WARNING',  // 2
         E_PARSE => 'PARSE',    // 4
@@ -53,7 +53,7 @@ class Console
         // E_DEPRECATED        => 'DEPRECATED',      // 8192
         // E_USER_DEPRECATED   => 'USER DEPRECATED', // 16384
         E_ALL => 'ALL'
-    );
+    ];
 
     /**
      * Opens a console file and keeps it open
@@ -340,8 +340,8 @@ class Console
         $message = self::error($e);
         // Also send an e-mail only if there's an e-mail address defined.
         if (!empty(self::$emailAddresses)) {
-            Utils::sendEmail(array('from' => array("exception@jotform.com", "JotForm Support"),
-                'to' => self::$emailAddresses, 'subject' => "JotForm App Exception", 'body' => $message));
+            Utils::sendEmail(['from' => ["exception@jotform.com", "JotForm Support"],
+                'to' => self::$emailAddresses, 'subject' => "JotForm App Exception", 'body' => $message]);
         }
         Utils::redirect(HTTP_URL . "page.php?p=error");
     }
@@ -368,11 +368,11 @@ class Console
         foreach ($matches[1] as $index => $line) {
             # Match title block
             preg_match("/Type\[\s(?P<type>.*)\]\s\#Title\[\s(?P<title>.*)\s]\s\#Date\[\s(?P<date>.*)\s\]/", $line, $m);
-            $parsedLog[trim('' . $m['type'])][$index] = array(
+            $parsedLog[trim('' . $m['type'])][$index] = [
                 "title" => trim('' . $m["title"]),
                 "date" => trim('' . $m["date"]),
                 "message" => $matches[2][$index]
-            );
+            ];
         }
 
         # Normalize arrays

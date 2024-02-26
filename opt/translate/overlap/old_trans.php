@@ -11,7 +11,7 @@
 		#print_r($row);
 	}
 
-	$lang = array(
+	$lang = [
 			"1"	=>	"tr-TR",
 			"3"	=>	"es-ES",	
 			"20"	=>	"it-IT",
@@ -25,10 +25,10 @@
 			"117"	=>	"no-NO",
 			"106"	=>	"da-DA",
 			"42"	=>	"ro-RO"
-	);
+    ];
 
 	foreach($lang as $l => $ln){
-		$old_override[$ln] = array();
+		$old_override[$ln] = [];
 	}
 	$query = "SELECT o_t_id, l_id, suggested_translation FROM suggestions 
 			WHERE o_t_id in (".join(",", $oids).") and approved=1";
@@ -36,7 +36,7 @@
 	while($row = @mysql_fetch_array($result, MYSQL_ASSOC)){
 		if($lang[$row{'l_id'}]){
 			#print $lang[$row{'l_id'}]."\n";
-			array_push($old_override[$lang[$row{'l_id'}]], array($sameword{$row{'o_t_id'}} => $row{'suggested_translation'}));
+			array_push($old_override[$lang[$row{'l_id'}]], [$sameword{$row{'o_t_id'}} => $row{'suggested_translation'}]);
 			#print_r($row);
 		}
 	}

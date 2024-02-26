@@ -11,14 +11,14 @@ use Legacy\Jot\UserManagement\Session;
 
 class PageInfo
 {
-    private static $pages = array();
-    private static $notfound = array(
+    private static $pages = [];
+    private static $notfound = [
         "title" => "Page not found",
         "content" => "lib/includes/notfound.php",
-        "css" => array(),
-        "js" => array(),
+        "css" => [],
+        "js" => [],
         "404" => true
-    );
+    ];
 
     /**
      * Returns the page info
@@ -46,18 +46,18 @@ class PageInfo
     {
 
         // $pageName, $pageTitle, $contentFile, $cssIncludes=array(), $jsIncludes=array()){
-        $options = array_merge(array(
+        $options = array_merge([
             "title" => "",
             "content" => "",
-            "css" => array(),
-            "js" => array(),
+            "css" => [],
+            "js" => [],
             "loginNeeded" => false
-        ), $options);
+        ], $options);
 
         if (!Session::isLoggedIn()) {
-            $options["js"] = array_merge($options["js"], array(
+            $options["js"] = array_merge($options["js"], [
                 "js/includes/loginForm.js"
-            ));
+            ]);
         }
 
         self::$pages[$options["name"]] = $options;

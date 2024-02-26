@@ -1,7 +1,7 @@
 <?
 
 # strings that explain the meaining in english so that they can be translated more easily
-$override = array(
+$override = [
                 "Power Tools"   =>      "Advanced Tools",
                 "Font"          =>      "Font Type",
                 "Font Family"           =>      "Font Type",
@@ -36,10 +36,8 @@ $override = array(
 		"No crippleware. No ads."	=>	"No ads",
 		"Watch Movie"	=>	"Movie"
 
-		
-		
 
-);
+];
 
 include "manual/original_tr";
 include "manual/original_it";
@@ -50,7 +48,7 @@ include "manual/original_de";
 include "manual/original_pt";
 include "manual/original_sp";
 
-$lang_override2 = array(
+$lang_override2 = [
 
 		'tr-TR'	=>	$turkish,
 		'it-IT'	=>	$italian,
@@ -61,11 +59,11 @@ $lang_override2 = array(
 		'de-DE'	=>	$german,
 		'pt-PT'	=>	$portugese
 
-);
+];
 #print_r($lang_override2);
 
 
-$run_lang = array(
+$run_lang = [
 			'es-ES'	=>	'es',
 			'fr-FR'	=>	'fr',
 			'it-IT'	=>	'it',
@@ -79,11 +77,11 @@ $run_lang = array(
 			'no-NO' =>	'no',
 			'da-DA'	=>	'da',
 			'ro-RO'	=>	'ro'
-);
+];
 
 
 # remove any entries that contain these:
-$ignore_list = array(
+$ignore_list = [
                         "%s No Condition Here? %s Would you like to %s add a new one? %s"       => 1,
                         "%s %s" => 1,
                         " %s %s"        => 1,
@@ -95,10 +93,10 @@ $ignore_list = array(
 			'GBP'=> 1,
 			'EUR'=> 1,
 			'%s/%s (%s%)' => 1,
-        );
+];
 
 
-$all_languages = array(
+$all_languages = [
   'AFRIKAANS' => 'af',
   'ALBANIAN' => 'sq',
   'AMHARIC' => 'am',
@@ -190,12 +188,12 @@ $all_languages = array(
   'VIETNAMESE' => 'vi',
   'WELSH' => 'cy',
   'YIDDISH' => 'yi'
-);
+];
 
 
 
 
-$browse = array(
+$browse = [
 		"index.php",
 		"js/common.js",
 		"js/protoplus-ui.js",
@@ -246,7 +244,7 @@ $browse = array(
                 "wizards/shareWizard.html",
 		"wizards/reportWizard.html",
                 "wizards/testfeedbackbutton.php",
-		);
+];
 
 
 ?>

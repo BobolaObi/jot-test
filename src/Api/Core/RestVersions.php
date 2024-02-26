@@ -24,7 +24,7 @@ class RestVersions
      * available or not.
      * @var //array $versions
      */
-    private $versions = array();
+    private $versions = [];
 
     /**
      * Holds the default API version of the system.

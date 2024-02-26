@@ -103,17 +103,17 @@ class Report
     public static function getAllByFormID($formID, $noConfig = false)
     {
         $res = DB::read("SELECT * FROM `reports` WHERE `form_id` = #id", $formID);
-        $reports = array();
+        $reports = [];
         foreach ($res->result as $line) {
 
             $conf = json_decode($line["configuration"]);
-            $reports[] = array(
+            $reports[] = [
                 "id" => $line["id"],
                 "title" => $line["title"],
                 "configuration" => $noConfig ? "" : $conf,
                 "hasPassword" => !empty($line['password']),
                 "type" => "visual"
-            );
+            ];
         }
 
 

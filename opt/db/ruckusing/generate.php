@@ -27,7 +27,7 @@ function parse_args($argv) {
    print_help(true); 
   }
   $migration_name = $argv[1];
-  return array('name' => $migration_name);
+  return ['name' => $migration_name];
 }
 
 

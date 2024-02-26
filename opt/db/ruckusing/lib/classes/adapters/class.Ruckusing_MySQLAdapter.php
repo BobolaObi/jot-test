@@ -21,7 +21,7 @@ define('SQL_SET', 1024);
 class Ruckusing_MySQLAdapter extends Ruckusing_BaseAdapter implements Ruckusing_iAdapter {
 
 	private $name = "MySQL";
-	private $tables = array();
+	private $tables = [];
 	private $tables_loaded = false;
 	private $version = '1.0';
 	private $in_trx = false;
@@ -37,20 +37,20 @@ class Ruckusing_MySQLAdapter extends Ruckusing_BaseAdapter implements Ruckusing_
   }
 	
 	public function native_database_types() {
-		$types = array(
+		$types = [
       'primary_key' => "int(11) UNSIGNED auto_increment PRIMARY KEY",
-      'string'      => array('name' => "varchar", 	'limit' 		=> 255),
-      'text'        => array('name' => "text", 												),
-      'integer'     => array('name' => "int", 			'limit' 		=> 11 ),
-      'float'       => array('name' => "float", 											),
-      'decimal'     => array('name' => "decimal", 										),
-      'datetime'    => array('name' => "datetime", 										),
-      'timestamp'   => array('name' => "datetime", 										),
-      'time'        => array('name' => "time", 												),
-      'date'        => array('name' => "date", 												),
-      'binary'      => array('name' => "blob", 												),
-      'boolean'     => array('name' => "tinyint", 	'limit' 		=> 1  )
-			);
+      'string'      => ['name' => "varchar", 	'limit' 		=> 255],
+      'text'        => ['name' => "text",],
+      'integer'     => ['name' => "int", 			'limit' 		=> 11],
+      'float'       => ['name' => "float",],
+      'decimal'     => ['name' => "decimal",],
+      'datetime'    => ['name' => "datetime",],
+      'timestamp'   => ['name' => "datetime",],
+      'time'        => ['name' => "time",],
+      'date'        => ['name' => "date",],
+      'binary'      => ['name' => "blob",],
+      'boolean'     => ['name' => "tinyint", 	'limit' 		=> 1]
+        ];
 		return $types;
 	}
 	
@@ -177,7 +177,7 @@ class Ruckusing_MySQLAdapter extends Ruckusing_BaseAdapter implements Ruckusing_
 	public function query($query) {
 		$this->logger->log($query);
 		$query_type = $this->determine_query_type($query);
-		$data = array();
+		$data = [];
 		if($query_type == SQL_SELECT || $query_type == SQL_SHOW) {		  
 			$res = mysql_query($query, $this->conn);
 			if($this->isError($res)) { 
@@ -235,7 +235,7 @@ class Ruckusing_MySQLAdapter extends Ruckusing_BaseAdapter implements Ruckusing_
 		return true;
 	}
 	
-	public function create_table($table_name, $options = array()) {
+	public function create_table($table_name, $options = []) {
 		return new Ruckusing_MySQLTableDefinition($this, $table_name, $options);
 	}
 	
@@ -262,7 +262,7 @@ class Ruckusing_MySQLAdapter extends Ruckusing_BaseAdapter implements Ruckusing_
 		return $this->execute_ddl($sql);
 	}//create_table
 	
-	public function add_column($table_name, $column_name, $type, $options = array()) {
+	public function add_column($table_name, $column_name, $type, $options = []) {
 		if(empty($table_name)) {
 			throw new Ruckusing_ArgumentException("Missing table name parameter");
 		}
@@ -309,7 +309,7 @@ class Ruckusing_MySQLAdapter extends Ruckusing_BaseAdapter implements Ruckusing_
 	}//rename_column
 
 
-	public function change_column($table_name, $column_name, $type, $options = array()) {
+	public function change_column($table_name, $column_name, $type, $options = []) {
 		if(empty($table_name)) {
 			throw new Ruckusing_ArgumentException("Missing table name parameter");
 		}
@@ -355,7 +355,7 @@ class Ruckusing_MySQLAdapter extends Ruckusing_BaseAdapter implements Ruckusing_
 		}
 	}//column_info
 	
-	public function add_index($table_name, $column_name, $options = array()) {
+	public function add_index($table_name, $column_name, $options = []) {
 		if(empty($table_name)) {
 			throw new Ruckusing_ArgumentException("Missing table name parameter");
 		}
@@ -375,7 +375,7 @@ class Ruckusing_MySQLAdapter extends Ruckusing_BaseAdapter implements Ruckusing_
 			$index_name = Ruckusing_NamingUtil::index_name($table_name, $column_name);
 		}
 		if(!is_array($column_name)) {
-			$column_name = array($column_name);
+			$column_name = [$column_name];
 		}
 		$sql = sprintf("CREATE %sINDEX %s ON `%s`(%s)",
 											$unique ? "UNIQUE " : "",
@@ -385,7 +385,7 @@ class Ruckusing_MySQLAdapter extends Ruckusing_BaseAdapter implements Ruckusing_
 		return $this->execute_ddl($sql);		
 	}//add_index
 	
-	public function remove_index($table_name, $column_name, $options = array()) {
+	public function remove_index($table_name, $column_name, $options = []) {
 		if(empty($table_name)) {
 			throw new Ruckusing_ArgumentException("Missing table name parameter");
 		}
@@ -402,7 +402,7 @@ class Ruckusing_MySQLAdapter extends Ruckusing_BaseAdapter implements Ruckusing_
 		return $this->execute_ddl($sql);
 	}
 
-	public function has_index($table_name, $column_name, $options = array()) {
+	public function has_index($table_name, $column_name, $options = []) {
 		if(empty($table_name)) {
 			throw new Ruckusing_ArgumentException("Missing table name parameter");
 		}
@@ -427,13 +427,13 @@ class Ruckusing_MySQLAdapter extends Ruckusing_BaseAdapter implements Ruckusing_
 	public function indexes($table_name) {
 		$sql = sprintf("SHOW KEYS FROM `%s`", $table_name);
 		$result = $this->select_all($sql);
-		$indexes = array();
+		$indexes = [];
 		$cur_idx = null;
 		foreach($result as $row) {
 		  //skip primary
 		  if($row['Key_name'] == 'PRIMARY') { continue; }
 			$cur_idx = $row['Key_name'];
-			$indexes[] = array('name' => $row['Key_name'], 'unique' => (int)$row['Non_unique'] == 0 ? true : false);
+			$indexes[] = ['name' => $row['Key_name'], 'unique' => (int)$row['Non_unique'] == 0 ? true : false];
 		}
 		return $indexes;
 	}//has_index
@@ -564,7 +564,7 @@ class Ruckusing_MySQLAdapter extends Ruckusing_BaseAdapter implements Ruckusing_
 	// Initialize an array of table names
 	private function load_tables($reload = true) {
 		if($this->tables_loaded == false || $reload) {
-			$this->tables = array(); //clear existing structure			
+			$this->tables = []; //clear existing structure
 			$qry = "SHOW TABLES";
 			$res = mysql_query($qry, $this->conn);
 			while($row = mysql_fetch_row($res)) {

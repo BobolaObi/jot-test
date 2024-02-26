@@ -13,7 +13,7 @@ class ABTestingController
      * Currently registered tests
       * @var //array
      */
-    public static $activeTests = array();
+    public static $activeTests = [];
 
     /**
      * Adds a test into active tests list
@@ -22,7 +22,7 @@ class ABTestingController
      */
     public static function registerTest($testClass)
     {
-        self::$activeTests[$testClass] = call_user_func(array($testClass, "getInstance"), $testClass);
+        self::$activeTests[$testClass] = call_user_func([$testClass, "getInstance"], $testClass);
     }
 
     /**
@@ -52,7 +52,7 @@ class ABTestingController
                 }
             }
         } else {
-            $instance = call_user_func(array($_SESSION[ABTesting::SESSION]['test_name'], 'getInstance'), $_SESSION[ABTesting::SESSION]['test_name']);
+            $instance = call_user_func([$_SESSION[ABTesting::SESSION]['test_name'], 'getInstance'], $_SESSION[ABTesting::SESSION]['test_name']);
             $instance->user = $_SESSION[COOKIE_KEY];
         }
     }
@@ -81,7 +81,7 @@ class ABTestingController
             }
             return "Not Available";
         } else {
-            $instance = call_user_func(array($_SESSION[ABTesting::SESSION]['test_name'], 'getInstance'), $_SESSION[ABTesting::SESSION]['test_name']);
+            $instance = call_user_func([$_SESSION[ABTesting::SESSION]['test_name'], 'getInstance'], $_SESSION[ABTesting::SESSION]['test_name']);
             $instance->user = $_SESSION[COOKIE_KEY];
         }
     }
@@ -112,11 +112,11 @@ class ABTestingController
     static function getAllTestsInfo()
     {
         $res = DB::read("SELECT `test_name`, `group_name`, count(`username`) as `total_participant` FROM `test_participants` GROUP BY `test_name`, `group_name`");
-        $testsInfo = array();
-        $tests = array();
+        $testsInfo = [];
+        $tests = [];
         foreach ($res->result as $line) {
             if (!isset($line['test_name'])) {
-                $tests[$line['test_name']] = array("groups" => array(), "goals" => array());
+                $tests[$line['test_name']] = ["groups" => [], "goals" => []];
             }
 
             $testName = $line['test_name'];
@@ -135,11 +135,11 @@ class ABTestingController
 
         foreach ($tests as $name => $details) {
 
-            $testsInfo[] = array(
+            $testsInfo[] = [
                 "name" => $name,
                 "groups" => $details['groups'],
                 "goals" => $details['goals']
-            );
+            ];
         }
 
         return $testsInfo;
@@ -203,10 +203,10 @@ class ABTestingController
                              GROUP BY `goal_name`", $testName, $start, $end);
         }
 
-        $goals = array();
+        $goals = [];
         foreach ($res->result as $line) {
             $goals[$line['goal_name']] = $line['total'];
         }
-        return array("goals" => $goals, "participantTotal" => $total);
+        return ["goals" => $goals, "participantTotal" => $total];
     }
 }

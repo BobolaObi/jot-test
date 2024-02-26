@@ -35,7 +35,7 @@ class RSSHelper
      * @param $fieldList
      * @return
      */
-    public function __construct($formID, $fieldList = array())
+    public function __construct($formID, $fieldList = [])
     {
         $this->form = new Form($formID);
         $this->formID = $formID;
@@ -67,7 +67,7 @@ class RSSHelper
      */
     public function getSubmissions()
     {
-        $feedData = array();
+        $feedData = [];
         $submissionsQuery = 'SELECT `id`, ' . ($this->isIpNeeded ? '`ip`, ' : '') . '`created_at` ' .
             'FROM `submissions` WHERE `form_id` = #formID ORDER BY `created_at` DESC LIMIT #currentChunk, #chunk';
 
@@ -85,12 +85,12 @@ class RSSHelper
             foreach ($submissions->result as $singleRow) {
                 $sID = $singleRow['id'];
                 $sIDs .= $sID . ", ";
-                $singleSubmission = array();
+                $singleSubmission = [];
                 if ($this->isIpNeeded) {
                     $singleSubmission['ip_address'] = $singleRow['ip'];
                 }
                 $singleSubmission['created_at'] = $singleRow['created_at'];
-                $singleSubmission['answers'] = array();
+                $singleSubmission['answers'] = [];
                 $feedData[$sID] = $singleSubmission;
             }
             $lastNumberOfSubmissions = $submissions->rows;
@@ -129,7 +129,7 @@ class RSSHelper
     {
         $query = 'SELECT `question_id`, `value` FROM `question_properties` WHERE `form_id` = #formID AND (`prop` = "text" OR (`prop` = "type" AND `value` = "control_fileupload"))';
         $res = DB::read($query, $this->formID);
-        $questionNames = array();
+        $questionNames = [];
         $uploadID = FALSE;
         foreach ($res->result as $textArr) {
             if ($textArr['value'] == 'control_fileupload') {
@@ -236,7 +236,7 @@ class RSSHelper
         }
         $username = $result->first["username"];
 
-        $toReturn = array($username, $formID);
+        $toReturn = [$username, $formID];
         return $toReturn;
     }
 }

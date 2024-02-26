@@ -85,7 +85,7 @@ class Page
      */
     function putCSSIncludes()
     {
-        $incs = array();
+        $incs = [];
         foreach ($this->page['css'] as $css) {
             if (empty($css)) {
                 continue;
@@ -101,7 +101,7 @@ class Page
      */
     function putJSIncludes()
     {
-        $incs = array();
+        $incs = [];
         foreach ($this->page['js'] as $js) {
             if (empty($js)) {
                 continue;

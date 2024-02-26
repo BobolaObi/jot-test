@@ -34,7 +34,7 @@ function train( $incomingformID, $incomingformTitle, $isSpam){
             
             
             if($count == 0){
-                echo json_encode(array("noform"=>true));
+                echo json_encode(["noform"=>true]);
                 return;
             }
 
@@ -59,14 +59,14 @@ function train( $incomingformID, $incomingformTitle, $isSpam){
                 
                 $phishingFilter = new PhishingFilter($formID);
                 
-                $responseArray = array( "formID" => $formID,
+                $responseArray = ["formID" => $formID,
                                         "formTitle" => $formTitle,
                                         "spamPercentage" => number_format( $phishingFilter->getSpamProb() * 100, 2),
                                         "username" => $username,
                                         "isPremium" => is_premium($username),
-                                        "status" => $status);
+                                        "status" => $status];
             }else{
-                echo json_encode(array("noform"=>true, "query"=>$queryStmt. " ". mysql_error()));
+                echo json_encode(["noform"=>true, "query"=>$queryStmt. " ". mysql_error()]);
                 return;
             }
         }
@@ -104,18 +104,18 @@ function train( $incomingformID, $incomingformTitle, $isSpam){
                     
                     $responseArrayEmpty = false;
                     
-                    $responseArray = array( "formID" => $formID,
+                    $responseArray = ["formID" => $formID,
                                             "formTitle" => $formTitle,
                                             "spamPercentage" => number_format( $phishingFilter->getSpamProb() * 100, 2),
                                             "username" => $username,
                                             "isPremium"=>is_premium($username),
-                                            "status" => $status);
+                                            "status" => $status];
                     break;
                 }
             }
             
             if($responseArrayEmpty === true){
-                echo json_encode(array("noform"=>true, "query"=>$queryStmt." ".mysql_error()));
+                echo json_encode(["noform"=>true, "query"=>$queryStmt." ".mysql_error()]);
                 return;
             }
             
@@ -141,11 +141,11 @@ function train( $incomingformID, $incomingformTitle, $isSpam){
                     if($form['username'] == "" || empty($form['username'])){
                         $premium = false;
                     }
-                    $responseArray = array( "formID" => $form['id'],
+                    $responseArray = ["formID" => $form['id'],
                                             "formTitle" => $form['title'],
                                             "spamPercentage" => number_format($line['spam_prob'], 2) * 100,
                                             "username" => $form['username'],
-                                            "isPremium"=>$premium, "status" => $form['status']);
+                                            "isPremium"=>$premium, "status" => $form['status']];
                 }else{
                     $deleteFromSpamProb = DB::write("DELETE FROM `spam_prob` WHERE `form_id` = ':s'", $line['form_id']);
                     return sendNewForm("Undecided");
@@ -154,17 +154,17 @@ function train( $incomingformID, $incomingformTitle, $isSpam){
             }
             
             if(!$responseArray){
-                echo json_encode(array("noform"=>true, "query"=>$query." ".mysql_error()));
+                echo json_encode(["noform"=>true, "query"=>$query." ".mysql_error()]);
                 return;
             }
         }
         else if( $queryType == "Suspicious"){
             
             # Keyword to look in form title.
-            $title_keywords = array ("twitter", "tweet", "twit", "yahoo", "gmail", "orkut", "cabal", "habbo", "mobius", "steam",  "gaia", "wow", "gold", "hack", "steal", "generator", "ebay", "hotmail", "myspace", "msn", "facebook", "paypal", "fling", "kontor", "zynga", "microsoft", "rapid", "stem");
+            $title_keywords = ["twitter", "tweet", "twit", "yahoo", "gmail", "orkut", "cabal", "habbo", "mobius", "steam",  "gaia", "wow", "gold", "hack", "steal", "generator", "ebay", "hotmail", "myspace", "msn", "facebook", "paypal", "fling", "kontor", "zynga", "microsoft", "rapid", "stem"];
         
             # Create the query only using the keywords.
-            $or_conditions = array();
+            $or_conditions = [];
             foreach ($title_keywords as $title_keyword){
                 array_push($or_conditions, " title LIKE '%$title_keyword%'");
             }
@@ -189,12 +189,12 @@ function train( $incomingformID, $incomingformTitle, $isSpam){
                 $phishingFilter = new PhishingFilter($formID);
                 
                 $premium = is_premium($username);
-                $responseArray = array( "formID" => $formID, "formTitle" => $formTitle,
+                $responseArray = ["formID" => $formID, "formTitle" => $formTitle,
                                         "spamPercentage" => number_format( $phishingFilter->getSpamProb() * 100, 2),
                                         "username" => $username,
-                                        "isPremium"=>$premium, "status" => $status);                
+                                        "isPremium"=>$premium, "status" => $status];
             }else{
-                echo json_encode(array("noform"=>true, "query"=>$queryStmt." ".mysql_error()));
+                echo json_encode(["noform"=>true, "query"=>$queryStmt." ".mysql_error()]);
                 return;
             }
 
@@ -358,11 +358,11 @@ function train( $incomingformID, $incomingformTitle, $isSpam){
         $phishingFilter = new PhishingFilter($formID);
 
         $premium = is_premium($username);
-        $responseArray = array( "formID" => $formID, "formTitle" => $formTitle,
+        $responseArray = ["formID" => $formID, "formTitle" => $formTitle,
                                 "spamPercentage" => number_format( $phishingFilter->getSpamProb() * 100, 2),
                                 "username" => $username,
                                 "isPremium"=>$premium,
-                                "status" => $status);
+                                "status" => $status];
             
         echo json_encode($responseArray);
     }

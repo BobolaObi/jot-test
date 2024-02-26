@@ -39,7 +39,7 @@ class UploadToS3 extends UserCrawler
         /**
          * Those usernames cannot be handles.
          */
-        if (in_array($username, array(".", ".."))) {
+        if (in_array($username, [".", ".."])) {
             return;
         }
 
@@ -76,14 +76,14 @@ class UploadToS3 extends UserCrawler
                                 if ($file != "." && $file != "..") {
 
                                     $filePath = $submissionFolder . "/" . $file;
-                                    $fileProperties = array(
+                                    $fileProperties = [
                                         "name" => $file,
                                         "type" => "transferred",
                                         "tmp_name" => false,
                                         "size" => filesize($filePath)
-                                    );
+                                    ];
                                     $this->log("File: " . $fileProperties["name"] . "Form id: " . $formID . "Submission id: " . $submissionFolder);
-                                    $ufsc = new UFSController ($username, $formID, $sid, $fileProperties, array(UploadControllers::AmazonS3Controller));
+                                    $ufsc = new UFSController ($username, $formID, $sid, $fileProperties, [UploadControllers::AmazonS3Controller]);
                                     if ($ufsc->fileUploaded() === false) {
 
                                         $this->checkServer();

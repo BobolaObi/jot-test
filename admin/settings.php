@@ -17,9 +17,9 @@ include_once "../lib/init.php";
         header("Content-Type: text/javascript; charset=utf-8");
         
         if(is_array($msg)){
-            $arr = array_merge($msg, array('success'=>true, "message"=>'Successful'));
+            $arr = array_merge($msg, ['success'=>true, "message"=>'Successful']);
         }else{
-            $arr = array('success'=>true, "message"=>$msg);
+            $arr = ['success'=>true, "message"=>$msg];
         }
         die(json_encode($arr));
     }
@@ -32,9 +32,9 @@ include_once "../lib/init.php";
     function e($msg){
         header("Content-Type: text/javascript; charset=utf-8");
         if(is_array($msg)){
-            $arr = array_merge(array('success'=>false, "error"=>'Failed'), $msg);
+            $arr = array_merge(['success'=>false, "error"=>'Failed'], $msg);
         }else{
-            $arr = array('success'=>false, "error"=>$msg);
+            $arr = ['success'=>false, "error"=>$msg];
         }
         die(json_encode($arr));
     }
@@ -82,15 +82,15 @@ include_once "../lib/init.php";
                 
                 if(@mysql_connect($hostname, $username, $password, true)){
                     if(!@mysql_select_db($database)){
-                        e(array("error" => 'Cannot Select Database', "details"=> mysql_error()));
+                        e(["error" => 'Cannot Select Database', "details"=> mysql_error()]);
                     }
                 }else{
-                    e(array("error" => 'Cannot Connect to Database', "details"=> mysql_error()));
+                    e(["error" => 'Cannot Connect to Database', "details"=> mysql_error()]);
                 }
             break;
             case "checkPaths":
                 if(isset($r['LOGFOLDER'])){
-                    $paths = array(array('CACHEPATH', 'cache'), array('UPLOADPATH', 'upload'), array('LOGFOLDER', 'log'));
+                    $paths = [['CACHEPATH', 'cache'], ['UPLOADPATH', 'upload'], ['LOGFOLDER', 'log']];
                     foreach($paths as $path){
                         if(file_exists($r[$path[0]])){
                             if(!is_writable($r[$path[0]])){
@@ -472,7 +472,7 @@ include_once "../lib/init.php";
                                 }
                                 
                                 # print out the input field
-                                echo strtr('<input type="[type]" [checked] class="[class]" id="[id]" name="[name]" value="[value]" />', array(
+                                echo strtr('<input type="[type]" [checked] class="[class]" id="[id]" name="[name]" value="[value]" />', [
                                 
                                     "[type]"    => (isset($prop['type'])? $prop['type'] : 'text'),
                                     "[checked]" => $checked,
@@ -480,7 +480,7 @@ include_once "../lib/init.php";
                                     "[id]"      => $key,
                                     "[name]"    => $key,
                                     "[value]"   => $prop['value']
-                                ));
+                                ]);
                             } ?>
                             <div class="desc"><?=$prop['desc']?></div>
                         </li>        

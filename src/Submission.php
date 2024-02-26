@@ -20,8 +20,8 @@ use Quarantine\FTPIntegration;
 class Submission
 {
 
-    private $slowDownForms = array(/*"2855730853", "11035037214",*/
-        "11090501232"),
+    private $slowDownForms = [/*"2855730853", "11035037214",*/
+        "11090501232"],
         $noRedirect;
 
     static $isSlowDownForm = false;
@@ -64,7 +64,7 @@ class Submission
      * These file types cannot be uploaded on our servers
      * @var //array
      */
-    public static $neverAllow = array('php', 'pl', 'cgi', 'rb', 'asp', 'aspx', 'exe', 'scr', 'dll', 'msi', 'vbs', 'bat', 'com', 'pif', 'cmd', 'vxd', 'cpl');
+    public static $neverAllow = ['php', 'pl', 'cgi', 'rb', 'asp', 'aspx', 'exe', 'scr', 'dll', 'msi', 'vbs', 'bat', 'com', 'pif', 'cmd', 'vxd', 'cpl'];
 
 
     /**
@@ -125,7 +125,7 @@ class Submission
                     $args = Utils::unserialize($redirectArgs);
                     # Get cached thank you page and show user the cached version of the thank you 
                     # Without saving submission into database
-                    call_user_func_array(array('self', 'doRedirect'), $args);
+                    call_user_func_array(['self', 'doRedirect'], $args);
                     die(); # stop script here
                 }
             }
@@ -254,7 +254,7 @@ class Submission
      */
     public function cleanupQuestionsArray()
     {
-        $newQuestions = array();
+        $newQuestions = [];
         foreach ($this->formQuestions as $qid => $prop) {
             if (Form::isDataField($prop['type'])) {
                 $newQuestions[$qid] = $prop;
@@ -403,7 +403,7 @@ class Submission
      */
     public function validateSubmission()
     {
-        $errors = array();
+        $errors = [];
         foreach ($this->formQuestions as $qid => $prop) {
             if ($prop['type'] == 'control_captcha') {
                 continue;
@@ -477,8 +477,8 @@ class Submission
     private function parseRequest()
     {
 
-        $this->questions = array();        # All questions on the form with user entered values, array KEYs are question IDs
-        $this->questionNames = array();    # Names of these questions
+        $this->questions = [];        # All questions on the form with user entered values, array KEYs are question IDs
+        $this->questionNames = [];    # Names of these questions
 
         # Check if the submission is in edit mode
         if ($this->isEdit = isset($this->request["editSubmission"])) {
@@ -545,7 +545,7 @@ class Submission
                         continue;
                     } # skip upper directories
                     # default files array
-                    $uploaded = array("name" => array(), "type" => array(), "tmp_name" => array(), "error" => array(), "size" => array());
+                    $uploaded = ["name" => [], "type" => [], "tmp_name" => [], "error" => [], "size" => []];
                     # Loop all upload files for thsi field
                     foreach (glob($this->multipleUploadsPath . $field . "/*.*") as $file) {
                         $filename = basename($file); # get file name
@@ -605,7 +605,7 @@ class Submission
             $selectedProducts = @$this->questions[$this->paymentField['qid']];  # Get the selected payment fields from request
             $allProducts = $this->form->getProducts();                          # Products saved on the form
             if (empty($allProducts)) {
-                $allProducts = array();
+                $allProducts = [];
             }
 
             if ($this->paymentField['paymentType'] == 'donation' && is_array($selectedProducts)) {
@@ -634,7 +634,7 @@ class Submission
 
             # If any of the products are selected?
             if ($this->productSelected && is_array($selectedProducts)) {
-                $productsToOriginal = array();
+                $productsToOriginal = [];
                 # Loop through selected products
                 foreach ($selectedProducts as $product) {
                     # Loop through all products of the form
@@ -669,7 +669,7 @@ class Submission
 
                 # Insert products as a submission into questions array to be able to save them in submissions table
                 if (!is_array($this->questions[$this->paymentField['qid']])) {
-                    $this->questions[$this->paymentField['qid']] = array();
+                    $this->questions[$this->paymentField['qid']] = [];
                 }
                 $total = 0;
                 foreach ($productsToOriginal as $p) {
@@ -699,7 +699,7 @@ class Submission
         # cannot populate the emails
         if ($this->isOldForm) {
             $res = DB::read("SELECT * FROM `question_properties` WHERE `prop` IN ('name', 'text') AND `form_id`=#id", $this->formID);
-            $this->questionNames = array();
+            $this->questionNames = [];
 
             foreach ($res->result as $line) {
                 $this->questionNames[strtolower($this->createQuestionName($line['value']))] = $line['question_id'];
@@ -722,7 +722,7 @@ class Submission
             if ($prop['type'] == "control_matrix" && $prop['inputType'] == 'Check Box') {
                 foreach (explode("|", $prop['mrows']) as $i => $row) {
                     if (!isset($this->questions[$qid][$i])) {
-                        $this->questions[$qid][$i] = array();
+                        $this->questions[$qid][$i] = [];
                     }
                 }
             }
@@ -790,10 +790,10 @@ class Submission
             Utils::print_r($this->uploads);
         }
 
-        $emails = new FormEmails(array(
-            "conditions" => array(),
+        $emails = new FormEmails([
+            "conditions" => [],
             "submission" => $this
-        ));
+        ]);
 
         echo "<hr><br> Emails To Be Sent (Conditions are not calculated):<br>";
         Utils::print_r($emails->emailsToBeSent);
@@ -1115,7 +1115,7 @@ class Submission
                     $value .= "Total: " . $sum;
                     break;
                 case "control_fileupload":
-                    $values = array();
+                    $values = [];
                     foreach ($pvalue as $val) {
                         $fullURL = Utils::getUploadURL($this->owner->username, $this->formID, $this->sid, $val);
                         $values[] = '<a href="' . $fullURL . '" target="_blank">' . $val . '</a>';
@@ -1159,7 +1159,7 @@ class Submission
             }
             $donation['price'] = $price;
             $donation['name'] = $donation['donationText'];
-            $selectedProducts = array($donation);
+            $selectedProducts = [$donation];
         }
         $type = "";
         foreach ($selectedProducts as $product) {
@@ -1168,7 +1168,7 @@ class Submission
             }
 
             $quantity = 1;
-            $options = array();
+            $options = [];
             $hasQuantity = false;
             $type = $product['paymentType'];
 
@@ -1443,7 +1443,7 @@ class Submission
 
             foreach ($this->uploads as $qid => $uploadProp) {
                 $questionProp = $uploads[$qid];
-                $props = array();
+                $props = [];
                 if (is_array($uploadProp['name'])) {
                     foreach ($uploadProp as $key => $value) {
                         foreach ($value as $i => $v) {
@@ -1451,7 +1451,7 @@ class Submission
                         }
                     }
                 } else {
-                    $props = array($uploadProp);
+                    $props = [$uploadProp];
                 }
 
                 foreach ($props as $uploadProp) {
@@ -1775,9 +1775,9 @@ class Submission
     {
         $conditions = $this->getConditions('email');
 
-        $conds = array();
+        $conds = [];
         if ($conditions) {
-            $condMatchedEmails = array();
+            $condMatchedEmails = [];
             foreach ($conditions as $cond) {
                 if ($this->checkCondition($cond)) {
                     $conds[] = $cond['action'];
@@ -1794,10 +1794,10 @@ class Submission
             }
         }
 
-        $emails = new FormEmails(array(
+        $emails = new FormEmails([
             "conditions" => $conds,
             "submission" => $this
-        ));
+        ]);
 
         if ($this->isEdit) {
             $emails->sendEmails(true);
@@ -1831,11 +1831,11 @@ class Submission
      */
     private function createPostData()
     {
-        $postData = array(
+        $postData = [
             "submission_id" => $this->sid,
             "formID" => $this->formID,
             "ip" => $this->ip
-        );
+        ];
 
         foreach ($this->questionNames as $name => $qid) {
             if (isset($this->paymentField['qid']) && $this->paymentField['qid'] == $qid) {
@@ -1857,12 +1857,12 @@ class Submission
     {
         $conditions = $this->getFormProperty('conditions');
         if (!is_array($conditions)) {
-            return array();
+            return [];
         }
-        $result = array();
+        $result = [];
         foreach ($conditions as $condition) {
 
-            if (!$type && in_array($condition['type'], array('email', 'url', 'message'))) {
+            if (!$type && in_array($condition['type'], ['email', 'url', 'message'])) {
                 $result[] = $condition;
                 continue;
             }
@@ -1984,9 +1984,9 @@ class Submission
     {
 
         if ($this->isEdit && $this->isInline) {
-            Utils::redirect(HTTP_URL . "opt/editComplete.php", array(
+            Utils::redirect(HTTP_URL . "opt/editComplete.php", [
                 "sid" => $this->sid
-            ));
+            ]);
             return;
         }
 
@@ -1995,7 +1995,7 @@ class Submission
         }
 
         $thankyou = $this->form->getThankyouPage();
-        $conditions = $this->getConditions(array('url', 'message'));
+        $conditions = $this->getConditions(['url', 'message']);
 
         if ($conditions) {
             foreach ($conditions as $cond) {
@@ -2028,10 +2028,10 @@ class Submission
                         <meta name="HandheldFriendly" content="true" /><title>Thank You</title>' .
                     '<style>body{ font-size:12px; font-family:Verdana; }</style></head><body>';
 
-                $parser = new FormEmails(array(
+                $parser = new FormEmails([
                     "submission" => $this,
                     "parser" => true
-                ));
+                ]);
 
                 # Fix stupid v2 bug
                 # Convert all nbsp to regular spaces
@@ -2062,7 +2062,7 @@ class Submission
      * @param  $store // [optional] if provided redirect action will be saved in pending table
      * @return
      */
-    public static function doRedirect($type, $value = "", $params = array(), $store = false)
+    public static function doRedirect($type, $value = "", $params = [], $store = false)
     {
 
         if (self::$isSlowDownForm !== false) {
@@ -2077,15 +2077,15 @@ class Submission
         if ($store) {
             # if there are parameters convert it to JSON then save options
             if ($params) {
-                $value = json_encode(array("url" => $value, "parameters" => $params));
+                $value = json_encode(["url" => $value, "parameters" => $params]);
             }
             # Put redirect options on databas
-            DB::insert('pending_redirects', array(
+            DB::insert('pending_redirects', [
                 "form_id" => $store->formID,
                 "submission_id" => $store->sid,
                 "type" => $type,
                 "value" => $value
-            ));
+            ]);
             return; # Return after saving redirects
         }
 
@@ -2295,7 +2295,7 @@ class Submission
         if (!file_exists($localFile)) {
             $server = str_replace("https:", "http:", HTTP_URL); # make sure you PDF always requested from http site
 
-            if (Server::isHost(array('yang', '10.202.1.216'))) {
+            if (Server::isHost(['yang', '10.202.1.216'])) {
                 $server = "http://monk.interlogy.com";
             }
 
@@ -2312,7 +2312,7 @@ class Submission
     private function getIntegrations()
     {
         $res = DB::read("SELECT DISTINCT `partner` FROM `integrations` WHERE `username`=':username' AND `form_id`=#formID", $this->owner->username, $this->formID);
-        $integrations = array();
+        $integrations = [];
         if ($res->rows > 0) {
             foreach ($res->result as $line) {
                 $integrations[] = $line['partner'];

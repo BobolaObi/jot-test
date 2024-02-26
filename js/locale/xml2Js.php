@@ -21,7 +21,7 @@ function createJson($options) {
 	// This is where the translation will be read.
 	$xml = $options['xmlObject'];
 	// The array translations will be kept at.
-	$trans = array();
+	$trans = [];
 	// Populate the translations array
 	for ($i = 0; $i < count($xml->row); $i++) {
 		$enWord = trim(''.$xml->row[$i]->field[0]);
@@ -36,7 +36,7 @@ function createJson($options) {
 				}
 				$trans[ $enWord  ][] = $transWord;
 			} else {
-				$trans[ $enWord ] = array($transWord);
+				$trans[ $enWord ] = [$transWord];
 			}
 		}
 	}
@@ -48,7 +48,7 @@ function createJson($options) {
 
 	// Write to the language file from the translations array.		
 	fwrite($fHandle, "var language = {\n");
-	$altTrans = array();
+	$altTrans = [];
 	$toWrite = "";
 	foreach($trans as $enWord => $altTrans) {
 		foreach($altTrans as $index => $transWord) {
@@ -62,12 +62,12 @@ function createJson($options) {
 }
 
 function main(){
-	$xmlFiles = array( "de-DE", "es-ES", "fr-FR", "it-IT", "pt-PT" );
+	$xmlFiles = ["de-DE", "es-ES", "fr-FR", "it-IT", "pt-PT"];
 	foreach ($xmlFiles as $index => $lang) {
 		$filename = $lang . '.xml';
 		if (file_exists($filename)) {
 		    $xmlObject = simplexml_load_file($filename);
-			createJson(array('xmlObject' => $xmlObject, 'langCode' => $lang) );
+			createJson(['xmlObject' => $xmlObject, 'langCode' => $lang]);
 		} else {
 		    echo('Skipped file ' . $file . ', could not open for processing.');
 		}

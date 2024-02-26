@@ -30,11 +30,11 @@ class Form
     /**
      * @var //list of payment field to be used in code
      */
-    public static $paymentFields = array('control_payment', 'control_paypal', 'control_paypalpro', 'control_clickbank', 'control_2co', 'control_worldpay', 'control_googleco', 'control_onebip', 'control_authnet');
+    public static $paymentFields = ['control_payment', 'control_paypal', 'control_paypalpro', 'control_clickbank', 'control_2co', 'control_worldpay', 'control_googleco', 'control_onebip', 'control_authnet'];
 
-    public static $chartableElements = array("control_dropdown", "control_checkbox", "control_radio", "control_matrix", "control_scale", "control_rating", "control_grading", "control_slider");
+    public static $chartableElements = ["control_dropdown", "control_checkbox", "control_radio", "control_matrix", "control_scale", "control_rating", "control_grading", "control_slider"];
 
-    public static $nonDataFields = array("control_button", "control_text", "control_head", "control_image", "control_captcha", "control_collapse", "control_pagebreak");
+    public static $nonDataFields = ["control_button", "control_text", "control_head", "control_image", "control_captcha", "control_collapse", "control_pagebreak"];
 
     /**
      * If set getListing results will use it to filter columns
@@ -95,7 +95,7 @@ class Form
                     AND qp.prop='text'
                     AND qp.form_id='{$this->id}'";
         $res = DB::read($query);
-        $result = array();
+        $result = [];
         foreach ($res->result as $row) {
             array_push($result, $row['value']);
         }
@@ -135,7 +135,7 @@ class Form
      */
     static function isDataField($type)
     {
-        $nonDataFields = array("control_button", "control_text", "control_head", "control_image", "control_captcha", "control_collapse", "control_pagebreak");
+        $nonDataFields = ["control_button", "control_text", "control_head", "control_image", "control_captcha", "control_collapse", "control_pagebreak"];
         return !in_array($type, $nonDataFields);
     }
 
@@ -163,7 +163,7 @@ class Form
     {
 
         if ($checkAuth && strtolower($this->form["username"]) != strtolower(Session::$username)) {
-            return array("success" => false, "error" => "Authentication Problem");
+            return ["success" => false, "error" => "Authentication Problem"];
         }
 
         /**
@@ -193,9 +193,9 @@ class Form
             }
         }
 
-        $questionProperties = array();
-        $formProperties = array();
-        $completeProperties = array();
+        $questionProperties = [];
+        $formProperties = [];
+        $completeProperties = [];
 
         // Get form properties
         $response = DB::read("SELECT * FROM `form_properties` WHERE form_id=#id", $this->id);
@@ -203,7 +203,7 @@ class Form
         foreach ($response->result as $line) {
             if (!empty($line['type'])) {
                 # Options is a deeply nested element and it's saved as a json on the database
-                if (in_array($line['prop'], array('options', 'action', 'terms'))) {
+                if (in_array($line['prop'], ['options', 'action', 'terms'])) {
                     $line['value'] = Utils::safeJsonDecode($line['value']);
                 }
                 # Get deep form properties such as emails, products, conditions or so
@@ -232,7 +232,7 @@ class Form
 
         // Get all question properties
         $response = DB::read("SELECT * FROM `question_properties` WHERE `form_id`=#id", $this->id);
-        $questions = array();
+        $questions = [];
 
         // Collect all properties together
         foreach ($response->result as $line) {
@@ -276,7 +276,7 @@ class Form
 
             return $completeProperties;
         }
-        return array("success" => false, "error" => "There is a problem on the form");
+        return ["success" => false, "error" => "There is a problem on the form"];
     }
 
     /**
@@ -329,26 +329,26 @@ class Form
                 $cacheDB = Utils::getRedis(CACHEDB);
                 $cacheDB->flushdb();
             } else {
-                $request = new RequestServer(array(
+                $request = new RequestServer([
                     "action" => 'clearAllCache',
                     "toAll" => "yes"
-                ), true);
+                ], true);
             }
             if (!Server::isLocalhost()) {
-                Utils::suppressRequest($host . "/server.php", array(
+                Utils::suppressRequest($host . "/server.php", [
                     "action" => "clearALLMaxCDNFormCache"
-                ));
+                ]);
             }
         }
 
         if ($type == "search") {
             $search = $id;
 
-            $request = new RequestServer(array(
+            $request = new RequestServer([
                 "action" => 'clearFormCacheBySearch',
                 "search" => $search,
                 "toAll" => "yes"
-            ), true);
+            ], true);
 
         }
 
@@ -363,16 +363,16 @@ class Form
                     }
                 }
             } else {
-                $request = new RequestServer(array(
+                $request = new RequestServer([
                     "action" => 'clearFormCache',
                     "formID" => $id,
                     "toAll" => "yes"
-                ), true);
+                ], true);
             }
 
             if (!APP && !Server::isLocalhost()) {
 
-                foreach (array("form", "jsform") as $key) {
+                foreach (["form", "jsform"] as $key) {
                     $res = Settings::getValue("max-cdn-" . $key, $id);
                     if ($res !== false) {
                         if (BETA) {
@@ -381,10 +381,10 @@ class Form
                             $host = Server::getLocalIP();
                         }
 
-                        Utils::suppressRequest($host . "/server.php", array(
+                        Utils::suppressRequest($host . "/server.php", [
                             "action" => "clearMaxCDNFormCache",
                             "path" => $key . "/" . $id
-                        ));
+                        ]);
                     }
                 }
 
@@ -476,7 +476,7 @@ class Form
      */
     public function getThankyouPage()
     {
-        $props = array();
+        $props = [];
         $res = DB::read("SELECT * FROM `form_properties` WHERE `form_id`=#id AND `prop` IN ('activeRedirect', 'thanktext', 'sendpostdata', 'thankurl')", $this->id);
         foreach ($res->result as $line) {
             $props[$line['prop']] = $line['value'];
@@ -491,10 +491,10 @@ class Form
      */
     public function getQuestions($type = false, $qids = false)
     {
-        $questions = array();
+        $questions = [];
 
         if ($type) {
-            $qids = array(); # Collect question ids for specific type
+            $qids = []; # Collect question ids for specific type
             if (is_array($type)) {
                 $response = DB::read("SELECT `question_id` FROM `question_properties` WHERE `form_id`=#id AND `prop`='type' AND `value` IN ('" . join("', '", $type) . "')", $this->id);
             } else {
@@ -552,7 +552,7 @@ class Form
         if (!$onlyData) {
             $questions = $this->getQuestions(false, $qids);
         } else {
-            $questions = is_array($onlyData) ? $onlyData : array();
+            $questions = is_array($onlyData) ? $onlyData : [];
         }
 
         # If no limit was sent use 10 as a default
@@ -567,23 +567,23 @@ class Form
         }
 
         # Initiate the submissions and newOrder array
-        $submissions = array("total" => 0, "questions" => $questions);
-        $newOrder = array("total" => 0, "questions" => $questions);
-        $duplicateAnwerFix = array();
-        $items = array();
-        $sids = array();
-        $searchIDS = array();
-        $selectedIDS = array();
+        $submissions = ["total" => 0, "questions" => $questions];
+        $newOrder = ["total" => 0, "questions" => $questions];
+        $duplicateAnwerFix = [];
+        $items = [];
+        $sids = [];
+        $searchIDS = [];
+        $selectedIDS = [];
 
         # If keyword was sent, then first search answers for the 
         # matching submissions and collect the submissions IDs
         if ($keyword) {
             if (DEBUGMODE) {
-                $response = DB::read("SELECT DISTINCT `submission_id` FROM `answers` WHERE `value` LIKE '%:keyword%' AND form_id=#id ORDER BY IF(`question_id`=#qid, UPPER(`value`), `question_id`) :DIR", array("keyword" => $keyword, "id" => $this->id, "qid" => $sort, "DIR" => $dir));
+                $response = DB::read("SELECT DISTINCT `submission_id` FROM `answers` WHERE `value` LIKE '%:keyword%' AND form_id=#id ORDER BY IF(`question_id`=#qid, UPPER(`value`), `question_id`) :DIR", ["keyword" => $keyword, "id" => $this->id, "qid" => $sort, "DIR" => $dir]);
             } else {
                 $response = DB::read("SELECT `submission_id` FROM `answers` 
                                   WHERE `value` LIKE '%:keyword%' 
-                                  AND form_id=#id", array("keyword" => $keyword, "id" => $this->id));
+                                  AND form_id=#id", ["keyword" => $keyword, "id" => $this->id]);
             }
 
             foreach ($response->result as $line) {
@@ -606,7 +606,7 @@ class Form
             # Get submissios for current page
             $response = DB::read('SELECT * FROM `submissions` WHERE `id` IN ( :sids ) ' . $rangeEquation . ' 
                                   ORDER BY `created_at` :DIR LIMIT #start, #limit',
-                array("sids" => join(", ", $searchIDS), "DIR" => $dir, "start" => $start, "limit" => $limit));
+                ["sids" => join(", ", $searchIDS), "DIR" => $dir, "start" => $start, "limit" => $limit]);
 
             # If keyword is stated but there no matching answer, then send the empty submissions array
         } else if ($keyword) {
@@ -621,14 +621,14 @@ class Form
             # If count was already calculated, then don't bother doing it again
             if (!$onlyData) {
                 $totResponse = DB::read('SELECT count(id) as total FROM `submissions`
-                                         WHERE `form_id`=#id' . $rangeEquation, array("id" => $this->id));
+                                         WHERE `form_id`=#id' . $rangeEquation, ["id" => $this->id]);
             }
 
             # Set created_at as a default sort
             $sortField = "created_at";
 
             # If if sort field is one of the submissions tale field then use it instead
-            if (in_array($sort, array("created_at", "flag", "new", "ip"))) {
+            if (in_array($sort, ["created_at", "flag", "new", "ip"])) {
                 $sortField = $sort;
             }
 
@@ -642,12 +642,12 @@ class Form
                 # Get all submissions by given limit sorted by the given column
                 $response = DB::read('SELECT * FROM `submissions` WHERE `id` IN ( :sids ) AND `form_id`=#id ' . $rangeEquation . '
                                       ORDER BY `:sortField` :DIR :limitText',
-                    array("id" => $this->id, "sortField" => $sortField, "DIR" => $dir, "limitText" => $limitText, "sids" => join(', ', $selectedIDS)));
+                    ["id" => $this->id, "sortField" => $sortField, "DIR" => $dir, "limitText" => $limitText, "sids" => join(', ', $selectedIDS)]);
             } else {
                 # Get all submissions by given limit sorted by the given column
                 $response = DB::read('SELECT * FROM `submissions` WHERE `form_id`=#id ' . $rangeEquation . '
                                       ORDER BY `:sortField` :DIR :limitText',
-                    array("id" => $this->id, "sortField" => $sortField, "DIR" => $dir, "limitText" => $limitText));
+                    ["id" => $this->id, "sortField" => $sortField, "DIR" => $dir, "limitText" => $limitText]);
             }
 
         }
@@ -672,7 +672,7 @@ class Form
             if (USE_DIFFERENT_DB_FOR_SUBMISSONS) {
                 DB::useConnection('new');
             }
-            return array();
+            return [];
         }
 
         if (DEBUGMODE) {
@@ -708,10 +708,10 @@ class Form
             if ($line["item_name"] != "") {
                 # if not created, create the required nodes in the array 
                 if (!isset($items[$line['submission_id']])) {
-                    $items[$line['submission_id']] = array();
+                    $items[$line['submission_id']] = [];
                 }
                 if (!isset($items[$line['submission_id']][$line["question_id"]])) {
-                    $items[$line['submission_id']][$line["question_id"]] = array();
+                    $items[$line['submission_id']][$line["question_id"]] = [];
                 }
                 # Collect the items in items array. later this items will be used when pouplating the submissions array
                 # Also convert JSON items to real arrays
@@ -727,13 +727,13 @@ class Form
             }
             # If answers node of submissions array is empty then create a new one
             if (!isset($submissions[$line['submission_id']]["answers"])) {
-                $submissions[$line['submission_id']]["answers"] = array();
+                $submissions[$line['submission_id']]["answers"] = [];
             }
             # Alias for current question
             $q = $questions[$line["question_id"]];
             # if current question is upload then do what's neccessarry
             if ($q['type'] == "control_fileupload") {
-                $files = array();
+                $files = [];
                 if (isset($items[$line['submission_id']][$line["question_id"]])) {
                     foreach ($items[$line['submission_id']][$line["question_id"]] as $f) {
                         $files[] = $f;
@@ -741,7 +741,7 @@ class Form
                 } else {
                     $files[] = $line['value'];
                 }
-                $values = array();
+                $values = [];
                 foreach ($files as $filename) {
 
                     # Place the correct file URL instead of the file name
@@ -791,7 +791,7 @@ class Form
             if ($line["item_name"] == "") {
 
                 # Content of the answer which will be placed in the result array
-                $answerValue = array(
+                $answerValue = [
                     "title" => @$q['text'],
                     "name" => @$q["name"],
                     "type" => $q['type'],
@@ -800,7 +800,7 @@ class Form
                     "qid" => $line["question_id"],
                     "order" => $q["order"],
                     "value" => $value //Utils::fixMSWordChars($value) # This shit causes terrible encoding problems.
-                );
+                ];
                 # If this answer was already placed in the array, replace it with the new one
                 # By this way we always have the newest entry in the list AKA last edit
                 if (isset($duplicateAnwerFix[$uniqKey])) {
@@ -835,7 +835,7 @@ class Form
         }
 
         # If submissions was sorted by a field in submissions table then use the $submissions order
-        if (in_array($sort, array("created_at", "flag", "new", "ip"))) {
+        if (in_array($sort, ["created_at", "flag", "new", "ip"])) {
             return $submissions;
         } else {
             # if it was a question the use the new order array
@@ -855,10 +855,10 @@ class Form
         }
 
         $response = DB::read("SELECT * FROM `answers` WHERE `submission_id`=':sid'", $sid);
-        $result = array();
-        $items = array();
+        $result = [];
+        $items = [];
         $formID = false;
-        $finalResult = array();
+        $finalResult = [];
         $res = DB::read("SELECT `created_at` FROM `submissions` WHERE `id`=':id'", $sid);
         $date = $res->first['created_at'];
         $result["created_at"] = $date; # @TODO fix time-zone here must must must
@@ -878,13 +878,13 @@ class Form
         foreach ($result as $qid => $value) {
 
             if ($qid == "created_at") {
-                $finalResult[$qid] = array(
+                $finalResult[$qid] = [
                     "value" => $value,
                     "items" => "",
                     "type" => "",
                     "name" => "created_at",
                     "text" => "Submission Date"
-                );
+                ];
                 continue;
             }
 
@@ -895,13 +895,13 @@ class Form
                 }
             }
 
-            $finalResult[$qid] = array(
+            $finalResult[$qid] = [
                 "value" => $value,
                 "items" => (isset($items[$qid]) ? $items[$qid] : ""),
                 "type" => $questions[$qid]["type"],
                 "name" => $questions[$qid]["name"],
                 "text" => $questions[$qid]["text"]
-            );
+            ];
         }
         if (USE_DIFFERENT_DB_FOR_SUBMISSONS) {
             DB::useConnection('new');
@@ -926,7 +926,7 @@ class Form
         foreach ($questions as $qid => $question) {
 
             // When multiple values selected for a question
-            if (in_array($question["type"], array("control_checkbox", "control_grading", "control_matrix"))) {
+            if (in_array($question["type"], ["control_checkbox", "control_grading", "control_matrix"])) {
                 $response = DB::read("SELECT count(*) as `total`, `value` FROM `answers` WHERE `form_id`=#form_id AND `question_id`=#qid AND `item_name` IS NOT NULL AND `item_name` != '' GROUP BY `value`", $this->id, $qid);
             } else {
                 $response = DB::read("SELECT count(*) as `total`, `value` FROM `answers` WHERE `form_id`=#form_id AND `question_id`=#qid AND (`item_name` IS NULL OR `item_name` = '') GROUP BY `value`", $this->id, $qid);
@@ -972,20 +972,20 @@ class Form
         if ($type == 'submissions') {
 
 
-            $struct["fields"][] = array("type" => "string", "name" => "new");
-            $struct["columns"][-6] = array("header" => "New", "dataIndex" => "new", "width" => 30, "sortable" => true, "fixed" => true, "menuDisabled" => true);
+            $struct["fields"][] = ["type" => "string", "name" => "new"];
+            $struct["columns"][-6] = ["header" => "New", "dataIndex" => "new", "width" => 30, "sortable" => true, "fixed" => true, "menuDisabled" => true];
 
-            $struct["fields"][] = array("type" => "string", "name" => "flag");
-            $struct["columns"][-5] = array("header" => "Flag", "dataIndex" => "flag", "width" => 30, "sortable" => true, "fixed" => true, "menuDisabled" => true);
+            $struct["fields"][] = ["type" => "string", "name" => "flag"];
+            $struct["columns"][-5] = ["header" => "Flag", "dataIndex" => "flag", "width" => 30, "sortable" => true, "fixed" => true, "menuDisabled" => true];
 
-            $struct["fields"][] = array("type" => "string", "name" => "del");
-            $struct["columns"][-4] = array("header" => "Del", "dataIndex" => "del", "width" => 30, "sortable" => false, "fixed" => true, "menuDisabled" => true);
+            $struct["fields"][] = ["type" => "string", "name" => "del"];
+            $struct["columns"][-4] = ["header" => "Del", "dataIndex" => "del", "width" => 30, "sortable" => false, "fixed" => true, "menuDisabled" => true];
 
         }
 
-        $struct["fields"][] = array("type" => "string", "name" => "id");
-        $struct["fields"][] = array("type" => "string", "name" => "created_at");
-        $struct["fields"][] = array("type" => "string", "name" => "ip");
+        $struct["fields"][] = ["type" => "string", "name" => "id"];
+        $struct["fields"][] = ["type" => "string", "name" => "created_at"];
+        $struct["fields"][] = ["type" => "string", "name" => "ip"];
 
 
         if ($this->filterFields) {
@@ -994,9 +994,9 @@ class Form
             $hideID = true;
         }
 
-        $struct["columns"][-3] = array("header" => "ID", "dataIndex" => "id", "width" => 120, "sortable" => true, "hidden" => $hideID);
+        $struct["columns"][-3] = ["header" => "ID", "dataIndex" => "id", "width" => 120, "sortable" => true, "hidden" => $hideID];
 
-        $struct["columns"][-2] = array("header" => "Submission Date", "dataIndex" => "created_at", "width" => 130, "sortable" => true);
+        $struct["columns"][-2] = ["header" => "Submission Date", "dataIndex" => "created_at", "width" => 130, "sortable" => true];
 
         # if there is a filter and this filter doesnt containt date time remove it from the list
         if ($this->filterFields && !in_array("-2", $this->filterFields)) {
@@ -1013,16 +1013,16 @@ class Form
         }
 
 
-        $struct["columns"][-1] = array("header" => "IP", "dataIndex" => "ip", "width" => 120, "sortable" => false, "hidden" => $hideIP);
+        $struct["columns"][-1] = ["header" => "IP", "dataIndex" => "ip", "width" => 120, "sortable" => false, "hidden" => $hideIP];
 
         # IF there is a filter and IP is hidden then don't even include it on the page
         if ($this->filterFields && $hideIP) {
             unset($struct["columns"][-1]);
         }
 
-        $struct["fields"][] = array("type" => "string", "name" => "submission_id");
-        $struct["fields"][] = array("type" => "string", "name" => "type");
-        $struct["fields"][] = array("type" => "string", "name" => "items");
+        $struct["fields"][] = ["type" => "string", "name" => "submission_id"];
+        $struct["fields"][] = ["type" => "string", "name" => "type"];
+        $struct["fields"][] = ["type" => "string", "name" => "items"];
 
         foreach ($questions as $qid => $question) {
 
@@ -1030,15 +1030,15 @@ class Form
                 continue;
             }
 
-            $struct["fields"][] = array("type" => "string", "name" => $qid);
-            $struct["columns"][$question["order"]] = array(
+            $struct["fields"][] = ["type" => "string", "name" => $qid];
+            $struct["columns"][$question["order"]] = [
                 "header" => Utils::stripTags($question["text"]), // Strip HTML tags to keep grid columns clean
                 "dataIndex" => $qid,
                 "order" => $question["order"],
                 "width" => ($question["type"] == "control_textarea" || $question["type"] == "control_matrix") ? 500 : 140,
                 "sortable" => true,
                 "fieldtype" => "textbox"
-            );
+            ];
         }
 
         ksort($struct["columns"]);
@@ -1079,7 +1079,7 @@ class Form
 
         foreach ($submissions as $sid => $sub) {
             if (is_array($sub["answers"])) {
-                $answerRow = array();
+                $answerRow = [];
                 if (!isset($answerRow["created_at"])) {
 
                     $answerRow["created_at"] = TimeZone::convert($sub["created_at"], $this->timeZone, $this->timeFormat); // Convert timezone
@@ -1125,7 +1125,7 @@ class Form
     public function getProducts()
     {
         $response = DB::read("SELECT * FROM `form_properties` WHERE `form_id`=#id AND `type`='products'", $this->id);
-        $products = array();
+        $products = [];
         if ($response->success && $response->rows > 0) {
             foreach ($response->result as $line) {
 
@@ -1279,7 +1279,7 @@ class Form
         $res = DB::read('SELECT * FROM `form_properties` WHERE `form_id`=#id', $this->id);
 
         if ($res->rows > 0) { # Oops foreign keys didn't work, Do this manually
-            $tables = array("form_properties", "question_properties", "answers", "listings", "products", "submissions", "upload_files");
+            $tables = ["form_properties", "question_properties", "answers", "listings", "products", "submissions", "upload_files"];
             foreach ($tables as $table) {
                 $res = DB::read("DELETE FROM `:table` WHERE `form_id`=#id", $this->id);
             }
@@ -1394,15 +1394,15 @@ class Form
                     echo $rest->execute();
                     break;
                 case "hidebanner":
-                    DB::insert('block_email_banners', array(
+                    DB::insert('block_email_banners', [
                         "username" => $formname
-                    ));
+                    ]);
                     Utils::successPage("You will not receive this anouncement in your e-mail anymore. Thanks.", "Successfully Unsubscribed");
                     break;
                 case "unsubscribe":
-                    DB::insert('block_list', array(
+                    DB::insert('block_list', [
                         "email" => $formname
-                    ));
+                    ]);
                     Utils::successPage($formname . " successfully unsubscribed from announcement list.", "Unsubscribed");
                     break;
                 case "announcement":
@@ -1479,10 +1479,10 @@ class Form
                     include ROOT . "/rssform.php";
                     break;
                 case "pdf":
-                    $r = new RequestServer(array(
+                    $r = new RequestServer([
                         "action" => "exportPDF",
                         "formID" => $formname
-                    ));
+                    ]);
                     break;
                 case "pdfview":
                     $_GET["sid"] = $formname;
@@ -1782,13 +1782,13 @@ class Form
                 # if there was no cache on the database, then this is the worst case schenario
                 $prot = IS_SECURE ? "https" : "http";
                 # Force jotform.com in production mode in order to prevent ying.interlogy.com or staging URLs
-                $conf = array(
+                $conf = [
                     "HTTP_URL" => (JOTFORM_ENV === "PRODUCTION") ? $prot . "://www.jotform.com/" : HTTP_URL,
                     "SSL_URL" => (JOTFORM_ENV === "PRODUCTION") ? "https://www.jotform.com/" : SSL_URL,
                     "CACHEPATH" => CACHEPATH,
                     "GZIP" => $gzip,
                     "JSFORM" => defined('JSFORM') ? JSFORM : false
-                );
+                ];
 
                 # If Application use default URLs
                 if (APP) {
@@ -1885,7 +1885,7 @@ class Form
      * @param  $id
      * @return
      */
-    public static function retrieveFormSource($id, $properties = false, $conf = array(), $debug = false)
+    public static function retrieveFormSource($id, $properties = false, $conf = [], $debug = false)
     {
 
         if ($properties === false || !$properties) {
@@ -1895,21 +1895,21 @@ class Form
             $prop = $properties;
         }
 
-        $conf = array_merge(array(
+        $conf = array_merge([
             "HTTP_URL" => HTTP_URL,
             "SSL_URL" => SSL_URL,
             "CACHEPATH" => CACHEPATH,
             "GZIP" => 1,
             "JSFORM" => false
-        ), $conf);
+        ], $conf);
 
-        $res = Utils::curlRequest("http://v8.jotform.com/server.php", array(
+        $res = Utils::curlRequest("http://v8.jotform.com/server.php", [
             "action" => "getV8Source",
             "id" => $id,
             "formProperties" => json_encode($prop),
             "config" => json_encode($conf),
             "debug" => $debug
-        ));
+        ]);
 
         $output = json_decode($res['content']);
         return $output->source;
@@ -2008,7 +2008,7 @@ class Form
         }
 
         if ($res->rows < 1) { # Foreign keys didn't work change all tables manually
-            $tables = array("form_properties", "question_properties", "answers", "listings", "products", "submissions");
+            $tables = ["form_properties", "question_properties", "answers", "listings", "products", "submissions"];
             foreach ($tables as $table) {
                 $res = DB::read("UPDATE `:table` SET `form_id`=':newID' WHERE `form_id`=#id", $table, $newID, $this->id);
                 if (!$res->success) {
@@ -2024,17 +2024,17 @@ class Form
      * Generates an array of data dump, First node of the array contains Titles
      * @return
      */
-    public function createDataDump($fieldList = array(), $filter = 'exclude', $startDate = "", $endDate = "")
+    public function createDataDump($fieldList = [], $filter = 'exclude', $startDate = "", $endDate = "")
     {
 
-        $dataArray = array(array()); # Data will be filled in this array
-        $getQuestions = array();     # In order to protect question order   
-        $sortedQuestions = array();  # Sort questions and iterate from this array
+        $dataArray = [[]]; # Data will be filled in this array
+        $getQuestions = [];     # In order to protect question order
+        $sortedQuestions = [];  # Sort questions and iterate from this array
 
         $chunk = 1000;               # Split answers into chunks in order to protect server from overload
         $currentChunk = 0;           # Set initial chunk
 
-        $newFieldList = array();
+        $newFieldList = [];
         foreach ($fieldList as $field) {
             if ($field == "-1") {
                 $newFieldList[] = "ip";
@@ -2051,7 +2051,7 @@ class Form
 
         $initialSubmissions = $this->getSubmissions("created_at", 0, 1); # Get initial data with question information and stuff
         if (empty($initialSubmissions)) {
-            return array(); # this means there is no submission
+            return []; # this means there is no submission
         }
         $questions = $initialSubmissions["questions"];                   # Set questions to be used later
 
@@ -2061,21 +2061,21 @@ class Form
         }
         ksort($sortedQuestions);
 
-        array_unshift($sortedQuestions, array(
+        array_unshift($sortedQuestions, [
             "type" => "control_textbox",
             "qid" => "ip",
             "text" => "IP"
-        ), array(
+        ], [
             "type" => "control_textbox",
             "qid" => "id",
             "text" => "Submission ID"
-        ), array(
+        ], [
             "type" => "control_textbox",
             "qid" => "created_at",
             "text" => "Submission Date"
-        ));
+        ]);
 
-        $matrixProps = array();
+        $matrixProps = [];
 
         # Seperate non datafields from questions and collect 
         # question titles in the first node of the array
@@ -2095,7 +2095,7 @@ class Form
             }
 
             $sublabels = false;
-            if (isset($question['sublabels']) && !in_array($question['type'], array("control_datetime", "control_phone", "control_paypalpro", "control_authnet", "control_birthdate"))) {
+            if (isset($question['sublabels']) && !in_array($question['type'], ["control_datetime", "control_phone", "control_paypalpro", "control_authnet", "control_birthdate"])) {
                 $sublabels = json_decode($question['sublabels'], true);
                 foreach ($sublabels as $key => $name) {
                     if (strpos($key, 'cc_') !== false) {
@@ -2115,11 +2115,11 @@ class Form
                 $mrows = explode("|", $question['mrows']);
                 $mcolumns = explode("|", $question['mcolumns']);
 
-                $matrixProps[$question['qid']] = array(
+                $matrixProps[$question['qid']] = [
                     "mrows" => $mrows,
                     "mcolumns" => $mcolumns,
                     "type" => $question['inputType']
-                );
+                ];
 
                 switch ($question['inputType']) {
                     case "Radio Button":
@@ -2163,7 +2163,7 @@ class Form
             $currentChunk += $chunk;
 
             foreach ($submissions as $sid => $submission) {
-                $answers = array();
+                $answers = [];
                 foreach ($getQuestions as $quid) {
 
                     if ($quid == "ip") {
@@ -2298,7 +2298,7 @@ class Form
      * Prompts the excel for download
      * @return
      */
-    public function getExcel($fieldList = array(), $filter = 'exclude', $startDate = "", $endDate = "")
+    public function getExcel($fieldList = [], $filter = 'exclude', $startDate = "", $endDate = "")
     {
         /* * /
 
@@ -2408,7 +2408,7 @@ class Form
         }
 
         //$data = $this->createDataDump(array($titleField, $dateField), 'include');
-        $data = $this->getSubmissions($dateField, 0, 10000, 'ASC', false, false, array($dateField, $titleField));
+        $data = $this->getSubmissions($dateField, 0, 10000, 'ASC', false, false, [$dateField, $titleField]);
         unset($data['total']);
         unset($data['questions']);
         foreach ($data as $i => $line) {

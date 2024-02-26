@@ -12,37 +12,37 @@
 include_once dirname(__FILE__) . "/../lib/classes/Translations.php";
 
 // This array is what will be returned, this is all that is needed.
-$allGroups = array();
+$allGroups = [];
 
-$formBuilder1   = array('//js/prototype.js', '//js/protoplus.js', '//js/common.js', '//js/effects.js', '//js/dragdrop.js');
-$formBuilder2   = array('//js/protoplus-ui.js', '//js/builder/formBuilder.js', '//js/widgets/feedbackwidget.js');
-$formBuilder3   = array('//js/builder/build_source.js', '//js/builder/question_properties.js', '//js/builder/question_definitions.js', 
-                           '//js/location.js');
+$formBuilder1   = ['//js/prototype.js', '//js/protoplus.js', '//js/common.js', '//js/effects.js', '//js/dragdrop.js'];
+$formBuilder2   = ['//js/protoplus-ui.js', '//js/builder/formBuilder.js', '//js/widgets/feedbackwidget.js'];
+$formBuilder3   = ['//js/builder/build_source.js', '//js/builder/question_properties.js', '//js/builder/question_definitions.js',
+                           '//js/location.js'];
 
 // Make sure each language is added to the minification group.
 foreach(Translations::$languagesAvailable as $localeCode) {
 	if ($localeCode == 'en-US') {
-		$languageGroup = array('//js/locale/locale_en-US.js', '//js/locale/locale.js');
+		$languageGroup = ['//js/locale/locale_en-US.js', '//js/locale/locale.js'];
 	} else {
-		$languageGroup = array('//js/locale/locale_en-US.js', '//js/locale/locale_' . $localeCode . '.js', '//js/locale/locale.js');
+		$languageGroup = ['//js/locale/locale_en-US.js', '//js/locale/locale_' . $localeCode . '.js', '//js/locale/locale.js'];
 	}
 	$allGroups['formBuilder_' . $localeCode] = array_merge($formBuilder1, $languageGroup, $formBuilder2) ;
 }
 
-$loginForm = array('//js/includes/loginForm.js');
-$orangeBox = array('//js/prototype.js','//js/protoplus.js','//js/protoplus-ui.js','//js/orangebox.js');
-$feedback = array('//js/prototype.js','//js/protoplus.js','//js/protoplus-ui.js','//js/feedback.js');
+$loginForm = ['//js/includes/loginForm.js'];
+$orangeBox = ['//js/prototype.js','//js/protoplus.js','//js/protoplus-ui.js','//js/orangebox.js'];
+$feedback = ['//js/prototype.js','//js/protoplus.js','//js/protoplus-ui.js','//js/feedback.js'];
 
-$jotform = array('//js/prototype.js', '//js/protoplus.js', '//js/protoplus-ui.js', '//js/jotform.js', '//js/calendarview.js');
+$jotform = ['//js/prototype.js', '//js/protoplus.js', '//js/protoplus-ui.js', '//js/jotform.js', '//js/calendarview.js'];
 
 $allGroups['formBuilder3'] = $formBuilder3;
 $allGroups['formBuilder3login'] = array_merge($formBuilder3, $loginForm);
 
-$allGroups['indexCss'] = array('//css/style.css', '//css/fancy.css', '//css/styles/form.css',
+$allGroups['indexCss'] = ['//css/style.css', '//css/fancy.css', '//css/styles/form.css',
                 '//sprite/context-menu.css', '//sprite/toolbar.css', '//sprite/controls.css',
-                '//sprite/index.css');
+                '//sprite/index.css'];
 
-$allGroups['formCss'] = array('//css/styles/form.css', '//css/calendarview.css');
+$allGroups['formCss'] = ['//css/styles/form.css', '//css/calendarview.css'];
 
 $allGroups['orangebox'] = $orangeBox;
 $allGroups['feedback'] = $feedback;

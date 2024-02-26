@@ -81,12 +81,12 @@ class qqUploadedFileForm
 
 class qqFileUploader
 {
-    private $allowedExtensions = array();
-    private $notAllowedExtensions = array();
+    private $allowedExtensions = [];
+    private $notAllowedExtensions = [];
     private $sizeLimit = 10485760;
     private $file;
 
-    function __construct(array $allowedExtensions = array(), $sizeLimit = 10485760, $notAllowedExtensions = array())
+    function __construct(array $allowedExtensions = [], $sizeLimit = 10485760, $notAllowedExtensions = [])
     {
         $allowedExtensions = array_map("strtolower", $allowedExtensions);
         $notAllowedExtensions = array_map("strtolower", $notAllowedExtensions);
@@ -137,21 +137,21 @@ class qqFileUploader
     function handleUpload($uploadDirectory, $replaceOldFile = FALSE)
     {
         if (!is_writable($uploadDirectory)) {
-            return array('error' => "Server error. Upload directory isn't writable.");
+            return ['error' => "Server error. Upload directory isn't writable."];
         }
 
         if (!$this->file) {
-            return array('error' => 'No files were uploaded.');
+            return ['error' => 'No files were uploaded.'];
         }
 
         $size = $this->file->getSize();
 
         if ($size == 0) {
-            return array('error' => 'File is empty');
+            return ['error' => 'File is empty'];
         }
 
         if ($size > $this->sizeLimit) {
-            return array('error' => 'File is too large');
+            return ['error' => 'File is too large'];
         }
 
         $pathinfo = pathinfo($this->file->getName());
@@ -161,11 +161,11 @@ class qqFileUploader
 
         if ($this->allowedExtensions && !in_array(strtolower($ext), $this->allowedExtensions)) {
             $these = implode(', ', $this->allowedExtensions);
-            return array('error' => 'File has an invalid extension, it should be one of ' . $these . '.');
+            return ['error' => 'File has an invalid extension, it should be one of ' . $these . '.'];
         }
 
         if ($this->notAllowedExtensions && in_array(strtolower($ext), $this->notAllowedExtensions)) {
-            return array('error' => '<b>' . $ext . '</b> file extension is considered harmful<br>and cannot be uploaded on our servers');
+            return ['error' => '<b>' . $ext . '</b> file extension is considered harmful<br>and cannot be uploaded on our servers'];
         }
 
         if (!$replaceOldFile) {
@@ -176,10 +176,10 @@ class qqFileUploader
         }
 
         if ($this->file->save($uploadDirectory . $filename . '.' . $ext)) {
-            return array('success' => true);
+            return ['success' => true];
         } else {
-            return array('error' => 'Could not save uploaded file.' .
-                'The upload was cancelled, or server error encountered');
+            return ['error' => 'Could not save uploaded file.' .
+                'The upload was cancelled, or server error encountered'];
         }
 
     }

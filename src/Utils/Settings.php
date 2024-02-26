@@ -51,10 +51,10 @@ class Settings
      */
     public static function setSetting($identifier, $key, $value)
     {
-        $respone = DB::insert("custom_settings", array(
+        $respone = DB::insert("custom_settings", [
             "identifier" => $identifier,
             "key" => $key,
-            "value" => $value));
+            "value" => $value]);
 
         return $value;
     }

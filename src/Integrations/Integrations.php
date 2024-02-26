@@ -44,7 +44,7 @@ class Integrations
             }
         } else {
             $this->newEntry = true;
-            $this->settings = array();
+            $this->settings = [];
         }
     }
 
@@ -107,13 +107,13 @@ class Integrations
     public function save()
     {
         foreach ($this->settings as $key => $value) {
-            DB::insert('integrations', array(
+            DB::insert('integrations', [
                 "partner" => $this->partner,
                 "username" => $this->username,
                 "form_id" => $this->formID,
                 "key" => $key,
                 "value" => Utils::safeJsonEncode($value)
-            ));
+            ]);
         }
     }
 

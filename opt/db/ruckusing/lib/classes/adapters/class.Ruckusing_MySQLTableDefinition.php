@@ -7,12 +7,12 @@ class Ruckusing_MySQLTableDefinition {
 	private $options;
 	private $sql = "";
 	private $initialized = false;
-	private $columns = array();
+	private $columns = [];
 	private $table_def;
 	private $has_auto_primary_key = false;
 	private $duplicate_primary_key_err = '';
 	
-	function __construct($adapter, $name, $options = array()) {
+	function __construct($adapter, $name, $options = []) {
 		//sanity check
 		if( !($adapter instanceof Ruckusing_BaseAdapter)) {
 			throw new Ruckusing_MissingAdapterException("Invalid MySQL Adapter instance.");
@@ -55,7 +55,7 @@ DUP_ERR;
 		$this->column($name, "primary_key");
 	}
 	
-	public function column($column_name, $type, $options = array()) {
+	public function column($column_name, $type, $options = []) {
 		
 		//if there is already a column by the same name then silently fail 
 		//and continue
@@ -108,7 +108,7 @@ DUP_ERR;
 	
 	private function columns_to_str() {
 		$str = "";
-		$fields = array();
+		$fields = [];
 		$len = count($this->columns);
 		for($i = 0; $i < $len; $i++) {
 			$c = $this->columns[$i];
@@ -140,14 +140,14 @@ DUP_ERR;
 
 class Ruckusing_TableDefinition {
 
-	private $columns = array();
+	private $columns = [];
 	private $adapter;
 	
 	function __construct($adapter) {
 		$this->adapter = $adapter;
 	}
 	
-	public function column($name, $type, $options = array()) {
+	public function column($name, $type, $options = []) {
 		$column = new Ruckusing_ColumnDefinition($this->adapter, $name, $type);
 		$native_types = $this->adapter->native_database_types();
 		
@@ -223,9 +223,9 @@ class Ruckusing_ColumnDefinition {
 	private $adapter;
 	public $name;
 	public $type;
-	public $properties = array();
+	public $properties = [];
 	
-	function __construct($adapter, $name, $type, $options = array()) {
+	function __construct($adapter, $name, $type, $options = []) {
 		$this->adapter = $adapter;
 		$this->name = $name;
 		$this->type = $type;
@@ -242,11 +242,11 @@ class Ruckusing_ColumnDefinition {
 	public function to_sql() {
 		$column_sql = sprintf("`%s` %s", $this->name, $this->sql_type());
 		if($this->type != 'primary_key') {
-			$opts = array(
+			$opts = [
 				'null' => $this->null,
 				'default' => $this->default,
 				'unsigned' => $this->unsigned
-				);
+            ];
 				$opts = array_merge($opts, $this->properties);
 			$column_sql .= $this->adapter->add_column_options($opts);						
 		}

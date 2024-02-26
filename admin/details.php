@@ -51,7 +51,7 @@ Session::checkAdminPages(true);
                     $res = DB::read("SELECT * FROM `scheduled_downgrades` WHERE `username` = ':s'", 
                                     $user->username);
                     if ($res->rows === 1){
-                        $isScheduledToDonwgrade = array("date"=>substr($res->first['eot_time'], 0, 11), "reason"=>strtoupper($res->first['reason']));
+                        $isScheduledToDonwgrade = ["date"=>substr($res->first['eot_time'], 0, 11), "reason"=>strtoupper($res->first['reason'])];
                     }else{
                         $isScheduledToDonwgrade = false;
                     }
@@ -259,7 +259,7 @@ Session::checkAdminPages(true);
                                                  "ORDER BY `updated_at` DESC LIMIT 0, ".$formCount, $user->username);
                                         
                                         if ($isKeywordFormId){
-                                            array_splice($response->result, 0, 0, array(array("id"=>$keyword)));
+                                            array_splice($response->result, 0, 0, [["id"=>$keyword]]);
                                         }
                                                  
                                         foreach ($response->result as $key => $line):

@@ -257,7 +257,7 @@ abstract class UserCrawler
     private function saveStatus($username, $userIndex, $startTime)
     {
         $end = microtime(true);
-        $status = array(
+        $status = [
             "username" => $username,
             "index" => $userIndex,
             "chunkStart" => $this->start,
@@ -266,7 +266,7 @@ abstract class UserCrawler
             "startTime" => $startTime,
             "time" => $end,
             "spend" => sprintf("%01.3f", abs($end - $startTime))
-        );
+        ];
         Console::log($status);
         $json = json_encode($status);
         # file_put_contents("/tmp/crawlStatus.json", $json);

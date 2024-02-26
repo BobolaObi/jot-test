@@ -43,7 +43,7 @@ class DBMigrate extends DB
     static private function getLocalDatabaseSchema()
     {
         // The local database config.
-        $localDBConfig = array();
+        $localDBConfig = [];
 
         // Get the table names and details
         foreach (self::getTables() as $tableName) {
@@ -64,11 +64,11 @@ class DBMigrate extends DB
     {
         $response = self::read("SHOW TRIGGERS LIKE ':table'", $tableName);
         if ($response->rows < 1) {
-            return array();
+            return [];
         }
-        $triggers = array();
+        $triggers = [];
         foreach ($response->result as $line) {
-            $filteredLine = array();
+            $filteredLine = [];
             $filteredLine['Trigger'] = $line['Trigger'];
             $filteredLine['Event'] = $line['Event'];
             $filteredLine['Statement'] = $line['Statement'];
@@ -114,7 +114,7 @@ class DBMigrate extends DB
             $indexes = $properties['indexes'];
 
             # will hold line of the sql query for creating a table
-            $lines = array();
+            $lines = [];
 
             # add columns to the query
             foreach ($fields as $fieldName => $fieldProperties) {
@@ -278,7 +278,7 @@ class DBMigrate extends DB
     static public function getDatabaseChanges()
     {
         # Reset the syncQueries array.
-        self::$syncQueries = array();
+        self::$syncQueries = [];
 
         # Get the json config of the current database.
         $localDBConfig = self::getLocalDatabaseSchema();
@@ -330,7 +330,7 @@ class DBMigrate extends DB
         # hold flag for unique.
         $isUniq = false;
         # store the columns
-        $columnNames = array();
+        $columnNames = [];
         # loop the index columns
         foreach ($indexProperties as $column) {
             # add the column name
@@ -394,12 +394,12 @@ class DBMigrate extends DB
 
         $response = self::read("SHOW INDEXES FROM `:table`", $tableName);
         if ($response->rows < 1) {
-            return array();
+            return [];
         }
-        $indexes = array();
+        $indexes = [];
         foreach ($response->result as $line) {
             // filtered line
-            $filteredLine = array();
+            $filteredLine = [];
             $filteredLine['Column_name'] = $line['Column_name'];
             $filteredLine['Sub_part'] = $line['Sub_part'];
             $filteredLine['Key_name'] = $line['Key_name'];

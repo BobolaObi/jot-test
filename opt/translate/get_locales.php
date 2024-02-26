@@ -14,7 +14,7 @@ include "manual/manual.php";
 
 
 chdir("../../");
-$strings = array();
+$strings = [];
 foreach($browse as $file){
 	$lines = file($file);
 	foreach($lines as $line){
@@ -50,7 +50,7 @@ $strings = $strings2;
 
 foreach($run_lang as $lang => $slang)
 {
-	$translated = array();
+	$translated = [];
 	$k = 5;
 	for($i=0; $i<count($strings); $i=$i+$k){
 		#print "$i\n";

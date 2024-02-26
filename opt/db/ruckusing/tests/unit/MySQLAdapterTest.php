@@ -54,8 +54,8 @@ class MySQLAdapterTest extends PHPUnit_Framework_TestCase {
 			$this->assertEquals(false, $users);
 			
 			//create it
-			$t1 = new Ruckusing_MySQLTableDefinition($this->adapter, "users", array('options' => 'Engine=InnoDB') );
-			$t1->column("name", "string", array('limit' => 20));
+			$t1 = new Ruckusing_MySQLTableDefinition($this->adapter, "users", ['options' => 'Engine=InnoDB']);
+			$t1->column("name", "string", ['limit' => 20]);
 			$sql = $t1->finish();
 			
 			//now make sure it does exist
@@ -88,19 +88,19 @@ class MySQLAdapterTest extends PHPUnit_Framework_TestCase {
 			$this->assertEquals($expected, $this->adapter->column_definition("age", "string"));
 
 			$expected = "`age` varchar(32)";
-			$this->assertEquals($expected, $this->adapter->column_definition("age", "string", array('limit' => 32)));
+			$this->assertEquals($expected, $this->adapter->column_definition("age", "string", ['limit' => 32]));
 
 			$expected = "`age` varchar(32) NOT NULL";
 			$this->assertEquals($expected, $this->adapter->column_definition("age", "string", 
-														array('limit' => 32, 'null' => false)));
+														['limit' => 32, 'null' => false]));
 
 			$expected = "`age` varchar(32) DEFAULT 'abc' NOT NULL";
 			$this->assertEquals($expected, $this->adapter->column_definition("age", "string", 
-														array('limit' => 32, 'default' => 'abc', 'null' => false)));
+														['limit' => 32, 'default' => 'abc', 'null' => false]));
 
 			$expected = "`age` varchar(32) DEFAULT 'abc'";
 			$this->assertEquals($expected, $this->adapter->column_definition("age", "string", 
-														array('limit' => 32, 'default' => 'abc')));
+														['limit' => 32, 'default' => 'abc']));
 
 			$expected = "`age` int(11)";
 			$this->assertEquals($expected, $this->adapter->column_definition("age", "integer"));
@@ -115,10 +115,10 @@ class MySQLAdapterTest extends PHPUnit_Framework_TestCase {
 		public function test_column_info() {			
 			//create it
 			$t = new Ruckusing_MySQLTableDefinition($this->adapter, 'users');
-			$t->column('name', 'string', array('limit' => 20));
+			$t->column('name', 'string', ['limit' => 20]);
 			$t->finish();
 	
-			$expected = array();
+			$expected = [];
 			$actual = $this->adapter->column_info("users", "name");
 			$this->assertEquals('varchar(20)', $actual['type'] );			
 			$this->assertEquals('name', $actual['field'] );			
@@ -127,7 +127,7 @@ class MySQLAdapterTest extends PHPUnit_Framework_TestCase {
 		public function test_rename_table() {
 			//create it
 			$t = new Ruckusing_MySQLTableDefinition($this->adapter, 'users');
-			$t->column('name', 'string', array('limit' => 20));
+			$t->column('name', 'string', ['limit' => 20]);
 			$t->finish();
 			
 			
@@ -144,7 +144,7 @@ class MySQLAdapterTest extends PHPUnit_Framework_TestCase {
 		public function test_rename_column() {			
 			//create it
 			$t = new Ruckusing_MySQLTableDefinition($this->adapter, 'users');
-			$t->column('name', 'string', array('limit' => 20));
+			$t->column('name', 'string', ['limit' => 20]);
 			$t->finish();
 			
 
@@ -163,26 +163,26 @@ class MySQLAdapterTest extends PHPUnit_Framework_TestCase {
 		public function test_add_column() {			
 			//create it
 			$t = new Ruckusing_MySQLTableDefinition($this->adapter, 'users');
-			$t->column('name', 'string', array('limit' => 20));
+			$t->column('name', 'string', ['limit' => 20]);
 			$t->finish();
 
 			$col = $this->adapter->column_info("users", "name");
 			$this->assertEquals("name", $col['field']);			
 			
 			//add column
-			$this->adapter->add_column("users", "fav_color", "string", array('limit' => 32));
+			$this->adapter->add_column("users", "fav_color", "string", ['limit' => 32]);
 			$col = $this->adapter->column_info("users", "fav_color");
 			$this->assertEquals("fav_color", $col['field']);			
 			$this->assertEquals('varchar(32)', $col['type'] );			
 
 			//add column
-			$this->adapter->add_column("users", "latitude", "decimal", array('precision' => 10, 'scale' => 2));
+			$this->adapter->add_column("users", "latitude", "decimal", ['precision' => 10, 'scale' => 2]);
 			$col = $this->adapter->column_info("users", "latitude");
 			$this->assertEquals("latitude", $col['field']);			
 			$this->assertEquals('decimal(10,2)', $col['type'] );			
 			
 			//add column with unsigned parameter
-			$this->adapter->add_column("users", "age", "integer", array('unsigned' => true));
+			$this->adapter->add_column("users", "age", "integer", ['unsigned' => true]);
 			$col = $this->adapter->column_info("users", "age");
 			$this->assertEquals("age", $col['field']);			
 			$this->assertEquals('int(11) unsigned', $col['type'] );			
@@ -193,8 +193,8 @@ class MySQLAdapterTest extends PHPUnit_Framework_TestCase {
 		public function test_remove_column() {			
 			//create it
 			$t = new Ruckusing_MySQLTableDefinition($this->adapter, 'users');
-			$t->column('name', 'string', array('limit' => 20));
-			$t->column('age', 'integer', array('limit' => 3));
+			$t->column('name', 'string', ['limit' => 20]);
+			$t->column('age', 'integer', ['limit' => 3]);
 			$t->finish();
 			
 			//verify it exists
@@ -213,8 +213,8 @@ class MySQLAdapterTest extends PHPUnit_Framework_TestCase {
 		public function test_change_column() {			
 			//create it
 			$t = new Ruckusing_MySQLTableDefinition($this->adapter, 'users');
-			$t->column('name', 'string', array('limit' => 20));
-			$t->column('age', 'integer', array('limit' => 3));
+			$t->column('name', 'string', ['limit' => 20]);
+			$t->column('age', 'integer', ['limit' => 3]);
 			$t->finish();
 
 			//verify its type
@@ -223,7 +223,7 @@ class MySQLAdapterTest extends PHPUnit_Framework_TestCase {
 			$this->assertEquals('', $col['default'] );			
 			
 			//change it, add a default too!
-			$this->adapter->change_column("users", "name", "string", array('default' => 'abc', 'limit' => 128));
+			$this->adapter->change_column("users", "name", "string", ['default' => 'abc', 'limit' => 128]);
 			
 			$col = $this->adapter->column_info("users", "name");
 			$this->assertEquals('varchar(128)', $col['type'] );						
@@ -233,9 +233,9 @@ class MySQLAdapterTest extends PHPUnit_Framework_TestCase {
 		public function test_add_index() {
 			//create it
 			$t = new Ruckusing_MySQLTableDefinition($this->adapter, 'users');
-			$t->column('name', 'string', array('limit' => 20));
-			$t->column('age', 'integer', array('limit' => 3));
-			$t->column('title', 'integer', array('limit' => 20));
+			$t->column('name', 'string', ['limit' => 20]);
+			$t->column('age', 'integer', ['limit' => 3]);
+			$t->column('title', 'integer', ['limit' => 20]);
 			$t->finish();
 			
 			$this->adapter->add_index("users", "name");
@@ -243,18 +243,18 @@ class MySQLAdapterTest extends PHPUnit_Framework_TestCase {
 			$this->assertEquals(true, $this->adapter->has_index("users", "name") );						
 			$this->assertEquals(false, $this->adapter->has_index("users", "age") );								
 			
-			$this->adapter->add_index("users", "age", array('unique' => true));
+			$this->adapter->add_index("users", "age", ['unique' => true]);
 			$this->assertEquals(true, $this->adapter->has_index("users", "age") );								
 			
-			$this->adapter->add_index("users", "title", array('name' => 'index_on_super_title'));
-			$this->assertEquals(true, $this->adapter->has_index("users", "title", array('name' => 'index_on_super_title')));								
+			$this->adapter->add_index("users", "title", ['name' => 'index_on_super_title']);
+			$this->assertEquals(true, $this->adapter->has_index("users", "title", ['name' => 'index_on_super_title']));
 		}
 
 		public function test_remove_index_with_default_index_name() {
 			//create it
 			$t = new Ruckusing_MySQLTableDefinition($this->adapter, 'users');
-			$t->column('name', 'string', array('limit' => 20));
-			$t->column('age', 'integer', array('limit' => 3));
+			$t->column('name', 'string', ['limit' => 20]);
+			$t->column('age', 'integer', ['limit' => 3]);
 			$t->finish();
 			
 			$this->adapter->add_index("users", "name");
@@ -269,23 +269,23 @@ class MySQLAdapterTest extends PHPUnit_Framework_TestCase {
 		public function test_remove_index_with_custom_index_name() {
 			//create it
 			$t = new Ruckusing_MySQLTableDefinition($this->adapter, 'users');
-			$t->column('name', 'string', array('limit' => 20));
-			$t->column('title', 'integer', array('limit' => 20));
+			$t->column('name', 'string', ['limit' => 20]);
+			$t->column('title', 'integer', ['limit' => 20]);
 			$t->finish();
 
-			$this->adapter->add_index("users", "name", array('name' => 'my_special_index'));
+			$this->adapter->add_index("users", "name", ['name' => 'my_special_index']);
 			
-			$this->assertEquals(true, $this->adapter->has_index("users", "name", array('name' => 'my_special_index')) );						
+			$this->assertEquals(true, $this->adapter->has_index("users", "name", ['name' => 'my_special_index']) );
 			
 			//drop it
-			$this->adapter->remove_index("users", "name", array('name' => 'my_special_index'));
-			$this->assertEquals(false, $this->adapter->has_index("users", "name", array('name' => 'my_special_index')) );						
+			$this->adapter->remove_index("users", "name", ['name' => 'my_special_index']);
+			$this->assertEquals(false, $this->adapter->has_index("users", "name", ['name' => 'my_special_index']) );
 		}
 
 		// Test that we can generate a custom primary key that is also an AUTO_INCREMENT
     public function test_custom_primary_with_auto_increment() {
-      $t1 = new Ruckusing_MySQLTableDefinition($this->adapter, "users", array('id' => false, 'options' => 'Engine=InnoDB') );
-    	$t1->column("user_id", "integer", array('primary_key' => true, 'increment' => true));
+      $t1 = new Ruckusing_MySQLTableDefinition($this->adapter, "users", ['id' => false, 'options' => 'Engine=InnoDB']);
+    	$t1->column("user_id", "integer", ['primary_key' => true, 'increment' => true]);
     	$t1->finish();
 
   		$col = $this->adapter->column_info("users", "user_id");

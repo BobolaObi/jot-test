@@ -98,13 +98,13 @@ class DropBoxIntegration extends UFS{
         # $folder .= " - ".date("M j, Y");
         $baseName = Utils::path("JotForm/"./*$this->username."/".*/$this->form->getTitle()."/".$folder."/".$fileName, true);
         
-        $prop = array(
+        $prop = [
             "action"   => "sendFileToDropBox",
             "username" => $this->username,
             "formID"   => $this->formID,
             "basePath" => urlencode($baseName),
             "filePath" => $transferFile
-        );
+        ];
         
         // Console::log($prop, $serverAddr."/server.php");
         Utils::suppressRequest($serverAddr."/server.php", $prop);

@@ -14,14 +14,14 @@ class UFSController
      * This is default value. You can change it using setInterfaces.
       * @var //String Array
      */
-    private $interfaces = array(
+    private $interfaces = [
         UploadControllers::FileController,
         UploadControllers::AmazonS3Controller,
         UploadControllers::DropBox,
         UploadControllers::FTP
-    );
+    ];
 
-    private $controllers = array();
+    private $controllers = [];
 
     private $username, $formID, $submissionID, $fileName, $fileType, $fileTmpName, $size, $uploadProperties, $submission;
 
@@ -57,7 +57,7 @@ class UFSController
         }
 
         if (defined('ENABLE_UFS') && ENABLE_UFS === false) {
-            $definedInterfaces = array(UploadControllers::DropBox, UploadControllers::FileController, UploadControllers::FTP);
+            $definedInterfaces = [UploadControllers::DropBox, UploadControllers::FileController, UploadControllers::FTP];
         }
 
 
@@ -78,7 +78,7 @@ class UFSController
     {
         $controllers = func_get_args();
         # Reset the interfaces.
-        $this->controllers = array();
+        $this->controllers = [];
         # Control and set the controllers.
         foreach ($controllers as $controller) {
             $this->setController($controller);
@@ -104,7 +104,7 @@ class UFSController
     {
 
         $id = $this->addFileToDatabase();
-        $this->operateMethod("setInsertID", array($id));
+        $this->operateMethod("setInsertID", [$id]);
         $this->operateMethod("uploadFile");
     }
 
@@ -114,11 +114,11 @@ class UFSController
         $this->removeSubmissionFilesFromDatabase();
     }
 
-    private function operateMethod($methodName, $params = array())
+    private function operateMethod($methodName, $params = [])
     {
         foreach ($this->controllers as $controller) {
             if (method_exists($controller, $methodName)) {
-                call_user_func_array(array($controller, $methodName), $params);
+                call_user_func_array([$controller, $methodName], $params);
             } else {
                 throw new JotFormException("Wrong parameter number in construct.");
             }

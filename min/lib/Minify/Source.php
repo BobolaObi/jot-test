@@ -171,11 +171,11 @@ class Minify_Source {
     public static function getDigest($sources)
     {
         foreach ($sources as $source) {
-            $info[] = array(
+            $info[] = [
                 //$source->_id, $source->minifier, $source->minifyOptions
                 // monkey patched by tayfunsen.
                 self::getRelativePath($source->_id)
-            );
+            ];
         }
         return md5(serialize($info));
     }

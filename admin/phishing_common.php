@@ -76,7 +76,7 @@
 	//Converts the given string into an array
 	function parseFunctionNames( $questionNamesStr){
 		
-		$questionNamesArray = array();
+		$questionNamesArray = [];
 		
 		$tokenizer = strtok( $questionNamesStr, " ");
 				
@@ -92,9 +92,9 @@
 	//This function deletes the words from questionNamesArray that are in the $ignoreWords array
 	function deleteIgnoredWords( $questionNamesArray){
 		
-		$ignoreWords = array( '1', '2', '3', '4', '5', '6', '7', '8', '9', 'name', 'undefined', 'personal', 'his', 'her', 'we', 'you', 'and', 'untitled', 'form', 'e', 'i', 'a', 'about', 'an', 'are', 'as', 'at', 'be', 'by', 'com', 'de', 'en', 'for', 'from', 'how', 'in', 'is', 'it', 'la',  'of', 'on', 'or', 'that', 'the', 'this', 'to', 'was', 'what', 'when', 'where', 'who', 'will', 'with', 'und',  'the',  'www');
+		$ignoreWords = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'name', 'undefined', 'personal', 'his', 'her', 'we', 'you', 'and', 'untitled', 'form', 'e', 'i', 'a', 'about', 'an', 'are', 'as', 'at', 'be', 'by', 'com', 'de', 'en', 'for', 'from', 'how', 'in', 'is', 'it', 'la',  'of', 'on', 'or', 'that', 'the', 'this', 'to', 'was', 'what', 'when', 'where', 'who', 'will', 'with', 'und',  'the',  'www'];
 		
-		$clearedArray = array();
+		$clearedArray = [];
 		
 		foreach( $questionNamesArray as $questionName){
 				
@@ -118,7 +118,7 @@
 	
 	function deleteSmallWords( $questionNamesArray){
 						
-		$clearedArray = array();
+		$clearedArray = [];
 		
 		foreach( $questionNamesArray as $question){
 			
@@ -132,7 +132,7 @@
 	
 	function deleteDuplicateWords( $questionNamesArray){
 		
-		$clearedArray = array();
+		$clearedArray = [];
 		
 		for( $i = 0; $i < sizeof( $questionNamesArray); $i++){
 		
@@ -434,7 +434,7 @@
 	}
 	function get_question_names($form_id, $max_length=100)
     {
-        $questions = array();
+        $questions = [];
         $query = "SELECT qp.question_id, qp.value
                     FROM question_properties qp
                     WHERE qp.form_id='$form_id'

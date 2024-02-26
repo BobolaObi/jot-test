@@ -48,10 +48,10 @@ class User
      *
      * @var //array
      */
-    private static $dbFields = array('id' => '#', 'username' => ':', 'password' => ':',
+    private static $dbFields = ['id' => '#', 'username' => ':', 'password' => ':',
         'name' => ':', 'email' => ':', 'website' => ':', 'time_zone' => ':',
         'folder_config' => ':', 'ip' => ':', 'account_type' => ':', 'status' => ':',
-        'saved_emails' => ':', 'created_at' => ':', 'updated_at' => ':', 'last_seen_at' => ':', 'referer' => ':', "LDAP" => "#");
+        'saved_emails' => ':', 'created_at' => ':', 'updated_at' => ':', 'last_seen_at' => ':', 'referer' => ':', "LDAP" => "#"];
 
     /**
      * SQL Queries which are used.
@@ -69,7 +69,7 @@ class User
      * we delete ourselves as part of administration, "AUTOSUSPENDED" is for
      * automatically deleted, for example for phishing.
      */
-    private static $allowedStatus = array('SUSPENDED', 'DELETED', 'AUTOSUSPENDED');
+    private static $allowedStatus = ['SUSPENDED', 'DELETED', 'AUTOSUSPENDED'];
     private static $statusQuery = "UPDATE `users` SET `status` = ':status'
                                    WHERE `username`=':username' LIMIT 1";
     public static $salt = "jotsalt_heisahbu";
@@ -123,7 +123,7 @@ class User
      * @param  $onlyActive // [optional]
      * @return
      */
-    public static function findByEmail($email, $statusCond = array('ACTIVE'))
+    public static function findByEmail($email, $statusCond = ['ACTIVE'])
     {
         // $queryCond = implode(",", $statusCond);
         $queryCond = "";
@@ -160,7 +160,7 @@ class User
         if ($limit !== false) {
             $query .= " LIMIT 0, {$limit}";
         }
-        $res = DB::read($query, array('keyword' => $keyword));
+        $res = DB::read($query, ['keyword' => $keyword]);
 
         if ($res->rows < 1 && is_numeric($keyword)) { // No user found then check forms table
             $formres = DB::read("SELECT `username` FROM `forms` WHERE `id`=#keyword", $keyword);
@@ -171,7 +171,7 @@ class User
             Console::logAdminOperation(Session::getSysAdmUserame() . "\n" . $query);
         }
 
-        $users = array();
+        $users = [];
         foreach ($res->result as $user) {
             # Don't display blank user
             if ($user['username'] == "") {
@@ -193,7 +193,7 @@ class User
     public static function getAdminAndSupportUsers()
     {
         $response = DB::read("SELECT * FROM `users` WHERE `account_type` = 'SUPPORT' OR `account_type` = 'ADMIN'");
-        $users = array();
+        $users = [];
 
         foreach ($response->result as $row) {
             $users[$row['username']] = User::find($row['username']);
@@ -205,10 +205,10 @@ class User
             $server = Server::getHost() . "/jcm/jcm_server.php";
         }
 
-        $res = Utils::curlRequest($server, array(
+        $res = Utils::curlRequest($server, [
             "action" => "getSubmissionCounts",
             "usernames" => json_encode(array_keys($users))
-        ));
+        ]);
 
         $result = json_decode($res['content'], true);
 
@@ -223,7 +223,7 @@ class User
 
     public static function getFormList($username)
     {
-        $list = array();
+        $list = [];
 
         // If the username is somehow empty, do not show any forms, don't go to the DB.
         if (empty($username)) {
@@ -296,8 +296,8 @@ class User
             include ROOT . "/opt/templates/email_template.html";
             $message = ob_get_contents();
             ob_end_clean();
-            Utils::sendEmail(array('from' => array(NOREPLY, NOREPLY_SUPPORT),
-                'to' => array($userArr['email']), 'subject' => Configs::COMPANY_TITLE . " Lost Password", 'body' => $message));
+            Utils::sendEmail(['from' => [NOREPLY, NOREPLY_SUPPORT],
+                'to' => [$userArr['email']], 'subject' => Configs::COMPANY_TITLE . " Lost Password", 'body' => $message]);
             return "Password reminder email has been sent successfully.";
         } else {
             throw new RecordNotFoundException("No user with this email address or username has been found.");
@@ -427,12 +427,12 @@ class User
                  AND `type` LIKE 'emails'
                  AND (prop = 'to' OR prop='from')
                  AND value=':from'",
-                array(
+                [
                     "id" => $line['id'],
                     "to" => $to,
                     "from" => $u->email,
                     "username" => $this->username
-                )
+                ]
             );
         }
 
@@ -457,7 +457,7 @@ class User
      */
     public static function reallyDelete($username)
     { // O RLY o_O
-        $resultObj = DB::write(self::$reallyDeleteQuery, array('username' => $username));
+        $resultObj = DB::write(self::$reallyDeleteQuery, ['username' => $username]);
         return $resultObj;
     }
 
@@ -479,7 +479,7 @@ class User
             throw new JotFormException('Status not Allowed');
         }
         */
-        $resultObj = DB::write(self::$statusQuery, array('username' => $username, 'status' => $status));
+        $resultObj = DB::write(self::$statusQuery, ['username' => $username, 'status' => $status]);
         if ($resultObj->success == true) {
             return $resultObj;
         } else { // No user with the given username found.
@@ -560,8 +560,8 @@ class User
         include ROOT . "/opt/templates/email_template.html";
         $message = ob_get_contents();
         ob_end_clean();
-        Utils::sendEmail(array('from' => array(NOREPLY, NOREPLY_SUPPORT),
-            'to' => array($this->email), 'subject' => Configs::COMPANY_TITLE . " Account Downgraded", 'body' => $message));
+        Utils::sendEmail(['from' => [NOREPLY, NOREPLY_SUPPORT],
+            'to' => [$this->email], 'subject' => Configs::COMPANY_TITLE . " Account Downgraded", 'body' => $message]);
     }
 
     public function sendDisabledEmail()
@@ -571,8 +571,8 @@ class User
         include ROOT . "/opt/templates/email_template.html";
         $message = ob_get_contents();
         ob_end_clean();
-        Utils::sendEmail(array('from' => array(NOREPLY, NOREPLY_SUPPORT),
-            'to' => array($this->email), 'subject' => Configs::COMPANY_TITLE . " Account Disabled", 'body' => $message));
+        Utils::sendEmail(['from' => [NOREPLY, NOREPLY_SUPPORT],
+            'to' => [$this->email], 'subject' => Configs::COMPANY_TITLE . " Account Disabled", 'body' => $message]);
     }
 
     /**
@@ -653,11 +653,11 @@ class User
      */
     public static function clearCache($username)
     {
-        $request = new RequestServer(array(
+        $request = new RequestServer([
             "action" => 'clearUserCache',
             "username" => $username,
             "toAll" => "yes"
-        ), true);
+        ], true);
     }
 
     /**
@@ -742,9 +742,9 @@ class User
         }
 
         if ($limits == false) {
-            $limits = array("submissions", "sslSubmissions", "payments", "uploads", "tickets");
+            $limits = ["submissions", "sslSubmissions", "payments", "uploads", "tickets"];
         } else if (is_string($limits)) {
-            $limits = array($limits);
+            $limits = [$limits];
         }
 
         if ($resultRow = $this->getMonthlyUsage()) {
@@ -808,11 +808,11 @@ class User
         $res = DB::write("UPDATE `users` SET `account_type` = ':accountType' WHERE `username` = ':username'",
             $accountType->name, $this->username);
 
-        $request = new RequestServer(array(
+        $request = new RequestServer([
             "action" => 'clearUserSession',
             "username" => $this->username,
             "toAll" => "yes"
-        ), true);
+        ], true);
 
         return $res->success;
     }
@@ -980,13 +980,13 @@ class User
         }
 
         if ($u = self::checkLDAP($uname, $password)) {
-            $LDAPUser = new User(array(
+            $LDAPUser = new User([
                 "username" => $uname,
                 "password" => self::encodePassword($password),
                 "name" => $u['cn'],
                 "email" => $u['mail'],
                 "LDAP" => 1
-            ));
+            ]);
             $LDAPUser->save();
             User::forceLogin($uname);
             return true;
@@ -1322,8 +1322,8 @@ class User
             include ROOT . "/opt/templates/email_template.html";
             $message = ob_get_contents();
             ob_end_clean();
-            Utils::sendEmail(array('from' => array(NOREPLY, NOREPLY_NAME),
-                'to' => array($u->email), 'subject' => "Welcome to " . Configs::COMPANY_TITLE, 'body' => $message));
+            Utils::sendEmail(['from' => [NOREPLY, NOREPLY_NAME],
+                'to' => [$u->email], 'subject' => "Welcome to " . Configs::COMPANY_TITLE, 'body' => $message]);
             #Funnel::setGoal('Email Entered', 'Funnel');
             #Funnel::setGoal('Sign Up', 'Funnel');
             return 'User created successfully.';

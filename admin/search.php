@@ -43,10 +43,10 @@
                 # Don't search guest users in APP mode
                 $result = User::searchUsers($keyword, APP, 20);
                 if ( count($result) == 1 ){
-                    Utils::redirect($page, array(
+                    Utils::redirect($page, [
                         "username" => $result[0]['username'],
                         "keyword"  => $keyword
-                    ));
+                    ]);
                 }else if(empty($result)){
                     echo "<style>#pleasewait{display:none;}</style><h3 style='padding:20px;margin:0px;'>No User Found..</h3>";
                 }else{

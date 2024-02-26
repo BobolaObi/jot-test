@@ -12,7 +12,7 @@ interface Ruckusing_iAdapter {
 	
 	//database level operations
 	public function database_exists($db);
-	public function create_table($table_name, $options = array());
+	public function create_table($table_name, $options = []);
 	public function drop_database($db);
 	
 	//table level opertions
@@ -23,11 +23,11 @@ interface Ruckusing_iAdapter {
 
 	//column level operations
 	public function rename_column($table_name, $column_name, $new_column_name);
-	public function add_column($table_name, $column_name, $type, $options = array());
+	public function add_column($table_name, $column_name, $type, $options = []);
 	public function remove_column($table_name, $column_name);
-	public function change_column($table_name, $column_name, $type, $options = array());
+	public function change_column($table_name, $column_name, $type, $options = []);
 	public function remove_index($table_name, $column_name);
-	public function add_index($table_name, $column_name, $options = array());
+	public function add_index($table_name, $column_name, $options = []);
 
 }
 

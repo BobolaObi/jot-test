@@ -45,7 +45,7 @@ class RestResponse
      */
     public function cleanHeader()
     {
-        $this->headers = array();
+        $this->headers = [];
         return $this;
     }
 

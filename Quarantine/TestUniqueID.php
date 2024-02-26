@@ -46,7 +46,7 @@ class TestUniqueID {
         $sum = substr($id, -2, 2);
         $base = preg_replace("/..$/", "", $id);
         
-        return array("base"=>$base, "sum"=>$sum);
+        return ["base"=>$base, "sum"=>$sum];
     }
     
     /**
@@ -125,7 +125,7 @@ function oldv2_make_seed() {
 // */
 $numberOfIterations = 10;
 
-$passHash = array();
+$passHash = [];
 for ($i = 0; $i < $numberOfIterations; $i++) {
 	//$pass = ID::generate();
 	$pass = oldv2_random_id();

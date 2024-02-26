@@ -20,8 +20,8 @@ class LibraryLoader
      */
     static private $instance;
 
-    private $libraries = array();
-    private $folderMap = array("core");
+    private $libraries = [];
+    private $folderMap = ["core"];
 
     /**
      * Get the instance of the
@@ -43,7 +43,7 @@ class LibraryLoader
      */
     private function __construct()
     {
-        spl_autoload_register(array($this, 'autoload'));
+        spl_autoload_register([$this, 'autoload']);
     }
 
     /**
@@ -52,7 +52,7 @@ class LibraryLoader
      * @param string $libPath
      * @param arrray $mapArray (This is the map of the inner folder of the library)
      */
-    public function register($libPath, $mapArray = array())
+    public function register($libPath, $mapArray = [])
     {
         $this->libraries[$libPath] = $mapArray;
     }

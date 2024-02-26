@@ -56,7 +56,7 @@ class CssSprite
     #      )
     #  )
     # )
-    private static $groups = array();
+    private static $groups = [];
 
     const inputFolder = IMAGE_FOLDER;   # Groups folder that will be converted.
     const outputFolder = SPRITE_FOLDER; # Folder that the outputs will saved
@@ -116,7 +116,7 @@ class CssSprite
             $groupFolderPath = self::inputFolder . DIRECTORY_SEPARATOR . $entry;
             # Add to the groups if group is folder and not hidden.
             if (is_dir($groupFolderPath) && !preg_match('/^\./', $entry)) {
-                self::$groups[$entry] = array("path" => $groupFolderPath, "name" => $entry);
+                self::$groups[$entry] = ["path" => $groupFolderPath, "name" => $entry];
             }
         }
     }
@@ -187,7 +187,7 @@ class CssSprite
         # Create the CSS Code (the background images)
         if (count($properties["none"]["images"]) > 0) {
 
-            $cssSelectorNames = array();
+            $cssSelectorNames = [];
 
             foreach ($properties["none"]["images"] as $imageName => $imageProperties) {
                 $cssSelectorNames[] = $properties['name'] . "-" . $imageName;
@@ -227,7 +227,7 @@ class CssSprite
         # Create the CSS Code (the background images)
         if (count($properties["y"]["images"]) > 0) {
 
-            $cssSelectorNames = array();
+            $cssSelectorNames = [];
 
             foreach ($properties["y"]["images"] as $imageName => $imageProperties) {
                 $cssSelectorNames[] = $properties['name'] . "-" . $imageName;
@@ -268,7 +268,7 @@ class CssSprite
         # Create the CSS Code (the background images)
         if (count($properties["x"]["images"]) > 0) {
 
-            $cssSelectorNames = array();
+            $cssSelectorNames = [];
 
             foreach ($properties["x"]["images"] as $imageName => $imageProperties) {
                 $cssSelectorNames[] = $properties['name'] . "-" . $imageName;
@@ -317,23 +317,23 @@ class CssSprite
                         //continue;
                     }
                     # Set the properties of the image
-                    $properties[$repeatType]["images"][$cssClassName] = array(
+                    $properties[$repeatType]["images"][$cssClassName] = [
                         "path" => $imageFilePath,
                         "name" => $entry,
                         "height" => $height,
                         "width" => $width,
                         "resource" => $imageResource
-                    );
+                    ];
 
                     # Set the array that will hold the all widths
                     if (!is_array($properties[$repeatType]["widths"])) {
-                        $properties[$repeatType]["widths"] = array();
+                        $properties[$repeatType]["widths"] = [];
                     }
                     array_push($properties[$repeatType]["widths"], $width);
 
                     # Set the array that will hold the all heights
                     if (!is_array($properties[$repeatType]["heights"])) {
-                        $properties[$repeatType]["heights"] = array();
+                        $properties[$repeatType]["heights"] = [];
                     }
                     array_push($properties[$repeatType]["heights"], $height);
 

@@ -27,7 +27,7 @@ class Mailing extends UserCrawler
         # main criteria don't send emails to paid users only the guests and free users
         $main = " AND (`account_type`='FREE' OR (`account_type`='GUEST' AND `email` IS NOT NULL)) AND `status`='ACTIVE'";
 
-        $criterias = array(
+        $criterias = [
             # Only to test sending emails and ETC
             "test" => "`username` LIKE 'group\_%'",
 
@@ -48,7 +48,7 @@ class Mailing extends UserCrawler
 
             # Get all premium users
             "allPremium" => "`account_type`='PREMIUM'"
-        );
+        ];
 
         # Get all users and guest users with email addresses
         $this->setCriteria($criterias['updatedForms']);
@@ -211,7 +211,7 @@ class Mailing extends UserCrawler
             $subject = "JotForm End of Year Sale - LAST DAY!";
         }
 
-        $from = array("noreply@jotform.com", "JotForm Form Builder");
+        $from = ["noreply@jotform.com", "JotForm Form Builder"];
         $mail = Session::getLastDays();
 
         usleep($this->calculateExecuteDelay() * 1000000);
@@ -226,58 +226,58 @@ class Mailing extends UserCrawler
                 case 'Group A':
                     # Send email A from our server
                     $content = $this->createMail($mail);
-                    Utils::sendEmail(array(
+                    Utils::sendEmail([
                         "from" => $from,
                         "subject" => $subject,
                         "to" => $this->userDetails['email'],
                         "html" => true,
                         "body" => $content,
-                    ));
+                    ]);
                     break;
                 case 'Group B':
                     # Send email A using SendGrid
                     $content = $this->createMail($mail);
-                    Utils::sendGrid(array(
+                    Utils::sendGrid([
                         "from" => $from,
                         "subject" => $subject,
                         "to" => $this->userDetails['email'],
                         "html" => true,
                         "body" => $content,
-                    ));
+                    ]);
                     break;
                 case 'Group C':
                     # Send email B from our server
                     $content = $this->createMail($mail);
-                    Utils::sendEmail(array(
+                    Utils::sendEmail([
                         "from" => $from,
                         "subject" => $subject,
                         "to" => $this->userDetails['email'],
                         "html" => true,
                         "body" => $content,
-                    ));
+                    ]);
                     break;
                 case 'Group D':
                     # Send email B using SendGrid
                     $content = $this->createMail($mail);
-                    Utils::sendGrid(array(
+                    Utils::sendGrid([
                         "from" => $from,
                         "subject" => $subject,
                         "to" => $this->userDetails['email'],
                         "html" => true,
                         "body" => $content,
-                    ));
+                    ]);
                     break;
                 default:
                     Console::error("failed in default:" . $group);
                     # Possibly a problem occured don't give up send user the email anyways
                     $content = $this->createMail($mail);
-                    Utils::sendEmail(array(
+                    Utils::sendEmail([
                         "from" => $from,
                         "subject" => $subject,
                         "to" => $this->userDetails['email'],
                         "html" => true,
                         "body" => $content,
-                    ));
+                    ]);
             }
         } catch (Exception $e) {
             $this->removeFromTest();

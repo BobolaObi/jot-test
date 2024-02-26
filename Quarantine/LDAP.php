@@ -56,7 +56,7 @@ class LDAP
 
         $dn = "dc=interlogy,dc=com";
         $filter = "(|(sn=$person*)(givenname=$person*))";
-        $justthese = array("ou", "sn", "givenname", "mail");
+        $justthese = ["ou", "sn", "givenname", "mail"];
         $sr = ldap_search($this->conn, $dn, $filter, $justthese);
 
         $info = ldap_get_entries($this->conn, $sr);

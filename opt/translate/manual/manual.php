@@ -1,7 +1,7 @@
 <?
 if(false){ #test mode
 	include "../config.php";
-	$lang_override2 = array();
+	$lang_override2 = [];
 	$folder = "";
 }else{
 	$folder = "manual/";

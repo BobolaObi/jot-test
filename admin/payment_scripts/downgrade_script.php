@@ -9,7 +9,7 @@ if (!isset($_GET['key']) || $_GET['key'] !== "2175222484"){
 # Downgrade all users in the downgrade schedule list.
 $res = DB::read ("SELECT * FROM `scheduled_downgrades` WHERE eot_time < NOW()");
 
-$results = array();
+$results = [];
 
 # Foreach one check the downgrade reason
 foreach ($res->result as $row){

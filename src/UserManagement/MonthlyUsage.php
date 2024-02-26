@@ -23,22 +23,22 @@ class MonthlyUsage
      * </code>
      * @var //array
      */
-    public static $fields = array(
+    public static $fields = [
         'username' => 'username',
         'submissions' => 'submissions',
         'sslSubmissions' => 'ssl_submissions',
         'payments' => 'payments',
         'uploads' => 'uploads',
         'tickets' => 'tickets'
-    );
+    ];
 
-    public static $limitFields = array(
+    public static $limitFields = [
         'submissions' => 'submissions',
         'sslSubmissions' => 'ssl_submissions',
         'payments' => 'payments',
         'uploads' => 'uploads',
         'tickets' => 'tickets'
-    );
+    ];
 
     /**
      * User associated with the usage data.
@@ -54,12 +54,12 @@ class MonthlyUsage
      * An array of over quota usage types.
      * @var //array
      */
-    private $overQuota = array();
+    private $overQuota = [];
     /**
      * An array of almost full usage types.
      * @var //array
      */
-    private $almostFull = array();
+    private $almostFull = [];
     /**
      * Set username only. Others will be default.
      * @var //Insertion query in SQL.
@@ -73,7 +73,7 @@ class MonthlyUsage
      * @param array $usage
      * @return
      */
-    public function __construct($usage = array())
+    public function __construct($usage = [])
     {
         foreach (self::$fields as $classField => $dbField) {
             if (isset($usage[$classField])) {
@@ -143,7 +143,7 @@ class MonthlyUsage
         } else if ($username === false) {
             $user = Session::getUser();
             if (!isset($user->id)) {
-                $mu = new MonthlyUsage(array('username' => $user->username));
+                $mu = new MonthlyUsage(['username' => $user->username]);
                 // $mu->user = $user;
                 $mu->accountType = AccountType::find('GUEST');
                 return $mu;
@@ -158,7 +158,7 @@ class MonthlyUsage
         $response = DB::read("SELECT * FROM `monthly_usage` WHERE `username` = ':username' LIMIT 1", $username);
         if ($response->rows == 0) {
             // This user does not have a monthly usage row in the table. Create one now.
-            $mu = new MonthlyUsage(array('username' => $username));
+            $mu = new MonthlyUsage(['username' => $username]);
             $mu->save();
         } else {
             // Copy the usage data from the DB.
@@ -303,20 +303,20 @@ class MonthlyUsage
      * @param boolean $sendMail [optional]
      * @return
      */
-    public function isOverQuota($checkTypes = array('submissions',
+    public function isOverQuota($checkTypes = ['submissions',
         'sslSubmissions',
         'payments',
-        'uploads'))
+        'uploads'])
     { // End method parameters.
 
         // Ensure that the $checkTypes is an array with valid types.
         if (!is_array($checkTypes)) {
             // Make the string an array. Check if it is allowed first.
             if (array_key_exists($checkTypes, self::$limitFields)) {
-                $checkTypes = array($checkTypes);
+                $checkTypes = [$checkTypes];
             } else {
                 // Received an illegal usage type to check.
-                $checkTypes = array();
+                $checkTypes = [];
                 Console::warn("Invalid usage type is asked to be checked.", "Monthly Usage: checkLimitsBy");
             }
         } else {
@@ -338,21 +338,21 @@ class MonthlyUsage
         return false;
     }
 
-    public function getOverQuota($checkTypes = array('submissions',
+    public function getOverQuota($checkTypes = ['submissions',
         'sslSubmissions',
         'payments',
-        'uploads'))
+        'uploads'])
     { // End method parameters.
-        $returns = array();
+        $returns = [];
 
         // Ensure that the $checkTypes is an array with valid types.
         if (!is_array($checkTypes)) {
             // Make the string an array. Check if it is allowed first.
             if (array_key_exists($checkTypes, self::$limitFields)) {
-                $checkTypes = array($checkTypes);
+                $checkTypes = [$checkTypes];
             } else {
                 // Received an illegal usage type to check.
-                $checkTypes = array();
+                $checkTypes = [];
                 Console::warn("Invalid usage type is asked to be checked.", "Monthly Usage: checkLimitsBy");
             }
         } else {
@@ -398,10 +398,10 @@ class MonthlyUsage
      * @param  $sendAlmostFullEmail // [optional]
      * @return
      */
-    public function sendEmails($checkTypes = array('submissions',
+    public function sendEmails($checkTypes = ['submissions',
         'sslSubmissions',
         'payments',
-        'uploads'),
+        'uploads'],
                                $sendOverQuotaEmail = true,
                                $sendAlmostFullEmail = true,
                                $forceSend = false)
@@ -411,10 +411,10 @@ class MonthlyUsage
         if (!is_array($checkTypes)) {
             // Make the string an array. Check if it is allowed first.
             if (array_key_exists($checkTypes, self::$limitFields)) {
-                $checkTypes = array($checkTypes);
+                $checkTypes = [$checkTypes];
             } else {
                 // Received an illegal usage type to check.
-                $checkTypes = array();
+                $checkTypes = [];
                 Console::warn("Invalid usage type is asked to be checked.", "Monthly Usage: checkLimitsBy");
             }
         } else {
@@ -477,19 +477,19 @@ class MonthlyUsage
                 // Send an overquota mail.
                 $this->sendOverquotaEmail();
                 // Reset overQuota and almostFull arrays.
-                $this->overQuota = $this->almostFull = array();
+                $this->overQuota = $this->almostFull = [];
                 return true;
             } else if ($sendAlmostFullEmail && !$alreadyAlmostFull
                 && sizeof($this->almostFull) > 0) {
                 // Send an "almost full" mail.
                 $this->sendAlmostFullEmail();
                 // Reset overQuota and almostFull arrays.
-                $this->overQuota = $this->almostFull = array();
+                $this->overQuota = $this->almostFull = [];
                 return true;
             }
         }
         // Reset overQuota and almostFull arrays.
-        $this->overQuota = $this->almostFull = array();
+        $this->overQuota = $this->almostFull = [];
         // No e-mails sent.
         return false;
     }
@@ -510,8 +510,8 @@ class MonthlyUsage
         include ROOT . "/opt/templates/email_template.html";
         $message = ob_get_contents();
         ob_end_clean();
-        Utils::sendEmail(array('from' => array(NOREPLY, NOREPLY_SUPPORT),
-            'to' => array($this->user->email), 'subject' => "JotForm Account Over Quota", 'body' => $message));
+        Utils::sendEmail(['from' => [NOREPLY, NOREPLY_SUPPORT],
+            'to' => [$this->user->email], 'subject' => "JotForm Account Over Quota", 'body' => $message]);
     }
 
     /**
@@ -527,8 +527,8 @@ class MonthlyUsage
         $message = ob_get_contents();
 
         ob_end_clean();
-        Utils::sendEmail(array('from' => array(NOREPLY, NOREPLY_SUPPORT),
-            'to' => array($this->user->email), 'subject' => "JotForm Account Almost Full", 'body' => $message));
+        Utils::sendEmail(['from' => [NOREPLY, NOREPLY_SUPPORT],
+            'to' => [$this->user->email], 'subject' => "JotForm Account Almost Full", 'body' => $message]);
     }
 
     /**
@@ -557,7 +557,7 @@ class MonthlyUsage
     {
 
         # Forms found on DB
-        $forms = array();
+        $forms = [];
 
         # Loop through all form upload folders
         foreach (glob(UPLOAD_FOLDER . $username . "/*") as $formFolder) {

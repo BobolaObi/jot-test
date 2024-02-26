@@ -29,10 +29,10 @@ foreach ($users->result as $row){
     }
     
     $monthlyUsage = MonthlyUsage::find($user);
-    $monthlyUsage->sendEmails(array('submissions', 
+    $monthlyUsage->sendEmails(['submissions',
                 'sslSubmissions', 
                 'payments', 
-                'uploads'), true, true, true);
+                'uploads'], true, true, true);
 
     unset($user);
 }
