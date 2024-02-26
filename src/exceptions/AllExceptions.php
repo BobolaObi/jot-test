@@ -1,11 +1,5 @@
 <?php
 
-@include_once 'JotFormException.php';
-/**
- * When record not found
- * @package JotForm_Exceptions
- */
-
 namespace Legacy\Jot\Exceptions;
 
 class RecordNotFoundException extends JotFormException {}
