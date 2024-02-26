@@ -20,7 +20,7 @@ class FTPLib{
     public function __construct($hostname, $username, $password, $port = 21){
         
         if (!extension_loaded('ftp')) {
-            throw new Exception("FTP Extension is not loaded");
+            throw new \Exception("FTP Extension is not loaded");
         }
         
         $this->password = $password;
@@ -38,19 +38,19 @@ class FTPLib{
         $this->conn = @ftp_connect($this->hostname, $this->port);
         
         if(!$this->conn){
-            throw new Exception('Wrong Host Name');
+            throw new \Exception('Wrong Host Name');
         }
         
         # login with username and password
         $login_result = @ftp_login($this->conn, $this->username, $this->password); 
         
         if(!$login_result){
-            throw new Exception('Wrong Login Information');
+            throw new \Exception('Wrong Login Information');
         }
         
         // check connection
         if ((!$this->conn) || (!$login_result)) { 
-            throw new Exception("Can't connect: ".$this->hostname.", ".$this->username);
+            throw new \Exception("Can't connect: ".$this->hostname.", ".$this->username);
         }
         
         return $this->conn;
@@ -233,7 +233,7 @@ class FTPLib{
      */
     public function createFolder($folder){
         if(@ftp_mkdir($this->conn, $folder) === false){
-            throw new Exception('Cannot Create Folder: '.$folder);
+            throw new \Exception('Cannot Create Folder: '.$folder);
         }
     }
     
@@ -272,7 +272,7 @@ class FTPLib{
      */
     public function deleteFolder($folder){
         if(!@ftp_rmdir($this->conn, $folder)){
-            throw New Exception("Cannot delete: ".$folder);
+            throw new \Exception("Cannot delete: ".$folder);
         }
     }
     
@@ -291,7 +291,7 @@ class FTPLib{
             if(!empty($e['message'])){
                 $because = ".<br>Because: ".$e['message'];
             }
-            throw new Exception('Cannot move file to server: '.$remotePath.$because);
+            throw new \Exception('Cannot move file to server: '.$remotePath.$because);
         }
         return true;
     }
@@ -303,7 +303,7 @@ class FTPLib{
      */
     public function removeFile($remotePath){
         if(!@ftp_delete($this->conn, $remotePath)){
-            throw New Exception("Cannot delete: ".$remotePath);
+            throw new \Exception("Cannot delete: ".$remotePath);
         }
         return true;
     }

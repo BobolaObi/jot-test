@@ -1733,7 +1733,7 @@ class RequestServer
         $username   = $this->get('username');
         
         if( !class_exists($className) ){
-            throw new Exception($className." does not exists.");
+            throw new \Exception($className." does not exists.");
         }
         
         $crawler = new $className();

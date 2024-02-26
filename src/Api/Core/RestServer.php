@@ -155,13 +155,13 @@ class RestServer {
         } else if($class instanceof RestController)  {  # If is a controller, call execute(RestServer)
             $method="execute";
         } else {
-            Throw new Exception(get_class($class)." is not a RestAction");
+            throw new \Exception(get_class($class)." is not a RestAction");
         }
         
         if (method_exists($this->lastClass(), $method)){
             $class = $class->$method($this);
         }else{
-            Throw new Exception("Cannot find method: " . $this->lastClass() . "::" . $method);
+            throw new \Exception("Cannot find method: " . $this->lastClass() . "::" . $method);
         }
 
         if($class instanceof RestAction 

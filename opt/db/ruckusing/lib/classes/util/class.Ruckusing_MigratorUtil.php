@@ -53,7 +53,7 @@ class Ruckusing_MigratorUtil {
 	public static function migration_files($directory, $direction, $current, $destination) {
 		$migrations = self::get_migration_files($direction, $directory, true);
 		if(empty($migrations)) {
-			throw new Exception("Error: not able to get migrations in $directory");
+			throw new \Exception("Error: not able to get migrations in $directory");
 		}
 		return self::get_relevant_files($direction, $migrations, $current, $destination);
 	}//migrations

@@ -148,23 +148,23 @@ class Ruckusing_FrameworkRunner {
 	
 	private function verify_db_config() {
 		if( !array_key_exists($this->ENV, $this->db_config)) {
-			throw new Exception(sprintf("Error: '%s' DB is not configured",$this->ENV));
+			throw new \Exception(sprintf("Error: '%s' DB is not configured",$this->ENV));
 		}
 		$this->active_db_config = $this->db_config[$this->ENV];
 		if(!array_key_exists("type",$this->active_db_config)) {
-			throw new Exception(sprintf("Error: 'type' is not set for '%s' DB",$this->ENV));			
+			throw new \Exception(sprintf("Error: 'type' is not set for '%s' DB",$this->ENV));			
 		}
 		if(!array_key_exists("host",$this->active_db_config)) {
-			throw new Exception(sprintf("Error: 'host' is not set for '%s' DB",$this->ENV));			
+			throw new \Exception(sprintf("Error: 'host' is not set for '%s' DB",$this->ENV));			
 		}
 		if(!array_key_exists("database",$this->active_db_config)) {
-			throw new Exception(sprintf("Error: 'database' is not set for '%s' DB",$this->ENV));			
+			throw new \Exception(sprintf("Error: 'database' is not set for '%s' DB",$this->ENV));			
 		}
 		if(!array_key_exists("user",$this->active_db_config)) {
-			throw new Exception(sprintf("Error: 'user' is not set for '%s' DB",$this->ENV));			
+			throw new \Exception(sprintf("Error: 'user' is not set for '%s' DB",$this->ENV));			
 		}
 		if(!array_key_exists("password",$this->active_db_config)) {
-			throw new Exception(sprintf("Error: 'password' is not set for '%s' DB",$this->ENV));			
+			throw new \Exception(sprintf("Error: 'password' is not set for '%s' DB",$this->ENV));			
 		}
 	}//verify_db_config
 

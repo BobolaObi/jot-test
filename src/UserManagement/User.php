@@ -217,7 +217,7 @@ class User {
 
         // If the username is somehow empty, do not show any forms, don't go to the DB.
         if (empty($username)) {
-            throw new Exception('missing username');
+            throw new \Exception('missing username');
 //            $this->success(array(
 //                "forms" => $list
 //            ));
@@ -821,7 +821,7 @@ class User {
             
             $user = self::updateUserFromLDAP($username, $password);
             if($user === false){
-                throw new Exception('Account has been deleted');
+                throw new \Exception('Account has been deleted');
             }
             
             # If this user is admin then create an admin cookie.
@@ -851,7 +851,7 @@ class User {
             return true;
         }
         
-        throw new Exception('Username or password did not match.');
+        throw new \Exception('Username or password did not match.');
     }
     
     /**
@@ -881,7 +881,7 @@ class User {
 	            if (!empty($user->status)) {
 	                if ( $user->status == 'AUTOSUSPENDED' || $user->status == 'SUSPENDED') {
 	                    # User suspended because of phishing.
-	                    throw new Exception($user->status);
+	                    throw new \Exception($user->status);
 	                }
 	            }
         	}
@@ -895,7 +895,7 @@ class User {
             } else if ($user->status == "DELETED") {
                 # User had deleted his account before. Ask if they want to
                 # re-enable it.
-                throw new Exception('DELETED');
+                throw new \Exception('DELETED');
             }
             
             # If this user is admin then create an admin cookie.
@@ -941,7 +941,7 @@ class User {
             return true;
         }
         
-        throw new Exception('Username or password did not match.');
+        throw new \Exception('Username or password did not match.');
     }
     
     /**
@@ -1270,12 +1270,12 @@ class User {
         $decoded = Utils::safeJsonDecode($config);
 
         if(!is_array($decoded)){
-            throw new Exception("Configuration cannot be decoded, therefore it's not saved");
+            throw new \Exception("Configuration cannot be decoded, therefore it's not saved");
         }
 
         $response = DB::write("UPDATE `users` SET `folder_config` =':config' WHERE `username`=':username'", $config, $this->username);
         if(!$response->success){
-            throw new Exception($response->error);
+            throw new \Exception($response->error);
         }
         Session::$folderConfig = $config;
         $_SESSION[COOKIE_KEY]->folderConfig = $config;

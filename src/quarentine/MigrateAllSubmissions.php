@@ -43,7 +43,7 @@ class MigrateAllSubmissions{
                ", $start, $limit);
         
         if($res->rows < 1){
-            throw new Exception('Completed');
+            throw new \Exception('Completed');
         }
         
         return $res->result;

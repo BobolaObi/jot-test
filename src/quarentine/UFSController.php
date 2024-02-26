@@ -89,7 +89,7 @@ class UFSController {
 				array_push ($this->controllers, $controller);
 			}
 		}else{
-			throw new Exception("Cannot create with controller name " . $className);
+			throw new \Exception("Cannot create with controller name " . $className);
 		}
 	}
 

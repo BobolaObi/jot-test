@@ -719,7 +719,7 @@ class FirePHP {
             $this->messageIndex++;
             
             if ($this->messageIndex > 99999) {
-                throw new Exception('Maximum number (99,999) of messages reached!');             
+                throw new \Exception('Maximum number (99,999) of messages reached!');             
             }
         }
     }

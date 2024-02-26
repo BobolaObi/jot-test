@@ -1155,18 +1155,18 @@ class Form{
         $res = DB::write("INSERT INTO `forms` (`id`, `username`, `title`, `height`, `status`, `new`, `count`) 
                           VALUES(#id, ':username', ':title', ':height', 'CLONING', 0, 0)", $newID, $username, "Clone of ".$title, $height);
         if(!$res->success){
-            throw new Exception("Error while cloning a form. Error:".$res->error);
+            throw new \Exception("Error while cloning a form. Error:".$res->error);
         }
         
         # Clone question properties
         $res = DB::write("INSERT INTO `question_properties` SELECT #newID, `question_id`, `prop`, `value` FROM `question_properties` WHERE form_id=#id", $newID, $this->id);
         if(!$res->success){
-            throw new Exception("Error while cloning question properties. Error:".$res->error);
+            throw new \Exception("Error while cloning question properties. Error:".$res->error);
         }
         # clone form properties
         $res = DB::write("INSERT INTO `form_properties` SELECT #newID, `item_id`, `type`, `prop`, `value` FROM `form_properties` WHERE form_id=#id", $newID, $this->id);
         if(!$res->success){
-            throw new Exception("Error while cloning form properties. Error:".$res->error);
+            throw new \Exception("Error while cloning form properties. Error:".$res->error);
         }
         # clone reports and such 
         
@@ -1183,12 +1183,12 @@ class Form{
         
         if(file_exists(CACHEPATH.$this->id.".html")){
             if(!unlink($pre.CACHEPATH.$this->id.".html")){
-                throw new Exception("Form cache cannot be deleted");
+                throw new \Exception("Form cache cannot be deleted");
             }
         }
         if(file_exists(CACHEPATH.$this->id.".js")){
             if(!unlink($pre.CACHEPATH.$this->id.".js")){
-                throw new Exception("Form configuration cache cannot be deleted");
+                throw new \Exception("Form configuration cache cannot be deleted");
             }
         }
     }
@@ -1210,7 +1210,7 @@ class Form{
     public function deleteForm(){
         $res = DB::write('DELETE FROM `forms` WHERE `id`=#id', $this->id);
         if(!$res->success){
-            throw new Exception("Form cannot be deleted. Error: ".$res->error);
+            throw new \Exception("Form cannot be deleted. Error: ".$res->error);
         }
         
         # Check all form stuf really deleted 
@@ -1235,7 +1235,7 @@ class Form{
     public function markDeleted(){
         $res = DB::write("UPDATE `forms` SET `status`='DELETED' WHERE `id`=#id", $this->id);
         if(!$res->success){
-            throw new Exception("Form cannot be marked as deleted. Error: ".$res->error);
+            throw new \Exception("Form cannot be marked as deleted. Error: ".$res->error);
         }
         //$this->deleteFormCache();
         Form::clearCache("id", $this->id); // from all servers
@@ -1248,7 +1248,7 @@ class Form{
     public function unDelete(){
         $res = DB::write("UPDATE `forms` SET `status`='' WHERE `id`=#id", $this->id);
         if(!$res->success){
-            throw new Exception("Form cannot be undeleted. Error: ".$res->error);
+            throw new \Exception("Form cannot be undeleted. Error: ".$res->error);
         }
         $this->deleteFormCache();
         return true;
@@ -1489,7 +1489,7 @@ class Form{
         
         # Open a ZipArchive
         if ( $zip->open( $zipFile, ZipArchive::OVERWRITE) === false ){
-            throw new Exception("Cannot create zip archive in Form::createZip function.");
+            throw new \Exception("Cannot create zip archive in Form::createZip function.");
         }
         
         # Create files array to add.
@@ -1527,21 +1527,21 @@ class Form{
         # Add the files return error if the file cannot be added.
         foreach ($files as $file ){
             if ( !$zip->addFile($file['fileName'], $file['localName'] ) ){
-                throw new Exception ("Cannot add ".$file['fileName']." to zip file in Form::createZip function.");
+                throw new \Exception ("Cannot add ".$file['fileName']." to zip file in Form::createZip function.");
             }
         }
         
         # Add html file here
         if (!$zip->addFromString($formName.'.html', $source)){
-            throw new Exception ("Cannot add source code to the zip file");
+            throw new \Exception ("Cannot add source code to the zip file");
         }
         
         # Close the zip folder
         if (!$zip->close()){
-            throw new Exception ("Cannot close zip file.");
+            throw new \Exception ("Cannot close zip file.");
         }
         if (!chmod($zipFile, 0777)){
-            throw new Exception ("Cannot change permission of zip file.");
+            throw new \Exception ("Cannot change permission of zip file.");
         }
         return $zipFile;
     }
@@ -1864,7 +1864,7 @@ class Form{
         # Don't change this. This code runs only on JotForm servers
         system('d8 v8_build_source.js -- '.$id.' '.$configFile.' '.$debugMode.' > '.$cache);
         if(!file_exists($cache)){
-            throw new Exception('Could not create form source');
+            throw new \Exception('Could not create form source');
         }
         
         $html = file_get_contents($cache);
@@ -1910,17 +1910,17 @@ class Form{
         
         $newID = ID::generate();
         $res = DB::write("UPDATE `forms` SET `id`=':newID' WHERE `id`=#id", $newID, $this->id);
-        if(!$res->success){ throw new Exception('There was a problem on renewing formID'); }
+        if(!$res->success){ throw new \Exception('There was a problem on renewing formID'); }
         # Foreign keys should handle the res but we should double check these kind of stuff 
         
         $res = DB::read("SELECT * FROM `form_properties` WHERE `form_id`=#id", $newID);
-        if(!$res->success){ throw new Exception('There was a problem on renewing formID'); }
+        if(!$res->success){ throw new \Exception('There was a problem on renewing formID'); }
         
         if($res->rows < 1){ # Foreign keys didn't work change all tables manually
             $tables = array("form_properties", "question_properties", "answers", "listings", "products", "submissions");
             foreach($tables as $table){
                 $res = DB::read("UPDATE `:table` SET `form_id`=':newID' WHERE `form_id`=#id", $table, $newID, $this->id);
-                if(!$res->success){ throw new Exception('There was a problem on renewing formID'); }
+                if(!$res->success){ throw new \Exception('There was a problem on renewing formID'); }
             }
         }
         Utils::setCurrentID("form", $newID);
@@ -2393,7 +2393,7 @@ class Form{
         $r = &$c->send($f);
         # Console::log($r);
         if($r->errno > 0){
-            throw new Exception($r->errmsg);
+            throw new \Exception($r->errmsg);
         }
         return true;
     }
@@ -2424,7 +2424,7 @@ class Form{
         $r = &$c->send($f);
         # Console::log($r);
         if($r->errno > 0){
-            throw new Exception($r->errmsg);
+            throw new \Exception($r->errmsg);
         }
         return true;
     }

@@ -24,13 +24,13 @@ class DBMigrate extends DB
         // Open schema file to write
         $fh = @fopen(SCHEMA_FILE_PATH, 'w+');
         if (!$fh){
-            throw new Exception('Cannot open database schema file for write.');
+            throw new \Exception('Cannot open database schema file for write.');
         }
         if ( !@fwrite($fh, json_encode( self::getLocalDatabaseSchema() )) ){
-            throw new Exception('Cannot write to database schema file.');
+            throw new \Exception('Cannot write to database schema file.');
         }
         if (!@fclose($fh)){
-            throw new Exception('Cannot close database schema file after write.');
+            throw new \Exception('Cannot close database schema file after write.');
         }
     }
 
@@ -345,15 +345,15 @@ class DBMigrate extends DB
     static private function getDatabaseSchemaFromFile(){
         // Open schema file to write
         if (!file_exists(SCHEMA_FILE_PATH)){
-            throw new Exception('Database schema file does not exists.');
+            throw new \Exception('Database schema file does not exists.');
         }
             
         if ( !($fileStream = file_get_contents(SCHEMA_FILE_PATH)) ){
-            throw new Exception('Cannot read database schema file.');
+            throw new \Exception('Cannot read database schema file.');
         }
 
         if ( !($fileDBConfig = json_decode($fileStream, true)) ){
-            throw new Exception('JSON cannot be converted to array.');
+            throw new \Exception('JSON cannot be converted to array.');
         }
 
         return $fileDBConfig;
@@ -394,7 +394,7 @@ class DBMigrate extends DB
         foreach(self::$syncQueries as $query){
             $res = self::query($query);
             if($res === false){
-                throw new Exception(mysql_error(self::$dlink));
+                throw new \Exception(mysql_error(self::$dlink));
             }
         }
     }    

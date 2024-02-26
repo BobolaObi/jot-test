@@ -233,7 +233,7 @@ class Server{
         if($wget = Utils::findCommand('wget')){
              shell_exec($wget." --auth-no-challenge --http-user=".$username." --http-password=".$password." http://salmon.interlogy.com:8080/job/jotform/build?delay=0sec > /dev/null &");
         }else{
-            throw new Exception('wget is not installed. Please install wget CLI');
+            throw new \Exception('wget is not installed. Please install wget CLI');
         }
         
         // "curl --user ".$username.":".$password." http://64.34.169.225:8080/job/jotform/".$buildNum."/logText/progressiveHtml"

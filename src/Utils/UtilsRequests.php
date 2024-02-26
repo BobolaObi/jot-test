@@ -139,7 +139,7 @@ class UtilsRequests extends UtilsEmails
          register_shutdown_function('function_name');
          */
         if (!is_readable($file)) {
-            throw new Exception('File not found or inaccessible!');
+            throw new \Exception('File not found or inaccessible!');
         }
 
         $size = filesize($file);
@@ -228,7 +228,7 @@ class UtilsRequests extends UtilsEmails
             }
             fclose($file);
         } else {
-            throw new Exception('Error - can not open file.');
+            throw new \Exception('Error - can not open file.');
         }
         die();
     }

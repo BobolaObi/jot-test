@@ -491,7 +491,7 @@ class Utils extends UtilsArrays
         try{
             self::$residInstances[$databaseIndex]->set('testRedis', 'test');
             if(self::$residInstances[$databaseIndex]->get('testRedis') != 'test'){
-                throw new Exception('Value missmatch');
+                throw new \Exception('Value missmatch');
             }
             self::$residInstances[$databaseIndex]->del('testRedis');
         }catch(Exception $e){

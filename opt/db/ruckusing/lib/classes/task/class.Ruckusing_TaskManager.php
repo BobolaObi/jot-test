@@ -73,7 +73,7 @@ class Ruckusing_TaskManager  {
 	//---------------------
 	private function load_all_tasks($task_dir) {
 		if(!is_dir($task_dir)) {
-			throw new Exception(sprintf("Task dir: %s does not exist", $task_dir));
+			throw new \Exception(sprintf("Task dir: %s does not exist", $task_dir));
 			return false;
 		}
 		$files = scandir($task_dir);
@@ -96,7 +96,7 @@ class Ruckusing_TaskManager  {
 	
 	public function execute($task_name, $options) {
 		if( !$this->has_task($task_name)) {
-			throw new Exception("Task '$task_name' is not registered.");
+			throw new \Exception("Task '$task_name' is not registered.");
 		}
 		$task = $this->get_task($task_name);
 		if($task) {

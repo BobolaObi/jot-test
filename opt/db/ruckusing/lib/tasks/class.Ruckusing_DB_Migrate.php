@@ -160,7 +160,7 @@ class Ruckusing_DB_Migrate implements Ruckusing_iTask {
 	
 	private function resolve_versions($destination, $last_exec_version, $direction) {
 		if($direction != 'up' && $direction != 'down') {
-			throw new Exception("Invalid direction parameter: {$direction}");
+			throw new \Exception("Invalid direction parameter: {$direction}");
 		}
 		if($direction == 'down') {
 			if($destination == ($last_exec_version - 1)) {

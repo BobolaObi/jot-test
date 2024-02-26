@@ -30,7 +30,7 @@ class Ruckusing_NamingUtil {
 	public static function task_to_class_name($task) {
 		$parts = explode(":", $task);
 		if(count($parts) < 2) {
-			throw new Exception("Task name invalid: $task");
+			throw new \Exception("Task name invalid: $task");
 		}
 		return self::class_ns_prefix . strtoupper($parts[0]) . '_' . ucfirst($parts[1]);
 	}

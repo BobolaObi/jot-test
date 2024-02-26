@@ -495,7 +495,7 @@ class Ruckusing_MySQLAdapter extends Ruckusing_BaseAdapter implements Ruckusing_
 		if(is_array($options) && array_key_exists('default', $options) && $options['default'] !== null) {
 			if($this->is_sql_method_call($options['default'])) {
 				//$default_value = $options['default'];
-				throw new Exception("MySQL does not support function calls as default values, constants only.");
+				throw new \Exception("MySQL does not support function calls as default values, constants only.");
 			} else {
         $default_format = is_bool($options['default']) ? "'%d'" : "'%s'";
         $default_value = sprintf($default_format, $options['default']);			

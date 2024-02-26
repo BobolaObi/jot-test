@@ -21,7 +21,7 @@ class Ruckusing_VersionUtil {
 		$maxima = 0;
     $regexp = '/^(\d+)\_/';
     if(!is_dir($migration_dir)) {
-			throw new Exception("Migration directory ({$migration_dir}) does not exist.");
+			throw new \Exception("Migration directory ({$migration_dir}) does not exist.");
 		}
 		$files = scandir($migration_dir,1); //sort in descending order
 		$len = count($files);

@@ -26,7 +26,7 @@ class FormFactory {
         # Convert all JSON properties to PHP array
         $this->rawProperties = json_decode($properties, true);
         if($this->rawProperties === NULL){ # if json_decode fails warn user about it
-            throw new Exception("Form data cannot be decoded");
+            throw new \Exception("Form data cannot be decoded");
         }
         
         $this->source = $source; # form source sent from formBuilder
@@ -54,7 +54,7 @@ class FormFactory {
         # If no form property was found on the save code send this error
         # an unknown bug was causing JotForm to create lot's of empty forms
         if($formPropFound === false){
-            throw new Exception("There is a problem with save data.");
+            throw new \Exception("There is a problem with save data.");
         }
         
         # If ID was not send with the form properties therefore this is a new form
@@ -116,7 +116,7 @@ class FormFactory {
         
         # This thing happens time to time
         if(!isset($this->formProperties['title'])){
-            throw new Exception("Form settings seems to be missing.");
+            throw new \Exception("Form settings seems to be missing.");
         }
         
         # The fields that must be saved in form table but NOT in properties table are here
@@ -298,7 +298,7 @@ class FormFactory {
         # Check if cache path exists and writable. if not try to create it
         if(!file_exists(CACHEPATH)){
             if(!@mkdir(CACHEPATH, 0777)){
-                throw new Exception('Cannot create cache folder. Please fix the permissions');
+                throw new \Exception('Cannot create cache folder. Please fix the permissions');
             }
         }
         
@@ -335,10 +335,10 @@ class FormFactory {
                 if (@file_put_contents(CACHEPATH.$this->id.'.js', 'getSavedForm({"form":'.json_encode($this->rawProperties).', "success":true}); ')) {
                     return $this->id;
                 } else {
-                    throw new Exception("File Cannot be saved: ".CACHEPATH.$this->id.'.js');
+                    throw new \Exception("File Cannot be saved: ".CACHEPATH.$this->id.'.js');
                 }
             } else {
-                throw new Exception("File Cannot be saved: ".CACHEPATH.$this->id.'.html');
+                throw new \Exception("File Cannot be saved: ".CACHEPATH.$this->id.'.html');
             }
         }
         return $this->id;

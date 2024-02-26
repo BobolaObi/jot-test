@@ -40,7 +40,7 @@ if ( isset($_POST['item_name']) ){
 	$payment = new JotFormPlimusSubscriptions($_POST);
 }else{
 	# If the type is not found than throw exception
-	throw new Exception ("Cannot find payment type.");
+	throw new \Exception ("Cannot find payment type.");
 }
 
 try{

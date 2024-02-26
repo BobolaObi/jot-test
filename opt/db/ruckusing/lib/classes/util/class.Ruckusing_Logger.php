@@ -25,7 +25,7 @@ class Ruckusing_Logger {
       $line = sprintf("%s [info] %s\n", $ts, $msg); 
       fwrite($this->fp, $line);
     } else {
-      throw new Exception(sprintf("Error: logfile '%s' not open for writing!", $this->file));
+      throw new \Exception(sprintf("Error: logfile '%s' not open for writing!", $this->file));
     }
     
   }

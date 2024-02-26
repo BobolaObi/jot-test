@@ -413,7 +413,7 @@ class DBI {
     /**
      * Check if the table exists or not
      * @param  $table
-     * @return boolen
+     * @return bool
      */
     static function tableExists($table){
         $tables = self::getTables();

@@ -79,7 +79,7 @@ class FTPIntegration extends UFS {
             }else{
                 $e = error_get_last();
                 #Console::log($e, "File cannot be sent");
-                throw new Exception("File cannot be sent:".$e['message']);
+                throw new \Exception("File cannot be sent:".$e['message']);
             }
         }catch(Exception $e){
             Console::error($e->getMessage(), "FTP Error");

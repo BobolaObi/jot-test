@@ -165,7 +165,7 @@ class Submission {
         $memLimit = (((float) ini_get('memory_limit')*1024*1024) / 100) * 50;
         
         $redis = Utils::getRedis();
-        if($redis === false){ throw new Exception('Redis is not connected'); }
+        if($redis === false){ throw new \Exception('Redis is not connected'); }
         
         Console::customLog("redis", "Script Started, current length of submissions:". $redis->llen("submissions"));
         $i = 0;
@@ -343,7 +343,7 @@ class Submission {
             $submit = Utils::unserialize($line['serialized_data']);
             
             # if it's not an object that means it cannot be unserilized
-            if($submit === false){ throw new Exception("Cannot unserialize pendining submission"); }
+            if($submit === false){ throw new \Exception("Cannot unserialize pendining submission"); }
             
             # @TODO this should be run after submission saved on the database. Do it later
             DB::write("DELETE FROM `pending_submissions` WHERE `submission_id` = ':sid' OR `token` = ':sid' LIMIT 1", $id, $id);

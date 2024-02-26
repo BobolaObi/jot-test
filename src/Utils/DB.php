@@ -298,7 +298,7 @@ Thank you for your patience.", "Temporarily Unavailable", mysqli_error(self::$dl
 
         try{
             $result = mysqli_query(self::$dlink, $query);
-        }catch (Throwable $_){
+        }catch (\Throwable $_){
             function_exists('xdebug_break') && xdebug_break();
             throw $_;
         }
@@ -493,7 +493,7 @@ Thank you for your patience.", "Temporarily Unavailable", mysqli_error(self::$dl
     /**
      * Check if the table exists or not
      * @param  $table
-     * @return boolen
+     * @return bool
      */
     static function tableExists($table)
     {

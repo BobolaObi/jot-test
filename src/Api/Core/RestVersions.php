@@ -81,7 +81,7 @@ class RestVersions{
      */
     public function getDefaultVersion (){
         if (!$this->isVersionAvailable($this->defaultVersion)){
-            throw new Exception("Default version of the API is not available.");
+            throw new \Exception("Default version of the API is not available.");
         }
         return $this->defaultVersion;
     }

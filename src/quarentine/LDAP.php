@@ -22,7 +22,7 @@ class LDAP{
         $this->conn = ldap_connect($host, $port);
         
         if(!$this->conn){
-            throw new Exception("Could not connect to $host");  
+            throw new \Exception("Could not connect to $host");  
         }
         ldap_set_option($this->conn, LDAP_OPT_PROTOCOL_VERSION, 3);
     } 

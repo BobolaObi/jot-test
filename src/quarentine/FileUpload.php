@@ -30,7 +30,7 @@ class FileUpload{
         
         $extension = Utils::getFileExtension($this->file['name']);
         if(in_array($extension, $this->neverAllow)){
-            throw new Exception('File type is not allowed');
+            throw new \Exception('File type is not allowed');
         }
         $this->file['name'] = Utils::fixUploadName($this->file['name']);
         
@@ -46,12 +46,12 @@ class FileUpload{
             $url = UPLOAD_URL;
             if(!file_exists($ndestination)){
                 if(!Utils::recursiveMkdir($ndestination, 0777)){
-                    throw new Exception("Error creating upload folder. <br>".$ndestination);
+                    throw new \Exception("Error creating upload folder. <br>".$ndestination);
                 }
             }
             
             if(!move_uploaded_file($this->file['tmp_name'], $ndestination.$this->file['name'])){
-                throw new Exception("Error when moving the uploaded file");
+                throw new \Exception("Error when moving the uploaded file");
             }
             
         }
@@ -71,7 +71,7 @@ class FileUpload{
             $amaz->suppressDelete($filePath);
         }else{
             if(!unlink($filePath)){
-                throw new Exception('File cannot be deleted');
+                throw new \Exception('File cannot be deleted');
             }
         }
     }

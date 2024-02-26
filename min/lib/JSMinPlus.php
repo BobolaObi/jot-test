@@ -289,7 +289,7 @@ class JSMinPlus
 			break;
 
 			case KEYWORD_DEBUGGER:
-				throw new Exception('NOT IMPLEMENTED: DEBUGGER');
+				throw new \Exception('NOT IMPLEMENTED: DEBUGGER');
 			break;
 
 			case TOKEN_CONDCOMMENT_MULTILINE:
@@ -462,7 +462,7 @@ class JSMinPlus
 			break;
 
 			default:
-				throw new Exception('UNKNOWN TOKEN TYPE: ' . $n->type);
+				throw new \Exception('UNKNOWN TOKEN TYPE: ' . $n->type);
 		}
 
 		return $s;
@@ -1234,7 +1234,7 @@ class JSParser
 
 				case OP_RIGHT_CURLY:
 					if (!$this->t->scanOperand && $x->curlyLevel != $cl)
-						throw new Exception('PANIC: right curly botch');
+						throw new \Exception('PANIC: right curly botch');
 				break 2;
 
 				case OP_LEFT_PAREN:

@@ -17,7 +17,7 @@
         $file = $_FILES['fileUpload'];
         try{
             if(strlen($file['name']) < 3){
-                throw new Exception('Please select a file first');
+                throw new \Exception('Please select a file first');
             }
             $dim = Utils::getImageDimensions($file['tmp_name']);
             $upload = new FileUpload($file);
