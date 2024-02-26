@@ -5,7 +5,6 @@ use Legacy\Jot\UserManagement\Session;
 use Legacy\Jot\Utils\Utils;
 
 
-
 ?>
 <div class="footer-box index-footer-back">
     <? if(!APP){ ?>

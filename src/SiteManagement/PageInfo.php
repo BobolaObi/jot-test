@@ -6,7 +6,6 @@
  */
 
 namespace Legacy\Jot\SiteManagement;
-
 use Legacy\Jot\UserManagement\Session;
 
 class PageInfo

@@ -8,7 +8,6 @@ use Legacy\Jot\Utils\Settings;
 use Legacy\Jot\Utils\Utils;
 
 
-
 ?>
 <?
 

@@ -3,7 +3,6 @@
 use Legacy\Jot\Utils\Utils;
 
 
-
 ?>
 <?php 
 

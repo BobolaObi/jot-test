@@ -8,7 +8,6 @@ use Legacy\Jot\Utils\DB;
 use Legacy\Jot\Utils\Server;
 
 
-
 /**
  * All site configurations here
  * @package JotForm_Site_Management

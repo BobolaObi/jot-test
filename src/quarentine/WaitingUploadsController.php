@@ -1,6 +1,6 @@
 <?php
 
-use Legacy\Jot\JotRequestServer as RequestServer;
+use Legacy\Jot\RequestServer;
 use Legacy\Jot\Utils\Console;
 use Legacy\Jot\Utils\DB;
 use Legacy\Jot\Utils\Utils;

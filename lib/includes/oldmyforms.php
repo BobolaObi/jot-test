@@ -3,7 +3,6 @@
 use Legacy\Jot\UserManagement\Session;
 
 
-
 ?>
 <div id="tool_bar" class="index-grad4" style="">
      <div class="toolbar-set" id="group-myforms">

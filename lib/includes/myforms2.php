@@ -4,7 +4,6 @@ use Legacy\Jot\UserManagement\Session;
 use Legacy\Jot\Utils\Utils;
 
 
-
 ?>
 <div id="tool_bar" class="index-grad4" style="">
      <div class="toolbar-set" id="group-myforms" style="margin-left:200px;">

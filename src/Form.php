@@ -313,7 +313,7 @@ class Form{
                 $cacheDB = Utils::getRedis(CACHEDB);
                 $cacheDB->flushdb();
             }else{
-                $request = new JotRequestServer(array(
+                $request = new RequestServer(array(
                    "action" => 'clearAllCache',
                    "toAll"  => "yes"
                 ), true);
@@ -328,7 +328,7 @@ class Form{
         if($type == "search"){
             $search = $id;
             
-            $request = new JotRequestServer(array(
+            $request = new RequestServer(array(
                "action" => 'clearFormCacheBySearch',
                "search" => $search,
                "toAll"  => "yes"
@@ -347,7 +347,7 @@ class Form{
                     }
                 }
             }else{
-                $request = new JotRequestServer(array(
+                $request = new RequestServer(array(
                    "action" => 'clearFormCache',
                    "formID" => $id,
                    "toAll"  => "yes"
@@ -1405,7 +1405,7 @@ class Form{
                     include ROOT."/rssform.php";
                 	break;
                 case "pdf":
-                    $r = new JotRequestServer(array(
+                    $r = new RequestServer(array(
                         "action" => "exportPDF",
                         "formID" => $formname
                     ));

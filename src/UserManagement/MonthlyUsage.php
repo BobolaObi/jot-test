@@ -8,7 +8,6 @@
  */
 
 namespace Legacy\Jot\UserManagement;
-
 use Legacy\Jot\Utils\Console;
 use Legacy\Jot\Utils\DB;
 use Legacy\Jot\Utils\Utils;

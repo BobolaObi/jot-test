@@ -1,7 +1,7 @@
 <?php
 
 use Legacy\Jot\Exceptions\JotFormException;
-use Legacy\Jot\JotRequestServer as RequestServer;
+use Legacy\Jot\RequestServer;
 use Legacy\Jot\Utils\Utils;
 
 

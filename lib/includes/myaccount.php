@@ -5,7 +5,6 @@ use Legacy\Jot\UserManagement\Session;
 use Legacy\Jot\Utils\TimeZone;
 
 
-
 ?>
 <?php
 if ( (!Session::isLoggedIn() && isset($_GET['upgraded'])) || (isset($_GET['username']) && Session::$username !== $_GET['username']) ):

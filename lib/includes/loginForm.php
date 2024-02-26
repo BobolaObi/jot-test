@@ -3,7 +3,6 @@
 use Legacy\Jot\UserManagement\Session;
 
 
-
 ?>
 <div id="signinFieldset" class="fieldsetAccount">
     <!-- label class="locale" style="padding:4px;">Welcome <b title="<?=Session::$username?>">Guest</b>, Sign In to Your Account</label-->

@@ -6,7 +6,6 @@
  */
 
 namespace Legacy\Jot\Utils;
-
 use Legacy\Jot\Form;
 
 class DummyData{

@@ -1,7 +1,6 @@
 <?php
 
 namespace Legacy\Jot\Utils;
-
 use Legacy\Jot\Configs;
 
 

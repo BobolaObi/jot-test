@@ -14,11 +14,11 @@
  */
 
 namespace Legacy\Jot\UserManagement;
-
 use Legacy\Jot\Configs;
 use Legacy\Jot\Exceptions\JotFormException;
+use Legacy\Jot\Exceptions\RecordNotFoundException;
 use Legacy\Jot\Form;
-use Legacy\Jot\JotRequestServer as RequestServer;
+use Legacy\Jot\RequestServer;
 use Legacy\Jot\Utils\Client;
 use Legacy\Jot\Utils\Console;
 use Legacy\Jot\Utils\DB;

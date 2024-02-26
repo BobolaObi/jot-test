@@ -4,7 +4,6 @@ use Legacy\Jot\Report;
 use Legacy\Jot\Utils\Utils;
 
 
-
 ?>
 <?
     $reportID = Utils::get('reportID');

@@ -7,7 +7,6 @@
  */
 
 namespace Legacy\Jot\UserManagement;
-
 use Legacy\Jot\Utils\DB;
 
 class APIKey {

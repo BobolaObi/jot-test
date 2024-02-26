@@ -5,7 +5,6 @@ use Legacy\Jot\UserManagement\Session;
 use Legacy\Jot\Utils\Utils;
 
 
-
 ?>
 <fieldset class="accountField" id="accountinfo" style="padding:5px; padding-left:0">
     <legend class="locale">Welcome</legend>

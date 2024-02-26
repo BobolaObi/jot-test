@@ -10,8 +10,8 @@
  */
 
 namespace Legacy\Jot\Utils;
-
 use Legacy\Jot\Configs;
+use Legacy\Jot\Exceptions\DBException;
 use Legacy\Jot\JotErrors;
 
 

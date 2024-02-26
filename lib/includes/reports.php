@@ -3,7 +3,6 @@
 use Legacy\Jot\Utils\Utils;
 
 
-
 ?>
 <?
     $reportID = Utils::getCurrentID('report');

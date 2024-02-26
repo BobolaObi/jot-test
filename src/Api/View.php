@@ -1,7 +1,6 @@
 <?php
 
 namespace Legacy\Jot\Api;
-
 use Legacy\Jot\Api\Core\RestServer;
 use Legacy\Jot\Api\Core\RestView;
 

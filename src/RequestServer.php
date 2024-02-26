@@ -19,7 +19,7 @@ use Legacy\Jot\Utils\Server;
 use Legacy\Jot\Utils\Settings;
 use Legacy\Jot\Utils\Utils;
 
-class JotRequestServer
+class RequestServer
 {
     # Type of the responses it should be application/json but it's hard to debug and browser are having some problems with it
     private $responseContentType = /* "application/x-json"; # */ "text/javascript"; # for debugging

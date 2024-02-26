@@ -5,7 +5,6 @@ use Legacy\Jot\Utils\Server;
 use Legacy\Jot\Utils\Settings;
 
 
-
 ?>
 <?
     if(APP){

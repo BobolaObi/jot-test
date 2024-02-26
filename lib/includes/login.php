@@ -3,7 +3,6 @@
 use Legacy\Jot\Utils\Utils;
 
 
-
 ?>
 <div id="myaccount" class="signin">
 	<div class="barePage">

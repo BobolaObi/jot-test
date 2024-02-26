@@ -6,7 +6,6 @@
  */
 
 namespace Legacy\Jot\Utils;
-
 use Legacy\Jot\Exceptions\JotFormException;
 use Legacy\Jot\JotErrors;
 

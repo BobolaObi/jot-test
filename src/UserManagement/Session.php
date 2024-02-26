@@ -7,7 +7,6 @@
  */
 
 namespace Legacy\Jot\UserManagement;
-
 use Legacy\Jot\ID;
 use Legacy\Jot\Utils\Client;
 use Legacy\Jot\Utils\DB;
