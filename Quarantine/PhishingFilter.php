@@ -20,12 +20,12 @@ class PhishingFilter
     /**
      * This is the minimum accepted value
      * for a suspicious spam word
-     * @var CONSTANT integer
+      * @var //CONSTANT integer
      */
     const MIN_ACCEPTED_LENGTH = 4;
 
     /**
-     * @var CONSTANT integer
+      * @var //CONSTANT integer
      */
     const BACKGROUND_STRENGTH = 5;
 
@@ -37,20 +37,20 @@ class PhishingFilter
 
     /**
      * The id of the form we are dealing with.
-     * @var String
+      * @var //String
      */
     private $form;
 
     /**
      * The works that are stored for calculating the
      * spam probability
-     * @var string array
+      * @var //string array
      */
     private $words = array();
 
     /**
      * The total score for the form.
-     * @var float
+      * @var //float
      */
     private $score = 0;
 
@@ -58,7 +58,7 @@ class PhishingFilter
      * Those variables are counting the total spam
      * occurance
      * Enter description here ...
-     * @var unknown_type
+      * @var //unknown_type
      */
     private $totalSpam, $totalNotSpam;
 

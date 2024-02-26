@@ -17,7 +17,7 @@ class UFSController
     /**
      * This holds interfaces and keys true or false, decided according there are used or not.
      * This is default value. You can change it using setInterfaces.
-     * @var String Array
+      * @var //String Array
      */
     private $interfaces = array(
         UploadControllers::FileController,

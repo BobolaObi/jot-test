@@ -20,7 +20,7 @@ class LibraryLoader
     /**
      * Static instance of the
      * LibraryLoader object
-     * @var LibraryLoader
+      * @var //LibraryLoader
      */
     static private $instance;
 

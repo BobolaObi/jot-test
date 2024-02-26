@@ -68,7 +68,7 @@ class HTTP_ConditionalGet {
      * You'll want to check this after instantiating the object. If true, do
      * not send content, just call sendHeaders() if you haven't already.
      *
-     * @var bool
+      * @var //bool
      */
     public $cacheIsValid = null;
 

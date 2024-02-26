@@ -13,55 +13,55 @@ class MigrateUser
 {
     /**
      * Username of the migration user
-     * @var string
+      * @var //string
      */
     private $username;
     /**
      * complete information of the user from database, this array also contains monthly_usage information
-     * @var array
+      * @var //array
      */
     private $user;
     /**
      * Array of all forms of this user, this array contains every data about forms such as listing, submissions, question properties etc
-     * @var array
+      * @var //array
      */
     private $forms;
     /**
      * List of the formIDs this user has
-     * @var array
+      * @var //array
      */
     private $formIDList = array();
     /**
      * Defines if a prefix should be added to migrated user account or not
-     * @var boolean
+      * @var //boolean
      */
     private $addPrefix;
 
     /**
      * Products used in this form
-     * @var Array
+      * @var //Array
      */
     private $productIDs;
     /**
-     * @var \Legacy\Jot\A global value to keep current form who's emails are parsing
+      * @var //\Legacy\Jot\A global value to keep current form who's emails are parsing
      */
     public $currentReplaceForm;
 
     /**
      * If merge is specified then last migration data will be kept here
-     * @var \Legacy\Jot\MySql DateTime
+      * @var //\Legacy\Jot\MySql DateTime
      */
     public $lastMigrationDate;
 
     /**
      * When we started the migration
-     * @var \Legacy\Jot\Mysql DateTime
+      * @var //\Legacy\Jot\Mysql DateTime
      */
     public $migrationStartDate;
 
     /**
      * This submission ids errored and must be skipped
-     * @var \Legacy\Jot\submission id
+      * @var //\Legacy\Jot\submission id
      */
     public $erroredSubmission = array();
 
@@ -393,7 +393,7 @@ class MigrateUser
     {
 
         /**
-         * @var Array containing deleted properties
+          * @var //Array containing deleted properties
          */
         $deletedOnes = array(
             "spamcheck",
@@ -420,7 +420,7 @@ class MigrateUser
         );
 
         /**
-         * @var \Legacy\Jot\Associated array containing conversion of style names
+          * @var //\Legacy\Jot\Associated array containing conversion of style names
          */
         $styleNames = array(
             "Default" => "form",
@@ -431,7 +431,7 @@ class MigrateUser
             "PostItYellow" => "post_it_yellow"
         );
         /**
-         * @var \Legacy\Jot\Associated array contains conversion of the property names
+          * @var //\Legacy\Jot\Associated array contains conversion of the property names
          */
         $newOnes = array(
             "desc" => "description",
@@ -456,7 +456,7 @@ class MigrateUser
         );
 
         /**
-         * @var \Legacy\Jot\These values must be converted to first letter capital, in order to make them work in v3
+          * @var //\Legacy\Jot\These values must be converted to first letter capital, in order to make them work in v3
          */
         $ucFirstTexts = array("yes", "no", "true", "false", "none", "left", "center", "right");
 
@@ -598,7 +598,7 @@ class MigrateUser
     public function convertTypeName($type)
     {
         /**
-         * @var \Legacy\Jot\Keps the type names chanded in the new version
+          * @var //\Legacy\Jot\Keps the type names chanded in the new version
          */
         $types = array(
             "control_datetimepicker" => "control_datetime",

@@ -19,13 +19,13 @@ class MigrateAllSubmissions
 {
     /**
      * Number of the users will be migrated at each chunk
-     * @var int
+      * @var //int
      */
     static $chunk = 100;
 
     /**
      * Will Users be merged or overwritten
-     * @var boolean
+      * @var //boolean
      */
     static $merge = true;
 

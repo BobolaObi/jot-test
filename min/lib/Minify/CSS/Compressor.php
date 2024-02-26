@@ -36,12 +36,12 @@ class Minify_CSS_Compressor {
     }
     
     /**
-     * @var array options
+      * @var //array options
      */
     protected $_options = null;
     
     /**
-     * @var bool Are we "in" a hack?
+      * @var //bool Are we "in" a hack?
      * 
      * I.e. are some browsers targetted until the next comment?
      */

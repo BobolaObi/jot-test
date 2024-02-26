@@ -57,7 +57,7 @@ class HTTP_Encoder {
      * but there seem to be remaining, intermittent encoding bugs in patched 
      * IE6 on the wild web.
      * 
-     * @var bool
+      * @var //bool
      */
     public static $encodeToIe6 = false;
     
@@ -67,7 +67,7 @@ class HTTP_Encoder {
      * 
      * This level is used if encode() is not given a $compressionLevel
      * 
-     * @var int
+      * @var //int
      */
     public static $compressionLevel = 6;
     

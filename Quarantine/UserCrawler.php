@@ -16,58 +16,58 @@ abstract class UserCrawler
     /**
      *
      * The critical load limit used in isLoadCritical function.
-     * @var Integer
+      * @var //Integer
      */
     const loadLimit = 2;
 
     /**
      * Used for limit of fetched users at once.
      * And used for number of users executed at once without time delay.
-     * @var Integer
+      * @var //Integer
      */
     const defaultLimit = 100;
 
     /**
      * The start of the records, it is 0 by default.
-     * @var Interger
+      * @var //Interger
      */
     protected $start = 0;
     /**
      * The limit of fetching users each time. Default is 100.
-     * @var Integer
+      * @var //Integer
      */
     protected $limit = UserCrawler::defaultLimit;
     /**
      * This flag is for fetching users from old database. By default it is false.
-     * @var Boolean
+      * @var //Boolean
      */
     protected $oldUsers = false;
     /**
      * Array of values, of a row in user table.
-     * @var Array
+      * @var //Array
      */
     protected $userDetails;
     /**
      * Delay after $x number of user. $x is defined by $userFrequency.
-     * @var Integer
+      * @var //Integer
      */
     protected $executeDelay = 0;
     /**
      * The number of users that will be executed without delay. By default this is
      * eqal to the numver of $limit.
-     * @var Integer
+      * @var //Integer
      */
     protected $userFrequency = UserCrawler::defaultLimit;
 
     /**
      * Holds number of total users.
-     * @var Interger
+      * @var //Interger
      */
     protected $totalUser;
 
     /**
      * Criteria to be used in the USER Select query. Filters users for this criteria
-     * @var Array
+      * @var //Array
      */
     protected $criteria = "1";
 

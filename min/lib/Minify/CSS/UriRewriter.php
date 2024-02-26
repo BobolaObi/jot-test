@@ -15,13 +15,13 @@ class Minify_CSS_UriRewriter {
     /**
      * Defines which class to call as part of callbacks, change this
      * if you extend Minify_CSS_UriRewriter
-     * @var string
+      * @var //string
      */
     protected static $className = 'Minify_CSS_UriRewriter';
     
     /**
      * rewrite() and rewriteRelative() append debugging information here
-     * @var string
+      * @var //string
      */
     public static $debugText = '';
     
@@ -109,23 +109,23 @@ class Minify_CSS_UriRewriter {
     
     
     /**
-     * @var string directory of this stylesheet
+      * @var //string directory of this stylesheet
      */
     private static $_currentDir = '';
     
     /**
-     * @var string DOC_ROOT
+      * @var //string DOC_ROOT
      */
     private static $_docRoot = '';
     
     /**
-     * @var array directory replacements to map symlink targets back to their
+      * @var //array directory replacements to map symlink targets back to their
      * source (within the document root) E.g. '/var/www/symlink' => '/var/realpath'
      */
     private static $_symlinks = array();
     
     /**
-     * @var string path to prepend
+      * @var //string path to prepend
      */
     private static $_prependPath = null;
     

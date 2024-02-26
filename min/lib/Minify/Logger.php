@@ -39,7 +39,7 @@ class Minify_Logger {
     }
     
     /**
-     * @var mixed logger object (like FirePHP) or null (i.e. no logger available)
+      * @var //mixed logger object (like FirePHP) or null (i.e. no logger available)
      */
     private static $_logger = null;
 }

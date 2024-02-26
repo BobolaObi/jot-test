@@ -15,14 +15,14 @@ class Minify_CommentPreserver {
     /**
      * String to be prepended to each preserved comment
      *
-     * @var string
+      * @var //string
      */
     public static $prepend = "\n";
     
     /**
      * String to be appended to each preserved comment
      *
-     * @var string
+      * @var //string
      */
     public static $append = "\n";
     

@@ -41,7 +41,7 @@ class Minify_Build {
     /**
      * Last modification time of all files in the build
      * 
-     * @var int 
+      * @var //int 
      */
     public $lastModified = 0;
     
@@ -49,7 +49,7 @@ class Minify_Build {
      * String to use as ampersand in uri(). Set this to '&' if
      * you are not HTML-escaping URIs.
      *
-     * @var string
+      * @var //string
      */
     public static $ampersand = '&amp;';
     

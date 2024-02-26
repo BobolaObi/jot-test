@@ -23,11 +23,11 @@ class DropBoxIntegration extends UFS{
     
     public $consumerKey, $consumerSecret, $redirectURL, $config, $root;
     /**
-     * @var Dropbox_OAuth_PEAR
+      * @var //Dropbox_OAuth_PEAR
      */
     private $oauth;
     /**
-     * @var Dropbox_API
+      * @var //Dropbox_API
      */
     public $dropbox;
     

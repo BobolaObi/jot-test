@@ -60,7 +60,7 @@ class FirePHP {
   /**
    * FirePHP version
    *
-   * @var string
+    * @var //string
    */
   const VERSION = '0.2.0';
   
@@ -69,7 +69,7 @@ class FirePHP {
    *
    * Logs a message to firebug console.
    * 
-   * @var string
+    * @var //string
    */
   const LOG = 'LOG';
   
@@ -78,7 +78,7 @@ class FirePHP {
    *
    * Logs a message to firebug console and displays an info icon before the message.
    * 
-   * @var string
+    * @var //string
    */
   const INFO = 'INFO';
   
@@ -87,7 +87,7 @@ class FirePHP {
    *
    * Logs a message to firebug console, displays an warning icon before the message and colors the line turquoise.
    * 
-   * @var string
+    * @var //string
    */
   const WARN = 'WARN';
   
@@ -96,21 +96,21 @@ class FirePHP {
    *
    * Logs a message to firebug console, displays an error icon before the message and colors the line yellow. Also increments the firebug error count.
    * 
-   * @var string
+    * @var //string
    */
   const ERROR = 'ERROR';
   
   /**
    * Dumps a variable to firebug's server panel
    *
-   * @var string
+    * @var //string
    */
   const DUMP = 'DUMP';
   
   /**
    * Displays a stack trace in firebug console
    *
-   * @var string
+    * @var //string
    */
   const TRACE = 'TRACE';
   
@@ -119,70 +119,70 @@ class FirePHP {
    * 
    * Increments the firebug error count.
    *
-   * @var string
+    * @var //string
    */
   const EXCEPTION = 'EXCEPTION';
   
   /**
    * Displays an table in firebug console
    *
-   * @var string
+    * @var //string
    */
   const TABLE = 'TABLE';
   
   /**
    * Starts a group in firebug console
    * 
-   * @var string
+    * @var //string
    */
   const GROUP_START = 'GROUP_START';
   
   /**
    * Ends a group in firebug console
    * 
-   * @var string
+    * @var //string
    */
   const GROUP_END = 'GROUP_END';
   
   /**
    * Singleton instance of FirePHP
    *
-   * @var FirePHP
+    * @var //FirePHP
    */
   protected static $instance = null;
   
   /**
    * Wildfire protocol message index
    *
-   * @var int
+    * @var //int
    */
   protected $messageIndex = 1;
     
   /**
    * Options for the library
    * 
-   * @var array
+    * @var //array
    */
   protected $options = array();
   
   /**
    * Filters used to exclude object members when encoding
    * 
-   * @var array
+    * @var //array
    */
   protected $objectFilters = array();
   
   /**
    * A stack of objects used to detect recursion during object encoding
    * 
-   * @var object
+    * @var //object
    */
   protected $objectStack = array();
   
   /**
    * Flag to enable/disable logging
    * 
-   * @var boolean
+    * @var //boolean
    */
   protected $enabled = true;
   

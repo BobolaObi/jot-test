@@ -2,7 +2,7 @@
 /**
  * Data URI of images/loading_big.gif for faster loading in the postRedirect page
  * @see Utils::postRedirect
- * @var string
+  * @var //string
  */
 $loadingGif = "data:image/gif;base64,R0lGODlh6wDrAPMPAFdXV3V1dWhoaCAgIIKCgpiYmKmp".
 "qbW1tczMzM7OztTU1OHh4e7u7vf39/r6+v///yH5BAkKAA8AIf8LTkVUU0NBUEUyLjADAQAAACwAAAAA".

@@ -32,7 +32,7 @@ class Minify_YUICompressor {
      * Filepath of the YUI Compressor jar file. This must be set before
      * calling minifyJs() or minifyCss().
      *
-     * @var string
+      * @var //string
      */
     public static $jarFile = null;
     
@@ -40,14 +40,14 @@ class Minify_YUICompressor {
      * Writable temp directory. This must be set before calling minifyJs()
      * or minifyCss().
      *
-     * @var string
+      * @var //string
      */
     public static $tempDir = null;
     
     /**
      * Filepath of "java" executable (may be needed if not in shell's PATH)
      *
-     * @var string
+      * @var //string
      */
     public static $javaExecutable = 'java';
     

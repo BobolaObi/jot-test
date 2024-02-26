@@ -15,7 +15,7 @@ class ABTestingController
 {
     /**
      * Currently registered tests
-     * @var array
+      * @var //array
      */
     public static $activeTests = array();
 

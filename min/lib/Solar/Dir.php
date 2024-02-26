@@ -20,7 +20,7 @@ class Solar_Dir {
      * 
      * The OS-specific temporary directory location.
      * 
-     * @var string
+      * @var //string
      * 
      */
     protected static $_tmp;

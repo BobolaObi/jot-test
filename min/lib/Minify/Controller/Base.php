@@ -136,7 +136,7 @@ abstract class Minify_Controller_Base {
     }
     
     /**
-     * @var array instances of Minify_Source, which provide content and
+      * @var //array instances of Minify_Source, which provide content and
      * any individual minification needs.
      * 
      * @see Minify_Source

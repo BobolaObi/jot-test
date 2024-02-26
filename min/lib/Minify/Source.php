@@ -16,27 +16,27 @@
 class Minify_Source {
 
     /**
-     * @var int time of last modification
+      * @var //int time of last modification
      */
     public $lastModified = null;
     
     /**
-     * @var callback minifier function specifically for this source.
+      * @var //callback minifier function specifically for this source.
      */
     public $minifier = null;
     
     /**
-     * @var array minification options specific to this source.
+      * @var //array minification options specific to this source.
      */
     public $minifyOptions = null;
 
     /**
-     * @var string full path of file
+      * @var //string full path of file
      */
     public $filepath = null;
     
     /**
-     * @var string HTTP Content Type (Minify requires one of the constants Minify::TYPE_*)
+      * @var //string HTTP Content Type (Minify requires one of the constants Minify::TYPE_*)
      */
     public $contentType = null;
     

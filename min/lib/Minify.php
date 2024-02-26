@@ -45,7 +45,7 @@ class Minify {
      * jumps ahead by a number of hours, set this variable to that number. If the mtime 
      * moves back, this should not be needed.
      *
-     * @var int $uploaderHoursBehind
+      * @var //int $uploaderHoursBehind
      */
     public static $uploaderHoursBehind = 0;
     
@@ -55,7 +55,7 @@ class Minify {
      * appear too late in the combined stylesheet. If found, serve() will prepend
      * the output with this warning.
      *
-     * @var string $importWarning
+      * @var //string $importWarning
      */
     public static $importWarning = "/* See http://code.google.com/p/minify/wiki/CommonProblems#@imports_can_appear_in_invalid_locations_in_combined_CSS_files */\n";
     
@@ -382,17 +382,17 @@ class Minify {
     }
     
     /**
-     * @var mixed Minify_Cache_* object or null (i.e. no server cache is used)
+      * @var //mixed Minify_Cache_* object or null (i.e. no server cache is used)
      */
     private static $_cache = null;
     
     /**
-     * @var Minify_Controller active controller for current request
+      * @var //Minify_Controller active controller for current request
      */
     protected static $_controller = null;
     
     /**
-     * @var array options for current request
+      * @var //array options for current request
      */
     protected static $_options = null;
     
