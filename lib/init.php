@@ -3,10 +3,10 @@
 use Legacy\Jot\Configs;
 use Legacy\Jot\UserManagement\User;
 use Legacy\Jot\Utils\Console;
+use Legacy\Jot\Utils\DB;
 use Legacy\Jot\Utils\Server;
 use Legacy\Jot\Utils\TimeZone;
 use Legacy\Jot\Utils\Utils;
-use Legacy\Jot\Utils\DB;
 
 require_once(__DIR__ . "/../vendor/autoload.php");
 

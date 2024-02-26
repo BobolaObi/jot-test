@@ -6,7 +6,6 @@
  */
 
 namespace Legacy\Jot\Utils;
-use Legacy\Jot\Configs;
 use Legacy\Jot\UserManagement\Session;
 
 class Utils extends UtilsArrays

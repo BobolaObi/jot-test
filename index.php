@@ -1,8 +1,15 @@
 <?php
 
 use Legacy\Jot\Configs;
+use Legacy\Jot\Form;
+use Legacy\Jot\Integrations\DropBoxIntegration;
+use Legacy\Jot\Integrations\FTPIntegration;
+use Legacy\Jot\SiteManagement\Translations;
+use Legacy\Jot\UserManagement\Session;
+use Legacy\Jot\Utils\Utils;
 
 include_once './lib/init.php';
+
 Form::handleSlugURLs();
 header("Content-type: text/html; charset=utf-8");
 

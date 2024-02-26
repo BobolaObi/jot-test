@@ -1,4 +1,10 @@
 <?
+
+use Legacy\Jot\Integrations\DropBoxIntegration;
+use Legacy\Jot\Integrations\FTPIntegration;
+use Legacy\Jot\Submission;
+use Legacy\Jot\Utils\Utils;
+
 include_once "lib/init.php";
 Utils::stopPostBack();
 try{

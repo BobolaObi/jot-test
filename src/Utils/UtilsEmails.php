@@ -8,7 +8,6 @@
 namespace Legacy\Jot\Utils;
 use Legacy\Jot\Configs;
 use Legacy\Jot\Exceptions\SystemException;
-use Legacy\Jot\Exceptions\Warning;
 
 class UtilsEmails {
     

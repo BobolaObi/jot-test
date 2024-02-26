@@ -2,7 +2,6 @@
 
 use Legacy\Jot\SiteManagement\PageInfo;
 use Legacy\Jot\UserManagement\AccountType;
-use Legacy\Jot\UserManagement\Session;
 use Legacy\Jot\Utils\Console;
 use Legacy\Jot\Utils\DB;
 use Legacy\Jot\Utils\Server;
