@@ -317,7 +317,7 @@ class DBI
         if ($result = self::query($query)) {
             $data = [];
             while ($line = @mysqli_fetch_assoc($result)) {
-                array_push($data, $line);
+                $data[] = $line;
             }
             if (is_resource($result)) {
                 mysqli_free_result($result);
@@ -433,7 +433,7 @@ class DBI
         $response = self::read("SHOW TABLES");
         $tables = [];
         foreach ($response->result as $line) {
-            array_push($tables, $line['Tables_in_' . self::$database]);
+            $tables[] = $line['Tables_in_' . self::$database];
         }
         return $tables;
     }

@@ -93,7 +93,7 @@ class UFSController
             $controller = new $className($this->username, $this->formID, $this->submissionID, $this->uploadProperties, $this->submission);
             $controller->setProperties();
             if ($controller->hasIntegration()) {
-                array_push($this->controllers, $controller);
+                $this->controllers[] = $controller;
             }
         } else {
             throw new \Exception("Cannot create with controller name " . $className);

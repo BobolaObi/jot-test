@@ -20,16 +20,16 @@ foreach($browse as $file){
 	foreach($lines as $line){
 		if( preg_match("/locale-button.*value=\"(.*?)\"/", $line, $m) ){
 			if(!$ignore_list[$m[1]])
-				array_push($strings, $m[1]);	
+				$strings[] = $m[1];
 		}
 		if( preg_match("/class=\".*locale.*\">(.*?)<\/[^b]/", $line, $m) ){
 			if(!$ignore_list[$m[1]])
-				array_push($strings, $m[1]);	
+				$strings[] = $m[1];
 		}
 		if( preg_match_all("/[\"']([^\'\"]*?)[\"']\.locale\(/", $line, $m) ){
 			foreach($m[1] as $i){
 				if(!$ignore_list[$i])
-					array_push($strings, $i);	
+					$strings[] = $i;
 			}
 		}
 		if( strstr($line, "var tips =") ){ //ignore tooltips which is at te end of the file

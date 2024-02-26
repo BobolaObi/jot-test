@@ -153,6 +153,6 @@ class SyncAmazonUploads extends UserCrawler
         if (!isset($this->usersSubmissions[$formId])) {
             $this->usersSubmissions[$formId] = [];
         }
-        array_push($this->usersSubmissions[$formId], $submissionId);
+        $this->usersSubmissions[$formId][] = $submissionId;
     }
 }

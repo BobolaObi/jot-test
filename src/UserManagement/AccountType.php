@@ -76,7 +76,7 @@ class AccountType
     {
         $accountTypes = [];
         foreach (self::$accounts as $account) {
-            array_push($accountTypes, $account->name);
+            $accountTypes[] = $account->name;
         }
         return $accountTypes;
     }

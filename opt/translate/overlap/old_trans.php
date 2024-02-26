@@ -36,7 +36,7 @@
 	while($row = @mysql_fetch_array($result, MYSQL_ASSOC)){
 		if($lang[$row{'l_id'}]){
 			#print $lang[$row{'l_id'}]."\n";
-			array_push($old_override[$lang[$row{'l_id'}]], [$sameword{$row{'o_t_id'}} => $row{'suggested_translation'}]);
+			$old_override[$lang[$row{'l_id'}]][] = [$sameword{$row{'o_t_id'}} => $row{'suggested_translation'}];
 			#print_r($row);
 		}
 	}

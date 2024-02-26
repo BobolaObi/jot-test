@@ -83,7 +83,7 @@ TPL;
         ob_start();
         $argv = ["main.php", "db:migrate"];
         if (isset(Server::$servers->db) && DB_HOST == Server::$servers->db->local->yunus) {
-            array_push($argv, "ENV=production");
+            $argv[] = "ENV=production";
         }
         include ROOT . "/opt/db/ruckusing/main.php";
         $output = ob_get_contents();
@@ -100,7 +100,7 @@ TPL;
         ob_start();
         $argv = ["main.php", "db:migrate", "VERSION=" . $version];
         if (DB_HOST == Server::$servers->db->local->yunus) {
-            array_push($argv, "ENV=production");
+            $argv[] = "ENV=production";
         }
         include ROOT . "/opt/db/ruckusing/main.php";
         $output = ob_get_contents();

@@ -451,20 +451,20 @@ class MonthlyUsage
                 if (!$forceSend && $res->rows > 0) {
                     $alreadyOverQuota = true;
                 } else {
-                    array_push($this->overQuota, $checkType);
+                    $this->overQuota[] = $checkType;
                 }
                 // No need to check others.
                 break;
             } else if ($this->$checkType == $this->accountType->limits[$checkType]) {
                 // Usage number is exactly equal to the quota limits, send e-mail.
-                array_push($this->overQuota, $checkType);
+                $this->overQuota[] = $checkType;
             } else if ($this->$checkType > floor($this->accountType->limits[$checkType] * 0.9)) {
                 // Usage number is less than the limit but over 90% of the it. 
                 // E-mail must have been sent already.
                 $alreadyAlmostFull = true;
             } else if ($this->$checkType == floor($this->accountType->limits[$checkType] * 0.9)) {
                 // Usage number is exactly 90% of the limit, send e-mail.
-                array_push($this->almostFull, $checkType);
+                $this->almostFull[] = $checkType;
             }
         }
 

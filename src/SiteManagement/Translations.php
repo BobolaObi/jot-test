@@ -261,7 +261,7 @@ class Translations
         # if(self::$langCode == 'zb-ZB'){ return Utils::stretch("Brains!", strlen($string)); }
 
         if (!is_array(self::$language)) {
-            array_push(self::$notTranslated, $string);
+            self::$notTranslated[] = $string;
             return $string;
         }
 
@@ -269,7 +269,7 @@ class Translations
             return self::$language[$string];
         } else {
             if (!empty($string)) {
-                array_push(self::$notTranslated, $string);
+                self::$notTranslated[] = $string;
             }
         }
 

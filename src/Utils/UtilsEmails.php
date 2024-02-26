@@ -31,7 +31,7 @@ class UtilsEmails
             $tokens = preg_split("/\;|\,|\s+|\n/", $emails);
             foreach ($tokens as $t) {
                 if (Utils::checkEmail($t, true)) {
-                    array_push($mails, $t);
+                    $mails[] = $t;
                 }
             }
         }

@@ -557,7 +557,7 @@ class JSParser
 	private function Statements($x)
 	{
 		$n = new JSNode($this->t, JS_BLOCK);
-		array_push($x->stmtStack, $n);
+		$x->stmtStack[] = $n;
 
 		while (!$this->t->isDone() && $this->t->peek() != OP_RIGHT_CURLY)
 			$n->addNode($this->Statement($x));
@@ -601,7 +601,7 @@ class JSParser
 			case KEYWORD_IF:
 				$n = new JSNode($this->t);
 				$n->condition = $this->ParenExpression($x);
-				array_push($x->stmtStack, $n);
+				$x->stmtStack[] = $n;
 				$n->thenPart = $this->Statement($x);
 				$n->elsePart = $this->t->match(KEYWORD_ELSE) ? $this->Statement($x) : null;
 				array_pop($x->stmtStack);
@@ -615,7 +615,7 @@ class JSParser
 				$n->cases = [];
 				$n->defaultIndex = -1;
 
-				array_push($x->stmtStack, $n);
+				$x->stmtStack[] = $n;
 
 				$this->t->mustMatch(OP_LEFT_CURLY);
 
@@ -643,7 +643,7 @@ class JSParser
 					while (($tt = $this->t->peek()) != KEYWORD_CASE && $tt != KEYWORD_DEFAULT && $tt != OP_RIGHT_CURLY)
 						$n2->statements->addNode($this->Statement($x));
 
-					array_push($n->cases, $n2);
+					$n->cases[] = $n2;
 				}
 
 				array_pop($x->stmtStack);
@@ -793,7 +793,7 @@ class JSParser
 
 					$this->t->mustMatch(OP_RIGHT_PAREN);
 					$n2->block = $this->Block($x);
-					array_push($n->catchClauses, $n2);
+					$n->catchClauses[] = $n2;
 				}
 
 				if ($this->t->match(KEYWORD_FINALLY))
@@ -913,7 +913,7 @@ class JSParser
 			if ($tt != TOKEN_IDENTIFIER)
 				throw $this->t->newSyntaxError('Missing formal parameter');
 
-			array_push($f->params, $this->t->currentToken()->value);
+			$f->params[] = $this->t->currentToken()->value;
 
 			if ($this->t->peek() != OP_RIGHT_PAREN)
 				$this->t->mustMatch(OP_COMMA);
@@ -929,7 +929,7 @@ class JSParser
 
 		$f->functionForm = $functionForm;
 		if ($functionForm == DECLARED_FORM)
-			array_push($x->funDecls, $f);
+			$x->funDecls[] = $f;
 
 		return $f;
 	}
@@ -956,7 +956,7 @@ class JSParser
 			$n2->readOnly = $n->type == KEYWORD_CONST;
 
 			$n->addNode($n2);
-			array_push($x->varDecls, $n2);
+			$x->varDecls[] = $n2;
 		}
 		while ($this->t->match(OP_COMMA));
 
@@ -1018,7 +1018,7 @@ class JSParser
 					}
 					else
 					{
-						array_push($operators, new JSNode($this->t));
+						$operators[] = new JSNode($this->t);
 						if ($tt == OP_ASSIGN)
 							end($operands)->assignOp = $this->t->currentToken()->assignOp;
 						else
@@ -1067,11 +1067,11 @@ class JSParser
 					if ($tt == OP_DOT)
 					{
 						$this->t->mustMatch(TOKEN_IDENTIFIER);
-						array_push($operands, new JSNode($this->t, OP_DOT, array_pop($operands), new JSNode($this->t)));
+						$operands[] = new JSNode($this->t, OP_DOT, array_pop($operands), new JSNode($this->t));
 					}
 					else
 					{
-						array_push($operators, new JSNode($this->t));
+						$operators[] = new JSNode($this->t);
 						$this->t->scanOperand = true;
 					}
 				break;
@@ -1082,13 +1082,13 @@ class JSParser
 					if (!$this->t->scanOperand)
 						break 2;
 
-					array_push($operators, new JSNode($this->t));
+					$operators[] = new JSNode($this->t);
 				break;
 
 				case OP_INCREMENT: case OP_DECREMENT:
 					if ($this->t->scanOperand)
 					{
-						array_push($operators, new JSNode($this->t));  // prefix increment or decrement
+						$operators[] = new JSNode($this->t);  // prefix increment or decrement
 					}
 					else
 					{
@@ -1106,7 +1106,7 @@ class JSParser
 
 						$n = new JSNode($this->t, $tt, array_pop($operands));
 						$n->postfix = true;
-						array_push($operands, $n);
+						$operands[] = $n;
 					}
 				break;
 
@@ -1114,7 +1114,7 @@ class JSParser
 					if (!$this->t->scanOperand)
 						break 2;
 
-					array_push($operands, $this->FunctionDefinition($x, false, EXPRESSED_FORM));
+					$operands[] = $this->FunctionDefinition($x, false, EXPRESSED_FORM);
 					$this->t->scanOperand = false;
 				break;
 
@@ -1123,15 +1123,15 @@ class JSParser
 					if (!$this->t->scanOperand)
 						break 2;
 
-					array_push($operands, new JSNode($this->t));
+					$operands[] = new JSNode($this->t);
 					$this->t->scanOperand = false;
 				break;
 
 				case TOKEN_CONDCOMMENT_MULTILINE:
 					if ($this->t->scanOperand)
-						array_push($operators, new JSNode($this->t));
+						$operators[] = new JSNode($this->t);
 					else
-						array_push($operands, new JSNode($this->t));
+						$operands[] = new JSNode($this->t);
 				break;
 
 				case OP_LEFT_BRACKET:
@@ -1155,13 +1155,13 @@ class JSParser
 						}
 
 						$this->t->mustMatch(OP_RIGHT_BRACKET);
-						array_push($operands, $n);
+						$operands[] = $n;
 						$this->t->scanOperand = false;
 					}
 					else
 					{
 						// Property indexing operator.
-						array_push($operators, new JSNode($this->t, JS_INDEX));
+						$operators[] = new JSNode($this->t, JS_INDEX);
 						$this->t->scanOperand = true;
 						++$x->bracketLevel;
 					}
@@ -1227,7 +1227,7 @@ class JSParser
 						break;
 					}
 
-					array_push($operands, $n);
+					$operands[] = $n;
 					$this->t->scanOperand = false;
 					--$x->curlyLevel;
 				break;
@@ -1240,7 +1240,7 @@ class JSParser
 				case OP_LEFT_PAREN:
 					if ($this->t->scanOperand)
 					{
-						array_push($operators, new JSNode($this->t, JS_GROUP));
+						$operators[] = new JSNode($this->t, JS_GROUP);
 					}
 					else
 					{
@@ -1266,7 +1266,7 @@ class JSParser
 								$n = new JSNode($this->t, JS_CALL, array_pop($operands), new JSNode($this->t, JS_LIST));
 							}
 
-							array_push($operands, $n);
+							$operands[] = $n;
 							$this->t->scanOperand = false;
 							break;
 						}
@@ -1274,7 +1274,7 @@ class JSParser
 						if ($n && $n->type == KEYWORD_NEW)
 							$n->type = JS_NEW_WITH_ARGS;
 						else
-							array_push($operators, new JSNode($this->t, JS_CALL));
+							$operators[] = new JSNode($this->t, JS_CALL);
 					}
 
 					++$x->parenLevel;
@@ -1345,7 +1345,7 @@ class JSParser
 	// Statement stack and nested statement handler.
 	private function nest($x, $node, $end = false)
 	{
-		array_push($x->stmtStack, $node);
+		$x->stmtStack[] = $node;
 		$n = $this->statement($x);
 		array_pop($x->stmtStack);
 
@@ -1387,7 +1387,7 @@ class JSParser
 		if ($n->end < $te)
 			$n->end = $te;
 
-		array_push($operands, $n);
+		$operands[] = $n;
 
 		return $n;
 	}

@@ -329,13 +329,13 @@ class CssSprite
                     if (!is_array($properties[$repeatType]["widths"])) {
                         $properties[$repeatType]["widths"] = [];
                     }
-                    array_push($properties[$repeatType]["widths"], $width);
+                    $properties[$repeatType]["widths"][] = $width;
 
                     # Set the array that will hold the all heights
                     if (!is_array($properties[$repeatType]["heights"])) {
                         $properties[$repeatType]["heights"] = [];
                     }
-                    array_push($properties[$repeatType]["heights"], $height);
+                    $properties[$repeatType]["heights"][] = $height;
 
                     # Set the string that will hold the css code for the group.
                     if (!isset($properties[$repeatType]["cssCode"])) {

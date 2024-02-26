@@ -696,7 +696,7 @@ class UtilsRequests extends UtilsEmails
 
             $params = [];
             foreach ($data as $key => $value) {
-                array_push($params, $key . "=" . $value);
+                $params[] = $key . "=" . $value;
             }
 
             $readyParams = "-d " . join(" -d ", $params);

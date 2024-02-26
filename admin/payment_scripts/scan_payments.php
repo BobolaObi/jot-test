@@ -66,7 +66,7 @@ foreach ($users->result as $row){
         
     }
     
-    array_push($results, $result);
+    $results[] = $result;
     
     unset($jotformSubscriptions);
     unset($userLog);

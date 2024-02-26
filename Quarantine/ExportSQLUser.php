@@ -122,7 +122,7 @@ class ExportSQLUser
         if ($query === false) {
             return;
         }
-        array_push($this->queries, $query);
+        $this->queries[] = $query;
     }
 
     public function getQueries()
@@ -159,7 +159,7 @@ class ESU_Table
             foreach ($row as $key => $value) {
                 $escaped[$key] = mysql_real_escape_string($value);
             }
-            array_push($insertValues, "('" . implode("','", $escaped) . "')");
+            $insertValues[] = "('" . implode("','", $escaped) . "')";
         }
         # Start generating the insert query.
         $action = $isReplace ? "REPLACE" : "INSERT";
@@ -193,7 +193,7 @@ class ESU_Table
             }
             foreach ($res->result as $row) {
                 foreach ($row as $fieldName => $value) {
-                    array_push($values[$fieldName], $value);
+                    $values[$fieldName][] = $value;
                 }
             }
             return $values;
@@ -209,9 +209,9 @@ class ESU_Table
 
         foreach ($this->fetchFields as $fieldName => $valueArr) {
             if (is_array($valueArr)) {
-                array_push($whereClause, "`{$fieldName}` IN ('" . implode("','", $valueArr) . "')");
+                $whereClause[] = "`{$fieldName}` IN ('" . implode("','", $valueArr) . "')";
             } else {
-                array_push($whereClause, "`{$fieldName}` = '{$valueArr}'");
+                $whereClause[] = "`{$fieldName}` = '{$valueArr}'";
             }
         }
         return implode(" AND ", $whereClause);

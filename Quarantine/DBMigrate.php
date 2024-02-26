@@ -91,7 +91,7 @@ class DBMigrate extends DB
         # Find the tables that must be dropped.
         $deletedTables = array_diff_assoc($localDBConfig, $fileDBConfig);
         foreach ($deletedTables as $tableName => $properties) {
-            array_push(self::$syncQueries, "DROP TABLE IF EXISTS `" . $tableName . "`");
+            self::$syncQueries[] = "DROP TABLE IF EXISTS `" . $tableName . "`";
         }
     }
 
@@ -118,17 +118,17 @@ class DBMigrate extends DB
 
             # add columns to the query
             foreach ($fields as $fieldName => $fieldProperties) {
-                array_push($lines, self::generateFieldLine($fieldProperties));
+                $lines[] = self::generateFieldLine($fieldProperties);
             }
 
             # add indexes to the query
             foreach ($indexes as $indexName => $indexProperties) {
-                array_push($lines, self::generateIndexLine($indexProperties));
+                $lines[] = self::generateIndexLine($indexProperties);
             }
 
             # Create the query
             $query = "CREATE TABLE `" . $tableName . "` (" . implode(",", $lines) . ") ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci";
-            array_push(self::$syncQueries, $query);
+            self::$syncQueries[] = $query;
         }
     }
 
@@ -152,13 +152,13 @@ class DBMigrate extends DB
             # Remove the fields that are too much..
             $deletedFields = array_diff_assoc($localDBConfig[$tableName]['columns'], $fileDBConfig[$tableName]['columns']);
             foreach ($deletedFields as $fieldName => $fieldProperties) {
-                array_push(self::$syncQueries, "ALTER TABLE `" . $tableName . "` DROP `" . $fieldName . "`");
+                self::$syncQueries[] = "ALTER TABLE `" . $tableName . "` DROP `" . $fieldName . "`";
             }
 
             # Add the field that are missing.
             $createdFields = array_diff_assoc($fileDBConfig[$tableName]['columns'], $localDBConfig[$tableName]['columns']);
             foreach ($createdFields as $fieldName => $fieldProperties) {
-                array_push(self::$syncQueries, "ALTER TABLE `" . $tableName . "` ADD " . self::generateFieldLine($fieldProperties));
+                self::$syncQueries[] = "ALTER TABLE `" . $tableName . "` ADD " . self::generateFieldLine($fieldProperties);
             }
 
             # Change the fields that are not same.
@@ -181,7 +181,7 @@ class DBMigrate extends DB
 
                 # If there are not same add new alter query.
                 if ($isSame === false) {
-                    array_push(self::$syncQueries, "ALTER TABLE `" . $tableName . "` CHANGE `" . $fieldProperties['Field'] . "` " . self::generateFieldLine($fieldProperties));
+                    self::$syncQueries[] = "ALTER TABLE `" . $tableName . "` CHANGE `" . $fieldProperties['Field'] . "` " . self::generateFieldLine($fieldProperties);
                 }
             }
 
@@ -189,7 +189,7 @@ class DBMigrate extends DB
             $deletedIndexes = array_diff_assoc($localDBConfig[$tableName]['indexes'], $fileDBConfig[$tableName]['indexes']);
             foreach ($deletedIndexes as $indexName => $indexProperties) {
                 $deleteIndex = $isPrimary ? "DROP PRIMARY KEY " : "DROP INDEX `" . $indexName . "` ";
-                array_push(self::$syncQueries, "ALTER TABLE `" . $tableName . "` " . $deleteIndex);
+                self::$syncQueries[] = "ALTER TABLE `" . $tableName . "` " . $deleteIndex;
             }
 
             # Add the indexes that are missing.
@@ -198,7 +198,7 @@ class DBMigrate extends DB
 
                 # if primary key exists before delete it
                 $deletePrimary = ($indexName === "PRIMARY" && isset($localDBConfig[$tableName]['indexes']['PRIMARY'])) ? "DROP PRIMARY KEY, " : "";
-                array_push(self::$syncQueries, "ALTER TABLE `" . $tableName . "` " . $deletePrimary . "ADD " . self::generateIndexLine($indexProperties));
+                self::$syncQueries[] = "ALTER TABLE `" . $tableName . "` " . $deletePrimary . "ADD " . self::generateIndexLine($indexProperties);
             }
 
             # Change the indexes that are not same
@@ -218,14 +218,14 @@ class DBMigrate extends DB
 
                 if (!$isSame) {
                     $deleteIndex = $isPrimary ? "DROP PRIMARY KEY, " : "DROP INDEX `" . $indexName . "`, ";
-                    array_push(self::$syncQueries, "ALTER TABLE `" . $tableName . "` " . $deleteIndex . "ADD " . self::generateIndexLine($indexProperties));
+                    self::$syncQueries[] = "ALTER TABLE `" . $tableName . "` " . $deleteIndex . "ADD " . self::generateIndexLine($indexProperties);
                 }
             }
 
             # Remove the indexes that are too much..
             $deletedTriggers = array_diff_assoc($localDBConfig[$tableName]['triggers'], $fileDBConfig[$tableName]['triggers']);
             foreach ($deletedTriggers as $triggerName => $triggerProperties) {
-                array_push(self::$syncQueries, "DROP TRIGGER IF EXISTS `" . $triggerName . "`");
+                self::$syncQueries[] = "DROP TRIGGER IF EXISTS `" . $triggerName . "`";
             }
 
             # Add the indexes that are missing.
@@ -234,18 +234,18 @@ class DBMigrate extends DB
                 # if primary key exists before delete it
                 $query = "CREATE TRIGGER `" . $triggerProperties['Trigger'] . "` " . $triggerProperties['Timing'] . " " . $triggerProperties['Event']
                     . " ON `" . $triggerProperties['Table'] . "` FOR EACH ROW " . $triggerProperties['Statement'];
-                array_push(self::$syncQueries, $query);
+                self::$syncQueries[] = $query;
             }
 
             # Change the trigger that are not same
             $intersectTriggers = array_intersect_assoc($fileDBConfig[$tableName]['triggers'], $localDBConfig[$tableName]['triggers']);
             foreach ($intersectTriggers as $triggerName => $triggerProperties) {
                 if (!self::compareConfigArrays($triggerProperties, $localDBConfig[$tableName]['triggers'][$triggerName])) {
-                    array_push(self::$syncQueries, "DROP TRIGGER IF EXISTS `" . $triggerName . "`");
+                    self::$syncQueries[] = "DROP TRIGGER IF EXISTS `" . $triggerName . "`";
                     # if primary key exists before delete it
                     $query = "CREATE TRIGGER `" . $triggerProperties['Trigger'] . "` " . $triggerProperties['Timing'] . " " . $triggerProperties['Event']
                         . " ON `" . $triggerProperties['Table'] . "` FOR EACH ROW " . $triggerProperties['Statement'];
-                    array_push(self::$syncQueries, $query);
+                    self::$syncQueries[] = $query;
                 }
             }
 
@@ -336,7 +336,7 @@ class DBMigrate extends DB
             # add the column name
             $columnName = "`" . $column['Column_name'] . "`";
             if ($column['Sub_part']) $columnName .= "(" . $column['Sub_part'] . ")";
-            array_push($columnNames, $columnName);
+            $columnNames[] = $columnName;
             # check if primary
             if ($column['Key_name'] == 'PRIMARY') {
                 $isPrimary = true;

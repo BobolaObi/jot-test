@@ -97,7 +97,7 @@ class Form
         $res = DB::read($query);
         $result = [];
         foreach ($res->result as $row) {
-            array_push($result, $row['value']);
+            $result[] = $row['value'];
         }
         return $result;
     }
@@ -663,7 +663,7 @@ class Form
             unset($line['form_id']);    # Get rid of the the formID to reduce array size
             $id = $line['id'];          # Put submission ID in a temp value
             unset($line['id']);         # remove submission ID node to reduce array size
-            array_push($sids, $id);     # put submission ID in submission IDs array
+            $sids[] = $id;     # put submission ID in submission IDs array
             $submissions[$id] = $line;  # place the database record in submissions array
         }
 
@@ -808,7 +808,7 @@ class Form
                 } else {
                     # If not, then place it in the fix array and push the current one in the list
                     $duplicateAnwerFix[$uniqKey] = count($submissions[$line['submission_id']]["answers"]);
-                    array_push($submissions[$line['submission_id']]["answers"], $answerValue);
+                    $submissions[$line['submission_id']]["answers"][] = $answerValue;
                 }
             }
         }

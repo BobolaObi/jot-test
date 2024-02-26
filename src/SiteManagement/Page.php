@@ -90,7 +90,7 @@ class Page
             if (empty($css)) {
                 continue;
             }
-            array_push($incs, '<link rel="stylesheet" type="text/css" href="' . $css . '"/>');
+            $incs[] = '<link rel="stylesheet" type="text/css" href="' . $css . '"/>';
         }
         echo join("\n", $incs) . "\n";
     }
@@ -109,7 +109,7 @@ class Page
             if (PROTOCOL == 'https://' && ($js == 'http://maps.google.com/maps/api/js?sensor=true' || $js == 'js/googlemap.js')) {
                 continue;
             }
-            array_push($incs, '<script src="' . $js . '" type="text/javascript"></script>');
+            $incs[] = '<script src="' . $js . '" type="text/javascript"></script>';
         }
         echo join("\n", $incs) . "\n";
     }

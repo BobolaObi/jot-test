@@ -82,7 +82,7 @@ foreach ($res->result as $row){
         DB::write("DELETE FROM `scheduled_downgrades` WHERE `username` = ':username'", $row['username']);
     }
         
-    array_push($results, $result);
+    $results[] = $result;
 }
 
 Utils::print_r($results);

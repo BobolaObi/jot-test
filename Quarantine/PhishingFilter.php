@@ -280,7 +280,7 @@ class PhishingFilter
         # return if word is small
         if (strlen($word) < self::MIN_ACCEPTED_LENGTH) return;
         # if there is no problem then add the word to the array.
-        array_push($this->words, $word);
+        $this->words[] = $word;
     }
 
     /**

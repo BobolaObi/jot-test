@@ -1560,7 +1560,7 @@ class RequestServer
         $emails = [];
         foreach ($usernames as $username) {
             $user = User::find($username, true);
-            array_push($emails, $user->email);
+            $emails[] = $user->email;
         }
         $this->success(["emails" => $emails]);
     }
@@ -1659,7 +1659,7 @@ class RequestServer
         foreach ($usernames as $username) {
             $user = User::find($username, true);
             $accountType = $user->accountType;
-            array_push($accountTypes, $accountType);
+            $accountTypes[] = $accountType;
         }
         $this->success(["accountTypes" => $accountTypes]);
     }

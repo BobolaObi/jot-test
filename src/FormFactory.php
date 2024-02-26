@@ -253,7 +253,7 @@ class FormFactory
                     if (!is_array($defaultValues[$qid])) {
                         $defaultValues[$qid] = [];
                     }
-                    array_push($defaultValues[$qid], $key);
+                    $defaultValues[$qid][] = $key;
                     continue;
                 }
 

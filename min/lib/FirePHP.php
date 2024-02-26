@@ -870,7 +870,7 @@ class FirePHP {
                 return '** Recursion ('.get_class($Object).') **';
             }
         }
-        array_push($this->objectStack, $Object);
+        $this->objectStack[] = $Object;
                 
         $return['__className'] = $class = get_class($Object);
 

@@ -168,24 +168,24 @@ class FTPLib
                 if (strpos($details['name'], ".") === 0) {
                     continue;
                 }
-                array_push($tree[$type], ["path" => $folder, "name" => $details['name'], "type" => $this->getFileType($details['perms']), "link" => $link, "permission" => $details['permsn']]);
+                $tree[$type][] = ["path" => $folder, "name" => $details['name'], "type" => $this->getFileType($details['perms']), "link" => $link, "permission" => $details['permsn']];
             }
         }
 
         $result = [];
         if (is_array($tree['folder'])) {
             foreach ($tree['folder'] as $folder) {
-                array_push($result, $folder);
+                $result[] = $folder;
             }
         }
         if (is_array($tree['link'])) {
             foreach ($tree['link'] as $link) {
-                array_push($result, $link);
+                $result[] = $link;
             }
         }
         if (is_array($tree['file'])) {
             foreach ($tree['file'] as $file) {
-                array_push($result, $file);
+                $result[] = $file;
             }
         }
         return $result;
@@ -212,9 +212,9 @@ class FTPLib
                     $r = $this->getLocalFiles($filepath);
                     $files = array_merge($files, $r["files"]);
                     $folders = array_merge($folders, $r["folders"]);
-                    array_push($folders, $filepath);
+                    $folders[] = $filepath;
                 } else {
-                    array_push($files, $filepath);
+                    $files[] = $filepath;
                 }
             }
             closedir($fh);

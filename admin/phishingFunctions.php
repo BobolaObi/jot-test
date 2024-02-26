@@ -166,7 +166,7 @@ function train( $incomingformID, $incomingformTitle, $isSpam){
             # Create the query only using the keywords.
             $or_conditions = [];
             foreach ($title_keywords as $title_keyword){
-                array_push($or_conditions, " title LIKE '%$title_keyword%'");
+                $or_conditions[] = " title LIKE '%$title_keyword%'";
             }
             
             $queryStmt = "SELECT id, title, username, status FROM forms 

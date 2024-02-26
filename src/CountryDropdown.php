@@ -20,7 +20,7 @@ class CountryDropdown
         $response = DB::read("SELECT * FROM countries WHERE 1");
         $countries = [];
         foreach ($response->result as $line) {
-            array_push($countries, ["id" => $line[id], "state" => $line['state']]);
+            $countries[] = ["id" => $line[id], "state" => $line['state']];
         }
         return $countries;
     }
@@ -35,7 +35,7 @@ class CountryDropdown
         $response = DB::read("SELECT * FROM states WHERE country_id =#countryID", $countryID);
         $states = [];
         foreach ($response->result as $line) {
-            array_push($states, ["id" => $line[id], "state" => $line['state']]);
+            $states[] = ["id" => $line[id], "state" => $line['state']];
         }
         return $states;
     }
@@ -50,7 +50,7 @@ class CountryDropdown
         $response = DB::read("SELECT * FROM cities WHERE state_id=#stateID", $stateID);
         $cities = [];
         foreach ($response->result as $line) {
-            array_push($cities, [$line['city']]);
+            $cities[] = [$line['city']];
         }
         return $cities;
     }
