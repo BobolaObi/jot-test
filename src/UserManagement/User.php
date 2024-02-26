@@ -550,14 +550,14 @@ class User {
         return $this->client->ip;
     }
     
-    public function getBrowser(){
+    public function getBrowser(){/*
     	$browser = new Browser($this->client->useragent);
     	if ($browser){
     		return $browser->getPlatform() . " User.php" . $browser->getBrowser() . " " . $browser->getVersion() ;  
     	}else{
     	   return false;
     	}
-    }
+    /**/}
     
     /**
      * Reverses the effects of suspend and auto-suspend.
@@ -1223,7 +1223,7 @@ class User {
         $u = new User($propsArray);
         try {
             $result = $u->save();
-        } catch(Exception $e) {
+        } catch(\Exception $e) {
             if (stripos($e->getMessage(), "Duplicate entry") !== false) {
                 throw new JotFormException("Username is not available. Please choose a new one.");    
             }

@@ -181,7 +181,9 @@ class UtilsEmails {
      *  For example, add attachement support.
      * @return \\ throws an exception when an error happens. Returns nothing when successful. 
      */
-    static function sendEmail($settings, $forceSending = false) {
+    static function sendEmail($settings, $forceSending = false)
+    {
+        /* * /
         
         if(DELAY_EMAILS && !$forceSending){
             DB::insert('pending_emails', array(
@@ -287,6 +289,7 @@ class UtilsEmails {
         if(!$mail->Send()) {
             throw new Warning($mail->ErrorInfo);
         }
+        /**/
     }
     /**
      * Sends mail

@@ -299,7 +299,7 @@ class RequestServer
                 return $this->error(array("message"=>$err[0], "errorNo"=>$err[1]), null, 200);
             }
             return $this->error($err, null, 200);
-        }catch(Exception $e){ # Catch if any exception was thrown
+        }catch(\Exception $e){ # Catch if any exception was thrown
             $err = $e->getMessage();
             if(is_array($err)){
                 return $this->error(array("message"=>$err[0], "errorNo"=>$err[1]), null, 500);
@@ -824,7 +824,7 @@ class RequestServer
                     Utils::errorPage("This submission was already completed or expired.", "Error");
                 }
             }
-        }catch(Exception $e){
+        }catch(\Exception $e){
             Utils::error($e);
             exit;
         }

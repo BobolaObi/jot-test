@@ -195,7 +195,7 @@ class Submission {
                 # Flush buffers
                 flush();
                 ob_flush();
-            }catch(Exception $e){
+            }catch(\Exception $e){
                 # If this operations throw an exception put these submissions 
                 # into another list so we can try again
                 Console::customLog("redis", $e->getMessage(), "Error");
@@ -2269,7 +2269,7 @@ class Submission {
                     $ftp->sendFile($remoteFile, $localFile);
                 }
             }
-        }catch(Exception $e){
+        }catch(\Exception $e){
             Console::error($e->getMessage());
         }
     }

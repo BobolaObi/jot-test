@@ -372,7 +372,7 @@ class Utils extends UtilsArrays
      * @return 
      */
     public static function getUploadURL($username, $formID, $submissionID, $fileName) {
-        
+        /* 
         $uploadURL = false;
         
         # If UFS is enabled, use it. 
@@ -384,6 +384,7 @@ class Utils extends UtilsArrays
         }
         
         return $uploadURL;
+        */
     }
     
     /**
@@ -461,7 +462,8 @@ class Utils extends UtilsArrays
         return $result;
     }
     
-    static function getRedis($databaseIndex = 0){
+    static function getRedis($databaseIndex = 0){/*
+        
         require_once(ROOT."lib/classes/utils/Predis.php");
         if(!isset(self::$residInstances[$databaseIndex])){
             if(JOTFORM_ENV == 'PRODUCTION' && !Server::isHost(array('yang', '10.202.1.216'))){
@@ -494,9 +496,10 @@ class Utils extends UtilsArrays
                 throw new \Exception('Value missmatch');
             }
             self::$residInstances[$databaseIndex]->del('testRedis');
-        }catch(Exception $e){
+        }catch(\Exception $e){
             return false; # If redis not found return false instead
         }
         return self::$residInstances[$databaseIndex];
+    /* */
     }    
 }
