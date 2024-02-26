@@ -19,7 +19,7 @@ class MonthlyUsage {
      * foreach($fields as $classField => $dbField)
      * ...
      * </code>
-     * @var array
+      * @var //array
      */
     public static $fields = array(
                 'username'          => 'username',       
@@ -40,27 +40,27 @@ class MonthlyUsage {
     
     /**
      * User associated with the usage data.
-     * @var User
+      * @var //User
      */
     public $user;
     /**
      * Keeps the account type user has.
-     * @var AccountType
+      * @var //AccountType
      */
     public $accountType;
     /**
      * An array of over quota usage types.
-     * @var array
+      * @var //array
      */
     private $overQuota = array();
     /**
      * An array of almost full usage types.
-     * @var array
+      * @var //array
      */
     private $almostFull = array();
     /**
      * Set username only. Others will be default.
-     * @var Insertion query in SQL.
+      * @var //Insertion query in SQL.
      */    
     private static $insertQuery = "INSERT INTO `monthly_usage` (`username`) VALUES (':username')";
     private static $deleteQuery = "DELETE FROM `monthly_usage` WHERE `username`=':username' LIMIT 1";

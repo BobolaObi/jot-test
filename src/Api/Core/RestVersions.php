@@ -13,7 +13,7 @@ class RestVersions{
     /**
      * Static instance of the
      * RestVersions object
-     * @var RestVersion
+      * @var //RestVersion
      */
     static private $instance;
     
@@ -21,13 +21,13 @@ class RestVersions{
      * Holds the versions of the API as the key of the
      * array and the value defines if the version is
      * available or not.
-     * @var array $versions
+      * @var //array $versions
      */
     private $versions = array();
     
     /**
      * Holds the default API version of the system.
-     * @var string $defaultVersion
+      * @var //string $defaultVersion
      */
     private $defaultVersion;
     

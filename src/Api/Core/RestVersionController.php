@@ -9,14 +9,14 @@ namespace Legacy\Jot\Api\Core;
 class RestVersionController {
     
 	/**
-	 * @var RestServer
+	  * @var //RestServer
 	 */
 	private $rest;
 	
     /**
      * Holds the version number which
      * the API is working with.
-     * @var string $version
+      * @var //string $version
      */
     private $currentVersion;
 

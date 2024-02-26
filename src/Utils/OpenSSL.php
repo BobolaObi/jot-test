@@ -14,7 +14,7 @@ class OpenSSL{
     /**
      * Static instance of the
      * OpenSSL object
-     * @var OpenSSL
+      * @var //OpenSSL
      */
     static private $instance;
     

@@ -60,7 +60,7 @@ class Submission {
     
     /**
      * These file types cannot be uploaded on our servers
-     * @var array
+      * @var //array
      */        
     public static $neverAllow = array('php', 'pl', 'cgi', 'rb', 'asp', 'aspx', 'exe', 'scr', 'dll', 'msi', 'vbs', 'bat', 'com', 'pif', 'cmd', 'vxd', 'cpl');
     
@@ -338,7 +338,7 @@ class Submission {
             $line = $response->result[0];
             /**
              * Unserialized submission object
-             * @var Submission
+              * @var //Submission
              */
             $submit = Utils::unserialize($line['serialized_data']);
             

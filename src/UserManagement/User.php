@@ -46,7 +46,7 @@ class User {
      VALUES (':username',  ':password', ':email', ':name', ':website', ':account_type',
      ':friends', ':is_html', ':creation_date', ':last_seen', :time_zone)
      *
-     * @var array
+      * @var //array
      */
     private static $dbFields = array('id'=>'#', 'username' => ':', 'password' => ':',
         'name' => ':', 'email' => ':', 'website' => ':', 'time_zone' => ':', 

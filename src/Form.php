@@ -27,7 +27,7 @@ class Form{
     private $owner, $timeZone, $timeFormat = 'Y-m-d H:i:s';
     public $id, $form, $isLoggedInNow = false;
     /**
-     * @var list of payment field to be used in code
+      * @var //list of payment field to be used in code
      */
     public static $paymentFields = array('control_payment', 'control_paypal', 'control_paypalpro', 'control_clickbank', 'control_2co', 'control_worldpay', 'control_googleco', 'control_onebip', 'control_authnet');
     
@@ -38,7 +38,7 @@ class Form{
     /**
      * If set getListing results will use it to filter columns
      * @see Form::useListingFilter
-     * @var array
+      * @var //array
      */
     public $filterFields = false;
     

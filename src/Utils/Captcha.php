@@ -11,12 +11,12 @@ use Legacy\Jot\ID;
 class Captcha{
     /**
      * Makes encoded word, works only one hour
-     * @var string
+      * @var //string
      */
     private static $salt = 'o-z-H';
     /**
      * Array of words which will be used in captchas
-     * @var array
+      * @var //array
      */
     public static $words = array("polish", "past", "part", "when", "much", "seed", "soap", "glove", "sticky", "soap", "profit", "bent", "collar",
               "where", "weight", "again", "weight", "boat", "small", "profit", "sound", "chin", "flag", "body", "salt", "birth",

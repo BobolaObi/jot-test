@@ -12,7 +12,7 @@ namespace Legacy\Jot\Api\Core;
 class RestMapper{
     
 	/**
-	 * @var RestServer
+	  * @var //RestServer
 	 */
 	private $rest;
 	

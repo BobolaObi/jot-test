@@ -19,7 +19,7 @@ class FormEmails{
     public $formID, $sid, $emails, $emailsToBeSent;
     
     /**
-     * @var Submission
+      * @var //Submission
      */
     public $submission;
     

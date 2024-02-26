@@ -9,7 +9,7 @@ namespace Legacy\Jot\Api\Core;
 class RestRequest {
     
 	/**
-	 * @var RestServer
+	  * @var //RestServer
 	 */
     private $rest ;
 
@@ -24,13 +24,13 @@ class RestRequest {
     /**
      * Holds the wanted api version from
      * the URI
-     * @var string
+      * @var //string
      */
     private $wantedAPIVersion ;
     
     /**
      * The root uri of the api
-     * @var string
+      * @var //string
      */
     private $apiURI;
 
