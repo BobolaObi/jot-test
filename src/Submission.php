@@ -7,7 +7,7 @@
 
 namespace Legacy\Jot;
 
-use forms\DropBoxIntegration;
+use Legacy\Jot\Stub as DropBoxIntegration;
 use Legacy\Jot\UserManagement\MonthlyUsage;
 use Legacy\Jot\Utils\Captcha;
 use Legacy\Jot\Utils\Console;

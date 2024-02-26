@@ -4,9 +4,26 @@ namespace Legacy\Jot;
 
 use Legacy\Jot\Exceptions\SoftException;
 use Legacy\Jot\Exceptions\Warning;
-use Quarantine\DropBoxIntegration;
-use Quarantine\DBMigrate;
 use Legacy\Jot\Integrations\Integrations;
+use Legacy\Jot\Stub as ABTesting;
+use Legacy\Jot\Stub as ABTestingController;
+use Legacy\Jot\Stub as AmazonS3Controller;
+use Legacy\Jot\Stub as AuthorizeDotNet;
+use Legacy\Jot\Stub as couchClient;
+use Legacy\Jot\Stub as couchDocument;
+use Legacy\Jot\Stub as FileController;
+use Legacy\Jot\Stub as JotFormSubscriptions;
+use Legacy\Jot\Stub as MigrateAll;
+use Legacy\Jot\Stub as MigrateAllSubmissions;
+use Legacy\Jot\Stub as MigrateUser;
+use Legacy\Jot\Stub as ParseHTML;
+use Legacy\Jot\Stub as PayPalPro;
+use Legacy\Jot\Stub as qqFileUploader;
+use Legacy\Jot\Stub as RuckusingWrapper;
+use Legacy\Jot\Stub as Stats;
+use Legacy\Jot\Stub as SyncAmazonUploads;
+use Legacy\Jot\Stub as UploadToS3;
+use Legacy\Jot\Stub as usernames;
 use Legacy\Jot\UserManagement\AccountType;
 use Legacy\Jot\UserManagement\MonthlyUsage;
 use Legacy\Jot\UserManagement\Session;
@@ -20,6 +37,8 @@ use Legacy\Jot\Utils\Profile;
 use Legacy\Jot\Utils\Server;
 use Legacy\Jot\Utils\Settings;
 use Legacy\Jot\Utils\Utils;
+use Quarantine\DBMigrate;
+use Quarantine\DropBoxIntegration;
 use Quarantine\FTPIntegration;
 
 
