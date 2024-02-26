@@ -217,9 +217,10 @@ class User {
 
         // If the username is somehow empty, do not show any forms, don't go to the DB.
         if (empty($username)) {
-            $this->success(array(
-                "forms" => $list
-            ));
+            throw new Exception('missing username');
+//            $this->success(array(
+//                "forms" => $list
+//            ));
         }
 
         $response = DB::read("SELECT * FROM `forms` WHERE `username`=':username' ORDER BY `title` ASC", $username);
