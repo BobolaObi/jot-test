@@ -9,7 +9,7 @@ services:
     restart: unless-stopped
 
   nginx_phpfpm:
-    image: gitlab.auxiliumgroup.com:4567/auxilium/forms.datalynk.ca:pre-dojo
+    image: gitlab.auxiliumgroup.com:4567/auxilium/jot.datalynk.ca:main
     environment:
       REDIS_HOST: redis
       MYSQL_HOST: mysqldb
