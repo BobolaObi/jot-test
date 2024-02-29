@@ -5,3 +5,4 @@ cache/*
 uploads/*
 
 /vendor/
+/cache/
