@@ -1,0 +1,29 @@
+image: gitlab.auxiliumgroup.com:4567/devops/docker/dockerbase_ci:master
+
+stages:
+  - build
+  - deploy
+
+containerize:
+  stage: build
+  only:
+    - main
+  script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN ${CI_REGISTRY}
+    - docker build --no-cache --pull -f docker/Dockerfile -t ${CI_REGISTRY}/${CI_PROJECT_PATH}:${CI_COMMIT_REF_NAME} .
+    - docker push ${CI_REGISTRY}/${CI_PROJECT_PATH}:${CI_COMMIT_REF_NAME}
+
+deploy-to-toronto-production:
+ stage: deploy
+ variables:
+   DOCKER_HOST: ssh://manager.swarm.toronto.auxilium.world
+   SWARM_PORT: 47852
+   SWARM_REPLICAS: 1
+   GITLAB_CONTAINER_IMAGE: ${CI_REGISTRY}/${CI_PROJECT_PATH}:${CI_COMMIT_REF_NAME}
+ script:
+   - docker login -u swarm -p hKpGnz_mr2MJK71SQpQx $CI_REGISTRY
+   - docker stack deploy --with-registry-auth --compose-file=docker/toronto.yml datalynk-${CI_COMMIT_REF_NAME}
+ only:
+   - main
+ tags:
+   - docker
