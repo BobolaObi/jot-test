@@ -49,11 +49,9 @@ services:
       MYSQL_DATABASE: jotforms
       MYSQL_USER: jotforms
       MYSQL_PASSWORD: access
-#    volumes:
-#      - mysql_data:/var/lib/mysql
+    volumes:
+     - mysql_data:/var/lib/mysql
     restart: unless-stopped
 
-#volumes:
-#  mysql_data:
-#  cache:
-#  uploads:
+volumes:
+  mysql-data:

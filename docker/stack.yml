@@ -25,23 +25,11 @@ services:
       - ./mysql/mysql.cnf:/etc/mysql/conf.d/z_auxilium.cnf
       - ./mysql/scripts:/docker-entrypoint-initdb.d/:ro
       - ./mysql/mysql-files:/var/lib/mysql-files
+      - mysql-data:/var/lib/mysql
     ports:
       - "3306:3306"
     cap_add:
       - SYS_NICE  # CAP_SYS_NICE
-
-  # pdf-server:
-  #   image: gitlab.auxiliumgroup.com:4567/devops/docker/pdf-server:master
-  #   ports:
-  #     - 8000
-
-  # sync:
-  #   image: gitlab.auxiliumgroup.com:4567/devops/docker/pythonsync:docker
-  #   restart: unless-stopped
-  #   environment:
-  #     WHOAMI: ${USER-root}
-  #   volumes:
-  #     - ~/.ssh:/root/.ssh
 
   nginx_phpfpm:
     build: .
@@ -90,5 +78,5 @@ services:
       # - redis
       # - pdf-server
 
-  # webgrind:
-  #    image: clue/webgrind
+volumes:
+  mysql-data:
