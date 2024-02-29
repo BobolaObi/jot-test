@@ -1,4 +1,3 @@
-
 # docker build . -t jotty -f docker/Dockerfile
 # docker-compose -f docker/toronto.yml up -d
 
@@ -10,7 +9,7 @@ services:
     restart: unless-stopped
 
   nginx_phpfpm:
-    image: jotty
+    image: gitlab.auxiliumgroup.com:4567/auxilium/forms.datalynk.ca:pre-dojo
     environment:
       REDIS_HOST: redis
       MYSQL_HOST: mysqldb
@@ -28,7 +27,8 @@ services:
       - "${SWARM_PORT-9213}:80"
     volumes:
       - /etc/localtime:/etc/localtime
-      - /cache:/data/www/forms.datalynk.ca/cache
+      - /sql/initialization.sql
+#      - /cache:/data/www/forms.datalynk.ca/cache
     depends_on:
       - redis
       - mysqldb
@@ -49,9 +49,11 @@ services:
       MYSQL_DATABASE: jotforms
       MYSQL_USER: jotforms
       MYSQL_PASSWORD: access
-    volumes:
-      - mysql_data:/var/lib/mysql
+#    volumes:
+#      - mysql_data:/var/lib/mysql
     restart: unless-stopped
 
-volumes:
-  mysql_data:
+#volumes:
+#  mysql_data:
+#  cache:
+#  uploads:

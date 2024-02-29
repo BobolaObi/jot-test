@@ -5,9 +5,7 @@ ADD docker/version /version
 RUN rm /etc/nginx/sites-enabled/*
 ADD docker/nginx.conf /etc/nginx/sites-enabled/nginx.conf
 
-ADD ../ /data/www/forms.datalynk.ca
-WORKDIR /data/www/forms.datalynk.ca
+ADD . /data/www/jot.datalynk.ca
+WORKDIR /data/www/jot.datalynk.ca
 
 RUN ln -s cache/uploads uploads
-
-RUN cp docker/ConfigsClass.php lib/ConfigsClass.php

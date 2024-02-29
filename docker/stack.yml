@@ -1,0 +1,93 @@
+# export git GIT_SOURCE=/mnt/c/Users/jdarb/Code/
+# docker build . -t jotty -f docker/Dockerfile
+# docker-compose -f docker/stack.yml up -d
+version: '3.7'
+
+services:
+  # memcached:
+  #   image: memcached
+  #   restart: unless-stopped
+  #   command: memcached -m 64m
+
+  # redis:
+  #   image: redis
+  #   restart: unless-stopped
+  #   ports:
+  #     - "6379:6379"
+
+  mysqldb:
+    image: mysql:8.0.28
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+        MYSQL_ROOT_PASSWORD: access
+    volumes:
+      - ./mysql/mysql.cnf:/etc/mysql/conf.d/z_auxilium.cnf
+      - ./mysql/scripts:/docker-entrypoint-initdb.d/:ro
+      - ./mysql/mysql-files:/var/lib/mysql-files
+    ports:
+      - "3306:3306"
+    cap_add:
+      - SYS_NICE  # CAP_SYS_NICE
+
+  # pdf-server:
+  #   image: gitlab.auxiliumgroup.com:4567/devops/docker/pdf-server:master
+  #   ports:
+  #     - 8000
+
+  # sync:
+  #   image: gitlab.auxiliumgroup.com:4567/devops/docker/pythonsync:docker
+  #   restart: unless-stopped
+  #   environment:
+  #     WHOAMI: ${USER-root}
+  #   volumes:
+  #     - ~/.ssh:/root/.ssh
+
+  nginx_phpfpm:
+    build: .
+    restart: unless-stopped
+    environment:
+      DOCKER_MODE: "true"
+      MYSQL_HOST: ${MYSQL_HOST-mysqldb}
+
+      # REDIS_HOST: ${REDIS_HOST-redis}
+
+      # MEMCACHED_HOST: ${MEMCACHED_HOST-memcached}
+
+      # API_PRODUCTION: ${API_PRODUCTION-dev}
+      JOTFORMS_MODE: ${JOTFORMS_MODE-dev}
+
+      # HUB_DB: ${HUB_DB-hub}
+      HUB_DB_USER: root
+      HUB_DB_PASSWORD: access
+      # BBB_SECURITY_SALT: DHoMGuvlkt8TgflORfLsLpMIOuw7emeDvamV8a792Bw
+      # BBB_SERVER_BASE_URL: https://conference.ourtrainingroom.com/bigbluebutton/
+      # SIMPLESAMLPHP_CONFIG_DIR: /data/www/api.datalynk.ca/configs/SimpleSAML
+      # S3_UPLOADS_HOST: https://storage.auxilium.world:9000
+      # S3_UPLOADS_ACCESS_KEY: xHufHL6JWLwgU2CwDPkkzHjUfNHGha9U
+      # S3_UPLOADS_SECRET_KEY: mLGNiWHt3LZLiTTJ4RVt9yQ7hGRiAXav
+      # S3_UPLOADS_REGION: ca-montreal-beaver
+      # S3_UPLOADS_BUCKET: api
+      # # S3_UPLOADS_HOST: https://s3.ca-central-1.amazonaws.com
+      # S3_UPLOADS_ACCESS_KEY: AKIAWHROCQ245MMVURT3
+      # S3_UPLOADS_SECRET_KEY: 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
+      # S3_UPLOADS_REGION: ca-central-1
+      # S3_UPLOADS_BUCKET: auxilium-api-uploads
+      PHP_IDE_CONFIG: serverName=api.datalynk.ca
+    ports:
+      - "80:80"
+      # - "8080:8080"
+    volumes:
+      - ${GIT_SOURCE}:/data/www
+      - ./php/999-auxilium.ini:/etc/php/7.4/fpm/conf.d/999-auxilium.ini
+    extra_hosts:
+      # - "lms:127.0.0.1"
+      - "host.docker.internal:host-gateway" # missing in ubuntu desktop by default... prevents xdebug connecting
+    depends_on:
+      # - memcached
+      - mysqldb
+      # - redis
+      # - pdf-server
+
+  # webgrind:
+  #    image: clue/webgrind
