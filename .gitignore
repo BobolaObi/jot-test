@@ -3,6 +3,8 @@
 .settings
 cache/*
 uploads/*
+supervisord.log
+supervisord.pid
 
 /vendor/
 /cache/
