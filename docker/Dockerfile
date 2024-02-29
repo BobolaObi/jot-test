@@ -12,3 +12,9 @@ RUN ln -s cache/uploads uploads
 
 RUN /data/www/jot.datalynk.ca/composer.phar install -n
 
+
+#setting permissions
+RUN chown -R www-data:www-data /data/www/jot.datalynk.ca
+
+RUN find /data/www/jot.datalynk.ca -type d -exec chmod 755 {} \; && \
+    find /data/www/jot.datalynk.ca -type f -exec chmod 644 {} \;
