@@ -23,6 +23,7 @@ services:
       COMPRESS_PAGE: "1"  # Set to "1" for true or "0" for false
       ENABLE_CDN: "1"  # Set to "1" for true or "0" for false
       ENABLE_UFS: "1"  # Set to "1" for true or "0" for false
+      PHP_DISPLAY_ERRORS: "1" 
     ports:
       - "${SWARM_PORT-9213}:80"
     volumes:
