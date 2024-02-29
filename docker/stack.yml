@@ -78,6 +78,7 @@ services:
       - "80:80"
       # - "8080:8080"
     volumes:
+      - /sql/initialization.sql
       - ${GIT_SOURCE}:/data/www
       - ./php/999-auxilium.ini:/etc/php/7.4/fpm/conf.d/999-auxilium.ini
     extra_hosts:
