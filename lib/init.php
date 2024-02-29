@@ -448,7 +448,7 @@ if (isset($_GET["extra_id"])) {
 # Never allow guests to create forms
 /*
  * HACK ALERT: disabling will allow anyone on the internet
- * to create forms under forms.datalynk.ca
+ * to create forms under jot.datalynk.ca
  *
 if(APP && Session::isGuest()){
     # Check if current page needs to be accessed without passwords

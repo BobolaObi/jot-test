@@ -28,7 +28,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime
       - /sql/initialization.sql
-#      - /cache:/data/www/forms.datalynk.ca/cache
+#      - /cache:/data/www/jot.datalynk.ca/cache
     depends_on:
       # - redis
       - mysqldb
