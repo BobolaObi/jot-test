@@ -1,0 +1,530 @@
+
+/*
+ * Start of new share wizard.
+ */
+    #shareWizard h2{
+        margin: 0 0 10px;
+		font-size:16px; 
+    }
+	
+	#shareWizard h4{
+		margin: 0 0 15px;
+		font-size:12px;
+		padding-top:4px
+	}
+    #shareWizard p, #shareWizard li{
+        font-size: 11px;
+        margin: 3px 0 0;
+        line-height: 16px;
+		cursor:default;
+    }
+    #shareWizard .cell{
+        float:left;
+        width: 350px;
+        margin: 30px 40px;
+    }
+    #shareWizard hr {
+        margin:20px 0px;
+        color: #eeeeee;
+        background-color: #eeeeee;
+    }
+	#shareWizard #url {
+        height:14px !important;
+		width:217px !important;
+        margin-right: 7px;
+		margin-top:2px;
+	}
+	
+	#shareWizard #googleGadgetURL{
+		width:300px;
+	}
+	
+	#shareWizard #secureFormCheckbox{
+		margin:3px 3px 3px 6px;
+	}
+	
+	#shareWizard label[for="secureFormCheckbox"], .small-label {
+		font-size:10px;
+		margin:0;
+	}
+
+    #shareWizard .emailRow>div#emailDiv {
+    	width: 325px;
+    }
+    #shareWizard .emailRow>input[type="text"] {
+        width: 335px;
+    }
+
+    #shareWizard .cell textarea,
+	#shareWizard #url,
+	#shareWizard #customUrl,
+	#shareWizard #shareOptionInstructions .widgetOptions input[type="text"] {
+        width:338px;
+        height:42px;
+        white-space:pre;
+        font-size:11px;
+        line-height:14px;
+        font-family:"Lucida Grande", monospace;
+        padding:2px 1px 0px;
+        resize:none;
+        
+		-moz-appearance:textfield;
+        -webkit-appearance:textfield;
+        appearance:textfield;
+        
+		border: 1px solid #B3B3B3;
+		border-top-color:#aaa;
+		border-bottom-color:#f1f1f1;
+		
+		-moz-box-shadow: 0 1px 2px rgba(0,0,0,0.3) inset;
+		-webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.3) inset;
+		box-shadow: 0 1px 2px rgba(0,0,0,0.3) inset;
+		
+	
+    }
+
+	 #shareWizard #zipCode {
+        cursor: pointer;
+        text-decoration:underline;
+        color:blue;
+    }
+	
+
+/*
+ *  Demo&Customize button
+ */
+	 #shareWizard .cell a.linkButton{
+    
+        font-size:10px;
+        color:#000;
+        background: #f9f9f9;
+        padding: 2px 6px;
+        display:inline-block;
+        margin: 0;
+        text-shadow: 0 1px 0px #fff;
+        border:1px solid #666;
+        
+        -moz-border-radius:10px 10px;
+        -moz-box-shadow: 0px 5px 5px rgba(255, 255, 255, 1) inset, 0px -5px 5px rgba(30, 30, 30, 0.2) inset;
+        -webkit-border-radius:10px;
+        -webkit-box-shadow: 0px 5px 5px rgba(255, 255, 255, 1) inset, 0px -5px 5px rgba(30, 30, 30, 0.2) inset;
+        border-radius:10px;
+        box-shadow: 0px 5px 5px rgba(255, 255, 255, 1) inset, 0px -5px 5px rgba(30, 30, 30, 0.2) inset;
+		
+		cursor:pointer;
+    }
+    #shareWizard .cell a.linkButton:hover{
+        background: #b5b5b5;
+        color: #fff;
+        text-shadow: 0 1px 0px #000;
+        
+        -moz-box-shadow:0 5px 5px #DDDDDD inset, 0 -5px 5px rgba(30, 30, 30, 0.2) inset;
+        -webkit-box-shadow:0 5px 5px #DDDDDD inset, 0 -5px 5px rgba(30, 30, 30, 0.2) inset;
+        box-shadow:0 5px 5px #DDDDDD inset, 0 -5px 5px rgba(30, 30, 30, 0.2) inset;
+    }
+    #shareWizard .cell a.linkButton:active,
+    #shareWizard .cell a.linkButton.active{
+        color:#fff;
+        background: #777777;
+        text-shadow: 0 1px 0px #000;
+        
+        -moz-box-shadow: inset 0px 2px 3px #333;
+        -webkit-box-shadow: inset 0px 2px 3px #333;
+        box-shadow: inset 0px 2px 3px #333;
+    }
+
+    #shareWizard #shareOptionInstructions .widgetDemo{
+        float:right;
+        margin: 5px 0 0 4px;
+    }
+
+/*
+ * Custom Url 
+ */
+	#shareWizard .cell #customUrl {
+        margin:3px;
+        height:14px;
+        width:100px;
+		border-color: #111111 #555555 #A0A0A0;
+    }
+	#shareWizard .cell .customUrlPop {
+		position:absolute;
+		top:96px;
+		left:116px;
+		background:#777;
+		padding:5px;
+		width:162px;
+		height:65px;
+		
+		-moz-border-radius:5px 0 5px 5px;
+		-webkit-border-radius: 5px 0 5px 5px;
+		border-radius: 5px 0 5px 5px;
+		-moz-box-shadow: inset 0px -2px 20px #333, 0 0 5px rgba(50,50,50,0.5);
+        -webkit-box-shadow: inset 0px 2px 20px #333, 0 0 5px rgba(50,50,50,0.5);
+        box-shadow: inset 0px 2px 20px #333, 0 0 5px rgba(50,50,50,0.5);
+	}
+	
+	#shareWizard .cell a.customUrlThumb {
+		border: 1px solid #9A9A9A;
+	    padding: 4px;
+		margin-top:2px;
+		
+		-moz-border-radius:5px;
+        -moz-box-shadow: 0px 5px 5px rgba(255, 255, 255, 1) inset, 0px -5px 5px rgba(30, 30, 30, 0.2) inset;
+        -webkit-border-radius:5px;
+        -webkit-box-shadow: 0px 5px 5px rgba(255, 255, 255, 1) inset, 0px -5px 5px rgba(30, 30, 30, 0.2) inset;
+        border-radius:5px;
+        box-shadow: 0px 5px 5px rgba(255, 255, 255, 1) inset, 0px -5px 5px rgba(30, 30, 30, 0.2) inset;
+	}
+	
+	#shareWizard .cell a.customUrlThumb:active, #shareWizard .cell a.customUrlThumb.active{
+		border:1px solid transparent;
+		background:#555;
+		
+		-moz-box-shadow:none;
+		-webkit-box-shadow:none;
+		box-shadow:none;
+		-moz-border-radius:5px 5px 0 0;
+		-webkit-border-radius:5px 5px 0 0;
+		border-radius:5px 5px 0 0;
+	}
+	
+	  #shareWizard .cell #customUrlButton {
+        margin: 0 0px 0;
+        position:relative;
+        top:-1px;
+		border:1px solid #111;
+		width:31px;
+		text-align:center;
+		height:14px;
+		
+		-moz-border-radius:5px;
+		-webkit-border-radius:5px;
+		border-radius:5px;
+		}
+		
+		#shareWizard .cell .customUrlLabel {
+			font-size:11px;
+			font-weight:bold;
+			margin:0 0 1px 5px;
+			color:#fff;
+			text-shadow: 0 1px 0 #000;
+		}
+		
+		#shareWizard .cell .customUrlDesc {
+			font-size:9px;
+			margin:0 0 2px 5px;
+			color:#fff;
+			text-shadow: 0 1px 0 #000;
+			display:inline-block;
+		}
+		
+		#shareWizard .cell #customUrlError {
+			font-size:10px;
+			padding:0 0 0 5px;
+			display:inline-block;
+			color: #FF827E;
+			text-shadow: 0 1px 0 #000;
+		}
+		
+		#shareWizard .optionsDiv{
+		    overflow:hidden;
+		}
+
+/*
+ * Widget Options [customize]
+ * 
+ * 
+ * Widget Options layout
+ */
+	#shareWizard #shareOptionInstructions .widgetOptCol {
+	    width:165px;
+	    display:inline-block;
+	    vertical-align:top;
+	    margin-top:10px;
+	}
+	
+	#shareWizard #shareOptionInstructions .widgetOptColLeft {
+	    margin-right:20px;
+	}
+	
+	#shareWizard #shareOptionInstructions .widgetOptions {
+	    display:inline-block;
+	    margin: 0 0 10px;
+	    border:1px solid #bbb;
+	    padding:5px 0;
+	    vertical-align:top;
+	    width:163px;
+	}
+	
+	#shareWizard #shareOptionInstructions .widgetOptions legend {
+	    color:#000;
+	    text-shadow:none;
+	    padding: 2px 6px;
+	    font-weight:400;
+	    font-size:10px;
+	    margin-left: 5px;
+	}
+/*
+ * General Styling
+ */ 
+    #shareWizard #shareOptionInstructions .widgetOptions input {
+        margin: 0 0 5px 10px;
+	}
+    
+    #shareWizard #shareOptionInstructions .widgetOptions label {
+        font-size:10px;
+        margin: 0 0 5px;
+    }   
+    #shareWizard #shareOptionInstructions .widgetOptions input[type='text'] {
+        width:128px;
+		font-size:10px;
+		height:14px;
+    }
+	
+	#shareWizard #shareOptionInstructions .widgetOptions input#feedbackButtonText,
+	#shareWizard #shareOptionInstructions .widgetOptions input#lightboxTitle {
+		margin: 0 0 5px 10px;
+	}
+/*
+ *  Dimensions
+ */
+    #shareWizard #shareOptionInstructions .widgetOptions .widgetOptFieldsSize {
+        display:inline-block;
+    }
+        
+    #shareWizard #shareOptionInstructions .widgetOptions .widgetOptFieldsSize label {
+        margin:0 0 0 10px;
+        font-size:10px;
+    }
+    
+    #shareWizard #shareOptionInstructions .widgetOptions .widgetOptFieldsSize label[for="feedbackHeight"] {
+        margin-left:10px;
+    }
+
+    #shareWizard #shareOptionInstructions .widgetOptions .widgetOptFieldsSize input {
+	    margin:0 0 5px;
+	    width:34px !important;
+	    text-align:center;	
+    }
+
+/*
+ *  Form style
+ */
+    #shareWizard #shareOptionInstructions .widgetOptions.styleLb{
+        width:348px;
+    }
+
+	#shareWizard #shareOptionInstructions .styleBrowser{
+        display:inline-block;
+        height: 58px;
+        width: 96px;
+        background:#666;
+        margin:1px 12px 6px;
+		border:2px solid transparent;
+		
+    }
+	
+	 #shareWizard #shareOptionInstructions .styleBrowser:hover,
+	 #shareWizard #shareOptionInstructions .styleBrowser.selectedStyle{
+        width: 96px;
+        height: 58px;
+		border: 2px solid #ffa500;
+		
+		-moz-box-shadow: 0 0 2px #ffa500;
+    }
+    
+    #shareWizard #shareOptionInstructions .styleBrowser.midBrowser{
+        margin: 0 0 5px;
+    }
+
+    #shareWizard #shareOptionInstructions .styleBrowser .styleBox{
+        display:inline-block;
+        height: 35px;
+        width: 60px;
+        background:#ddd;
+        margin:9px 19px;
+        border-top: 5px solid #F59202;
+        
+        -moz-border-radius:3px;
+        -webkit-border-radius:3px;
+        border-radius:3px;
+    }
+    #shareWizard #shareOptionInstructions .styleBrowser .styleBox2{
+        height: 30px;
+        width: 50px;
+        border: 5px solid #fff;
+        background:#ddd;
+    }
+    
+    #shareWizard #shareOptionInstructions .styleBrowser .styleBox3{
+        height: 30px;
+        width: 50px;
+        border: 5px solid #000;
+        background:#ddd;
+    }
+
+    
+/*
+ *  Button and Label Color
+ */
+    #shareWizard #shareOptionInstructions .widgetOptions.colorOpt {
+        width:348px;
+    }
+    
+    #shareWizard #shareOptionInstructions .widgetOptions .widgetOptFieldsColor {
+        display:inline-block;
+    }
+        
+    #shareWizard #shareOptionInstructions .widgetOptions .widgetOptFieldsColor label {
+        margin:0 0 0 10px;
+        font-size:10px;
+    }
+    
+    #shareWizard #shareOptionInstructions .widgetOptions .widgetOptFieldsColor label[for="feedbackFontColor"] {
+        margin-left:12px;
+    }
+    
+    #shareWizard #shareOptionInstructions .widgetOptions .widgetOptFieldsColor input {
+        margin:0 0 5px;
+        width:59px !important;
+        text-align:center;
+    }
+	
+	 #shareWizard #shareOptionInstructions #lightboxCustomize .widgetOptions .widgetOptFieldsColor input {
+	 	width:50px !important;
+	 }
+
+    #shareWizard #shareOptionInstructions .widgetOptions .widgetOptFieldsColor img:hover{
+        -moz-box-shadow: 0 0 2px #bbb, 0 0 3px #bbb inset;
+        -webkit-box-shadow: 0 0 2px #bbb, 0 0 3px #bbb inset;
+        box-shadow: 0 0 2px #bbb, 0 0 3px #bbb inset;
+    }
+    
+    #shareWizard #shareOptionInstructions .widgetOptions .widgetOptFieldsColor img:active{
+        -moz-box-shadow: 0 0 3px #666, 0 0 3px #666 inset;
+        -webkit-box-shadow: 0 0 3px #666, 0 0 3px #666 inset;
+        box-shadow: 0 0 3px #666, 0 0 3px #666 inset;
+    }
+	
+	#shareWizard #shareOptionInstructions .widgetOptions .widgetOptFieldsColor .colorBox {
+		height:17px;
+		width:17px;
+		display:inline-block;
+		border:1px solid #b3b3b3;
+		background:#d78800;
+		vertical-align:middle;
+		margin:0 0 0 2px;
+	}
+
+/*
+ * shareOptions
+ */
+    #shareWizard #shareOptions,#shareWizard #informationBox {
+    	width:350px;
+		float:left;
+    }
+	
+	#shareWizard #informationBox{
+		padding-left:40px;
+	}
+    
+    #shareWizard #shareOptions a {
+        display:inline-block;
+        font-size:8px;
+        text-align:center;
+        margin:0 3.8px;
+        width:48px;
+        overflow:visible;
+        white-space:nowrap;
+        float:left;
+        padding:4px;
+    }
+	
+	#shareWizard #shareOptions a:nth-child(6n) {
+		margin-right:0;
+		padding-right:0;
+		padding-left:12px;
+		width: 32px;
+	}
+    
+	#shareWizard #shareOptions a:nth-child(6n+1)  {
+		margin-left:0;
+		padding-left:0;
+		padding-right:12px;
+		width: 32px;
+	}
+
+    #shareWizard #shareOptions img {
+		margin-bottom:2px;
+    }
+    
+    #shareWizard #shareOptions h2 {
+        clear:both;
+    }
+	
+	#shareWizard #shareOptions br {
+		clear:both;
+		height:0;
+		visibility:hidden;
+	}
+	
+    /*
+	#shareWizard #shareOptions #shiftDwLeft {
+		position:relative;
+		left:-4px;
+	}
+    */
+
+    #closeButton{
+    	float:right;
+		cursor:pointer;
+		font-size:10px;
+    }
+	
+	#shareWizard #slideTable{
+		width:740px;
+	}
+	/*
+	#shareWizard #slideTable td{
+		width:350px;
+		vertical-align:top;
+		padding-right:40px;
+	}
+	*/
+	#slideDiv{
+        overflow:hidden;
+		width:350px;
+	}
+
+/* 
+ *  End of Widget Options
+ */
+    
+    #shareWizard .optionTitle>img{
+    	vertical-align: middle;
+        margin: 0 3px 3px 0;
+    }
+    
+    #shareWizard #review{
+    	margin:0;
+    	position:absolute;
+    	left:0;
+    	cursor:pointer;
+    }
+    .option.active .sharewiz2-review{
+    	display:none;
+    }
+    
+    .options{
+	   /* left: -12px;
+	    position: relative;*/
+		display:inline-block;
+    }
+	
+	.options.options-others a{
+		margin-bottom:10px !important;
+	}
+/*
+ * End of new share wizard.
+ */

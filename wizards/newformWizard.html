@@ -1,0 +1,77 @@
+<style>
+    .new-options{
+        list-style:none;
+        list-style-position:outside;
+        padding-left:0px;
+        font-size:14px;
+    }
+    .new-options li{
+        margin:5px;
+    }
+    .import-options{
+        list-style:none;
+        list-style-position:outside;
+        margin:0px;
+        margin-top:5px;
+        padding-left:20px;
+    }
+    #import-url-option, #import-upload-option, #import-clone-option{
+        padding:10px 20px;;
+        font-size:12px;
+    }
+    #import-url-option label, #import-upload-option label, #import-clone-option label{
+        margin:5px;
+    }
+</style>
+
+<div class="newwizard-page1" id="page1" style="padding:10px;">
+    
+    <ul class="new-options">
+        <li>
+            <input type="radio" name="newoption" checked="checked" id="new-blank"> <label for="new-blank" class="locale">Blank Form</label>
+            <div class="option-description locale">Create a blank form from scratch</div>
+        </li>
+        <li>
+            <input type="radio" name="newoption" id="new-starter"> <label for="new-starter"  class="locale">Form Samples</label>
+            <div class="option-description locale">Have a quick start by using form templates</div>
+            <div id="starter-options" style="padding:10px 26px; display:none">
+                <select id="newdropdown">
+                    <option value="initial" class="locale">Please Select</option>
+                </select>
+            </div>
+        </li>
+        <li>
+            <input type="radio" name="newoption" id="new-import"> 
+		    <label for="new-import"  class="locale">Import Form</label>
+            <div class="option-description locale">Save time by cloning an existing form</div>
+            <ul id="import-ops" class="import-options" style="display:none;">
+                <li>
+                    <input type="radio" name="importoption" id="import-url"> <label for="import-url"  class="locale">From a web page</label>
+                    <div class="option-description locale">Grab a form from any web page</div>
+                    <div id="import-url-option" style="display:none;width:440px;">
+                        <label for="import-website-url" class="locale">URL:</label>
+			            <input type="text" size="40" id="import-website-url">
+                    </div>
+                </li>
+                <li style="display:none">
+                    <input type="radio" disabled="true" name="importoption" id="import-upload"> <label for="import-upload">
+                        <strike title="Not Implemented Yet." style="cursor:help;"  class="locale">Upload form source</strike>
+                    </label>
+                    <div id="import-upload-option" style="display:none;">
+                        <label class="locale">Select a file to upload</label><input type="file">
+                    </div>
+                </li>
+                <li>
+                    <input type="radio" name="importoption" id="import-clone"> 
+			        <label for="import-clone" class="locale">Clone an existing form</label>
+                    <div class="option-description locale">Create a copy of one of your existing forms</div>
+                    <div id="import-clone-option" style="display:none;">
+                        <select id="import-existing-forms">
+                            <option class="locale">Please select</option>
+                        </select>
+                    </div>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>

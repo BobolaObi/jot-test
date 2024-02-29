@@ -1,0 +1,51 @@
+<h4 class="optionTitle">
+    <img src="images/blank.gif" class="sharewiz2-lightbox" alt="LightBox" title="LightBox"/>
+	LightBox
+</h4>
+<textarea id="lightbox2Source" readonly="readonly"></textarea><br/>
+
+<p>Use this code to have your form appear in a lightbox.</p>
+
+<div id="lightboxCustomize" class="optionsDiv">
+
+
+	<div class="widgetOptCol widgetOptColLeft">
+		<fieldset class="widgetOptions">
+			<legend>Title</legend>
+				<input type="text" id="lightboxTitle" /><br/>
+		</fieldset>
+	</div><div class="widgetOptCol">
+		<fieldset class="widgetOptions">
+			<legend>Form Dimensions(in px)</legend>
+				<span class="widgetOptFieldsSize">
+					<label for="lightboxWidth">W:</label>
+					<input type="text" id="lightboxWidth" />
+				</span>
+				<span class="widgetOptFieldsSize">
+					<label for="lightboxHeight">H:</label>
+					<input type="text" id="lightboxHeight" />
+				</span>
+		</fieldset>
+	</div>
+	
+	<fieldset class="widgetOptions styleLb">
+		<legend>Select Lightbox Style</legend>
+			<div class="styleBrowser"><div class="styleBox"></div></div><div class="styleBrowser midBrowser"><div class="styleBox styleBox2"></div></div><div class="styleBrowser"><div class="styleBox styleBox3"></div></div>
+	</fieldset> 
+	
+	<fieldset class="widgetOptions colorOpt">
+		<legend>Title Bar Colors</legend>
+			<span class="widgetOptFieldsColor">
+				<label for="lightboxBackgroundColor">Background:</label>
+				<input type="text" id="lightboxBackgroundColor" />
+				<a class="colorBox" id="lightboxBackgroundColorBox"></a>
+			</span><span class="widgetOptFieldsColor">   <!-- inline-block space fix -->
+				<label for="lightboxFontColor">Text:</label>
+				<input type="text" id="lightboxFontColor" />
+				<a class="colorBox" id="lightboxFontColorBox"></a>
+			</span>
+	</fieldset>
+</div>
+
+<a id="lightboxDemo" class="widgetDemo linkButton">Preview</a>
+<a id="lightboxCustomizeButton" class="widgetDemo linkButton">Customize</a>  

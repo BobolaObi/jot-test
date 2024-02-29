@@ -1,0 +1,29 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine  on
+    #RewriteBase    /
+
+    RewriteRule ^formstyle/(.*)\.css$ /server.php?action=getInlineFormStyle&formID=$1&css [L,QSA]
+
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php?slug=$1 [L,QSA]
+
+    # duplicate content on google 
+    RewriteCond  %{HTTP_HOST}  ^www.jotform.com  
+    RewriteRule  ^robots.txt www_robots.txt
+
+    RewriteCond %{HTTP_HOST} ^www\.spanish\.jotform\.com
+    RewriteRule (.*) http://spanish.jotform.com/$1 [R=301,L]
+    RewriteCond %{HTTP_HOST} ^www\.turk\.jotform\.com
+    RewriteRule (.*) http://turk.jotform.com/$1 [R=301,L]
+
+</IfModule>
+
+<FilesMatch "\.(ico|jpg|jpeg|png|gif|js|css|swf)$">
+<IfModule mod_expires.c>
+ ExpiresActive on
+ ExpiresDefault "access plus 30 days"
+Header unset ETag
+FileETag None
+</IfModule>
+</FilesMatch>

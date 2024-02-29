@@ -1,0 +1,27 @@
+/*
+ *Form CSS
+ */
+.form-all{
+    color: #884444;
+    font-family:Times;
+    font-size: 12px;
+    background:url(../../images/styles/OldPaper.jpg) #ffffff;
+}
+
+.form-textbox, .form-textarea, .form-upload, .form-dropdown, .form-matrix-column-headers, .form-matrix-row-headers, .form-matrix-values{
+    color:#884444;
+   font-family: Times;
+   font-size: 14px;
+   font-weight:bold;
+   border:1px solid #999999;
+   background:transparent;
+}
+
+.form-submit-button, .form-submit-reset, .form-submit-print{
+   color:#884444;
+   font-family: Times;
+   font-size: 14px;
+   font-weight:normal;
+   border:1px solid #999999;
+   background:transparent;
+}

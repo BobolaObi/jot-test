@@ -1,0 +1,109 @@
+.formLabel {
+    width: 160px;
+    float: left;
+    text-align: right;
+    margin-right: 16px;
+    font-weight: bold;
+    color: #666;
+    padding-top: 4px;
+}
+
+#usernameField, #emailField, #passwordField, #passwordConfField {
+    text-align: left;
+    margin-bottom: 1em;
+}
+
+form input {
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
+    border: 1px solid #666;
+    padding: 4px;
+    font-size: 18px;
+}
+
+#signupButton {
+	-moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
+    height: 31px; 
+    font-size: inherit; 
+    margin-left: 176px;
+}
+
+#registrationBox {
+    font-size: 16px;
+    width: 640px;
+}
+
+.fieldMessage {
+    font-size: 12px;
+    position: absolute;
+    width: 160px;
+    margin-left: 12px;
+    display: inline;
+}
+
+div.error {
+    color: red;
+    padding: 0;
+}
+
+div.correct {
+    color: green;
+}
+
+input.error {
+    border: 2px solid red;
+}
+
+#registrationError {
+    text-align: left;
+    margin: 16px 0 16px 176px;
+}
+
+#content {
+    text-align: left;
+    background-color: white;
+}
+
+.neutral {
+/*    background-color: #eee; */
+}
+
+.validationImage {
+    position: absolute;
+    margin-top: 6px;
+}
+
+.errorMessage span, 
+.correctMessage span, 
+.neutralMessage span {
+    margin-left: 24px;
+    position: absolute;
+    background-color: inherit;
+}
+
+div.error  div.errorMessage, 
+div.correct  div.correctMessage,
+div.neutral  div.neutralMessage {
+    display: inline;
+}
+
+div.error div.correctMessage,
+div.error div.neutralMessage,
+div.correct div.errorMessage,
+div.correct div.neutralMessage, 
+div.neutral div.errorMessage, 
+div.neutral div.correctMessage {
+    display: none;
+}
+
+div.errorMessage, div.neutralMessage, div.correctMessage {
+    display: none;
+}
+
+div.error input {
+    border: 2px solid red;
+}
+

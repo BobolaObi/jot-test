@@ -1,0 +1,10 @@
+.phishing-detect, .phishing-ignore, .phishing-judge, .phishing-loader-big, .phishing-loading, .phishing-notspam, .phishing-spam, .phishing-suspend, .phishing-whitelist{background: transparent url(images/phishing.png?3.0.REV) no-repeat scroll 0 0;}
+.phishing-detect{background-position: -0px 0px;width:32px;height:32px;}
+.phishing-ignore{background-position: -32px 0px;width:32px;height:32px;}
+.phishing-judge{background-position: -64px 0px;width:32px;height:32px;}
+.phishing-loader-big{background-position: -96px 0px;width:24px;height:24px;}
+.phishing-loading{background-position: -120px 0px;width:220px;height:19px;}
+.phishing-notspam{background-position: -340px 0px;width:32px;height:32px;}
+.phishing-spam{background-position: -372px 0px;width:32px;height:32px;}
+.phishing-suspend{background-position: -404px 0px;width:32px;height:32px;}
+.phishing-whitelist{background-position: -436px 0px;width:32px;height:32px;}

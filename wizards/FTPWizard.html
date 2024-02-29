@@ -1,0 +1,30 @@
+<div id="page1" class="ftp-page">
+    <ul class="ftp-login">
+        <li><label for="ftp-host">FTP Host: </label> <input type="text" id="ftp-host" /> : <input size="4" value="21" type="text" id="ftp-port"></li>
+        <li><label for="ftp-username">Username:</label> <input type="text" id="ftp-username" /></li>
+        <li><label for="ftp-password">Password:</label> <input type="password" id="ftp-password" /></li>
+    </ul>
+    <div>
+        <button id="ftp-test-connection" class="big-button buttons buttons-grey">Test Connection</button> <span id="ftp-test-result"></span>
+    </div>
+</div>
+<div id="page2" style="display:none" class="ftp-page">
+    <div id="filebox">
+        <div id="filestext">Choose a folder to place your uploads.</div>
+        <div id="ftp-files">
+            <div class="ftp-folder">
+                <div class="ftp-folder-close"> </div>
+                <div class="ftp-fname" fname="/" fpath="/"> / </div>
+            </div>
+            <div id="/" class="ftp-folder-items"> </div>
+        </div>
+    </div>
+    <div class="ftp-path-cont">
+        <input type="text" id="ftp-path" value="/" />
+        <label>Uploads will be saved to this path - If not found, folder will be created.</label>
+    </div>
+    <div class="ftp-path-cont">
+        <select id="ftp-fields"></select>
+        <label>This field's value will be used as folder name</label>
+    </div>
+</div>

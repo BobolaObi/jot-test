@@ -1,0 +1,23 @@
+.context-menu-add, .context-menu-auto-off, .context-menu-auto-on, .context-menu-cross_shine, .context-menu-disk, .context-menu-down, .context-menu-emails, .context-menu-expand, .context-menu-gear, .context-menu-merge-line, .context-menu-new-line, .context-menu-pencil, .context-menu-preview, .context-menu-redo, .context-menu-required-small, .context-menu-share, .context-menu-shrink, .context-menu-toggle, .context-menu-transparent, .context-menu-undo, .context-menu-up, .context-menu-wand{background: transparent url(images/context-menu.png?3.0.REV) no-repeat scroll 0 0;}
+.context-menu-add{background-position: -0px 0px;width:16px;height:16px;}
+.context-menu-auto-off{background-position: -16px 0px;width:16px;height:16px;}
+.context-menu-auto-on{background-position: -32px 0px;width:16px;height:16px;}
+.context-menu-cross_shine{background-position: -48px 0px;width:16px;height:16px;}
+.context-menu-disk{background-position: -64px 0px;width:16px;height:16px;}
+.context-menu-down{background-position: -80px 0px;width:16px;height:16px;}
+.context-menu-emails{background-position: -96px 0px;width:16px;height:16px;}
+.context-menu-expand{background-position: -112px 0px;width:16px;height:16px;}
+.context-menu-gear{background-position: -128px 0px;width:16px;height:16px;}
+.context-menu-merge-line{background-position: -144px 0px;width:16px;height:16px;}
+.context-menu-new-line{background-position: -160px 0px;width:16px;height:16px;}
+.context-menu-pencil{background-position: -176px 0px;width:16px;height:16px;}
+.context-menu-preview{background-position: -192px 0px;width:16px;height:16px;}
+.context-menu-redo{background-position: -208px 0px;width:16px;height:16px;}
+.context-menu-required-small{background-position: -224px 0px;width:16px;height:16px;}
+.context-menu-share{background-position: -240px 0px;width:16px;height:16px;}
+.context-menu-shrink{background-position: -256px 0px;width:16px;height:16px;}
+.context-menu-toggle{background-position: -272px 0px;width:16px;height:16px;}
+.context-menu-transparent{background-position: -288px 0px;width:16px;height:16px;}
+.context-menu-undo{background-position: -304px 0px;width:16px;height:16px;}
+.context-menu-up{background-position: -320px 0px;width:16px;height:16px;}
+.context-menu-wand{background-position: -336px 0px;width:16px;height:16px;}

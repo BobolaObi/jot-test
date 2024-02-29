@@ -1,0 +1,173 @@
+.ftp-login{
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+.ftp-login label{
+    float:left;
+    width:80px;
+	margin-top:2px;
+	color:#333333;
+	text-shadow:0 1px 0 #FFFFFF;
+}
+.ftp-login li{
+    margin:0 0 15px;
+}
+.ftp-login input{
+    border:1px solid #999;
+    padding:3px 6px;
+    
+	-moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    border-radius:3px;
+	
+	-moz-box-shadow:inset 0 1px 2px rgba(0, 0, 0, 0.15), 0 1px 0 rgba(255,255,255,0.75);
+    -webkit-box-shadow:inset 0 1px 2px rgba(0, 0, 0, 0.15), 0 1px 0 rgba(255,255,255,0.75);
+    box-shadow:inset 0 1px 2px rgba(0, 0, 0, 0.15), 0 1px 0 rgba(255,255,255,0.75);
+}
+#ftp-host{ width:204px; }
+#ftp-port{ width:30px; }
+#ftp-username, #ftp-password{ width:262px; }
+#ftp-test-result{}
+#ftp-test-connection{ 
+	margin-left:80px;
+	-moz-border-radius:3px !important;
+    -webkit-border-radius:3px !important;
+    border-radius:3px !important;
+}
+.ftp-folder {
+    background: url(../../images/ftp-folder.png) no-repeat scroll 10px 0;
+    height: 19px;
+	margin-left:-9px;
+}
+
+.ftp-folder-user {
+    background: url(../../images/ftp-folder-user.png) no-repeat scroll 10px 0;
+    height: 19px;
+	margin-left:-9px;
+}
+
+.ftp-file {
+    background: url(../../images/page_world.png) no-repeat scroll 0 0;
+    text-indent: 20px;
+    height: 19px;
+    cursor: default;
+    white-space:nowrap;
+}
+
+.ftp-folder-items {
+    padding-left: 30px;
+    clear: left;
+    background:url(../../images/file-tree-elbow.gif) no-repeat 0 -1px;
+}
+
+.ftp-folder-close, .ftp-folder-open {
+    background: url(../../images/plus.png) no-repeat scroll -4px 0;
+    height: 19px;
+    width: 12px;
+    float: left;
+    cursor: pointer;
+}
+.ftp-path-cont{
+    float:left;
+    margin:20px 7px 0 0;
+}
+.ftp-path-cont label{
+    font-size:9px;
+    color:#999999;
+    display:block;
+	margin: 1px 0 0 1px;
+}
+
+#ftp-path{
+    width:346px;
+    border:1px solid #999;
+    padding:3px 6px;
+    
+	-moz-box-shadow:inset 0 1px 2px rgba(0, 0, 0, 0.15), 0 1px 0 rgba(255,255,255,0.75);
+    -webkit-box-shadow:inset 0 1px 2px rgba(0, 0, 0, 0.15), 0 1px 0 rgba(255,255,255,0.75);
+    box-shadow:inset 0 1px 2px rgba(0, 0, 0, 0.15), 0 1px 0 rgba(255,255,255,0.75);
+	
+	-moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    border-radius:3px;
+}
+
+#filestext {
+	margin: 0 0 5px 1px;
+	color:#333333;
+	text-shadow: 0 1px 0 #FFFFFF;
+}
+
+.ftp-folder-open {
+    background: url(../../images/minus.png) no-repeat scroll -4px 0 !important;
+}
+.ftp-folder-selected {
+    outline: 1px dotted blue;
+    background: #87CEFA;
+}
+.ftp-fname {
+    float: left;
+    cursor: default;
+    margin-left: 16px;
+    padding: 1px;
+    white-space:nowrap;
+}
+.ftp-empty{
+    color: #999999;
+    font-size: 11px;
+    font-style: italic;
+}
+#ftp-files {
+    border: 1px solid #999999;
+    height: 300px;
+    overflow: auto;
+    background: #ffffff;
+    padding: 10px 14px 10px 23px;
+    text-shadow:none;
+	width:321px;
+    
+	-moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+    
+	-moz-box-shadow:inset 0 2px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255,255,255,0.75);
+    -webkit-box-shadow:inset 0 2px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255,255,255,0.75);
+    box-shadow:inset 0 2px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255,255,255,0.75);
+    
+}
+
+.ftp-ssl-warning{
+    background:#F5F5F5;
+    background:rgba(255,255,255, 0.85);
+    border: 1px solid #CCCCCC;
+    left: 30px;
+    padding: 0;
+    position: absolute;
+    top: 80px;
+    width: 350px;
+    z-index: 200000;
+    box-shadow:0 2px 8px #000000;
+    -moz-box-shadow:0 2px 8px #000000;
+    -webkit-box-shadow:0 2px 8px #000000;
+    border-radius:5px;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+}
+.ftp-ssl-warning-texts{
+    padding:20px 15px;
+    border-bottom:1px solid #CCCCCC;
+    font-size:10px;
+	line-height:18px;
+	color:#444444;
+	text-shadow:0 1px 0 #FFFFFF;
+}
+.ftp-ssl-button-cont{
+    background: none repeat scroll 0 0 #EEEEEE;
+    border-top: 1px solid #FFFFFF;
+    padding: 12px;
+    text-align: center;
+}
+.ftp-ssl-button-cont .buttons {
+    margin: 0 12px;
+}

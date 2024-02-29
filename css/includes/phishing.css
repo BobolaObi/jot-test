@@ -1,0 +1,102 @@
+body {
+    font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    color: #333;
+    background: #f5f5f5;
+}
+
+#progress_bar {
+    width: 126px;
+    height: 22px;
+    position: absolute;
+    top: 100px;
+    left: 440px;
+    padding-top: 3px;
+    background-image: url(../../images/ajax-loader.gif);
+    background-repeat: repeat-x;
+    color: #ccc;
+    text-align: center;
+}
+
+#progress_bar div {
+    background-color: #fff;
+}
+
+#formtitle {
+    background: #eee;
+    font-weight: bold;
+    padding: 2px 5px 2px 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+}
+
+#pbar-wrap {
+    width: 200px;
+    height: 40px;
+    border: 1px solid #ccc;
+    background: #eee;
+    position: relative;
+}
+
+#pbar-bar {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    height: 38px;
+    width: 0%;
+    background: #ffffff;
+}
+
+#spamProb {
+    left: 0;
+    position: absolute;
+    text-align: center;
+    top: 7px;
+    width: 100%;
+    font-size: 20px;
+    z-index: 100;
+}
+
+.big-button {
+    padding: 2px .25em;
+    overflow: visible;
+    width: auto;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    background: none;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    color: #333;
+}
+
+.big-button:hover {
+    background: #ddd;
+}
+
+.big-button:active {
+    background: #bbb;
+}
+
+.big-select {
+    font-size: 20px;
+}
+
+.big-box {
+    font-size: 20px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+}
+
+fieldset {
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+}
+
+h3 {
+    font-size: 25px;
+    padding: 0px;
+    margin: 0px;
+}

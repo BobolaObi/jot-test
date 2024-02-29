@@ -1,0 +1,111 @@
+<div id="page1" style="padding:10px;">
+    <ul class="wizard-list-options">
+        <li>
+            <div>
+                <input type="radio" name="email-type" id="email-notification" checked="checked"> 
+            <label for="email-notification" class="locale">Notification Email</label>
+                <div class="option-description locale">Receive an email when someone fills your form</div>
+            </div>
+        </li>
+        <li>
+            <div>
+                <input type="radio" name="email-type" id="email-autorespond"> 
+            <label for="email-autorespond" class="locale">Autoresponder Email</label>
+                <div class="option-description locale">Send confirmation email to the person who fills your form</div>
+            </div>
+        </li>
+    </ul>
+</div>
+<div id="page2" style="padding:20px;padding-left:13px;display:none">
+    <div id="email-notification-settings"  class="email-setting-pages envelope"style="display:none">
+        <div class="envelope-sender">
+            <table summary="envelope" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td>
+                        <span class="grey-input no-border locale">Sender Name:</span> 
+                    </td><td>                        
+                        <select id="email-notification-from-name"><option selected="selected" value="none" class="locale">Please Select</option></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="grey-input no-border locale">Sender E-mail:</span> 
+                    </td><td>
+                        <select id="email-notification-from-address"><option selected="selected" value="none" class="locale">Please Select</option></select>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="envelope-stamp">
+            <img src="images/stamp.png" alt="stamp" />
+        </div>
+        <div class="envelope-name">
+            <input id="email-notification-name" class="email-name" value="Notification 1">
+        </div>
+        <div class="envelope-error" id="email-notification-error"></div>
+        <div class="envelope-recipient">
+            <span class="grey-input no-border locale">Recipient E-mail:</span> <input id="email-notification-to-address" class="grey-input" value="Your E-Mail" onfocus="if(this.value === 'Your E-Mail'.locale()){ this.value=''; }" onblur="if(this.value === ''){ this.value='Your E-Mail'.locale(); }">
+        </div>
+    </div>
+    <div id="email-autorespond-settings" class="email-setting-pages envelope" style="display:none">
+        <div class="envelope-sender">
+            <span class="grey-input no-border locale">Sender Name:</span> <input id="email-autorespond-from-name" class="grey-input" value="Your Name" onfocus="if(this.value === 'Your Name'.locale()){ this.value=''; }" onblur="if(this.value === ''){ this.value='Your Name'.locale(); }"><br>
+            <span class="grey-input no-border locale">Sender E-mail:</span> <input id="email-autorespond-from-address" class="grey-input" value="Your E-Mail" onfocus="if(this.value === 'Your E-Mail'.locale()){ this.value=''; }" onblur="if(this.value === ''){ this.value='Your E-Mail'.locale(); }">
+        </div>
+        <div class="envelope-stamp">
+            <img src="images/stamp.png" alt="stamp" />
+        </div>
+        <div class="envelope-name">
+            <input id="email-autorespond-name" class="email-name" value="Notification 1">
+        </div>
+        <div class="envelope-error" id="email-autorespond-error"></div>
+        <div class="envelope-recipient">
+            <table summary="envelope" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td>
+                        <span class="grey-input no-border locale">Recipient E-mail:</span> 
+                    </td><td>                        
+                        <select id="email-autorespond-to-address" class="grey-input" style="width: 180px;"><option selected="selected" value="none" class="locale">Please Select</option></select>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div id="page3" style="padding:20px;display:none;">
+    <ul>
+        <li>
+            <label for="email-subject" class="locale">Subject</label>:
+        &nbsp;
+            <input id="email-subject" type="text" style="width:582px;" />
+        </li>
+        <li style="margin-bottom:3px;">
+            <!-- better without it: label for="email-body" style="font-weight:bold;" class="locale">Body</label -->
+        </li>
+        <div>
+            <textarea id="email-body" style="width:650px;height:320px">
+                Your message
+            </textarea>
+            <div style="width:652px; text-align:right; padding-top:5px">
+                <div id="compose-options" style="display:none">
+                    <label id="dtext" for="email-disabled" class="locale" style="cursor:help;">Disabled</label><input id="email-disabled" type="checkbox" />
+                    <button onclick="EmailWizard.useDefault();" class="big-button buttons locale">Reset to Default</button>
+                </div>
+                <button id="email-toggle" onclick="EmailWizard.toggleEditor(this);" class="big-button buttons locale">Switch to Text Mode</button>
+            </div>
+        </div>
+    </ul>
+    <div id="fields-box">
+        <div id="fields-title">
+            <div id="fields-arrow"></div>
+            <span class="locale">Form Fields</span>
+            <img align="right" src="images/information.png" id="field-info" style="position:absolute; right:1px; top:1px;" alt="" />
+        </div>
+        <div id="fields-list-cont">
+            
+            <ul id="fields-list">
+                
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+.toolbar-admin-csssprite, .toolbar-admin-db, .toolbar-admin-debug, .toolbar-admin-logout, .toolbar-admin-spam, .toolbar-admin-terminal, .toolbar-admin-translation, .toolbar-admin-user{background: transparent url(images/toolbar-admin.png?3.0.REV) no-repeat scroll 0 0;}
+.toolbar-admin-csssprite{background-position: -0px 0px;width:24px;height:24px;}
+.toolbar-admin-db{background-position: -24px 0px;width:24px;height:24px;}
+.toolbar-admin-debug{background-position: -48px 0px;width:24px;height:24px;}
+.toolbar-admin-logout{background-position: -72px 0px;width:24px;height:24px;}
+.toolbar-admin-spam{background-position: -96px 0px;width:24px;height:24px;}
+.toolbar-admin-terminal{background-position: -120px 0px;width:24px;height:24px;}
+.toolbar-admin-translation{background-position: -144px 0px;width:24px;height:24px;}
+.toolbar-admin-user{background-position: -168px 0px;width:24px;height:24px;}

@@ -1,0 +1,92 @@
+
+<div id="page1" class="report-pages">
+    <ul class="report-list">
+        <li>
+            <label>
+                <input type="radio" name="report-type" class="report-inputs" value="excel">
+                <img src="images/myforms/excel.png" align="absmiddle" />
+                <span class="locale">Excel Report</span>
+                <span class="option-description locale">Create sharable Excel reports</span>
+            </label>
+        </li>
+        <li>
+            <label>
+                <input type="radio" name="report-type" class="report-inputs" value="csv">
+                <img src="images/myforms/csv.png" align="absmiddle" />
+                <span class="locale">CSV Report</span>
+                <span class="option-description locale">Create sharable comma seperated values</span>
+            </label>
+        </li>
+        <li>
+            <label>
+                <input type="radio" name="report-type" class="report-inputs" value="grid">
+                <img src="images/myforms/grid.png" align="absmiddle" />
+                <span class="locale">Grid Listing</span>
+                <span class="option-description locale">Create online data grid widget to share responses on your website</span>
+            </label>
+        </li>
+        <li>
+            <label>
+                <input type="radio" name="report-type" class="report-inputs" value="table">
+                <img src="images/myforms/table.png" align="absmiddle" />
+                <span class="locale">HTML Table Listing</span>
+                <span class="option-description locale">Create HTML Data Table to share responses on your website</span>
+            </label>
+        </li>
+        <li id="calendar-list">
+            <label>
+                <input type="radio" name="report-type" class="report-inputs" value="cal">
+                <img src="images/myforms/cal.png" align="absmiddle" />
+                <span class="locale">Calendar Listing</span>
+                <span class="option-description locale">Display and share event dates on an online calendar</span>
+            </label>
+        </li>
+        <li>
+            <label>
+                <input type="radio" name="report-type" class="report-inputs" value="rss">
+                <img src="images/myforms/rss.png" align="absmiddle" />
+                <span class="locale">RSS Listing</span>
+                <span class="option-description locale">Watch your submissions on a news reader</span>
+            </label>
+        </li>
+        <li>
+            <label>
+                <input type="radio" name="report-type" class="report-inputs" value="visual">
+                <img src="images/myforms/visual.png" align="absmiddle" />
+                <span class="locale">Visual Report Builder</span>
+                <span class="option-description locale">Create printable reports with charts and data grids</span>
+            </label>
+        </li>
+    </ul>
+    <div id="error">&nbsp;</div>
+</div>
+<div id="page2" class="report-pages" style="display:none;">
+    <ul>
+        <li>
+            <label><span class="locale">Title</span> <input type="text" size="35" id="report-title"></label>
+        </li>
+        <li>
+            <div id="field-cont">            
+                <div id="fieldlist">
+                    
+                </div>
+            </div>
+            <button id="report-checkall" class="big-button buttons" type="button">Check All</button>
+            <label id="ask-password"><input type="checkbox" id="report-password"> <span id="password-text" class="locale">Password Protection</span></label>
+            <div style="float:right" id="field-error">&nbsp;</div>
+        </li>
+    </ul>
+</div>
+<div id="page3" class="report-pages" style="display:none;text-align:center;">
+    <div id="result-container">
+        <h3 class="locale">Congratulations!</h3>
+        <div id="url-container">
+            <b class="locale">Now you can share your results by using this URL</b>
+            <input type="text" id="report-url" readonly="readonly" class="result-fields">
+        </div>
+        <div id="iframe-container">
+            <b class="locale">You can get the iframe code and embed to your site</b>
+            <textarea rows="6" id="report-iframe" readonly="readonly" class="result-fields"></textarea>
+        </div>
+    </div>
+</div>

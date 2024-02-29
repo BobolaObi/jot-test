@@ -1,0 +1,52 @@
+<style>
+    * html img{
+        azimuth: expression(
+                this.pngSet?this.pngSet=true:(this.nodeName == "IMG" && this.src.toLowerCase().indexOf('.png')>-1?(this.runtimeStyle.backgroundImage = "none",
+                this.runtimeStyle.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + this.src + "', sizingMethod='image')",
+                this.src = "http://jotform.com/images/blank.gif"):(this.origBg = this.origBg? this.origBg :this.currentStyle.backgroundImage.toString().replace('url("','').replace('")',''),
+                this.runtimeStyle.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + this.origBg + "', sizingMethod='crop')",
+                this.runtimeStyle.backgroundImage = "none")),this.pngSet=true
+        );
+    }
+    html, body{
+        zoom: 1;
+    }
+    #error-container{
+        width:620px;
+        font-size:14px;
+    }
+</style>
+
+<div style="width:638px;">
+    <p>
+        Sorry, we do not support <a href="http://ie6funeral.com/">Internet Explorer 6</a> anymore.<br> 
+        In order to provide better service and keep up with the new technologies we had to drop IE6 support. 
+        You should upgrade your browser to a newer version.
+    </p>
+    <hr>
+    <table cellpadding="5" cellspacing="0" width="500" align="center">
+        <tr>
+            <th colspan="5">
+                There are many good browsers on the market, we suggest
+            </th>
+        </tr>
+        <tr>
+            <td><a href="http://getfirefox.com"><img src="../images/browsers/firefox.png" border="0" alt="Mozilla FireFox" /></a></td>
+            <td><a href="http://www.google.com/chrome"><img src="../images/browsers/chrome.png" border="0" alt="Google Chrome" /></a></td>
+            <td><a href="http://www.apple.com/safari/download/"><img src="../images/browsers/safari.png" border="0" alt="Apple Safari" /></a></td>
+            <td><a href="http://www.opera.com/download/"><img src="../images/browsers/opera.png" border="0" alt="Opera" /></a></td>
+            <td><a href="http://www.microsoft.com/windows/internet-explorer/default.aspx"><img src="../images/browsers/IE8.png" border="0" alt="Microsoft Internet Explorer 8" /></a></td>
+        </tr>
+        <tr>
+            <th><a href="http://getfirefox.com">Mozilla FireFox</a></th>
+            <th><a href="http://www.google.com/chrome">Google Chrome</a></th>
+            <th><a href="http://www.apple.com/safari/download/">Apple Safari</a></th>
+            <th><a href="http://www.opera.com/download/">Opera</a></th>
+            <th><a href="http://www.microsoft.com/windows/internet-explorer/default.aspx">Microsoft IE8</a></th>
+        </tr>
+    </table>
+    <hr>
+    <p>
+        If you cannot upgrade your browser <a href="http://v2.jotform.com">you can use the old version of JotForm.</a>
+    </p>
+</div>

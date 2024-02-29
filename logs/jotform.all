@@ -1,0 +1,206 @@
+[1;34m################################################################################
+#Type[ [1;31mERROR[1;34m ] #Title[ [1;31mLog Entry[1;34m ] #Date[ [1;31mDecember 14, 2023 at 16:04:36[1;34m ]
+################################################################################:
+
+[1;31mDid not use redis cache
+-----
+Back Trace:
+
+#0 lib/classes/Console.php(269): Console::log('...', false, 1, '...')
+#1 lib/init.php(329): Console::error('...')
+#2 index.php(2): include_once('...')
+
+
+[1;34m________________________________________________________________________________
+[1;37m[1;34m################################################################################
+#Type[ [1;31mERROR[1;34m ] #Title[ [1;31mLog Entry[1;34m ] #Date[ [1;31mDecember 14, 2023 at 16:07:02[1;34m ]
+################################################################################:
+
+[1;31mDid not use redis cache
+-----
+Back Trace:
+
+#0 lib/classes/Console.php(269): Console::log('...', false, 1, '...')
+#1 lib/init.php(329): Console::error('...')
+#2 index.php(2): include_once('...')
+
+
+[1;34m________________________________________________________________________________
+[1;37m[1;34m################################################################################
+#Type[ [1;31mERROR[1;34m ] #Title[ [1;31mLog Entry[1;34m ] #Date[ [1;31mDecember 14, 2023 at 16:07:26[1;34m ]
+################################################################################:
+
+[1;31mDid not use redis cache
+-----
+Back Trace:
+
+#0 lib/classes/Console.php(269): Console::log('...', false, 1, '...')
+#1 lib/init.php(329): Console::error('...')
+#2 index.php(2): include_once('...')
+
+
+[1;34m________________________________________________________________________________
+[1;37m[1;34m################################################################################
+#Type[ [1;31mERROR[1;34m ] #Title[ [1;31mLog Entry[1;34m ] #Date[ [1;31mDecember 14, 2023 at 16:09:05[1;34m ]
+################################################################################:
+
+[1;31mDid not use redis cache
+-----
+Back Trace:
+
+#0 lib/classes/Console.php(269): Console::log('...', false, 1, '...')
+#1 lib/init.php(329): Console::error('...')
+#2 index.php(2): include_once('...')
+
+
+[1;34m________________________________________________________________________________
+[1;37m[1;34m################################################################################
+#Type[ [1;31mERROR[1;34m ] #Title[ [1;31mLog Entry[1;34m ] #Date[ [1;31mDecember 14, 2023 at 16:10:10[1;34m ]
+################################################################################:
+
+[1;31mDid not use redis cache
+-----
+Back Trace:
+
+#0 lib/classes/Console.php(269): Console::log('...', false, 1, '...')
+#1 lib/init.php(329): Console::error('...')
+#2 index.php(2): include_once('...')
+
+
+[1;34m________________________________________________________________________________
+[1;37m[1;34m################################################################################
+#Type[ [1;31mERROR[1;34m ] #Title[ [1;31mLog Entry[1;34m ] #Date[ [1;31mDecember 14, 2023 at 16:14:40[1;34m ]
+################################################################################:
+
+[1;31mDid not use redis cache
+-----
+Back Trace:
+
+#0 lib/classes/Console.php(269): Console::log('...', false, 1, '...')
+#1 lib/init.php(329): Console::error('...')
+#2 index.php(2): include_once('...')
+
+
+[1;34m________________________________________________________________________________
+[1;37m[1;34m################################################################################
+#Type[ [1;31mERROR[1;34m ] #Title[ [1;31mLog Entry[1;34m ] #Date[ [1;31mDecember 14, 2023 at 16:16:59[1;34m ]
+################################################################################:
+
+[1;31mDid not use redis cache
+-----
+Back Trace:
+
+#0 lib/classes/Console.php(269): Console::log('...', false, 1, '...')
+#1 lib/init.php(329): Console::error('...')
+#2 index.php(2): include_once('...')
+
+
+[1;34m________________________________________________________________________________
+[1;37m[1;34m################################################################################
+#Type[ [1;31mERROR[1;34m ] #Title[ [1;31mLog Entry[1;34m ] #Date[ [1;31mDecember 14, 2023 at 16:17:02[1;34m ]
+################################################################################:
+
+[1;31mDid not use redis cache
+-----
+Back Trace:
+
+#0 lib/classes/Console.php(269): Console::log('...', false, 1, '...')
+#1 lib/init.php(329): Console::error('...')
+#2 index.php(2): include_once('...')
+
+
+[1;34m________________________________________________________________________________
+[1;37m[1;34m################################################################################
+#Type[ [1;31mERROR[1;34m ] #Title[ [1;31mLog Entry[1;34m ] #Date[ [1;31mDecember 14, 2023 at 16:30:59[1;34m ]
+################################################################################:
+
+[1;31mDid not use redis cache
+-----
+Back Trace:
+
+#0 lib/classes/Console.php(269): Console::log('...', false, 1, '...')
+#1 lib/init.php(338): Console::error('...')
+#2 index.php(2): include_once('...')
+
+
+[1;34m________________________________________________________________________________
+[1;37m[1;34m################################################################################
+#Type[ [1;31mERROR[1;34m ] #Title[ [1;31mLog Entry[1;34m ] #Date[ [1;31mDecember 14, 2023 at 16:31:00[1;34m ]
+################################################################################:
+
+[1;31mDid not use redis cache
+-----
+Back Trace:
+
+#0 lib/classes/Console.php(269): Console::log('...', false, 1, '...')
+#1 lib/init.php(338): Console::error('...')
+#2 index.php(2): include_once('...')
+
+
+[1;34m________________________________________________________________________________
+[1;37m[1;34m################################################################################
+#Type[ [1;31mERROR[1;34m ] #Title[ [1;31mLog Entry[1;34m ] #Date[ [1;31mDecember 14, 2023 at 16:31:11[1;34m ]
+################################################################################:
+
+[1;31mDid not use redis cache
+-----
+Back Trace:
+
+#0 lib/classes/Console.php(269): Console::log('...', false, 1, '...')
+#1 lib/init.php(338): Console::error('...')
+#2 index.php(2): include_once('...')
+
+
+[1;34m________________________________________________________________________________
+[1;37m[1;34m################################################################################
+#Type[ [1;31mERROR[1;34m ] #Title[ [1;31mLog Entry[1;34m ] #Date[ [1;31mDecember 14, 2023 at 16:31:28[1;34m ]
+################################################################################:
+
+[1;31mDid not use redis cache
+-----
+Back Trace:
+
+#0 lib/classes/Console.php(269): Console::log('...', false, 1, '...')
+#1 lib/init.php(338): Console::error('...')
+#2 index.php(2): include_once('...')
+
+
+[1;34m________________________________________________________________________________
+[1;37m[1;34m################################################################################
+#Type[ [1;31mERROR[1;34m ] #Title[ [1;31mRequest Server Error[1;34m ] #Date[ [1;31mJanuary 30, 2024 at 13:21:51[1;34m ]
+################################################################################:
+
+[1;31mError:Packets out of order. Expected 1 received 0. Packet size=145
+File:/data/www/forms.datalynk.ca/lib/classes/DB.php
+On Line: 99
+-----
+Back Trace:
+
+#0 lib/classes/Console.php(269): Console::log('...', '...', 1, '...')
+#1 lib/classes/RequestServer.php(162): Console::error('...', '...')
+#2 [internal function]: RequestServer->errorHandler(2, '...', '...', 99)
+#3 lib/classes/DB.php(99): mysqli_connect('...', '...', '...', NULL)
+#4 lib/classes/DB.php(382): DB::connect()
+#5 lib/classes/User.php(372): DB::write('...', Array)
+#6 lib/classes/Session.php(257): User->save()
+#7 lib/classes/FormFactory.php(102): Session::commitGuestAccount()
+#8 lib/classes/RequestServer.php(479): FormFactory->save()
+#9 lib/classes/RequestServer.php(273): RequestServer->saveForm()
+#10 lib/classes/RequestServer.php(93): RequestServer->runAction()
+#11 server.php(7): RequestServer->__construct(Array)
+
+
+[1;34m________________________________________________________________________________
+[1;37m[1;34m################################################################################
+#Type[ [1;32mUSER WARNING[1;34m ] #Title[ [1;32mLong Query[1;34m ] #Date[ [1;32mJanuary 30, 2024 at 14:16:24[1;34m ]
+################################################################################:
+
+[1;30mQuery Took 8.692ms 
+--
+
+ select * from users where name = 'Guest User' limit 1
+
+Took: 8.692, Affected: 1, Rows Used Connection: new
+
+[1;34m________________________________________________________________________________
+[1;37m

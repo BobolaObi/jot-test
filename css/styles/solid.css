@@ -1,0 +1,83 @@
+/*
+ *Form CSS
+ */
+.form-all{
+    background:#999 url(../../images/brushed.png) center;
+    color: Black;
+    font-family: Verdana;
+    font-size: 12px;
+}
+.form-label-top {
+    -moz-border-radius:5px 5px 0 0;
+    -webkit-border-radius:5px 5px 0 0;
+    border-radius:5px 5px 0 0;
+    padding:6px;
+    background:url("../../images/grad.png") repeat-x scroll 0 0 #aaa;
+    border:1px solid #777;
+    border-bottom:none;
+    margin:0;
+    width:auto !important;
+    display:block;
+}
+
+.form-label-left {
+    -moz-border-radius:5px 0 0 5px;
+    -webkit-border-radius:5px 0 0 5px;
+    border-radius:5px 0 0 5px;
+    background:url("../../images/grad.png") repeat-x scroll 0 0 #aaa;
+    border-color:#777777 -moz-use-text-color #777777 #777777;
+    border-style:solid none solid solid;
+    border-width:1px medium 1px 1px;
+    float:left;
+    padding:10px;
+    text-align:left;
+}
+
+.form-label-right {
+    -moz-border-radius:5px 0 0 5px;
+    -webkit-border-radius:5px 0 0 5px;
+    border-radius:5px 0 0 5px;
+    background:url("../../images/grad.png") repeat-x scroll 0 0 #aaa;
+    border-color:#777777 -moz-use-text-color #777777 #777777;
+    border-style:solid none solid solid;
+    border-width:1px medium 1px 1px;
+    float:left;
+    text-align:right;
+    padding:10px;
+    text-align:left;
+}
+
+.form-input-wide {
+    -moz-border-radius:0 0 5px 5px;
+    -webkit-border-radius:0 0 5px 5px;
+    border-radius:0 0 5px 5px;
+    background:none repeat scroll 0 0 #DDDDDD;
+    border:1px solid #777777;
+    padding:6px;
+}
+
+.form-input {    
+    /*padding-left: 156px;*/
+    display:inline-block;
+    -moz-border-radius:0 5px 5px 0;
+    -webkit-border-radius:0 5px 5px 0;
+    border-radius:0 5px 5px 0;
+    background:none repeat scroll 0 0 #DDDDDD;
+    border:1px solid #777777;
+    display:inline-block;
+    padding:6px;
+    width:434px;
+}
+.form-pagebreak .form-label-left{
+    border:none;
+    background:none;
+}
+
+.form-pagebreak{
+    background:none;
+    border:none;
+}
+.form-header-group{
+    background:none;
+    border:none;
+}

@@ -1,0 +1,230 @@
+* { zoom:1; } 
+fieldset.accountField {
+    position: relative;
+    padding-top:10px !important;
+    padding-bottom: 1px !important;
+    margin-top:8px !important;    
+}
+ol li{
+    list-style:square !important;
+}
+.buttons-black{
+    border:1px solid #444 !important;
+}
+fieldset.accountField legend {
+    position: absolute;
+    top: -.7em;
+    left: .1em;
+}
+.recent-forms li{
+    height:16px;
+}
+#remember{
+    float:left;
+    margin:0px;
+    margin-top:-3px;
+    margin-right:5px;
+}
+#prop-tabs{
+    bottom:-19px;
+}
+.footer-box{
+    border:1px solid #333;
+    border-top:1px solid #666;
+}
+.fieldsetAccount{
+    padding:5px 0 !important;
+}
+
+#group-form button{
+    margin:0px;
+    display:inline;
+    float:left;
+    width:25% !important;
+    min-width:10px !important;
+}
+.toolbar-set .big-button{
+    height:68px;
+    max-width:100px;
+    min-width:50px;
+    float:left;
+    zoom:0;
+}
+.preview-box{
+    background:transparent;
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#77FFFFFF,endColorstr=#77FFFFFF);
+}
+#preview-close, #intro-close-button{
+    right:2px !important;
+    top:2px !important;
+}
+.envelope-sender select{
+    margin:3px;
+}
+
+.big-button-text{
+    float:none !important;
+}
+
+#feedback-tab-link {
+    right: 8px;
+	width: 100px;
+}
+.window-content-wrapper{
+    background:#f5f5f5 !important;
+}
+.bar-out{
+    border:1px solid #ccc;
+}
+#search-bar .pressed{
+    border-bottom:1px solid #eee !important;
+    border-top:1px solid #666 !important;
+}
+#myforms-sortby{
+    border:2px solid #ccc;
+    padding:2px;
+}
+
+#myforms-sortby{
+    width:120px;
+}
+.details{
+    display:block;
+    white-space:nowrap;
+}
+.forms{
+    border:1px solid transparent;
+}
+.selected{
+    border:1px solid #ccc;
+}
+.narrow-bar .big-button {
+ /*   width:23%;*/
+}
+
+.selected .form-title{
+    width:380px;
+}
+#search-bar *{
+    zoom:normal;
+}
+
+#banner-img{
+    top:0px !important;
+}
+#accordion.has-banner{
+    margin-top:234px !important;
+}
+
+#account-notification {
+    border:1px solid #ABABAB;
+}
+
+.window-buttons-wrapper button{
+    white-space:nowrap;
+}
+
+#share_options .tools{
+	display:inline-block;
+	width:185px;
+}
+
+#share_options .tools li{
+	white-space: nowrap;
+}
+
+/*
+ * Start of new share wizard.
+ */
+
+#iweb, #tumblr, #yola, #default {
+	margin-left:0 !important;
+	padding-left:0 !important;
+	padding-right:12px !important;
+	width: 32px !important;
+}
+
+#blogger, #xara, #email, #popup {
+	margin-right:0 !important;
+	padding-right:0 !important;
+	padding-left:12px !important;
+	width: 32px !important;
+}
+
+
+/*
+ * End of new share wizard.
+ */
+
+
+/*
+ * Start of Dropbox Landing Page 
+ */
+
+
+#dropboxHeader h2 {
+	font-size:28px !important;
+}
+
+#dropboxTextShadow {
+	width:100%;
+	position:absolute;
+	height:40% !important;
+	bottom:0;
+	filter: alpha(opacity = 30);
+	background:#1E1E1E;
+}
+
+h2 #dropboxTextShadow {	background:#1E1E1E; }	
+
+.dropboxContFeatBox h2 #dropboxTextShadow {	background:#2C2C2C; }	
+
+#dropboxContInstruction h2 #dropboxTextShadow { background:#2F2F2F; }
+
+#dropboxHeader #dropboxLogo img  {
+	filter: alpha(opacity = 50);
+}
+
+#dropboxContent #dropboxContFeatures .dropboxContFeatBox {
+	background: transparent;
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#19000000,endColorstr=#19000000)"; /* IE8 */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#19000000,endColorstr=#19000000);   /* IE6 & 7 */
+}
+
+#dropboxContent .dropboxColLeft .dropboxImgFrame:hover {
+	border-color:#FF6500;
+}
+
+#dropboxHeader button {
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFA500',endColorstr='#FF6500',GradientType=0)";
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFA500',endColorstr='#FF6500',GradientType=0);
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(color='#000000', Direction=90, Strength=3);"
+	filter: progid:DXImageTransform.Microsoft.Shadow(color='#000000', Direction=90, Strength=3);
+}
+
+#dropboxContent h3 {
+	font-size:14px !important;
+}
+
+#dropboxBgStripe + .main ul.index-navbg {
+	border-bottom:1px solid #666666;
+}
+
+/*
+ * End of Dropbox Landing Page
+ */
+
+ /**
+  * Dropbox page
+  */
+#pBarContainer + p.hr {
+	border-bottom: 1px solid #ffffff;
+	border-top: 1px solid #d4d4d4;
+}
+.link-cont{
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF',endColorstr='#D9D9D9',GradientType=0)";
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF',endColorstr='#D9D9D9',GradientType=0);
+}
+/**
+ * Dropbox page
+ */

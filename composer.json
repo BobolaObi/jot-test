@@ -1,0 +1,16 @@
+{
+    "name": "legacy/jot",
+    "description": "Based on jotforms 2012",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Legacy\\Jot\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Auxilium"
+        }
+    ],
+    "require": {}
+}

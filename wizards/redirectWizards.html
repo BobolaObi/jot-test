@@ -1,0 +1,50 @@
+<div id="redirect-options-div" style="padding: 10px; ">
+	<!--
+	<b class="locale">Thank You Page</b>
+	<p class="locale">After form submission, take user to</p>
+	-->
+	<form id="redirect-options">
+	<ul class="wizard-list-options">
+	 <li>
+            <div>
+		<input type="radio" name="redirectOptionType" id="redirect-option-none" checked="true" /> 
+		<label for="redirect-option-none" class="locale">Default Thank You page</label>
+		<div class="option-description locale">After form submission, take user to default Thank You page.</div>
+            </div>
+	 </li><li>
+            <div>
+		<input type="radio" name="redirectOptionType" id="redirect-option-url" /> 
+		<label for="redirect-option-url" class="locale">Custom URL</label>
+		<div class="option-description locale">After form submission, redirect to a custom URL.</div>
+            </div>
+	 </li><li>
+            <div>
+		<input type="radio" name="redirectOptionType" id="redirect-option-custom" /> 
+		<label for="redirect-option-custom" class="locale">Thank You message</label>
+		<div class="option-description locale">After form submission, show a message.</div>
+            </div>
+	 </li>
+	</ul>
+	</form>
+</div>
+<div id="redirect-url-div" style="padding: 30px; display: none;">
+	<b class="locale">Thank You Page Redirect URL</b>
+	<div class="option-description locale">After form submission, redirect to a custom URL.</div>
+	<br/>
+	<label for="redirect-url" class="locale">URL</label>
+	<input size="50" type="text" id="redirect-url" style="margin: 0 0 5px 5px;" value="http://www.jotform.com/" />
+	<div id="redirect-url-error" class="error"></div>
+</div>
+<div id="redirect-custom-div" style="padding: 10px; display: none;">
+	<b class="locale">Thank You Message</b>
+        <div class="option-description locale">After form submission, show a message.</div>
+    <div style="background:#fff;">
+    	<textarea id="redirect-custom-editor" cols="80" rows="20" style="margin: 10px;width:680px;background:#fff">
+    		
+    	</textarea>
+    </div>
+</div>
+<div id="redirect-none-div" style="padding: 10px; display: none; height: 118px">
+	<b class="locale">Default Thank You Page</b>
+	<p class="locale">You do not need to make any changes for the default Thank You page to work.</p><p class="locale">Click Finish to use this option.</p>
+</div>

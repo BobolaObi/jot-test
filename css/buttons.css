@@ -1,0 +1,136 @@
+/* Buttons */
+.big-button {
+    margin: 0px;
+    border: none;
+    overflow: visible;
+    background: none;
+    outline: none !important;
+    margin: 0 0px 0 0px;
+    padding: 3px 6px;
+    width: auto;
+    font-size: 11px;
+    text-shadow: 0px 1px 0px #e5e5e5, 0 0 5px rgba(255, 255, 255, 0.6);
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+}
+
+.big-button::-moz-focus-inner {
+    border: 0px;
+    padding: 0px;
+}
+
+.buttons {
+    padding: 0 .25em 0 .25em;
+    /*white-space:nowrap; I  know why this is here. But it needs to be commited out for a reason. Contact me if there is a problem :) Seyhun  */
+    margin: 0px;
+    margin-right: 5px;
+    margin-top: 1px;
+    overflow: visible;
+    padding-left: 20px;
+    cursor: default;
+    padding-bottom: 2px;
+    padding-top: 0px;
+    font-size: 11px;
+    border: none;
+    background: none;
+    text-align: left;
+    outline: none !important;
+}
+
+.buttons {
+    background: #f5f5f5;
+    border: 1px solid #aaaaaa;
+    padding: 4px 10px;
+    background: url(../images/button-back.png) repeat-x;
+}
+
+.buttons-red {
+    background-repeat: repeat-x;
+    background-color: orange;
+    background-image: url(../images/button-back-red.png) !important;
+    text-shadow: #ccc 0px 1px 0px !important;
+    border: 1px solid #333 !important;
+}
+
+.buttons-black {
+    background-repeat: repeat-x;
+    background-color: #222222;
+    background-image: url(../images/button-back-black.png) !important;
+    text-shadow: #000 0px 1px 0px !important;
+    border: 1px solid #444444;
+    padding: 5px 10px;
+    color: #dddddd;
+}
+
+.buttons-green{
+    background-repeat:repeat-x;
+    background-color:green;
+    background-image:url(../images/button-back-green.png) !important;
+    color:#FFFFFF;
+    text-shadow:0 1px 0 #000000 !important;
+    border:1px solid green !important;
+}
+
+.buttons-dark{
+    background-repeat:repeat-x;
+    background-color:black;
+    background-image:url(../images/button-back-dark.png) !important;
+    color:#FFFFFF;
+    text-shadow:0 0px 0 #000000 !important;
+    border:1px solid #333 !important;
+}
+
+.buttons-fire{
+    background-repeat:repeat-x;
+    background-color:red;
+    background-image:url(../images/button-back-fire.png) !important;
+    color:#FFFFFF;
+    text-shadow:0 1px 0 #000000 !important;
+    border:1px solid #888 !important;
+}
+
+.buttons-grey{
+    background-repeat:repeat-x;
+    background-color:grey;
+    background-image:url(../images/button-back-grey.png) !important;
+    color:#000;
+    text-shadow:0 1px 0 #eee !important;
+    border:1px solid #777 !important;
+}
+
+.buttons-blood{
+    background-repeat:repeat-x;
+    background-color:red;
+    background-image:url(../images/button-back-blood.png) !important;
+    color:#FFFFFF;
+    text-shadow:0 1px 0 #000000 !important;
+    border:1px solid #333 !important;
+}
+
+.buttons:hover {
+    background-position: 0 -30px;
+}
+
+.buttons:active {
+    background-position: 0 -60px;
+}
+
+.buttons:active {
+    /*-moz-box-shadow:0px 0px 8px rgba(0, 0, 0, 0.8) inset;
+    -webkit-box-shadow:0px 0px 8px rgba(0, 0, 0, 0.8) inset;
+    box-shadow:0px 0px 8px rgba(0, 0, 0, 0.8) inset;*/
+   -moz-box-shadow:0 -1px 2px rgba(255, 255, 255, 0.5) inset;
+    -webkit-box-shadow:0 -1px 2px rgba(255, 255, 255, 0.5) inset;
+}
+.buttons {
+    -moz-border-radius:2px 2px;
+    -webkit-border-radius:2px;
+    border-radius:2px 2px;
+    
+}
+
+.buttons-black{
+    -moz-border-radius:6px 6px !important;
+    -webkit-border-radius:6px 6px !important;
+    border-radius:6px 6px !important;
+}

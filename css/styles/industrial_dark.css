@@ -1,0 +1,34 @@
+/*
+ *Form CSS
+ */
+.form-all{
+    color: white;
+    font-family:"Trebuchet MS";
+    font-size: 12px;
+    background:url(../../images/styles/style4_2_bg.gif) #363535 top repeat-x;
+}
+
+.form-textbox, .form-textarea, .form-upload, .form-dropdown, .form-matrix-column-headers, .form-matrix-row-headers, .form-matrix-values{
+   font-family: "Trebuchet MS";
+   font-size: 12px;
+   font-weight:normal;
+   color:#cccccc;
+   border:1px #000000 solid;
+   background:url(../../images/styles/style4_txt_bg.gif) #333333 top repeat-x;
+}
+
+.form-submit-button, .form-submit-reset, .form-submit-print{
+   font-family: "Trebuchet MS";
+   font-size: 12px;
+   font-weight:normal;
+   color:#cccccc;
+   border:1px #000000 solid;
+   background: url(../../images/styles/style4_btn_bg.gif) #333333 top repeat-x;
+}
+.form-header-group{
+    background: none;
+}
+
+.form-collapse-table{
+    color:Black;
+}

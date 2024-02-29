@@ -1,0 +1,7 @@
+.banners-banner-logo, .banners-endofyear, .banners-mail-banner, .banners-sale-button-hover, .banners-sale-button, .banners-subLabel{background: transparent url(images/banners.png?3.0.REV) no-repeat scroll 0 0;}
+.banners-banner-logo{background-position: -0px 0px;width:234px;height:55px;}
+.banners-endofyear{background-position: -234px 0px;width:243px;height:256px;}
+.banners-mail-banner{background-position: -477px 0px;width:610px;height:110px;}
+.banners-sale-button-hover{background-position: -1087px 0px;width:152px;height:46px;}
+.banners-sale-button{background-position: -1239px 0px;width:152px;height:46px;}
+.banners-subLabel{background-position: -1391px 0px;width:400px;height:300px;}

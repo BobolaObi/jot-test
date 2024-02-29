@@ -1,0 +1,79 @@
+<div id="shareWizard">
+	<div class="cell first" id="optionsBox">
+		<div class="form-url-options">
+			<h2>Your form is here!</h2>
+			<p>This is a direct link to your form for easier distribution.</p>
+			<table cellpadding="0" cellspacing="0">
+				<tbody>
+					<tr>
+						<td>
+							<input  type="text" name="formUrl" id="url" readonly="readonly" />
+						</td>
+                        <td>
+                        	<a class="linkButton customUrlThumb" id="customButton" title="Custom URL"><img src="images/blank.gif" class="sharewiz2-wrench"/></a>
+							<div class="customUrlPop" id="customUrlPop">
+								<label for="customUrl" class="customUrlLabel">Custom Url</label><br />
+								<label for="customUrl" class="customUrlDesc">Create a custom link to your form for easier distribution.</label><br />
+								<input  type="text" name="customUrl" id="customUrl"/>
+								<a class="linkButton" id="customUrlButton">Save</a> 
+								<span id="customUrlError"></span>
+							</div>
+						</td>
+                        <td>
+                        	<input type="checkbox" name="secureForm" id="secureFormCheckbox" />
+                        </td>
+						<td>
+                            <label class="small-label" for="secureFormCheckbox">Secure form</label>
+						</td>
+					</tr>
+				</tbody>
+            </table>
+            <!-- Don't delete this element. this is needed for xara to work properly -->
+            <input id="mainSource" style="display:none;" />
+		</div>
+		<hr />
+		<div id="slideDiv">
+			<div id="slideTable">
+                <div id="shareOptions">
+		            <h2>Display it on your site</h2>
+					<div class="options">
+			            <a class="option" id="default"><img src="images/blank.gif" class="sharewiz2-embed_bw" alt="Embed Form" title="Embed Form"/><br/>Embed</a>
+			            <a class="option" id="source"><img src="images/blank.gif" class="sharewiz2-sauce_bw" alt="Source Code" title="Source Code"/><br/>Source</a>
+			            <a class="option" id="iframe"><img src="images/blank.gif" class="sharewiz2-iframe_bw" alt="iFrame" title="iFrame"/><br/>iFrame</a>
+			            <a class="option" id="lightbox2"><img src="images/blank.gif" class="sharewiz2-lightbox_bw" alt="LightBox" title="LightBox"/><br/>LightBox</a>
+			            <a class="option" id="feedback2"><img src="images/blank.gif" class="sharewiz2-feedback_bw" alt="Feedback Button" title="Feedback Button"/><br/>Feedback</a>
+			            <a class="option" id="popup"><img src="images/blank.gif" class="sharewiz2-popup_bw" alt="Pop-up" title="Pop-up"/><br/>Pop-up</a>
+					</div>
+		            <!--br class="clearfix" /-->
+		            <hr/>
+		            <h2>Other Platforms</h2>
+					<div class="options options-others">
+                        <a class="option" id="iweb"><img src="images/blank.gif" class="sharewiz2-iweb_bw" alt="iWeb" title="iWeb"/><br/>iWeb</a>
+                        <a class="option" id="dreamweaver"><img src="images/blank.gif" class="sharewiz2-dreamweaver_bw" alt="Dreamweaver" title="Dreamweaver"/><br/><span id="shiftDwLeft">Dreamweaver</span></a>
+			            <a class="option" id="wordpress"><img src="images/blank.gif" class="sharewiz2-wordpress_bw" alt="WordPress" title="Wordpress"/><br/>Wordpress</a>
+                        <a class="option" id="facebook"><img src="images/blank.gif" class="sharewiz2-facebook_bw" alt="Facebook" title="Facebook"/><br/>Facebook</a>
+                        <a class="option" id="frontpage"><img src="images/blank.gif" class="sharewiz2-frontpage_bw" alt="Frontpage" title="Frontpage"/><br/>Frontpage</a>
+                        <a class="option" id="blogger"><img src="images/blank.gif" class="sharewiz2-blogger_bw" alt="Blogger" title="Blogger"/><br/>Blogger</a>
+                        <a class="option" id="tumblr"><img src="images/blank.gif" class="sharewiz2-tumblr_bw" alt="Tumblr" title="Tumblr"/><br/>Tumblr</a>
+			            <a class="option" id="typepad"><img src="images/blank.gif" class="sharewiz2-typepad_bw" alt="TypePad" title="TypePad"/><br/>TypePad</a>
+			            <a class="option" id="livejournal"><img src="images/blank.gif" class="sharewiz2-livejournal_bw" alt="LiveJournal" title="LiveJournal"/><br/>LiveJournal</a>
+			            <a class="option" id="expression"><img src="images/blank.gif" class="sharewiz2-expression_bw" alt="Expression" title="Expression Web"/><br/>Expression</a>
+			            <a class="option" id="googlesites"><img src="images/blank.gif" class="sharewiz2-googlesites_bw" alt="Google Sites" title="Google Sites"/><br/>Google Sites</a>
+			            <a class="option" id="xara"><img src="images/blank.gif" class="sharewiz2-xara_bw" alt="Xara Applications" title="Xara Applications"/><br/>Xara</a>
+			            <a class="option" id="yola"><img src="images/blank.gif" class="sharewiz2-yola_bw" alt="Yola" title="Yola"/><br/>Yola</a>
+			            <a class="option" id="webs"><img src="images/blank.gif" class="sharewiz2-webs_bw" alt="Webs.com" title="Webs.com"/><br/>Webs.com</a>
+			            <a class="option" id="memberkit"><img src="images/blank.gif" class="sharewiz2-memberkit_bw" alt="MemberKit" title="MemberKit"/><br/>MemberKit</a>
+			            <a class="option" id="drupal"><img src="images/blank.gif" class="sharewiz2-drupal_bw" alt="Drupal" title="Drupal"/><br/>Drupal</a>
+			            <a class="option" id="joomla"><img src="images/blank.gif" class="sharewiz2-joomla_bw" alt="Joomla" title="Joomla"/><br/>Joomla</a>
+			            <a class="option" id="email"><img src="images/blank.gif" class="sharewiz2-email_bw" alt="Embed Form" title="Embed Form"/><br/>Email</a>
+					</div>
+		            <br class="clearfix"/>
+		        </div>
+		        <div id="informationBox">
+		            <div><a id="closeButton">&#171; Go back</a></div>
+		            <div id="shareOptionInstructions"></div>
+		        </div>
+			</div>
+		</div>
+	</div>
+</div>
