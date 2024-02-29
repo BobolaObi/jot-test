@@ -54,4 +54,4 @@ services:
     restart: unless-stopped
 
 volumes:
-  mysql-data:
+  mysql_data:
