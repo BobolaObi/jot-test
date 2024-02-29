@@ -9,7 +9,7 @@ services:
     restart: unless-stopped
 
   nginx_phpfpm:
-    image: gitlab.auxiliumgroup.com:4567/auxilium/forms.datalynk.ca:pre-dojo
+    image: gitlab.auxiliumgroup.com:4567/auxilium/jot.datalynk.ca:main
     environment:
       REDIS_HOST: redis
       MYSQL_HOST: mysqldb
@@ -26,6 +26,10 @@ services:
     ports:
       - "${SWARM_PORT-9213}:80"
     volumes:
+      - /sql/initialization.sql
+        - ${GIT_SOURCE}:/data/www
+        - ./php/999-auxilium.ini:/etc/php/7.4/fpm/conf.d/999-auxilium.ini
+
       - /etc/localtime:/etc/localtime
       - /sql/initialization.sql
 #      - /cache:/data/www/forms.datalynk.ca/cache

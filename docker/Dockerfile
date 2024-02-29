@@ -11,3 +11,4 @@ WORKDIR /data/www/jot.datalynk.ca
 RUN ln -s cache/uploads uploads
 
 RUN /data/www/jot.datalynk.ca/composer.phar install -n
+
