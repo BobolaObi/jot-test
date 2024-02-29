@@ -4,14 +4,14 @@
 version: '3.5'
 
 services:
-  # redis:
-  #   image: redis
-  #   restart: unless-stopped
+  redis:
+    image: redis
+    restart: unless-stopped
 
   nginx_phpfpm:
     image: gitlab.auxiliumgroup.com:4567/auxilium/jot.datalynk.ca:main
     environment:
-      # REDIS_HOST: redis
+      REDIS_HOST: redis
       MYSQL_HOST: mysqldb
       CACHEPATH: "/cache"  # Replace with your actual cache path
       UPLOAD_FOLDER: "/uploads"  # Replace with your actual upload folder
@@ -31,7 +31,7 @@ services:
       - /sql/initialization.sql
 #      - /cache:/data/www/jot.datalynk.ca/cache
     depends_on:
-      # - redis
+      - redis
       - mysqldb
     deploy:
       replicas: ${SWARM_REPLICAS:-1}
@@ -50,9 +50,9 @@ services:
       MYSQL_DATABASE: jotforms
       MYSQL_USER: jotforms
       MYSQL_PASSWORD: access
-    volumes:
-     - mysql_data:/var/lib/mysql
+    # volumes:
+    #  - mysql_data:/var/lib/mysql
     restart: unless-stopped
 
-volumes:
-  mysql_data:
+# volumes:
+#   mysql_data:
