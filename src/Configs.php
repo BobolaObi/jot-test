@@ -20,7 +20,7 @@ class Configs
     const DB_USE_SSL = false; 
     const SSL_CIPHER = "";
     
-    const LOGFOLDER = "/data/www/forms.datalynk.ca/logs/";
+    const LOGFOLDER = "/data/www/jot.datalynk.ca/logs/";
     const USECDN = false; 
     const USEUFS = false; 
     const NOREPLY = "no-reply@datalynk.ca";
@@ -30,8 +30,8 @@ class Configs
     const DEFAULT_USER_TYPE = "PROFESSIONAL";
     const CLOUD_UPLOAD_ALIAS = "http://www.jotform.com/uploads/";
     const SUBFOLDER = "/";
-    const CACHEPATH = "/data/www/forms.datalynk.ca/cache/";
-    const UPLOADPATH = "/data/www/forms.datalynk.ca/uploads/";
+    const CACHEPATH = "/data/www/jot.datalynk.ca/cache/";
+    const UPLOADPATH = "/data/www/jot.datalynk.ca/uploads/";
     
     const APP = true; 
     const HAVESSL = false; 

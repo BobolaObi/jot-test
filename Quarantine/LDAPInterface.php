@@ -210,7 +210,7 @@ class LDAPInterface
     function bind($dn, $pass)
     {
         ob_start();
-        set_error_handler(['forms.datalynk.ca\Quarantine\LDAPInterface', 'void_error_handler']);
+        set_error_handler(['jot.datalynk.ca\Quarantine\LDAPInterface', 'void_error_handler']);
         $ret = ldap_bind($this->connection, $dn, $pass);
         restore_error_handler();
 
@@ -249,7 +249,7 @@ class LDAPInterface
     // Don't blame me, blame PHP's own ldap_get_entries()
     function retrieveAttributes($dn)
     {
-        set_error_handler(['forms.datalynk.ca\Quarantine\LDAPInterface', 'void_error_handler']);
+        set_error_handler(['jot.datalynk.ca\Quarantine\LDAPInterface', 'void_error_handler']);
         $result = ldap_read($this->connection, $dn, 'objectClass=*');
         $entries = ldap_get_entries($this->connection, $result);
         restore_error_handler();
@@ -304,7 +304,7 @@ class LDAPInterface
 
     function create_entry($dn, $attributes)
     {
-        set_error_handler(['forms.datalynk.ca\Quarantine\LDAPInterface', 'void_error_handler']);
+        set_error_handler(['jot.datalynk.ca\Quarantine\LDAPInterface', 'void_error_handler']);
         $ret = ldap_add($this->connection, $dn, $attributes);
         restore_error_handler();
 
@@ -313,7 +313,7 @@ class LDAPInterface
 
     function rename_entry($dn, $newrdn, $newparent, $deleteoldrdn)
     {
-        set_error_handler(['forms.datalynk.ca\Quarantine\LDAPInterface', 'void_error_handler']);
+        set_error_handler(['jot.datalynk.ca\Quarantine\LDAPInterface', 'void_error_handler']);
         $ret = ldap_rename($this->connection, $dn, $newrdn, $newparent, $deleteoldrdn);
         restore_error_handler();
 
@@ -322,7 +322,7 @@ class LDAPInterface
 
     function delete_entry($dn)
     {
-        set_error_handler(['forms.datalynk.ca\Quarantine\LDAPInterface', 'void_error_handler']);
+        set_error_handler(['jot.datalynk.ca\Quarantine\LDAPInterface', 'void_error_handler']);
         $ret = ldap_delete($this->connection, $dn);
         restore_error_handler();
 
