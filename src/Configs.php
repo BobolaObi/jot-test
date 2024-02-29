@@ -9,13 +9,13 @@ class Configs
     const COMPANY_LOGO = "";
     
     // Use environment variables with fallbacks
-    const DBNAME = getenv('DB_NAME') ?: "jotforms";
-    const DEV_DB_HOST = getenv('MYSQL_HOST') ?: "mysqldb";
-    const DEV_DB_USER = getenv('DB_USER') ?: "jotforms";
-    const DEV_DB_PASS = getenv('DB_PASS') ?: "access";
-    const PRO_DB_HOST = getenv('MYSQL_HOST') ?: "mysqldb";
-    const PRO_DB_USER = getenv('DB_USER') ?: "jotforms";
-    const PRO_DB_PASS = getenv('DB_PASS') ?: "access";
+    const DBNAME              = "jotforms";
+    const DEV_DB_HOST         = "mysqldb";
+    const DEV_DB_USER         = "jotforms";
+    const DEV_DB_PASS         = "access";
+    const PRO_DB_HOST         = "mysqldb";
+    const PRO_DB_USER         = "jotforms";
+    const PRO_DB_PASS         = "access";
     
     const DB_USE_SSL = false; 
     const SSL_CIPHER = "";
