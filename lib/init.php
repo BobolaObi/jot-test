@@ -1,15 +1,5 @@
 <?php
 
-use Legacy\Jot\Configs;
-use Legacy\Jot\UserManagement\User;
-use Legacy\Jot\Utils\Console;
-use Legacy\Jot\Utils\DB;
-use Legacy\Jot\Utils\Server;
-use Legacy\Jot\Utils\TimeZone;
-use Legacy\Jot\Utils\Utils;
-
-require_once(__DIR__ . "/../vendor/autoload.php");
-
 /**
  * Initial configuration file, Set everything for JotForm
  * @remember Line order of this file is really important don't change the order of any line
@@ -19,9 +9,69 @@ require_once(__DIR__ . "/../vendor/autoload.php");
  */
 # Fix for proxy forwarded IP addresses
 
-/* old code base will be littered with warnings now. */
-DEFINE("ERROR_LEVEL_LENIENT", E_ALL & ~E_WARNING & ~E_NOTICE);
+// Define the ROOT constant to point to the base directory of your project
+use Legacy\Jot\UserManagement\User;
+use Legacy\Jot\Utils\Server;
+use Legacy\Jot\Utils\TimeZone;
+use Legacy\Jot\Utils\Utils;
+
+define('ROOT', __DIR__);
+
+/* old code base will be littered with warnings now,
+our strategy is to ignore them. */
+DEFINE("ERROR_LEVEL_LENIENT", E_ALL & ~E_WARNING & ~E_NOTICE & ~E_DEPRECATED);
 error_reporting(ERROR_LEVEL_LENIENT);
+
+/* die with as much info as possible.
+NOT FOR COMMERCIAL DEPLOYMENT.
+*/
+
+register_shutdown_function(function (...$_) {
+    $err = error_get_last();
+    if($err['type'] & ~ERROR_LEVEL_LENIENT){
+        // normal exit condition, not thrown exception.
+        return;
+    }
+    $wtf = error_reporting();
+    $fuckedWith = $wtf !== ERROR_LEVEL_LENIENT;
+    function_exists('xdebug_break') && xdebug_break();
+    echo json_encode(["error"=>$err, 'trace'=>debug_backtrace()]);
+});
+
+// Error handler function
+set_error_handler(function($errNo, $errStr, $errFile, $errLine) {
+    $wtf = error_reporting();
+    $fuckedWith = $wtf !== ERROR_LEVEL_LENIENT;
+    function_exists('xdebug_break') && xdebug_break();
+    echo(json_encode(get_defined_vars() + ['trace'=>debug_backtrace()]));
+},
+    E_ALL & ~E_WARNING & ~E_NOTICE
+);
+
+set_exception_handler(
+    function (Throwable $x) {
+        echo(json_encode([
+            $x->getMessage(),
+            $x->getFile(),
+            $x->getLine(),
+            $x->getTrace(),
+        ], JSON_PRETTY_PRINT));
+    });
+
+
+if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+    # This addresses comes as comma seperated if more than one proxy was used.
+    $forwardedIps = preg_split("/\s*,\s*/",
+        $_SERVER['HTTP_X_FORWARDED_FOR'] ?? ''); # Split addresses
+    $ip = $forwardedIps[0];                                                    # Use the first address
+    $_SERVER['REMOTE_ADDR'] = $ip;                                             # Overwrite remote address to be used in code
+}
+
+# If request behind the proxy is HTTPS then notify code to use SSL options
+if (isset($_SERVER["HTTP_FRONT_END_HTTPS"])) {
+    $_SERVER['HTTPS'] = $_SERVER['HTTP_FRONT_END_HTTPS'];
+}
+
 
 
 if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
@@ -39,11 +89,11 @@ if (isset($_SERVER["HTTP_FRONT_END_HTTPS"])) {
 
 /**
  * Auto load function which loads all classes automatically no need to write includes for each class
- * @param  $class_name
+ * @param object $class_name
  * @return
  */
 
-function pending_pedrecation_autoload($class_name)
+function autoload($class_name)
 {
 
     # In order to provide a decent warning message
@@ -101,12 +151,15 @@ function pending_pedrecation_autoload($class_name)
 }
 
 # Should register autoloader for phpunit
-//spl_autoload_register('pending_pedrecation_autoload');
+spl_autoload_register('autoload');
+
+# Get all the options from this file
+include_once dirname(__FILE__) . "/ConfigsClass.php";
 
 /**
  * Fix extra slashes in path
- * @param  $path
- * @param  $isfile // [optional]
+ * @param object $path
+ * @param object $isfile [optional]
  * @return
  */
 function P($path, $isfile = false)
@@ -115,19 +168,13 @@ function P($path, $isfile = false)
     return $fixedpath;
 }
 
-function isDev()
-{
-    return $_SERVER['JOTFORMS_MODE'] == 'dev'
-        || (Server::isLocalhost() && !getenv("DOCKER_MODE"));
-}
-
 $host = $_SERVER['HTTP_HOST'] ?? '';
 $folder = ($host == "localhost" || preg_match('/^192/', $host)) ? Configs::SUBFOLDER : "/"; # Folder where jotform is located under document root
 
-# On application always use subfolder from settings 
-if (Configs::APP) {
-    $folder = Configs::SUBFOLDER;
-}
+# On application always use subfolder from settings
+//if (Configs::APP) {
+//    $folder = Configs::SUBFOLDER;
+//}
 
 $domain = "";
 if (preg_match('/localhost$/', $host) == 0) {
@@ -140,7 +187,7 @@ if (isset($_SERVER['HTTP_X_FORWARDED_HOST'])) {
     $a = explode(',', $_SERVER['HTTP_X_FORWARDED_HOST']);
     $server = $a[sizeof($a) - 1];
 }
-$server = trim('' . '' . $server);
+$server = trim('' . $server);
 
 $server_path = ((preg_match("/^forms.*\.datalynk\.ca$/", $server) || preg_match("/^forms.*\.intranet$/", $server)) ? '' : '/forms');
 
@@ -152,7 +199,7 @@ if (preg_match('/MSIE/i', $user_agent)) {
 
 # Determine the protocol HTTP VS HTTPS
 $protocol = 'https://';
-if (isDev()) {
+if (preg_match("/\.intranet$/", $server)) {
     $protocol = 'http://';
 }
 
@@ -180,7 +227,6 @@ define("UPLOAD_HTTP_URL", P($protocol . $server_with_www . $server_path));
 define("CSS_PATH", $css_path);
 define("IS_SECURE", ($protocol == "https://"));                         # Checks if the URL is secure or not
 define("UPLOAD_URL", P(UPLOAD_HTTP_URL . "/uploads/"));                   # Uploads URL
-define("CLOUD_UPLOAD_URL", Configs::CLOUD_UPLOAD_ALIAS);                # Upload URL for S3 cloud
 define('IS_WINDOWS', strtoupper(substr(PHP_OS, 0, 3)) == 'WIN');        # Check if the server is windows or not
 define('VERSION', '3.0.REV');                                           # This is changed using Hudson, REV here is replaced with Hudson build number.
 define('SVNREV', '3.0.SVN_REV');                                        # This is changed using Hudson, REV here is replaced with Hudson build number.
@@ -195,27 +241,18 @@ define('CONTENT_COOKIE', 'jcm');
 define('DATALYNK_SLICES', 'dlc');                                        # NEW Content manager user connection cookie name
 define('PROTOCOL', $protocol);                                          # "http" or "https"
 define('DELAY_EMAILS', false);                                          # Stores email on database instead of sending them
-define('NOREPLY', Configs::NOREPLY);                                    # Use this address for noreply emails
-define('NOREPLY_NAME', Configs::NOREPLY_NAME);                          # Use this name for noreply emails
-define('NOREPLY_SUPPORT', Configs::NOREPLY_SUPPORT);                    # Use this name for support noreply emails
+                 # Use this name for support noreply emails
 define('BETA', false);                                                  # Mark this installation as beta
 define('SCHEMA_FILE_PATH', P(ROOT . "/opt/db_schema/jotform_new.json", true));    # Database schema file, @DEPRECATED
 define('API_URL_BASE', "api");                                          # This is the base url folder name for the API
+$d = (class_exists('Dropbox_OAuth_PHP') || class_exists('Dropbox_OAuth_PEAR'));
+define('DROPBOX_AVAILABLE', $d);
 
-if (Server::isMaxCDN() && !Server::isCacheable() && HTTP_URL !== "http://www.jotform.com/") {
-    Utils::redirect("http://www.jotform.com");
-}
+#
 
-# Sets everything in debug mode
-define('DEBUGMODE', Utils::getCookie("DEBUG") == 'debug=yes');
 
-# if we are in the debug mode then set the debug options
-if (DEBUGMODE && Utils::getCookie('debug_options')) {
-    $GLOBALS['debug_options'] = json_decode(stripslashes(Utils::getCookie('debug_options')), true);
-    if (!is_array($GLOBALS['debug_options'])) {
-        $GLOBALS['debug_options'] = [];
-    }
-}
+
+
 
 # if jotform.com host is used then move user to www.jotform.com
 if ($host == "jotform.com" && ($_SERVER['REQUEST_URI'] == "" || $_SERVER['REQUEST_URI'] == "/")) {
@@ -249,152 +286,14 @@ if (!is_dir(TRASH_FOLDER) && !mkdir(TRASH_FOLDER)) {
 /**
  * Set all servers we have
  */
-Server::setServers(Configs::$servers);
 
 # Database Name
-$DB_NAME = Configs::DBNAME;
 
-# if we are on localhost
-if (isDev()) {
-    $DB_HOST = getenv('MYSQL_HOST') ?: Configs::DEV_DB_HOST;
-    $DB_USER = Configs::DEV_DB_USER;
-    $DB_PASS = Configs::DEV_DB_PASS;
-    $JOTFORM_ENV = 'DEVELOPMENT';
-    $CACHEPATH = ROOT . "cache/";
-    $UPLOAD_FOLDER = ROOT . "uploads/";
 
-    /* debug break for untrapped exceptions... */
-//    set_exception_handler(function ($x) {
-//        function_exists('xdebug_break') && xdebug_break();
-//        return;
-//    });
-
-    /* todo:
-    error level needs to permit warnings.....
-    */
-
-    /* debug inspection for errors */
-    /* debug inspection for errors */
-    set_error_handler(function ($errno, $errstr, $errfile, $errline)
-    use ($targetErrorLevel) {
-        // no error handling if the error was suppressed with the @-operator
-        $level = error_reporting();
-        $lastError = error_get_last();
-        $lastErrorCode = error_get_last()['type'];
-        if (!($lastErrorCode & E_WARNING)) {
-            return true;
-        }
-//        $PHP_8_SUPPRESSED = E_ERROR | E_CORE_ERROR | E_COMPILE_ERROR | E_USER_ERROR | E_RECOVERABLE_ERROR | E_PARSE;
-        if ($lastErrorCode === null
-            || $level === $PHP_8_SUPPRESSED
-            || $level === 0
-        ) {
-            //  error_log("Suppressed error: [$errno] $errstr on line $errline in file $errfile");
-            return true; // Don't execute PHP's internal error handler
-        }
-
-        // break with usefull info otherwise...
-        if (function_exists('xdebug_break')) {
-            $wat = get_defined_constants(categorize: true);
-            $eConstants = array_filter(get_defined_constants(), function ($value, $key) {
-                return preg_match('/^E_/', $key);
-            }, ARRAY_FILTER_USE_BOTH);
-            $errFlags = [];
-            $errMatch = [];
-            foreach ($eConstants as $lable => $bit) {
-                if ($bit === ($bit & $level)) {
-                    $errFlags[$lable] = $bit;
-                }
-                if ($bit & $errno) {
-                    $errMatch[$lable] = $bit;
-                }
-            }
-            // xdebug_break();
-        }
-        return false; // Execute PHP's internal error handler
-    });
-
-    Console::setLogFolder(ROOT . "logs/");
-    Console::setBacktrace(true);
-    Console::setLogLevel(E_ALL & ~E_NOTICE);
-
-} else { # On production
-    $DB_HOST = getenv('MYSQL_HOST') ?: Configs::PRO_DB_HOST;
-    $DB_USER = Configs::PRO_DB_USER;
-    $DB_PASS = Configs::PRO_DB_PASS;
-    $CACHEPATH = Configs::CACHEPATH;
-    $UPLOAD_FOLDER = Configs::UPLOADPATH;
-
-    # If not an application then get our database host
-    if (!APP) {
-        # Salmon and goby are on different networks so they need remote IPs to connect to each other.
-        if (Server::isHost(["salmon"]) || strpos($_SERVER["HTTP_HOST"], "184") === 0) { // salmon or ec2
-            $DB_HOST = Server::$servers->db->remote->yunus;
-        } else if (Server::isHost(["dolphin", "dolphinv3staging", "forms"])) {
-            $DB_HOST = "localhost";
-            $DB_USER = "readonly"; #only used for form views on replication server
-        } else {
-            $DB_HOST = Server::$servers->db->local->yunus;
-        }
-    }
-
-    Console::setLogFolder(Configs::LOGFOLDER);
-    if (BETA === true) {
-        Console::setLogFolder(ROOT . "logs/");
-    }
-    # Debug mode to put us on DEVELOPMENT
-    if (DEBUGMODE) {
-        $JOTFORM_ENV = 'DEVELOPMENT';
-        error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE);
-        Console::setLogLevel(E_ALL & ~E_WARNING & ~E_NOTICE);
-        Console::setBacktrace(true);
-    } else {
-        $JOTFORM_ENV = 'PRODUCTION';
-        if (BETA === true) {
-            $CACHEPATH = ROOT . "cache/";
-            error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE);
-            Console::setLogLevel(E_ALL);
-        } else {
-            error_reporting(0);
-            Console::setLogLevel(E_ALL & ~E_WARNING & ~E_NOTICE);
-        }
-    }
-}
 
 $compress = false;
 
-if ((Configs::USECDN || Utils::debugOption('useCDN')) && !BETA) {
 
-    # If production, compress the page by default
-    $compress = ($JOTFORM_ENV === 'PRODUCTION');
-    if (DEBUGMODE) {
-        # we may want to disable compression on debug mode
-        $compress = !Utils::debugOption("decompressPage");
-    }
-    # If the page is compressed always use CDN by default
-    if ($compress) {
-        $useCDN = true;
-    } else {
-        $useCDN = false;
-    }
-
-    # In a problem with CDN open this.
-    # $useCDN = false; 
-
-    # Disable or force CDN usage on debug mode
-    if (DEBUGMODE) {
-        $useCDN = Utils::debugOption('useCDN');
-    }
-
-    # If salmon or beta do not use CDN
-    if (Server::isHost(['salmon', 'beta'])) {
-        $useCDN = false;
-    }
-} else {
-    $useCDN = false;
-}
-
-$useUFS = Configs::USEUFS && (!Server::isLocalhost() || Utils::debugOption("uploadToAmazonS3"));
 
 define("CACHEPATH", $CACHEPATH);                # Cache folder
 define('UPLOAD_FOLDER', $UPLOAD_FOLDER);        # Upload folder
@@ -423,60 +322,35 @@ ini_set("memory_limit", "2048M");               # Increase ram limit for us
 
 # Set the servers time zone for calculations
 //TimeZone::setServerTimeZone('America/New_York');
-TimeZone::setServerTimeZone(@date_default_timezone_get());
 
 # This function will handle the encoded reuqests
-Utils::handleBase64Requests();
+
 
 # If you receieve an installation completed request on applications
 # Auto update script once
-//if (APP && Utils::getCookie('INSTALLCOMPLETE')) {
-//    include ROOT . "opt/autoUpdate.php";
-//    exit;
-//}
-
-if (isset($_GET["extra_id"])) {
-    Utils::setCookie("jotform_form", $_GET["extra_id"], "+1 Month");
-    Utils::getCookie("jotform_form");
-} else {
-    /**
-     * Make sure create application always show up as new page
-     */
-    Utils::deleteCookie("jotform_form");
+if (APP && Utils::getCookie('INSTALLCOMPLETE')) {
+    include ROOT . "opt/autoUpdate.php";
+    exit;
 }
+
 
 # Never allow guests to create forms
 /*
  * HACK ALERT: disabling will allow anyone on the internet
- * to create forms under jot.datalynk.ca
+ * to create forms under forms.datalynk.ca
  *
 if(APP && Session::isGuest()){
     # Check if current page needs to be accessed without passwords
 	if(!(preg_match('/\/ipns\//',$_SERVER['PHP_SELF']) || preg_match('/complete.php/',$_SERVER['PHP_SELF']))) {
 		if(Utils::get('p') != 'passwordreset'){
 			Utils::redirect(HTTP_URL."login/");
-    }
-}
+		}
+	}
 }
 */
 
-if ($JOTFORM_ENV === 'DEVELOPMENT') {
-    set_exception_handler(
-        function (Throwable $x) {
-            echo(json_encode([
-                $x->getMessage(),
-                $x->getFile(),
-                $x->getLine(),
-                $x->getTrace(),
-            ], JSON_PRETTY_PRINT));
-        });
-}
+//
+//User::login('USER_TABLES', 'sandbox', true, true, []);
 
-DB::setConnection('submissions', DB_NAME, DB_USER, DB_PASS, DB_HOST);
-DB::setConnection('new', DB_NAME, DB_USER, DB_PASS, DB_HOST);
-# Set the defaul database to new
-DB::useConnection('new');
-
-
-// autologin to datalynk gneric account
-User::login('USER_TABLES', 'sandbox', true, true, []);
+//# Include the Datalynk library
+//require_once ROOT . "lib/datalynk.php";

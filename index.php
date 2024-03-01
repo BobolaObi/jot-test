@@ -1,6 +1,7 @@
 <?php
 
 use Legacy\Jot\Configs;
+
 use Legacy\Jot\Form;
 use Legacy\Jot\SiteManagement\Translations;
 use Legacy\Jot\UserManagement\Session;
@@ -21,6 +22,8 @@ Funnel::setGoal("First Visit", "Funnel");
 */
 
 ?>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?=Translations::getShortLanguageCode() ?>" lang="<?=Translations::getShortLanguageCode() ?>">
 <head>

@@ -5,6 +5,7 @@ cache/*
 uploads/*
 supervisord.log
 supervisord.pid
-
+.idea
+composer_2.phar
 /vendor/
 /cache/
